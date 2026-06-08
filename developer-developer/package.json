@@ -1,0 +1,12 @@
+{
+  "name": "developer-developer",
+  "version": "1.0.0",
+  "description": "WordPress custom theme for nephrologist - Xalapa & Veracruz",
+  "scripts": {
+    "dev": "npx @tailwindcss/cli -i ./assets/css/src/main.css -o ./style.css --watch",
+    "build": "npx @tailwindcss/cli -i ./assets/css/src/main.css -o ./assets/css/tailwind-output.css --minify && node build-css.js"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.0"
+  }
+}
