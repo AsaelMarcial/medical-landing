@@ -230,6 +230,25 @@ Estos valores describen exclusivamente aquel entorno auditado. No deben utilizar
 - `http://medical-landing.local/` sirve `style.css?ver=1.5.2` después de la sincronización.
 - `http://medical-landing.local/servicios/` contiene los 17 elementos del catálogo: 12 enfermedades, 2 terapias y 3 procedimientos.
 
+### Staging VPS vigente
+
+- VPS auditado el 2026-07-06: Debian GNU/Linux 12, Docker 29.1.5, Docker Compose plugin v5.0.1, Nginx y Certbot instalados.
+- Sistemas existentes detectados y no modificados: `pos-texano-frontend` en puerto 3001 y `pos-texano-backend` en puerto 8001. También existe una pila histórica `Comercializadora` detenida.
+- Configuración Nginx existente detectada: `/etc/nginx/sites-enabled/orza.mx` y `/etc/nginx/sites-enabled/default`; no se modificó Nginx ni los proyectos existentes.
+- Nueva pila WordPress aislada: `/opt/med-landing-dev/`.
+- Repositorio clonado: `/opt/med-landing-dev/repo`.
+- Tema montado en el contenedor: `/opt/med-landing-dev/repo/med-landing-dev` hacia `/var/www/html/wp-content/themes/med-landing-dev`.
+- Servicios Docker: `med-landing-wordpress` con imagen `wordpress:php8.2-apache`, `med-landing-db` con imagen `mariadb:11.4` y servicio auxiliar `wpcli`.
+- Volúmenes persistentes: `med_landing_dev_med_landing_wp_data` y `med_landing_dev_med_landing_db_data`.
+- URL interna configurada para staging: `http://74.208.222.71:8081`.
+- UFW permite `8081/tcp`, pero la prueba externa desde la máquina local no conectó; revisar firewall del proveedor/panel IONOS o exponer mediante reverse proxy Nginx con dominio.
+- WordPress instalado, tema `med-landing-dev` activo en versión 1.5.2, permalinks `/%postname%/` y `blog_public=0`.
+- Plugins instalados y activados en staging: Polylang 3.8.5, Rank Math SEO 1.0.273 y Fluent Forms 6.2.5.
+- Polylang tiene idiomas `es` y `en`; el contenido sembrado quedó marcado en español.
+- Home y `/servicios/` responden dentro del VPS al seguir redirecciones; `/servicios/` muestra las 17 tarjetas del catálogo.
+- Credenciales y comandos del despliegue están guardados solo en el servidor, en `/opt/med-landing-dev/DEPLOYMENT.md` con permisos `600`. No copiar contraseñas a la documentación del repositorio.
+- Pendientes VPS: abrir o enrutar tráfico público por dominio/SSL, cambiar `home` y `siteurl` al dominio final, cerrar o restringir `8081`, rotar la contraseña root compartida durante la instalación y reemplazar acceso root por usuario/SSH key de despliegue.
+
 ## 8. Build y Dependencias
 
 ### package.json
@@ -624,6 +643,18 @@ No se ejecutó render completo en WordPress ni QA responsive real porque el repo
 - Página de referencia analizada: `nefrologoenveracruz.com.mx` usa listados amplios de enfermedades/servicios, CTAs visibles y enlaces locales; se tomó como referencia de estructura, no de copia visual.
 - LocalWP validado por HTTP tras sincronizar carpeta: Home contiene `Enfermedades que atiende`, `Enfermedad renal crónica` y `Enfermedad renal en embarazo`; Servicios contiene los 17 términos esperados y no muestra el mensaje de catálogo vacío.
 
+### Validaciones staging VPS del 2026-07-06
+
+- `cmd /c npm run build`: correcto con TailwindCSS 4.3.0 y header WordPress versión 1.5.2.
+- PHP lint ejecutado dentro del contenedor `med-landing-wordpress`: todos los archivos PHP del tema sin errores de sintaxis.
+- Docker Compose validado y servicios activos: `med-landing-wordpress` y `med-landing-db` saludable.
+- WordPress instalado con tema activo `Dr. Edgar E. Hernández - Nefrología`, versión 1.5.2.
+- Polylang, Rank Math SEO y Fluent Forms instalados en staging.
+- Se corrigieron BOM UTF-8 al inicio de 13 archivos PHP; el problema provocaba `headers already sent` y rompía la portada al activar Polylang.
+- Home responde dentro del VPS al seguir redirecciones de idioma; `/servicios/` responde `200` y contiene 17 cards de servicios.
+- `style.css` sirve con header de WordPress y versión 1.5.2.
+- Prueba externa a `http://74.208.222.71:8081/` desde la máquina local: sin conexión; queda pendiente revisar firewall del proveedor o conectar por reverse proxy/dominio.
+
 ## 17. Plantilla de Bitácora
 
 Copiar esta estructura al final:
@@ -777,3 +808,12 @@ Copiar esta estructura al final:
 - Decisiones: copiar solo la carpeta del tema a LocalWP puede dejar opciones/posts antiguos en la base; por eso el catálogo visual no debe depender únicamente de `WP_Query`. Las páginas individuales se mantienen para SEO, pero los listados nunca deben quedar vacíos por falta de posts.
 - Validación: build Tailwind correcto, catálogo de idiomas con 139 traducciones, sintaxis JS correcta, 12 enfermedades/2 terapias/3 procedimientos verificados, encoding de `Hernández` corregido y LocalWP sincronizado sirviendo `style.css?ver=1.5.2`. La página de referencia se usó para ideas de estructura y CTAs, no para copiar contenido o diseño.
 - Pendientes: validar visualmente con captura en 320, 390, 768, 1024 y 1280 px; limpiar cache/permalinks si el navegador del usuario siguiera mostrando CSS o posts antiguos.
+
+### 2026-07-06 - Despliegue inicial en VPS con Docker
+
+- Objetivo: auditar el VPS sin afectar sistemas existentes y montar una instancia WordPress aislada para `med-landing-dev`.
+- Archivos modificados: `med-landing-dev/` para remover BOMs en PHP, `Plan.md` y `CONTEXTO-PROYECTO.md`. En el VPS se crearon `/opt/med-landing-dev/docker-compose.yml`, `.env`, `DEPLOYMENT.md` y el clon `/opt/med-landing-dev/repo`.
+- Cambios: se levantaron `med-landing-wordpress` y `med-landing-db`, se instaló WordPress, se activó el tema 1.5.2, se sembraron páginas y 17 servicios, se instalaron Polylang, Rank Math SEO y Fluent Forms, se configuraron permalinks y `blog_public=0`.
+- Decisiones: no tocar Nginx ni contenedores existentes; usar puerto temporal 8081; guardar credenciales solo en `/opt/med-landing-dev/DEPLOYMENT.md` con permisos `600`; ajustar `wpcli` a usuario `33:33` para compartir permisos con Apache.
+- Validación: Docker y DB saludables, WordPress responde internamente, Home carga al seguir redirección de idioma, `/servicios/` muestra 17 cards, `cmd /c npm run build` correcto y PHP lint completo sin errores.
+- Pendientes: abrir `8081` desde el firewall del proveedor o publicar por dominio con reverse proxy y SSL; cerrar/restringir `8081` al terminar staging; rotar la contraseña root compartida; hacer commit/push de la limpieza de BOMs antes de volver a desplegar desde GitHub.

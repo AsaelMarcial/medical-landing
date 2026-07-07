@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Template Name: Ubicación
  * Template for location-specific landing pages.

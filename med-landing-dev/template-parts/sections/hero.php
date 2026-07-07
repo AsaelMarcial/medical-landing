@@ -1,4 +1,4 @@
-﻿<section class="relative bg-gradient-to-br from-primary/5 via-background to-secondary/5 overflow-hidden" data-animate="fade-up">
+<section class="relative bg-gradient-to-br from-primary/5 via-background to-secondary/5 overflow-hidden" data-animate="fade-up">
     <div class="container-custom py-20 md:py-28 lg:py-36">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <!-- Content -->

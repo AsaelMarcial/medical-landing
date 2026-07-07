@@ -1,4 +1,4 @@
-﻿<header x-data="{ scrolled: false }" x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 50 })" :class="scrolled ? 'shadow-lg bg-white/95 backdrop-blur-sm' : 'bg-white'" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
+<header x-data="{ scrolled: false }" x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 50 })" :class="scrolled ? 'shadow-lg bg-white/95 backdrop-blur-sm' : 'bg-white'" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
     <nav class="container-custom" aria-label="<?php esc_attr_e('Navegación principal', 'med-landing-dev'); ?>">
         <div class="flex items-center justify-between h-20 gap-4">
             <!-- Logo -->

@@ -1,4 +1,4 @@
-﻿<?php $credentials = developer_get_professional_credentials(); ?>
+<?php $credentials = developer_get_professional_credentials(); ?>
 
 <footer class="site-footer bg-primary text-white">
     <div class="container-custom py-12 md:py-16">

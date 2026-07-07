@@ -1,4 +1,4 @@
-﻿<?php if (developer_get_phone_number() || developer_get_whatsapp_number()) : ?>
+<?php if (developer_get_phone_number() || developer_get_whatsapp_number()) : ?>
     <div x-cloak x-data="{ show: false }" x-init="window.addEventListener('scroll', () => { show = window.scrollY > 300 })" class="fixed bottom-6 right-6 z-50 hidden flex-col items-end gap-3 lg:flex" x-show="show" x-transition:enter="transition-all duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition-all duration-300" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-4">
         <?php if (developer_get_phone_number()) : ?>
             <a href="<?php echo esc_url(developer_get_phone_url()); ?>" class="flex min-h-14 items-center justify-center gap-2 rounded-full bg-secondary px-5 font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2" aria-label="<?php esc_attr_e('Llamar', 'med-landing-dev'); ?>">

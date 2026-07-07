@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $locations = developer_get_locations();
 ?>
 

@@ -1,4 +1,4 @@
-﻿<!-- Mobile Menu Overlay -->
+<!-- Mobile Menu Overlay -->
 <div class="xl:hidden">
     <!-- Backdrop -->
     <div x-cloak x-show="open" x-transition.opacity class="fixed inset-0 z-40 bg-black/60" x-on:click="closeMenu()" aria-hidden="true"></div>

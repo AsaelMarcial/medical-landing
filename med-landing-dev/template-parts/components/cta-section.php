@@ -1,4 +1,4 @@
-﻿<section class="bg-primary section-padding relative overflow-hidden" data-animate="fade-up">
+<section class="bg-primary section-padding relative overflow-hidden" data-animate="fade-up">
     <!-- Background pattern -->
     <div class="absolute inset-0 opacity-5">
         <div class="absolute top-0 left-0 w-64 h-64 bg-white rounded-full -translate-x-1/2 -translate-y-1/2"></div>
