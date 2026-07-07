@@ -1,19 +1,26 @@
-# Plan Completo: Landing Page Médica — Nefrólogo (Xalapa y Veracruz)
+# Plan Completo: Landing Page Médica — Nefrólogo (Xalapa y Boca del Río)
 
 > **Archivo de respaldo**: Este documento contiene el plan completo del proyecto para referencia en caso de pérdida de contexto en el chat.
+>
+> **Estado del documento**: conserva la arquitectura y el alcance originales. No usar sus casillas como indicador del estado actual; la fuente viva es `CONTEXTO-PROYECTO.md`. La identidad visual descrita allí ya fue integrada.
+>
+> **Actualización 2026-07-06**: tema `med-landing-dev` versión 1.5.2 con información médica base, fotografía profesional, teléfono/WhatsApp definitivo, credenciales, COFEPRIS, Instagram y páginas SEO de servicios integradas. La home muestra las enfermedades atendidas, Servicios usa grupos completos sin carrusel y el catálogo se pinta desde helpers del tema para no depender de que LocalWP ya haya sembrado todos los posts. Falta QA visual en WordPress/staging, revisión clínica final de textos, horarios, email/formulario y texto legal definitivo.
 
 ---
 
 ## Contexto del Proyecto
 
-Landing page premium para un médico nefrólogo con consultorios en **Xalapa** y **Veracruz, México**. El objetivo es generar confianza profesional, posicionar en SEO local para ambas ciudades, y convertir visitantes en citas agendadas vía formulario y WhatsApp.
+Landing page premium para un médico nefrólogo con consultorios en **Xalapa** y **Boca del Río, Veracruz, México**. El objetivo es generar confianza profesional, posicionar en SEO local para ambas ciudades, y convertir visitantes en citas agendadas vía formulario y WhatsApp.
 
-- **CMS**: WordPress 7.0
-- **Tema**: `developer-developer` (custom, sin page builders)
-- **Entorno local**: LocalWP en Windows 11, dominio `medical-landing.local`
-- **Path del tema**: `app/public/wp-content/themes/developer-developer/`
+- **CMS destino**: instalación WordPress existente; validar versión y compatibilidad antes del despliegue
+- **Tema**: `med-landing-dev` (custom, sin page builders)
+- **Repositorio**: contiene únicamente el tema y su documentación
+- **Path fuente del tema**: `med-landing-dev/`
+- **Path de instalación esperado**: `wp-content/themes/med-landing-dev/`
 - **Bilingüe**: Español (principal) + Inglés via Polylang
 - **Fases**: Fase 1 (MVP) → Fase 2 (Blog, FAQ, Testimonials)
+
+WordPress core, la base de datos, los uploads, los plugins y la configuración del servidor pertenecen al sistema de destino y no se versionan en este repositorio.
 
 ---
 
@@ -21,11 +28,11 @@ Landing page premium para un médico nefrólogo con consultorios en **Xalapa** y
 
 | Tecnología | Versión | Uso |
 |------------|---------|-----|
-| WordPress | 7.0 | CMS |
+| WordPress | Por confirmar en destino | CMS |
 | TailwindCSS | v4 | Estilos (compilado via @tailwindcss/cli) |
-| Alpine.js | latest | Interactividad (menú mobile, accordions, modals) |
-| GSAP | latest | Animaciones (scroll reveals, fade-ins) |
-| Polylang | latest | Multilenguaje ES/EN |
+| Alpine.js | 3.15.12 | Interactividad (menú mobile, accordions, modals) |
+| GSAP | 3.15.0 | Animaciones (scroll reveals, fade-ins) |
+| Polylang | 3.8.4 en LocalWP | Multilenguaje ES/EN |
 | RankMath SEO | latest | SEO, schemas, sitemap |
 | Fluent Forms | latest | Formularios de contacto/citas |
 | LiteSpeed Cache | latest | Cache (solo producción) |
@@ -37,13 +44,14 @@ Landing page premium para un médico nefrólogo con consultorios en **Xalapa** y
 
 | Rol | Color | Hex | Uso |
 |-----|-------|-----|-----|
-| Primary | Azul profundo | `#1E3A5F` | Headers, nav, títulos |
-| Secondary | Teal médico | `#0E7490` | Links, acentos, iconos |
-| Accent | Dorado cálido | `#B8860B` | CTAs premium, badges |
+| Primary | Verde oscuro | `#344729` | Headers, nav, títulos |
+| Secondary | Verde olivo | `#4A5942` | Links, acentos, iconos |
+| Accent | Terracota | `#7C2804` | CTAs y acentos |
+| Gold | Dorado cálido | `#C8B070` | Detalles premium y decoración |
 | Background | Blanco | `#FFFFFF` | Fondo principal |
-| Surface | Gris claro | `#F8FAFC` | Cards, secciones alternas |
-| Text | Slate oscuro | `#1E293B` | Texto body |
-| Text muted | Slate medio | `#64748B` | Subtítulos, captions |
+| Surface | Gris cálido | `#F7F7F7` | Cards, secciones alternas |
+| Text | Verde muy oscuro | `#243126` | Texto body |
+| Text muted | Verde grisáceo | `#5F6B5A` | Subtítulos, captions |
 | Success/WhatsApp | Verde | `#25D366` | Botón WhatsApp |
 
 ---
@@ -60,7 +68,7 @@ Landing page premium para un médico nefrólogo con consultorios en **Xalapa** y
 ## Estructura del Tema
 
 ```
-developer-developer/
+med-landing-dev/
 ├── assets/
 │   ├── css/
 │   │   └── src/
@@ -70,9 +78,9 @@ developer-developer/
 │   │   ├── animations.js         ← GSAP scroll animations
 │   │   └── components.js         ← Alpine components (accordion, modal)
 │   ├── images/
-│   │   ├── logo.svg
+│   │   ├── brand/                ← Derivados web transparentes
 │   │   ├── icons/                ← SVG icons (WhatsApp, phone, etc.)
-│   │   └── placeholder/
+│   │   └── ...
 │   └── fonts/                    ← Self-hosted fonts (si aplica)
 ├── template-parts/
 │   ├── header/
@@ -81,6 +89,7 @@ developer-developer/
 │   ├── footer/
 │   │   └── footer-main.php
 │   ├── components/
+│   │   ├── brand-portrait.php    ← Composición temporal sin persona ficticia
 │   │   ├── cta-floating.php      ← WhatsApp + Phone floating
 │   │   ├── cta-section.php       ← CTA repetido entre secciones
 │   │   ├── trust-badges.php      ← Certificaciones
@@ -127,7 +136,7 @@ developer-developer/
 ### package.json
 ```json
 {
-  "name": "developer-developer",
+  "name": "med-landing-dev",
   "scripts": {
     "dev": "npx @tailwindcss/cli -i ./assets/css/src/main.css -o ./style.css --watch",
     "build": "npx @tailwindcss/cli -i ./assets/css/src/main.css -o ./style.css --minify"
@@ -170,82 +179,87 @@ developer-developer/
 ## Fase 1 — MVP (Detalle Completo)
 
 ### 1.1 Setup Inicial
-- [ ] Crear estructura de carpetas del tema
-- [ ] Configurar package.json + Tailwind
-- [ ] Crear style.css con header del tema
-- [ ] Crear functions.php con carga modular
-- [ ] Activar tema en WordPress
-- [ ] Instalar y configurar plugins base (Polylang, RankMath, Fluent Forms)
-- [ ] Configurar Polylang (ES como principal, EN como secundario)
+- [x] Crear estructura de carpetas del tema
+- [x] Configurar package.json + Tailwind
+- [x] Crear style.css con header del tema
+- [x] Crear functions.php con carga modular
+- [x] Activar tema en LocalWP
+- [ ] Instalar y configurar plugins base restantes (RankMath, Fluent Forms)
+- [x] Configurar Polylang en LocalWP (ES como principal, EN como secundario)
 
 ### 1.2 Layout Base
-- [ ] Header responsive (logo, nav desktop, hamburger mobile, botón CTA, selector idioma)
-- [ ] Footer (info contacto, mapa de sitio, redes sociales, horarios, aviso legal)
-- [ ] Floating CTA (WhatsApp + teléfono) — visible siempre en mobile
-- [ ] Sticky mobile CTA bar
+- [x] Header responsive con logo fallback reemplazable desde WordPress
+- [x] Footer con logo negativo e información configurada disponible
+- [x] Floating CTA para escritorio
+- [x] Sticky mobile CTA bar
 
 ### 1.3 Home Page (front-page.php)
-- [ ] **Hero Section**: Foto doctor, headline fuerte, especialidad, ubicaciones, CTA agendar, WhatsApp, trust indicators (años exp, pacientes, certificaciones)
-- [ ] **Servicios destacados**: Grid de 4-6 servicios principales con iconos y link
-- [ ] **Sobre el Doctor preview**: Foto + texto breve + link a página completa
-- [ ] **Trust Section**: Logos universidades, certificaciones, asociaciones
-- [ ] **Ubicaciones**: Cards para Xalapa y Veracruz con mapa embebido
-- [ ] **CTA Section**: Formulario rápido o botón de agendar
+- [x] **Hero Section**: identidad confirmada, especialidad, ubicaciones y fotografía profesional real con fallback de marca
+- [x] **Enfermedades que atiende**: grid visible en home con las 12 enfermedades del catálogo SEO, sin carrusel
+- [x] **Sobre el Doctor preview**: contenido objetivo con nombre, especialidad y credenciales disponibles
+- [x] **Trust Section**: certificación CMN, cédulas, sedes y contacto confirmados
+- [x] **Ubicaciones**: datos confirmados, mapas interactivos y enlaces directos a Google Maps
+- [x] **CTA Section**: botón de agendar con fallback a Contacto
 
 ### 1.4 About Doctor (page-about.php)
-- [ ] Biografía profesional
-- [ ] Formación académica (timeline o lista)
-- [ ] Certificaciones y membresías
-- [ ] Filosofía de atención
-- [ ] Foto profesional grande
-- [ ] CTA final
+- [x] Biografía profesional objetiva con información recibida
+- [x] Formación académica verificada por dato proporcionado por el usuario
+- [x] Certificaciones, cédulas, COFEPRIS y membresías publicadas con cautela
+- [ ] Filosofía de atención con texto final del doctor
+- [x] Foto profesional grande
+- [x] CTA final
 
 ### 1.5 Services (page-services.php + single-servicio.php)
-- [ ] Custom Post Type "Servicios"
-- [ ] Grid de servicios con cards (icono, título, descripción breve)
-- [ ] Página individual por servicio: descripción, síntomas, tratamiento, CTA
-- [ ] Breadcrumbs para SEO
+- [x] Custom Post Type "Servicios"
+- [x] Grid de servicios con cards agrupadas por enfermedades, terapias y procedimientos
+- [x] Template individual por servicio con CTA
+- [x] Breadcrumbs para SEO
+- [x] Siembra automática de 17 páginas SEO tipo `servicio` en español, con equivalentes ingleses provisionales cuando Polylang está activo
+- [x] Página Servicios agrupada en enfermedades, terapias y procedimientos, con anclas claras y consultas filtradas por idioma
+- [x] Fallback visual del catálogo desde `developer_get_services_by_category()` para evitar pantallas vacías si LocalWP conserva una base antigua o incompleta
 
 ### 1.6 Contact (page-contact.php)
 - [ ] Formulario Fluent Forms (nombre, email, teléfono, motivo, mensaje)
-- [ ] Google Maps embed (ambas ubicaciones con tabs o toggle)
-- [ ] Información de contacto (dirección, teléfono, email, horarios)
-- [ ] Click-to-call en mobile
-- [ ] Link directo WhatsApp
+- [x] Google Maps embed de ambas ubicaciones
+- [ ] Información de contacto completa: direcciones y teléfono confirmados; email y horarios pendientes
+- [x] Click-to-call condicional cuando se configure teléfono
+- [x] Link universal WhatsApp condicional, con número mexicano normalizado y mensaje configurable
 
 ### 1.7 Location Pages (page-location.php)
-- [ ] Página específica para Xalapa
-- [ ] Página específica para Veracruz
+- [x] Página específica para Xalapa
+- [x] Página específica para Boca del Río con slug histórico `/nefrologo-veracruz/`
 - [ ] Keywords locales optimizados (nefrólogo en Xalapa, nefrólogo en Veracruz)
-- [ ] Schema LocalBusiness por ubicación
+- [x] Schema LocalBusiness por ubicación con datos confirmados
 - [ ] NAP (Name, Address, Phone) consistente
-- [ ] Mapa embebido con pin
+- [x] Mapa embebido con pin
 
 ### 1.8 SEO & Schema (Fase 1)
 - [ ] Configurar RankMath (sitemap, robots.txt, canonical)
-- [ ] Schema Physician (JSON-LD manual en theme)
-- [ ] Schema LocalBusiness × 2 (una por ciudad)
+- [x] Schema Physician base sin credenciales no verificadas
+- [x] Schema LocalBusiness × 2 (una por ciudad)
 - [ ] Schema MedicalOrganization
 - [ ] Open Graph tags via RankMath
 - [ ] Meta titles y descriptions por página
-- [ ] Estructura de headings (H1 único por página)
+- [x] Estructura base de headings con H1 único por página
 - [ ] URLs limpias y descriptivas
 
 ### 1.9 Animaciones (Fase 1)
-- [ ] Fade-in on scroll (secciones)
-- [ ] Smooth scroll para anchor links
-- [ ] Hover transitions en cards y botones
-- [ ] Entrance animation hero
+- [x] Fade-in on scroll (secciones)
+- [x] Smooth scroll para anchor links
+- [x] Hover transitions en cards y botones
+- [x] Entrance animation hero
+- [x] Respeto de `prefers-reduced-motion`
 
 ### 1.10 Accesibilidad
-- [ ] HTML semántico (header, main, nav, section, article)
-- [ ] Alt text en todas las imágenes
+- [x] HTML semántico (header, main, nav, section, article)
+- [x] Alt text en imágenes informativas y `alt=""` en decorativas
 - [ ] Labels en formularios
-- [ ] Contraste WCAG AA mínimo
-- [ ] Focus visible en todos los interactivos
-- [ ] Touch targets >= 44px en mobile
-- [ ] Skip to content link
-- [ ] ARIA labels donde sea necesario
+- [x] Contraste principal WCAG AA
+- [x] Focus visible en todos los interactivos
+- [x] Touch targets principales >= 48px en mobile
+- [x] Texto base de 18 px e interlineado amplio para favorecer a adultos mayores
+- [x] Skip to content link
+- [x] ARIA y gestión de foco del menú móvil
 
 ---
 
@@ -321,7 +335,7 @@ developer-developer/
 - GSAP core solo (~25KB gzip)
 - Imágenes: WebP + lazy loading nativo
 - Fonts: preload + font-display: swap
-- No jQuery (des-registrar de WP)
+- El tema no usa jQuery directamente; no desregistrarlo globalmente porque los plugins pueden declararlo
 - LiteSpeed Cache en producción (page cache, CSS/JS combine)
 - Cloudflare CDN para assets estáticos
 
@@ -383,34 +397,34 @@ developer-developer/
 
 ---
 
-## Deployment (Local → Producción)
+## Deployment (Repositorio → WordPress Destino)
 
-1. Exportar DB local con WP Migrate o similar
-2. Subir tema via FTP/SSH
-3. Instalar plugins en producción
-4. Importar DB, buscar/reemplazar URLs
-5. Configurar LiteSpeed Cache
-6. Configurar Cloudflare (DNS, SSL, cache rules)
-7. Configurar Google Search Console + Analytics
-8. Enviar sitemap a Google
-9. Verificar Google Business Profile links
-10. Test final en producción
+1. Confirmar versión de WordPress y PHP, Multisite, plugins activos y restricciones del hosting.
+2. Ejecutar `npm run build` y validar que `style.css` conserve el header requerido por WordPress.
+3. Instalar o actualizar `med-landing-dev/` en `wp-content/themes/`.
+4. Instalar y configurar los plugins requeridos que no existan en el sistema destino.
+5. Configurar contenido, menús, Customizer, formularios, idiomas, SEO y permalinks en WordPress.
+6. Configurar LiteSpeed Cache y Cloudflare únicamente si corresponden al hosting de producción.
+7. Configurar Google Search Console y Analytics cuando exista autorización.
+8. Verificar perfiles de Google Business, sitemap y enlaces externos.
+9. Ejecutar respaldo y plan de reversión antes de activar cambios en producción.
+10. Realizar QA funcional, visual, responsive, accesible y de rendimiento en el sistema destino.
 
 ---
 
 ## Testing & Verificación
 
-- [ ] Tema se activa sin errores en WP
-- [ ] `npm run dev` compila Tailwind correctamente
-- [ ] Todas las páginas cargan con layout base
-- [ ] Mobile responsiveness (iPhone SE, iPad, Desktop)
+- [x] Tema se activa sin errores en LocalWP
+- [x] `npm run build` compila Tailwind correctamente
+- [x] Todas las páginas principales cargan con layout base
+- [x] Responsive revisado a 390 px, 1024 px y 1280 px
 - [ ] Formulario envía correctamente
-- [ ] WhatsApp link abre chat correcto
+- [x] WhatsApp genera el chat temporal correcto mediante `wa.me` en LocalWP
 - [ ] Click-to-call funciona en mobile
-- [ ] Google Maps carga correctamente
+- [x] Google Maps carga correctamente
 - [ ] Schema validado en Google Rich Results Test
-- [ ] Navegación por teclado funcional
-- [ ] Polylang: ambos idiomas con URLs correctas
+- [x] Navegación principal y menú móvil funcionales con teclado
+- [x] Polylang: ambos idiomas con URLs correctas en LocalWP
 - [ ] 404 page funciona
 - [ ] Lighthouse 90+ en todas las métricas
 - [ ] Cross-browser: Safari, Firefox, Chrome, Edge
@@ -420,7 +434,7 @@ developer-developer/
 ## Decisiones Importantes
 
 - ❌ NO usar Elementor ni page builders
-- ❌ NO usar jQuery (des-registrar de WP)
+- ❌ NO añadir dependencia directa de jQuery al tema; conservarla si un plugin la necesita
 - ❌ NO usar sliders pesados ni autoplay video
 - ❌ NO usar plugins innecesarios
 - ✅ Alpine.js y GSAP como scripts ligeros
@@ -430,4 +444,14 @@ developer-developer/
 
 ---
 
-*Última actualización: 2026-05-27*
+## Estado LocalWP de Idioma y WhatsApp
+
+- Polylang 3.8.4 está instalado y activado en LocalWP.
+- Español `es_MX` es principal e inglés `en_US` secundario.
+- Inicio, Doctor, Servicios, Contacto, Xalapa y Boca del Río tienen pares ES/EN relacionados.
+- El header usa un botón único: `English` en ES y `Español` en EN.
+- Si falta una traducción, el destino es el inicio del idioma solicitado.
+- El número temporal histórico `522281565985` quedó obsoleto; el tema 1.5.0 lo migra si lo encuentra en una base LocalWP antigua.
+- El WhatsApp definitivo vigente del médico es `522294466698`, derivado de `229 446 6698`.
+
+*Última actualización: 2026-07-06*

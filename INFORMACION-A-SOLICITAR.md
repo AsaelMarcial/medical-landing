@@ -1,24 +1,47 @@
 # Información a Solicitar al Médico — Landing Nefrólogo
 
-> Documento maestro con TODA la información que el cliente (médico nefrólogo) debe proporcionar antes de publicar el sitio. Organizado en 9 bloques + legales obligatorios para México (LFPDPPP, COFEPRIS, NOM).
+> Inventario operativo de la información que debe confirmar o proporcionar el médico antes de publicar. Los requisitos legales deben validarse con asesoría profesional aplicable al caso.
 
 ---
 
 ## RESUMEN EJECUTIVO
 
-Necesitamos **9 bloques de información**:
+Estado actualizado al 2026-07-06: ya se recibió e integró la identidad pública, fotografía profesional principal, teléfono/WhatsApp, Instagram, cédulas, certificación, COFEPRIS, formación, membresías y catálogo clínico base. Este documento conserva los bloques necesarios para publicación y marca qué sigue pendiente de confirmar.
+
+Necesitamos mantener controlados **9 bloques de información**:
 
 1. **Identidad profesional** del médico (nombre, foto, bio, especialidad)
 2. **Credenciales médicas verificables** (cédulas, universidad, certificaciones)
 3. **Datos de contacto** (teléfono, WhatsApp, email, redes)
-4. **Información de cada consultorio** (Xalapa + Veracruz: dirección, horarios, mapa, fotos)
+4. **Información de cada consultorio** (Xalapa + Boca del Río: horarios, teléfonos y fotos pendientes)
 5. **Catálogo de servicios médicos** (uno por uno con detalle clínico)
 6. **Assets gráficos** (logos propios e institucionales, fotos profesionales)
 7. **Contenido legal obligatorio** (Aviso de Privacidad, T&C, Disclaimer médico, COFEPRIS)
 8. **Información operativa** (precios/rangos, métodos de pago, seguros, política de cancelación)
 9. **Perfiles externos** (Google Business, Doctoralia, redes sociales)
 
-> ⚠️ **CRÍTICO**: Sin las **cédulas profesionales** y el **Aviso de Privacidad** NO se puede publicar legalmente en México.
+> **Antes de publicar**: validar cédulas, aviso de privacidad, tratamiento de datos sensibles y publicidad médica con el responsable del proyecto y asesoría legal.
+
+### Información ya integrada en el tema 1.5.0
+
+- Nombre público principal: `Dr. Edgar Eduardo Hernández Enríquez`.
+- Identidad de marca conservada: `Dr. Edgar E. Hernández - Nefrología` cuando venga desde el logo.
+- Teléfono y WhatsApp: `229 446 6698`; enlace normalizado `https://wa.me/522294466698`.
+- Instagram: `https://www.instagram.com/dr.edgarhernandez.nefro/`.
+- Céd. Prof. `11751221`; Céd. Esp. `14852016`.
+- Certificación vigente por el Consejo Mexicano de Nefrología `2025-2030`.
+- COFEPRIS `2530092002A00059`.
+- Foto profesional fuente: `med-landing-dev/graficos/dredgar_profesional.png`.
+- Identidad visual adicional: `med-landing-dev/graficos/Nefrología_Identidadvisual-26sep.pdf`.
+- Servicio SEO base: 17 páginas tipo `servicio` sembradas desde el tema, con texto informativo no diagnóstico.
+- Ajuste UX/SEO posterior: la home muestra las enfermedades atendidas y Servicios muestra el catálogo completo agrupado, sin carrusel, con navegación compacta y fallback visual desde el catálogo del tema si LocalWP todavía no tiene todos los posts sembrados.
+
+### Fuentes informativas usadas como referencia editorial
+
+- NIDDK: enfermedad renal crónica, hipertensión y enfermedad renal, enfermedades glomerulares.
+- MedlinePlus: examen de orina, sangre en orina, electrolitos y litiasis renal.
+- National Kidney Foundation: lesión renal aguda, diálisis, accesos para hemodiálisis, embarazo y enfermedad renal, evaluación para trasplante.
+- American Heart Association: concepto general de síndrome cardiorrenal.
 
 ---
 
@@ -26,30 +49,30 @@ Necesitamos **9 bloques de información**:
 
 | Dato | Formato | Obligatorio | Notas |
 |------|---------|-------------|-------|
-| Nombre completo con título | Texto (ej: "Dr. Juan Pérez García") | ✅ | Hero, schema Physician, header |
-| Especialidad principal | Texto ("Médico Nefrólogo") | ✅ | |
+| Nombre completo con título | `Dr. Edgar Eduardo Hernández Enríquez` | Confirmado | Hero, schema Physician, About |
+| Especialidad principal | `Nefrología` | Confirmado | Única especialidad autorizada actualmente |
 | Subespecialidades | Lista (trasplante, hemodiálisis…) | Opcional | |
-| Años de experiencia | Número | ✅ | Actualmente hardcodeado "+10 años" |
-| Biografía corta | 60–80 palabras | ✅ | Hero / about-preview |
-| Biografía extendida | 200–300 palabras (2-3 párrafos) | ✅ | Página "Sobre el Doctor" |
+| Años de experiencia | Número y evidencia | Opcional | No se publica hasta validarlo |
+| Biografía corta | 60–80 palabras | Parcial | El tema usa descripción objetiva; falta aprobación editorial final |
+| Biografía extendida | 200–300 palabras (2-3 párrafos) | Parcial | Se integró formación y credenciales; falta voz final del doctor |
 | Filosofía de atención | Texto | Opcional | Sección filosofía |
-| Foto profesional principal | JPG/PNG ≥1200×1600 px, vertical 3:4, fondo neutro, bata blanca | ✅ | |
+| Foto profesional principal | JPG/PNG ≥1200×1600 px, vertical 3:4, fondo neutro, bata blanca | Confirmado | Fuente en `graficos/dredgar_profesional.png`; derivados web en `assets/images/doctor/` |
 | Foto secundaria (acción/consultorio) | JPG/PNG ≥1200×800 px | Opcional | Banners |
 | Idiomas que habla | Lista | Opcional | Pacientes internacionales |
 | Género (Dr./Dra.) | Selección | ✅ | Tratamiento correcto |
 
 ---
 
-## 2. CREDENCIALES MÉDICAS VERIFICABLES ⚠️ CRÍTICO
+## 2. CREDENCIALES MÉDICAS VERIFICABLES
 
-> Requerido por COFEPRIS y NOM-004-SSA3-2012.
+> Confirmar con asesoría legal cuáles datos deben mostrarse y cómo deben presentarse en el sitio.
 
-### 2.1 Cédulas Profesionales (OBLIGATORIO publicar)
+### 2.1 Cédulas Profesionales
 
 | Dato | Formato | Notas |
 |------|---------|-------|
-| **Cédula profesional general** (Médico Cirujano) | 7–8 dígitos | SEP — verificable en cedulaprofesional.sep.gob.mx |
-| **Cédula de especialidad** (Nefrología) | Número | OBLIGATORIA junto al nombre |
+| **Cédula profesional general** (Médico Cirujano) | `11751221` | SEP — verificable en cedulaprofesional.sep.gob.mx |
+| **Cédula de especialidad** (Nefrología) | `14852016` | Publicada con redacción objetiva |
 | **Cédula de subespecialidad** (si aplica) | Número | Ej: trasplante renal |
 | **Registro DGP/SSA** | Número | Si aplica |
 
@@ -70,7 +93,7 @@ Para cada etapa: **institución, ciudad, años (de–a), título, cédula genera
 
 | Certificación | Datos |
 |---------------|-------|
-| Consejo Mexicano de Nefrología (CMN) | Número de socio, vigencia, fecha de recertificación |
+| Consejo Mexicano de Nefrología (CMN) | Vigencia confirmada `2025-2030`; número de socio no proporcionado |
 | Sociedad Mexicana de Nefrología (SMN) | Número de miembro |
 | Colegio Médico estatal (Veracruz) | Número |
 | Certificaciones internacionales (ISN, ASN) | Si aplica |
@@ -88,10 +111,12 @@ Lista con: nombre del curso, institución, año, horas/duración, certificado en
 
 ## 3. DATOS DE CONTACTO
 
+> El número temporal usado en pruebas anteriores (`+52 228 156 5985`) quedó obsoleto. El tema 1.5.0 usa `229 446 6698` y normaliza WhatsApp a `522294466698`.
+
 | Dato | Formato | Obligatorio |
 |------|---------|-------------|
-| Teléfono fijo del consultorio | +52 con lada | ✅ |
-| WhatsApp Business | +52, 10 dígitos | ✅ |
+| Teléfono fijo del consultorio | `229 446 6698` | Confirmado |
+| WhatsApp Business definitivo | `229 446 6698` | Confirmado |
 | Email de contacto público | email@dominio | ✅ |
 | Email administrativo (formularios) | email@dominio | ✅ |
 | Mensaje predefinido WhatsApp | Texto | Opcional |
@@ -101,19 +126,24 @@ Lista con: nombre del curso, institución, año, horas/duración, certificado en
 
 ## 4. CONSULTORIOS (×2)
 
-Mismo bloque completo para Xalapa **y** Veracruz:
+Ubicaciones confirmadas:
+
+- Xalapa: Torre Hakim, Local 909. Mapa: `https://maps.app.goo.gl/JJZw4PL8UMG7SBa17`.
+- Boca del Río: Hospital MediMAC, Consultorio 37, Avenida Calzada Juan Pablo II, Plaza Urban Center. Mapa: `https://maps.app.goo.gl/T3aZ7gXx3MWDn3e98`.
+
+Datos operativos que todavía deben confirmarse para ambas sedes:
 
 | Dato | Formato | Obligatorio |
 |------|---------|-------------|
-| Nombre del consultorio/hospital | Texto | ✅ |
-| Calle y número | Texto | ✅ |
-| Colonia / fraccionamiento | Texto | ✅ |
+| Nombre del consultorio/hospital | Texto | Confirmado |
+| Calle y número | Texto | Parcialmente confirmado |
+| Colonia / fraccionamiento | Texto | Pendiente si aplica |
 | Código postal | 5 dígitos | ✅ |
-| Ciudad / municipio | Xalapa / Veracruz | ✅ |
-| Estado | Veracruz | ✅ |
+| Ciudad / municipio | Xalapa / Boca del Río | Confirmado |
+| Estado | Veracruz | Confirmado |
 | Referencias / cómo llegar | Texto libre | Recomendado |
-| Coordenadas GPS (lat, lng) | Decimal | ✅ (schema y mapa) |
-| URL embed de Google Maps | iframe src | ✅ |
+| Coordenadas GPS (lat, lng) | Decimal | Confirmado |
+| URL embed de Google Maps | iframe src | Confirmado |
 | Teléfono del consultorio | +52 | ✅ |
 | Horario lunes-viernes | HH:MM – HH:MM | ✅ |
 | Horario sábado | HH:MM – HH:MM o "Cerrado" | ✅ |
@@ -127,14 +157,25 @@ Mismo bloque completo para Xalapa **y** Veracruz:
 
 ## 5. CATÁLOGO DE SERVICIOS (CPT `servicio`)
 
-Servicios identificados en código (mínimo):
+Servicios confirmados por el usuario e integrados como base SEO. El texto publicado es informativo y debe pasar revisión clínica/editorial final antes de campaña:
 
-1. Consulta Nefrológica
-2. Hemodiálisis
-3. Trasplante Renal (evaluación pre/post)
-4. Hipertensión Arterial
-5. Nefropatía Diabética
-6. Litiasis Renal (cálculos)
+1. Enfermedad renal crónica.
+2. Diabetes e hipertensión con daño renal.
+3. Lesión renal aguda.
+4. Proteinuria y hematuria.
+5. Infecciones urinarias recurrentes.
+6. Alteraciones de electrolitos.
+7. Litiasis renal.
+8. Enfermedades glomerulares.
+9. Síndromes cardiorrenales.
+10. Hipertensión arterial difícil de controlar.
+11. Enfermedad renal en embarazo.
+12. Evaluación y seguimiento para trasplante renal.
+13. Diálisis peritoneal.
+14. Hemodiálisis.
+15. Catéteres de hemodiálisis.
+16. Accesos vasculares complejos.
+17. Biopsia renal de riñón nativo y trasplante.
 
 **Por cada servicio:**
 
@@ -158,9 +199,10 @@ Servicios identificados en código (mínimo):
 
 | Asset | Formato | Notas |
 |-------|---------|-------|
-| Logo principal | SVG (preferido) o PNG transparente ≥500 px | Header |
-| Logo blanco/inverso | PNG transparente | Footer oscuro |
-| Favicon | 512×512 PNG | |
+| Originales de marca | PNG | Confirmados en `med-landing-dev/graficos/`; no modificar ni renombrar |
+| Logo principal | PNG transparente ≥500 px | Derivado disponible en `assets/images/brand/` |
+| Logo horizontal | PNG transparente | Derivados premium y negativo disponibles para header y footer |
+| Favicon/isotipo | 512×512 PNG transparente | Derivado disponible como fallback del Site Icon |
 | Imagen Open Graph | 1200×630 JPG | Compartir en redes |
 | Logos institucionales (UNAM, CMN, SMN, hospitales) | PNG con permiso de uso | Trust section |
 | Fotos profesionales del doctor | Mínimo 3 (ver §1) | |
@@ -199,9 +241,9 @@ Conforme a la **Ley Federal de Protección de Datos Personales en Posesión de P
 - Jurisdicción aplicable (Veracruz, México)
 - Modificaciones a los términos
 
-### 7.3 Disclaimer Médico (CRÍTICO)
+### 7.3 Disclaimer Médico
 
-Texto obligatorio:
+Texto base pendiente de revisión legal:
 
 > "La información contenida en este sitio web tiene fines exclusivamente informativos y educativos. No sustituye la consulta, diagnóstico o tratamiento médico profesional. Ante cualquier síntoma o duda de salud, acuda a consulta médica presencial."
 

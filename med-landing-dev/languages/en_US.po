@@ -1,0 +1,419 @@
+msgid ""
+msgstr "Project-Id-Version: Medical Landing 1.5.2\\nLanguage: en_US\\nMIME-Version: 1.0\\nContent-Type: text/plain; charset=UTF-8\\nContent-Transfer-Encoding: 8bit\\nPlural-Forms: nplurals=2; plural=(n != 1);\\n"
+
+msgid "Abrir en Google Maps"
+msgstr "Open in Google Maps"
+
+msgid "Abrir menú"
+msgstr "Open menu"
+
+msgid "Acepta 10 dígitos, +52, espacios o guiones. Ejemplo: 228 123 4567."
+msgstr "Accepts 10 digits, +52, spaces, or hyphens. Example: 228 123 4567."
+
+msgid "Acompañamiento para terapias de reemplazo renal cuando la función del riñón requiere soporte especializado."
+msgstr "Support for renal replacement therapies when kidney function requires specialized care."
+
+msgid "Agenda tu cita hoy y recibe atención especializada para el cuidado de tu salud renal. Consultorios en Xalapa y Boca del Río, Veracruz."
+msgstr "Request an appointment and receive specialized kidney care. Offices in Xalapa and Boca del Río, Veracruz."
+
+msgid "Agenda una consulta para recibir atención especializada."
+msgstr "Request an appointment for specialized care."
+
+msgid "Agendar"
+msgstr "Appointment"
+
+msgid "Agendar Cita"
+msgstr "Request an Appointment"
+
+msgid "Agendar aquí"
+msgstr "Request here"
+
+msgid "Agendar por WhatsApp"
+msgstr "Request via WhatsApp"
+
+msgid "Agregar Nuevo Servicio"
+msgstr "Add New Service"
+
+msgid "Agregar Servicio"
+msgstr "Add Service"
+
+msgid "Atención especializada en enfermedades del riñón"
+msgstr "Specialized care for kidney diseases"
+
+msgid "Atención especializada en salud renal para pacientes de %s y sus alrededores."
+msgstr "Specialized kidney care for patients in %s and surrounding areas."
+
+msgid "Atención renal certificada"
+msgstr "Certified kidney care"
+
+msgid "Aviso legal"
+msgstr "Legal notice"
+
+msgid "Boca del Río"
+msgstr "Boca del Río"
+
+msgid "Breadcrumb"
+msgstr "Breadcrumb"
+
+msgid "Buscar Servicios"
+msgstr "Search Services"
+
+msgid "Cambiar idioma a %s"
+msgstr "Switch language to %s"
+
+msgid "Categorías de servicios"
+msgstr "Service categories"
+
+msgid "Cerrar menú"
+msgstr "Close menu"
+
+msgid "Certificación CMN 2025-2030"
+msgstr "CMN Certification 2025-2030"
+
+msgid "Certificación vigente"
+msgstr "Current certification"
+
+msgid "Compromiso con tu salud renal"
+msgstr "Committed to your kidney health"
+
+msgid "Configura español e inglés en Polylang para mostrar el botón de idioma."
+msgstr "Configure Spanish and English in Polylang to display the language button."
+
+msgid "Confirma horarios al solicitar tu cita."
+msgstr "Confirm office hours when requesting your appointment."
+
+msgid "Confirma horarios y disponibilidad al solicitar tu cita."
+msgstr "Confirm office hours and availability when requesting your appointment."
+
+msgid "Conocer más"
+msgstr "Learn more"
+
+msgid "Consulta de Nefrología en %1$s, %2$s"
+msgstr "Nephrology Consultation in %1$s, %2$s"
+
+msgid "Consulta de nefrología en %s, Veracruz."
+msgstr "Nephrology consultation in %s, Veracruz."
+
+msgid "Consulta de nefrología en Xalapa y Boca del Río, Veracruz."
+msgstr "Nephrology consultations in Xalapa and Boca del Río, Veracruz."
+
+msgid "Consulta el mapa y abre la ruta de la sede que prefieras."
+msgstr "View the map and open directions to your preferred office."
+
+msgid "Consulta en Boca del Río"
+msgstr "Boca del Río office"
+
+msgid "Consulta en Xalapa"
+msgstr "Xalapa office"
+
+msgid "Consulta especializada en nefrología con información profesional verificable y sedes en Xalapa y Boca del Río, Veracruz."
+msgstr "Specialized nephrology care with verifiable professional information and offices in Xalapa and Boca del Río, Veracruz."
+
+msgid "Consulta nefrológica para enfermedad renal, alteraciones en estudios de orina o sangre, hipertensión difícil de controlar y terapias de reemplazo renal."
+msgstr "Nephrology consultation for kidney disease, abnormal blood or urine tests, difficult-to-control high blood pressure, and renal replacement therapies."
+
+msgid "Consultorios"
+msgstr "Offices"
+
+msgid "Contactar por WhatsApp"
+msgstr "Contact via WhatsApp"
+
+msgid "Contacto"
+msgstr "Contact"
+
+msgid "Contacto directo"
+msgstr "Direct contact"
+
+msgid "Cédula de especialidad"
+msgstr "Specialty license"
+
+msgid "Cédula profesional"
+msgstr "Professional license"
+
+msgid "Cédulas profesionales"
+msgstr "Professional licenses"
+
+msgid "Cómo llegar"
+msgstr "Directions"
+
+msgid "Cómo llegar en Google Maps →"
+msgstr "Directions in Google Maps →"
+
+msgid "Cómo llegar →"
+msgstr "Directions →"
+
+msgid "Descripción corta del Doctor"
+msgstr "Short Doctor Description"
+
+msgid "Direcciones"
+msgstr "Addresses"
+
+msgid "Dirección"
+msgstr "Address"
+
+msgid "Dirección Boca del Río"
+msgstr "Boca del Río Address"
+
+msgid "Dirección Xalapa"
+msgstr "Xalapa Address"
+
+msgid "Disponibilidad"
+msgstr "Availability"
+
+msgid "Disponible en consulta"
+msgstr "Available during consultation"
+
+msgid "Dos consultorios con el mismo teléfono de contacto para agendar cita."
+msgstr "Two offices using the same contact phone number for appointments."
+
+msgid "Déjalo en 0 hasta crear y probar el formulario de contacto."
+msgstr "Leave this at 0 until the contact form has been created and tested."
+
+msgid "Editar Servicio"
+msgstr "Edit Service"
+
+msgid "El botón de idioma necesita Polylang activo y configurado."
+msgstr "The language button requires Polylang to be active and configured."
+
+msgid "El formulario de citas se habilitará después de configurar su recepción y aviso de privacidad. Mientras tanto, utiliza los canales de contacto disponibles o consulta las ubicaciones."
+msgstr "The appointment form will be enabled after delivery settings and the privacy notice are configured. In the meantime, use the available contact options or view the office locations."
+
+msgid "Email de Contacto"
+msgstr "Contact Email"
+
+msgid "Enfermedades del riñón"
+msgstr "Kidney diseases"
+
+msgid "Enfermedades que atiende"
+msgstr "Conditions treated"
+
+msgid "English"
+msgstr "English"
+
+msgid "Enlace de Google Maps - Boca del Río"
+msgstr "Google Maps Link - Boca del Río"
+
+msgid "Enlace de Google Maps - Xalapa"
+msgstr "Google Maps Link - Xalapa"
+
+msgid "Enlaces"
+msgstr "Links"
+
+msgid "Envíanos un mensaje"
+msgstr "Send us a message"
+
+msgid "Escribir por WhatsApp"
+msgstr "Message via WhatsApp"
+
+msgid "Español"
+msgstr "Español"
+
+msgid "Especialidad"
+msgstr "Specialty"
+
+msgid "Especialista en Nefrología certificado, con atención en Xalapa y Boca del Río para valoración de enfermedades renales, terapias de reemplazo renal y procedimientos nefrológicos seleccionados."
+msgstr "Certified nephrology specialist providing care in Xalapa and Boca del Río for kidney disease assessment, renal replacement therapies, and selected nephrology procedures."
+
+msgid "Estamos para ayudarte. Agenda tu cita o envíanos un mensaje."
+msgstr "We are here to help. Request an appointment or send us a message."
+
+msgid "Formación profesional y certificación"
+msgstr "Professional training and certification"
+
+msgid "Formulario en configuración"
+msgstr "Form being configured"
+
+msgid "Hola, me gustaría agendar una cita en %s."
+msgstr "Hello, I would like to request an appointment in %s."
+
+msgid "Hola, me gustaría agendar una valoración de nefrología."
+msgstr "Hello, I would like to request a nephrology assessment."
+
+msgid "Hola, me gustaría solicitar información para agendar una cita."
+msgstr "Hello, I would like information about requesting an appointment."
+
+msgid "Hola, me gustaría solicitar información para una cita."
+msgstr "Hello, I would like information about requesting an appointment."
+
+msgid "Hola, me interesa el servicio de %s."
+msgstr "Hello, I am interested in the %s service."
+
+msgid "Hola, quisiera una cita en %s."
+msgstr "Hello, I would like an appointment in %s."
+
+msgid "ID del formulario Fluent Forms"
+msgstr "Fluent Forms Form ID"
+
+msgid "Información de Contacto"
+msgstr "Contact Information"
+
+msgid "Información general para orientar la consulta; el diagnóstico y tratamiento requieren valoración médica individual."
+msgstr "General information to guide the consultation; diagnosis and treatment require an individual medical assessment."
+
+msgid "Información profesional publicada con enfoque verificable y sin sustituir la valoración médica individual."
+msgstr "Professional information published with a verifiable approach and without replacing individual medical assessment."
+
+msgid "Inicio"
+msgstr "Home"
+
+msgid "Leer más"
+msgstr "Read more"
+
+msgid "Llamar"
+msgstr "Call"
+
+msgid "Llamar Ahora"
+msgstr "Call Now"
+
+msgid "Llamar ahora"
+msgstr "Call now"
+
+msgid "Lo sentimos, la página que buscas no existe o fue movida."
+msgstr "Sorry, the page you are looking for does not exist or has moved."
+
+msgid "Mapa del consultorio en %s"
+msgstr "Office map in %s"
+
+msgid "Medical Landing:"
+msgstr "Medical Landing:"
+
+msgid "Membresías profesionales"
+msgstr "Professional memberships"
+
+msgid "Mensaje inicial de WhatsApp"
+msgstr "Initial WhatsApp message"
+
+msgid "Menú Footer"
+msgstr "Footer Menu"
+
+msgid "Menú Principal"
+msgstr "Primary Menu"
+
+msgid "Menú mobile"
+msgstr "Mobile menu"
+
+msgid "Más información"
+msgstr "More information"
+
+msgid "Navegación principal"
+msgstr "Primary navigation"
+
+msgid "Nefrólogo en %s"
+msgstr "Nephrologist in %s"
+
+msgid "No se encontraron servicios"
+msgstr "No services found"
+
+msgid "Nombre del Consultorio"
+msgstr "Office Name"
+
+msgid "Nombre del Doctor"
+msgstr "Doctor Name"
+
+msgid "Procedimientos nefrológicos"
+msgstr "Nephrology procedures"
+
+msgid "Procedimientos nefrológicos seleccionados y coordinación de accesos para pacientes que lo requieren."
+msgstr "Selected nephrology procedures and access coordination for patients who require them."
+
+msgid "Página no encontrada"
+msgstr "Page not found"
+
+msgid "Redes Sociales"
+msgstr "Social Media"
+
+msgid "Retrato profesional de %s"
+msgstr "Professional portrait of %s"
+
+msgid "Saltar al contenido"
+msgstr "Skip to content"
+
+msgid "Salud renal"
+msgstr "Kidney health"
+
+msgid "Se utiliza como mensaje general; las páginas pueden añadir contexto específico."
+msgstr "Used as the general message; individual pages can add specific context."
+
+msgid "Servicio"
+msgstr "Service"
+
+msgid "Servicios"
+msgstr "Services"
+
+msgid "Servicios de nefrología"
+msgstr "Nephrology services"
+
+msgid "Sobre el Doctor"
+msgstr "About the Doctor"
+
+msgid "Solicitar información"
+msgstr "Request information"
+
+msgid "Teléfono"
+msgstr "Phone"
+
+msgid "Terapias de reemplazo renal"
+msgstr "Renal replacement therapies"
+
+msgid "Todos los Servicios"
+msgstr "All Services"
+
+msgid "Todos los derechos reservados."
+msgstr "All rights reserved."
+
+msgid "Trayectoria académica"
+msgstr "Academic background"
+
+msgid "URL de mapa insertado - Boca del Río"
+msgstr "Embedded Map URL - Boca del Río"
+
+msgid "URL de mapa insertado - Xalapa"
+msgstr "Embedded Map URL - Xalapa"
+
+msgid "Ubicaciones de consulta"
+msgstr "Office locations"
+
+msgid "Usa únicamente el valor src del iframe de Google Maps."
+msgstr "Use only the src value from the Google Maps iframe."
+
+msgid "Valoración de enfermedades y alteraciones que pueden afectar la función renal, la orina, la presión arterial o el equilibrio de líquidos y minerales."
+msgstr "Assessment of diseases and changes that may affect kidney function, urine, blood pressure, or fluid and mineral balance."
+
+msgid "Valoración y seguimiento de enfermedad renal, terapias de reemplazo renal y procedimientos nefrológicos seleccionados en Xalapa y Boca del Río."
+msgstr "Assessment and follow-up for kidney disease, renal replacement therapies, and selected nephrology procedures in Xalapa and Boca del Río."
+
+msgid "Ver Servicio"
+msgstr "View Service"
+
+msgid "Ver detalles →"
+msgstr "View details →"
+
+msgid "Ver todos los servicios"
+msgstr "View all services"
+
+msgid "Ver ubicaciones"
+msgstr "View locations"
+
+msgid "Verificar en CONACEM"
+msgstr "Verify on CONACEM"
+
+msgid "Volver al inicio"
+msgstr "Return home"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "WhatsApp (con código de país)"
+msgstr "WhatsApp (with country code)"
+
+msgid "Xalapa"
+msgstr "Xalapa"
+
+msgid "Xalapa y Boca del Río"
+msgstr "Xalapa and Boca del Río"
+
+msgid "¿Necesitas este servicio?"
+msgstr "Do you need this service?"
+
+msgid "¿Necesitas una consulta nefrológica?"
+msgstr "Do you need a nephrology consultation?"

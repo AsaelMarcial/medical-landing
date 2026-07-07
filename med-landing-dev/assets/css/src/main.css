@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #344729;
+  --color-secondary: #4A5942;
+  --color-accent: #7C2804;
+  --color-gold: #C8B070;
+  --color-background: #FFFFFF;
+  --color-surface: #F7F7F7;
+  --color-text: #243126;
+  --color-text-muted: #5F6B5A;
+  --color-whatsapp: #25D366;
+  --color-whatsapp-ink: #123A24;
+  --color-whatsapp-dark: #0F7A3F;
+
+  --font-heading: "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-display: "Playfair Display", serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  [x-cloak] {
+    display: none !important;
+  }
+
+  html.menu-open,
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    line-height: 1.65;
+    color: var(--color-text);
+    background-color: var(--color-background);
+    padding-bottom: calc(3.5rem + env(safe-area-inset-bottom));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  @media (min-width: 64rem) {
+    body {
+      padding-bottom: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex min-h-12 items-center justify-center px-6 py-3 bg-accent text-white font-semibold rounded-lg transition-all duration-300 hover:bg-primary hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex min-h-12 items-center justify-center px-6 py-3 bg-secondary text-white font-semibold rounded-lg transition-all duration-300 hover:bg-primary hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2;
+  }
+
+  .btn-whatsapp {
+    @apply inline-flex min-h-12 items-center justify-center px-6 py-3 bg-whatsapp text-whatsapp-ink font-semibold rounded-lg transition-all duration-300 hover:bg-whatsapp-dark hover:text-white hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-whatsapp-dark focus:ring-offset-2;
+  }
+
+  .section-padding {
+    @apply px-4 py-16 md:px-8 lg:py-24;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .primary-menu > li > a {
+    @apply inline-flex min-h-12 items-center whitespace-nowrap;
+  }
+
+  .primary-menu .current-menu-item > a > span,
+  .primary-menu .current-menu-ancestor > a > span {
+    @apply text-accent;
+  }
+
+  .mobile-menu .current-menu-item > a > span,
+  .mobile-menu .current-menu-ancestor > a > span {
+    @apply bg-primary text-white;
+  }
+
+  .footer-menu a,
+  .site-footer a {
+    @apply min-h-12;
+  }
+
+  .site-footer a[aria-label] {
+    @apply inline-flex min-w-12 items-center justify-center;
+  }
+
+  .mobile-cta-bar {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
