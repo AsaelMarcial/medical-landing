@@ -245,7 +245,7 @@ Estos valores describen exclusivamente aquel entorno auditado. No deben utilizar
 - Volúmenes persistentes: `med_landing_dev_med_landing_wp_data` y `med_landing_dev_med_landing_db_data`.
 - URL interna configurada para staging: `http://74.208.222.71:8081`.
 - UFW permite `8081/tcp` y el puerto ya responde públicamente después de abrirlo también en el firewall/panel del proveedor.
-- WordPress instalado, tema `med-landing-dev` activo en versión 1.5.4 en la última verificación pública; versión local preparada para desplegar: 1.5.5 con Instagram oficial visible en Home y Contacto.
+- WordPress instalado, tema `med-landing-dev` activo en versión 1.5.5, permalinks `/%postname%/` y `blog_public=0`.
 - Plugins instalados y activados en staging: Polylang 3.8.5, Rank Math SEO 1.0.273 y Fluent Forms 6.2.5.
 - Polylang tiene idiomas `es` y `en`; el contenido sembrado quedó marcado en español.
 - Home y `/servicios/` responden dentro del VPS y públicamente en `http://74.208.222.71:8081`; Home muestra las enfermedades atendidas sin huecos por animación y `/servicios/` muestra las 17 tarjetas del catálogo.
@@ -884,5 +884,5 @@ Copiar esta estructura al final:
 - Archivos modificados: `med-landing-dev/inc/helpers.php`, `med-landing-dev/template-parts/sections/trust-section.php`, `med-landing-dev/page-contact.php`, archivos de versión/build/idiomas y documentación Markdown.
 - Cambios: tema actualizado a 1.5.5; helper `developer_get_instagram_url()`; tarjeta “Instagram oficial” en la sección de confianza de Home; enlace “Instagram oficial” en Contacto directo; catálogo de idiomas actualizado a 143 traducciones.
 - Decisiones: usar texto visible además del icono para mantener claridad y accesibilidad; conservar el valor del Customizer como fuente editable.
-- Validación: build Tailwind correcto, catálogo de idiomas con 143 traducciones, `node --check` correcto para `build-css.js` y verificación sin BOM.
-- Pendientes: desplegar 1.5.5 en VPS, ejecutar lint PHP y validar Home/Contacto públicos con `style.css?ver=1.5.5`.
+- Validación: build Tailwind correcto, catálogo de idiomas con 143 traducciones, `node --check` correcto para `build-css.js`, verificación sin BOM, lint PHP correcto dentro del contenedor, Home y Contacto públicos con `style.css?ver=1.5.5`, texto/enlace de Instagram visible y responsive 390/1280 sin overflow.
+- Pendientes: configurar dominio final/SSL, formularios reales, SEO de RankMath, revisión clínica/editorial final, Lighthouse, schema externo y pruebas cross-browser.

@@ -5,7 +5,7 @@ Fecha: 2026-06-08
 
 ## Resultado
 
-El tema `med-landing-dev` cuenta con una base responsive y accesible funcional en móvil, tablet y escritorio. La revisión completa en LocalWP se realizó el 2026-06-08 sobre `http://medical-landing.local` con el tema versión 1.4.0. El 2026-07-06 se integró la información médica nueva; el 2026-07-08 el staging VPS quedó en versión 1.5.4 con navegación visible, Home sin tarjetas ocultas por animación, selector móvil compacto, páginas legales borrador, tarjetas de enfermedades con iconos SVG y sin desbordamiento horizontal en 320/390/768/1024/1280 px. La versión local 1.5.5 agrega Instagram oficial visible en Home y Contacto.
+El tema `med-landing-dev` cuenta con una base responsive y accesible funcional en móvil, tablet y escritorio. La revisión completa en LocalWP se realizó el 2026-06-08 sobre `http://medical-landing.local` con el tema versión 1.4.0. El 2026-07-06 se integró la información médica nueva; el 2026-07-08 el staging VPS quedó en versión 1.5.5 con navegación visible, Home sin tarjetas ocultas por animación, selector móvil compacto, páginas legales borrador, tarjetas de enfermedades con iconos SVG, Instagram visible en Home/Contacto y sin desbordamiento horizontal en las revisiones realizadas.
 
 ## Mejoras Implementadas
 
@@ -45,7 +45,7 @@ El tema `med-landing-dev` cuenta con una base responsive y accesible funcional e
 - Staging VPS 1.5.3 verificado el 2026-07-08: Home pública status `200`, `style.css?ver=1.5.3`, navegación visible, enfermedades atendidas visibles y `/servicios/` con 17 cards.
 - Captura móvil real con Puppeteer a 390 px: `innerWidth=390`, `scrollWidth=390`, menú y botón de idioma presentes, sin desbordamiento horizontal.
 - Tema 1.5.4 desplegado en staging VPS: `style.css?ver=1.5.4`, catálogo inglés regenerado con 140 cadenas, `build-css.js` sin errores de sintaxis, lint PHP correcto dentro del contenedor, verificación sin BOM, cinco páginas legales en `200` y responsive 320/390/768/1024/1280 sin overflow.
-- Tema 1.5.5 compilado localmente: catálogo inglés regenerado con 143 cadenas, `style.css` con header 1.5.5, `build-css.js` sin errores de sintaxis y verificación sin BOM.
+- Tema 1.5.5 desplegado en staging VPS: catálogo inglés regenerado con 143 cadenas, `style.css?ver=1.5.5`, `build-css.js` sin errores de sintaxis, lint PHP correcto dentro del contenedor, verificación sin BOM y Home/Contacto responsive 390/1280 sin overflow.
 
 ## Multilenguaje
 
