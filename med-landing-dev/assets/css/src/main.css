@@ -38,6 +38,7 @@
     line-height: 1.65;
     color: var(--color-text);
     background-color: var(--color-surface);
+    overflow-x: hidden;
     padding-bottom: calc(3.5rem + env(safe-area-inset-bottom));
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

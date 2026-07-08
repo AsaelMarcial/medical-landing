@@ -6,7 +6,7 @@
                 <p class="text-secondary font-semibold text-sm uppercase tracking-wider mb-3">
                     <?php esc_html_e('Atención especializada en enfermedades del riñón', 'med-landing-dev'); ?>
                 </p>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight mb-6" style="font-family: var(--font-display);">
+                <h1 class="mb-6 text-3xl font-bold leading-tight text-primary sm:text-4xl md:text-5xl lg:text-6xl" style="font-family: var(--font-display);">
                     <?php echo esc_html(developer_get_doctor_name()); ?>
                 </h1>
                 <p class="text-lg md:text-xl text-text-muted leading-relaxed mb-8 max-w-lg">

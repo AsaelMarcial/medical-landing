@@ -47,8 +47,7 @@
                 <?php endif; ?>
             </div>
 
-            <div class="flex items-center gap-2 xl:hidden">
-                <?php get_template_part('template-parts/components/language-switcher', null, ['variant' => 'header-mobile']); ?>
+            <div class="flex flex-shrink-0 items-center gap-1.5 xl:hidden">
                 <button
                     class="inline-flex min-h-12 min-w-12 items-center justify-center rounded-lg border-2 border-primary/20 p-2 text-primary hover:bg-surface focus:outline-none focus:ring-2 focus:ring-secondary"
                     type="button"
@@ -60,6 +59,7 @@
                     <svg x-show="!open" aria-hidden="true" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                     <svg x-cloak x-show="open" aria-hidden="true" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
+                <?php get_template_part('template-parts/components/language-switcher', null, ['variant' => 'header-mobile']); ?>
             </div>
         </div>
     </nav>
