@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Medical Landing 1.5.3\\nLanguage: en_US\\nMIME-Version: 1.0\\nContent-Type: text/plain; charset=UTF-8\\nContent-Transfer-Encoding: 8bit\\nPlural-Forms: nplurals=2; plural=(n != 1);\\n"
+msgstr "Project-Id-Version: Medical Landing 1.5.4\\nLanguage: en_US\\nMIME-Version: 1.0\\nContent-Type: text/plain; charset=UTF-8\\nContent-Transfer-Encoding: 8bit\\nPlural-Forms: nplurals=2; plural=(n != 1);\\n"
 
 msgid "Abrir en Google Maps"
 msgstr "Open in Google Maps"
@@ -45,9 +45,6 @@ msgstr "Specialized kidney care for patients in %s and surrounding areas."
 
 msgid "Atención renal certificada"
 msgstr "Certified kidney care"
-
-msgid "Aviso legal"
-msgstr "Legal notice"
 
 msgid "Boca del Río"
 msgstr "Boca del Río"
@@ -259,6 +256,9 @@ msgstr "Home"
 msgid "Leer más"
 msgstr "Read more"
 
+msgid "Legal"
+msgstr "Legal"
+
 msgid "Llamar"
 msgstr "Call"
 
@@ -378,6 +378,9 @@ msgstr "Use only the src value from the Google Maps iframe."
 
 msgid "Valoración de enfermedades y alteraciones que pueden afectar la función renal, la orina, la presión arterial o el equilibrio de líquidos y minerales."
 msgstr "Assessment of diseases and changes that may affect kidney function, urine, blood pressure, or fluid and mineral balance."
+
+msgid "Valoración renal"
+msgstr "Kidney assessment"
 
 msgid "Valoración y seguimiento de enfermedad renal, terapias de reemplazo renal y procedimientos nefrológicos seleccionados en Xalapa y Boca del Río."
 msgstr "Assessment and follow-up for kidney disease, renal replacement therapies, and selected nephrology procedures in Xalapa and Boca del Río."

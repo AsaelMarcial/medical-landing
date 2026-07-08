@@ -5,7 +5,7 @@ Fecha: 2026-06-08
 
 ## Resultado
 
-El tema `med-landing-dev` cuenta con una base responsive y accesible funcional en móvil, tablet y escritorio. La revisión completa en LocalWP se realizó el 2026-06-08 sobre `http://medical-landing.local` con el tema versión 1.4.0. El 2026-07-06 se integró la información médica nueva y el 2026-07-08 el staging VPS quedó en versión 1.5.3 con correcciones visuales verificadas: navegación visible, Home sin tarjetas ocultas por animación, selector móvil compacto y sin desbordamiento horizontal a 390 px.
+El tema `med-landing-dev` cuenta con una base responsive y accesible funcional en móvil, tablet y escritorio. La revisión completa en LocalWP se realizó el 2026-06-08 sobre `http://medical-landing.local` con el tema versión 1.4.0. El 2026-07-06 se integró la información médica nueva; el 2026-07-08 el staging VPS quedó en versión 1.5.3 con navegación visible, Home sin tarjetas ocultas por animación, selector móvil compacto y sin desbordamiento horizontal a 390 px. La versión 1.5.4 agrega páginas legales borrador y tarjetas de enfermedades con iconos SVG.
 
 ## Mejoras Implementadas
 
@@ -23,6 +23,9 @@ El tema `med-landing-dev` cuenta con una base responsive y accesible funcional e
 - Menú fallback interno para que la navegación principal y footer no desaparezcan si WordPress, Polylang o la asignación de menús todavía no están completos en staging.
 - Animaciones GSAP endurecidas para que los bloques `data-animate` nunca dejen contenido crítico invisible si ScrollTrigger falla o se inicializa tarde.
 - Secciones principales con superficies y gradientes de marca para reducir la sensación de página excesivamente blanca.
+- Tarjetas de enfermedades con iconos SVG decorativos, microetiquetas clínicas, hover suave y jerarquía visual más clara.
+- Footer con bloque Legal y cuatro enlaces separados: Aviso de privacidad, Términos y condiciones, Descargo de responsabilidad y Compromiso de ética.
+- Estilos mínimos `.prose` para que páginas legales y contenido largo tengan márgenes, listas y enlaces legibles sin depender de plugins.
 - URLs internas, datos de marca, sedes y mensajes principales usan helpers conscientes del idioma.
 - Catálogo inglés incluido en `languages/`, con 139 cadenas traducidas y archivos `en_US.po`/`en_US.mo` compatibles con la carga estándar de temas.
 - WhatsApp usa enlaces universales `https://wa.me/`, normaliza números mexicanos y permite configurar el mensaje inicial desde el Customizer.
@@ -40,6 +43,7 @@ El tema `med-landing-dev` cuenta con una base responsive y accesible funcional e
 - Build Tailwind correcto, 31 archivos PHP sin errores y sintaxis JS correcta.
 - Staging VPS 1.5.3 verificado el 2026-07-08: Home pública status `200`, `style.css?ver=1.5.3`, navegación visible, enfermedades atendidas visibles y `/servicios/` con 17 cards.
 - Captura móvil real con Puppeteer a 390 px: `innerWidth=390`, `scrollWidth=390`, menú y botón de idioma presentes, sin desbordamiento horizontal.
+- Tema 1.5.4 compilado localmente: `style.css` con header 1.5.4, catálogo inglés regenerado con 140 cadenas, `build-css.js` sin errores de sintaxis y verificación sin BOM.
 
 ## Multilenguaje
 
@@ -64,12 +68,13 @@ Las traducciones inglesas actuales son provisionales y requieren revisión profe
 - Se publicaron con redacción objetiva las cédulas `11751221` y `14852016`, la certificación del Consejo Mexicano de Nefrología `2025-2030`, el COFEPRIS `2530092002A00059` y membresías profesionales.
 - La página Servicios ahora funciona como hub SEO con tres grupos: enfermedades del riñón, terapias de reemplazo renal y procedimientos nefrológicos.
 - El tema siembra páginas individuales de tipo `servicio` para 17 búsquedas clínicas, con CTA, sedes, aviso informativo y textos ingleses provisionales.
-- La home muestra las enfermedades atendidas en un grid visible, sin carrusel.
+- La home muestra las enfermedades atendidas en un grid visible, sin carrusel, con iconos SVG inline y microetiquetas de apoyo.
 - La página Servicios usa navegación compacta tipo pills y grids completos; el catálogo se renderiza desde helpers del tema y enlaza a posts individuales solo cuando existen.
 - Las consultas del CPT aceptan posts con idioma actual o posts antiguos sin meta de idioma, evitando mezclar contenido inglés en la vista española y reduciendo fallos al copiar solo la carpeta del tema a LocalWP.
 - El header de escritorio se muestra desde `xl`; el diseño oculta el teléfono hasta `2xl` y compacta el selector de idioma en móvil para evitar saturación.
-- LocalWP fue sincronizado con la carpeta del tema 1.5.2; el staging VPS público sirve 1.5.3 con Home y Servicios visibles.
+- LocalWP fue sincronizado con la carpeta del tema 1.5.2; el staging VPS público sirve 1.5.3 con Home y Servicios visibles, y el tema local preparado para despliegue está en 1.5.4.
 - El schema agrega credenciales, foto, teléfono, sedes y `knowsAbout` solo con datos configurados.
+- Las páginas legales 1.5.4 son borradores funcionales y no sustituyen revisión legal final.
 
 ## Siguiente Trabajo Sin Datos Clínicos
 
@@ -83,7 +88,7 @@ Las traducciones inglesas actuales son provisionales y requieren revisión profe
 ## Trabajo Que Requiere Información
 
 - Email público, email receptor de formularios, horarios y recepción operativa.
-- Texto final de Aviso legal, Aviso de privacidad y disclaimer médico.
+- Texto final aprobado de Aviso de privacidad, Términos y condiciones, Descargo de responsabilidad y Compromiso de ética.
 - Revisión clínica final de los textos SEO y de las traducciones inglesas provisionales.
 - Aviso de privacidad, disclaimer y autorización de testimonios.
 - Traducción y revisión clínica final del contenido inglés.

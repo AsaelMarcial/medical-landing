@@ -122,6 +122,35 @@
     @apply inline-flex min-w-12 items-center justify-center;
   }
 
+  .prose {
+    @apply text-text;
+  }
+
+  .prose > * + * {
+    margin-top: 1rem;
+  }
+
+  .prose h2 {
+    @apply mt-8 text-2xl font-bold text-primary;
+  }
+
+  .prose p,
+  .prose li {
+    @apply text-base leading-relaxed text-text-muted;
+  }
+
+  .prose strong {
+    @apply font-semibold text-text;
+  }
+
+  .prose ul {
+    @apply list-disc space-y-2 pl-6;
+  }
+
+  .prose a {
+    @apply font-semibold text-secondary underline-offset-4 hover:text-accent hover:underline;
+  }
+
   .mobile-cta-bar {
     padding-bottom: env(safe-area-inset-bottom);
   }

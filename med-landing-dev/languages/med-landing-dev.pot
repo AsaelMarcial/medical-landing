@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Medical Landing 1.5.3\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\n"
+msgstr "Project-Id-Version: Medical Landing 1.5.4\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\n"
 
 msgid "Abrir en Google Maps"
 msgstr ""
@@ -44,9 +44,6 @@ msgid "Atención especializada en salud renal para pacientes de %s y sus alreded
 msgstr ""
 
 msgid "Atención renal certificada"
-msgstr ""
-
-msgid "Aviso legal"
 msgstr ""
 
 msgid "Boca del Río"
@@ -259,6 +256,9 @@ msgstr ""
 msgid "Leer más"
 msgstr ""
 
+msgid "Legal"
+msgstr ""
+
 msgid "Llamar"
 msgstr ""
 
@@ -377,6 +377,9 @@ msgid "Usa únicamente el valor src del iframe de Google Maps."
 msgstr ""
 
 msgid "Valoración de enfermedades y alteraciones que pueden afectar la función renal, la orina, la presión arterial o el equilibrio de líquidos y minerales."
+msgstr ""
+
+msgid "Valoración renal"
 msgstr ""
 
 msgid "Valoración y seguimiento de enfermedad renal, terapias de reemplazo renal y procedimientos nefrológicos seleccionados en Xalapa y Boca del Río."

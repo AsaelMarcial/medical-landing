@@ -23,7 +23,6 @@ TRANSLATIONS = {
     "Atención especializada en enfermedades del riñón": "Specialized care for kidney diseases",
     "Atención especializada en salud renal para pacientes de %s y sus alrededores.": "Specialized kidney care for patients in %s and surrounding areas.",
     "Atención renal certificada": "Certified kidney care",
-    "Aviso legal": "Legal notice",
     "Boca del Río": "Boca del Río",
     "Breadcrumb": "Breadcrumb",
     "Buscar Servicios": "Search Services",
@@ -97,6 +96,7 @@ TRANSLATIONS = {
     "Llamar Ahora": "Call Now",
     "Llamar ahora": "Call now",
     "Leer más": "Read more",
+    "Legal": "Legal",
     "Lo sentimos, la página que buscas no existe o fue movida.": "Sorry, the page you are looking for does not exist or has moved.",
     "Mapa del consultorio en %s": "Office map in %s",
     "Medical Landing:": "Medical Landing:",
@@ -139,6 +139,7 @@ TRANSLATIONS = {
     "Verificar en CONACEM": "Verify on CONACEM",
     "Ver detalles →": "View details →",
     "Ver todos los servicios": "View all services",
+    "Valoración renal": "Kidney assessment",
     "Ver ubicaciones": "View locations",
     "Volver al inicio": "Return home",
     "WhatsApp": "WhatsApp",
@@ -171,7 +172,7 @@ def po_escape(value):
 
 def write_po(path, strings, translated):
     header = (
-        "Project-Id-Version: Medical Landing 1.5.3\\n"
+        "Project-Id-Version: Medical Landing 1.5.4\\n"
         "Language: en_US\\n"
         "MIME-Version: 1.0\\n"
         "Content-Type: text/plain; charset=UTF-8\\n"
@@ -199,7 +200,7 @@ def write_po(path, strings, translated):
 def write_pot(path, strings):
     lines = [
         'msgid ""',
-        'msgstr "Project-Id-Version: Medical Landing 1.5.3\\nMIME-Version: 1.0\\nContent-Type: text/plain; charset=UTF-8\\n"',
+        'msgstr "Project-Id-Version: Medical Landing 1.5.4\\nMIME-Version: 1.0\\nContent-Type: text/plain; charset=UTF-8\\n"',
         "",
     ]
 
@@ -212,7 +213,7 @@ def write_pot(path, strings):
 def write_mo(path, messages):
     catalog = {
         "": (
-            "Project-Id-Version: Medical Landing 1.5.3\n"
+            "Project-Id-Version: Medical Landing 1.5.4\n"
             "Language: en_US\n"
             "MIME-Version: 1.0\n"
             "Content-Type: text/plain; charset=UTF-8\n"

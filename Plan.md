@@ -4,7 +4,7 @@
 >
 > **Estado del documento**: conserva la arquitectura y el alcance originales. No usar sus casillas como indicador del estado actual; la fuente viva es `CONTEXTO-PROYECTO.md`. La identidad visual descrita allí ya fue integrada.
 >
-> **Actualización 2026-07-08**: tema `med-landing-dev` versión 1.5.3 desplegado en staging VPS. Incluye información médica base, fotografía profesional, teléfono/WhatsApp definitivo, credenciales, COFEPRIS, Instagram y páginas SEO de servicios. La home muestra las enfermedades atendidas, Servicios usa grupos completos sin carrusel y el catálogo se pinta desde helpers del tema para no depender de que WordPress ya haya sembrado todos los posts. También se corrigió la navegación visible en staging, el contraste del menú activo, el selector móvil de idioma y el riesgo de tarjetas ocultas por animaciones. Falta revisión clínica final de textos, horarios, email/formulario, texto legal definitivo, Lighthouse, schema externo y QA cross-browser.
+> **Actualización 2026-07-08**: tema `med-landing-dev` versión 1.5.4 preparado para staging. Incluye información médica base, fotografía profesional, teléfono/WhatsApp definitivo, credenciales, COFEPRIS, Instagram, páginas SEO de servicios, cuatro páginas legales borrador y tarjetas de enfermedades con iconos SVG. La home muestra las enfermedades atendidas, Servicios usa grupos completos sin carrusel y el catálogo se pinta desde helpers del tema para no depender de que WordPress ya haya sembrado todos los posts. También se corrigió la navegación visible en staging, el contraste del menú activo, el selector móvil de idioma y el riesgo de tarjetas ocultas por animaciones. Falta revisión clínica final de textos, horarios, email/formulario, texto legal definitivo aprobado, Lighthouse, schema externo y QA cross-browser.
 
 ---
 
@@ -195,7 +195,7 @@ med-landing-dev/
 
 ### 1.3 Home Page (front-page.php)
 - [x] **Hero Section**: identidad confirmada, especialidad, ubicaciones y fotografía profesional real con fallback de marca
-- [x] **Enfermedades que atiende**: grid visible en home con las 12 enfermedades del catálogo SEO, sin carrusel
+- [x] **Enfermedades que atiende**: grid visible en home con las 12 enfermedades del catálogo SEO, sin carrusel, con iconos SVG y microetiquetas visuales
 - [x] **Sobre el Doctor preview**: contenido objetivo con nombre, especialidad y credenciales disponibles
 - [x] **Trust Section**: certificación CMN, cédulas, sedes y contacto confirmados
 - [x] **Ubicaciones**: datos confirmados, mapas interactivos y enlaces directos a Google Maps
@@ -399,7 +399,7 @@ med-landing-dev/
 
 ## Deployment (Repositorio → WordPress Destino)
 
-> **Estado VPS 2026-07-08**: existe un staging Docker aislado en `/opt/med-landing-dev/` con WordPress `wordpress:php8.2-apache`, MariaDB 11.4, tema `med-landing-dev` 1.5.3 activo, Polylang/Rank Math/Fluent Forms instalados y contenido sembrado. No se tocaron los sistemas Docker existentes. El puerto temporal `8081` está permitido en UFW y ya responde públicamente en `http://74.208.222.71:8081/`; falta publicar mediante dominio, reverse proxy Nginx y SSL. Las credenciales quedaron únicamente en `/opt/med-landing-dev/DEPLOYMENT.md` dentro del VPS.
+> **Estado VPS 2026-07-08**: existe un staging Docker aislado en `/opt/med-landing-dev/` con WordPress `wordpress:php8.2-apache`, MariaDB 11.4, tema `med-landing-dev` 1.5.3 activo en la última verificación pública y versión 1.5.4 preparada para desplegar, Polylang/Rank Math/Fluent Forms instalados y contenido sembrado. No se tocaron los sistemas Docker existentes. El puerto temporal `8081` está permitido en UFW y ya responde públicamente en `http://74.208.222.71:8081/`; falta publicar mediante dominio, reverse proxy Nginx y SSL. Las credenciales quedaron únicamente en `/opt/med-landing-dev/DEPLOYMENT.md` dentro del VPS.
 
 1. Confirmar versión de WordPress y PHP, Multisite, plugins activos y restricciones del hosting.
 2. Ejecutar `npm run build` y validar que `style.css` conserve el header requerido por WordPress.
@@ -430,6 +430,7 @@ med-landing-dev/
 - [x] Staging VPS Docker: WordPress instalado, tema activo, 17 servicios sembrados y PHP lint correcto dentro del contenedor
 - [x] Staging VPS público por IP: `http://74.208.222.71:8081/` responde y `/servicios/` muestra 17 cards
 - [x] Staging VPS UI 1.5.3: navegación visible con fallback, Home sin tarjetas ocultas por animación y móvil 390 px sin desbordamiento horizontal
+- [x] Tema 1.5.4: cuatro páginas legales borrador, footer Legal y tarjetas de enfermedades con iconos SVG compiladas localmente
 - [ ] 404 page funciona
 - [ ] Lighthouse 90+ en todas las métricas
 - [ ] Cross-browser: Safari, Firefox, Chrome, Edge

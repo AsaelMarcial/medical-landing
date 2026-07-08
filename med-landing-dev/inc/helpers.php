@@ -40,6 +40,90 @@ function developer_get_professional_credentials() {
     ];
 }
 
+function developer_get_legal_pages_catalog() {
+    $phone = developer_get_phone_number();
+    $credentials = developer_get_professional_credentials();
+    $doctor = developer_get_doctor_name();
+
+    $review_notice = '<p><strong>Nota de revisión:</strong> Este texto es una base informativa pendiente de revisión legal final. No sustituye el aviso definitivo que deberá validar el responsable del sitio.</p>';
+    $contact_note = '<p>Para dudas relacionadas con estas políticas, uso del sitio o tratamiento de datos personales, el canal temporal de contacto es el teléfono y WhatsApp <strong>' . esc_html($phone) . '</strong>. El correo oficial de privacidad se agregará cuando sea confirmado.</p>';
+
+    return [
+        'aviso-de-privacidad' => [
+            'title'   => 'Aviso de privacidad',
+            'slug'    => 'aviso-de-privacidad',
+            'summary' => 'Tratamiento de datos personales para solicitudes de información, citas y atención administrativa.',
+            'content' => $review_notice
+                . '<h2>Responsable</h2>'
+                . '<p>El responsable del tratamiento de los datos personales recabados a través de este sitio es <strong>' . esc_html($doctor) . '</strong>, especialista en Nefrología, con atención en Xalapa y Boca del Río, Veracruz.</p>'
+                . '<h2>Datos que pueden recabarse</h2>'
+                . '<p>Este sitio puede recibir datos de identificación y contacto, como nombre, teléfono, ciudad, mensaje enviado por formulario o WhatsApp, así como información que el usuario decida compartir para solicitar orientación administrativa sobre una cita.</p>'
+                . '<h2>Finalidades</h2>'
+                . '<p>Los datos se utilizan para responder solicitudes, coordinar citas, dar seguimiento administrativo, mantener comunicación con el paciente o familiar y cumplir obligaciones aplicables al servicio profesional de salud.</p>'
+                . '<h2>Datos sensibles</h2>'
+                . '<p>La información médica enviada por medios digitales debe limitarse a lo necesario para solicitar una cita. El diagnóstico, tratamiento y recomendaciones clínicas requieren valoración médica individual.</p>'
+                . '<h2>Derechos ARCO</h2>'
+                . '<p>El titular puede solicitar acceso, rectificación, cancelación u oposición respecto de sus datos personales por los canales de contacto publicados en este sitio.</p>'
+                . '<h2>Cambios al aviso</h2>'
+                . '<p>Este aviso podrá actualizarse para reflejar cambios legales, operativos o de contacto. La versión vigente se publicará en esta misma página.</p>'
+                . $contact_note,
+        ],
+        'terminos-y-condiciones' => [
+            'title'   => 'Términos y condiciones',
+            'slug'    => 'terminos-y-condiciones',
+            'summary' => 'Condiciones generales de uso del sitio, contacto, citas y contenido informativo.',
+            'content' => $review_notice
+                . '<h2>Uso del sitio</h2>'
+                . '<p>El contenido de este sitio tiene fines informativos sobre servicios de Nefrología ofrecidos por <strong>' . esc_html($doctor) . '</strong>. El acceso y uso del sitio implica aceptar estas condiciones generales.</p>'
+                . '<h2>Información publicada</h2>'
+                . '<p>La información sobre enfermedades, procedimientos, sedes y datos profesionales se publica con fines de orientación. Puede actualizarse sin aviso previo para corregir, ampliar o precisar el contenido.</p>'
+                . '<h2>Citas y contacto</h2>'
+                . '<p>Los botones de WhatsApp, teléfono y formularios sirven para solicitar información o iniciar el proceso de agenda. El envío de un mensaje no garantiza disponibilidad inmediata ni sustituye confirmación de cita.</p>'
+                . '<h2>Limitaciones</h2>'
+                . '<p>El usuario se compromete a no utilizar el sitio para enviar información falsa, abusiva, automatizada o que afecte la operación del servicio.</p>'
+                . '<h2>Propiedad intelectual</h2>'
+                . '<p>La identidad visual, textos, estructura, fotografías y recursos del sitio pertenecen a sus titulares correspondientes y no deben copiarse o reutilizarse sin autorización.</p>'
+                . '<h2>Jurisdicción</h2>'
+                . '<p>Estas condiciones se interpretan conforme a las disposiciones aplicables en México, sin perjuicio de los derechos que correspondan al usuario como paciente o titular de datos personales.</p>'
+                . $contact_note,
+        ],
+        'descargo-de-responsabilidad' => [
+            'title'   => 'Descargo de responsabilidad',
+            'slug'    => 'descargo-de-responsabilidad',
+            'summary' => 'Alcance informativo del contenido médico y límites de la comunicación digital.',
+            'content' => $review_notice
+                . '<h2>Contenido informativo</h2>'
+                . '<p>La información publicada en este sitio sobre enfermedades renales, terapias y procedimientos es general y educativa. No sustituye una consulta médica, diagnóstico, tratamiento ni seguimiento individual.</p>'
+                . '<h2>Valoración médica</h2>'
+                . '<p>Cada caso requiere historia clínica, exploración, estudios y criterio profesional. Las decisiones clínicas deben tomarse durante una valoración formal con un profesional de salud.</p>'
+                . '<h2>Urgencias</h2>'
+                . '<p>Este sitio, WhatsApp y formularios no son medios de atención de urgencias. Ante síntomas intensos, deterioro súbito, dificultad para respirar, disminución marcada de orina, dolor severo o cualquier emergencia, acude a un servicio de urgencias.</p>'
+                . '<h2>Enlaces externos</h2>'
+                . '<p>El sitio puede enlazar a mapas, redes sociales, organismos de certificación u otros recursos externos. No se controla el contenido, disponibilidad o políticas de esos sitios.</p>'
+                . '<h2>Actualización de datos</h2>'
+                . '<p>Se procura mantener información clara y actualizada; sin embargo, horarios, disponibilidad, ubicaciones, enlaces o condiciones de atención pueden cambiar y deben confirmarse al agendar.</p>'
+                . $contact_note,
+        ],
+        'compromiso-de-etica' => [
+            'title'   => 'Compromiso de ética',
+            'slug'    => 'compromiso-de-etica',
+            'summary' => 'Principios de atención profesional, confidencialidad y comunicación responsable.',
+            'content' => $review_notice
+                . '<h2>Atención profesional</h2>'
+                . '<p>La atención ofrecida por <strong>' . esc_html($doctor) . '</strong> busca ser profesional, humana y basada en evidencia, respetando la dignidad, contexto y decisiones informadas de cada paciente.</p>'
+                . '<h2>Confidencialidad</h2>'
+                . '<p>La información compartida por pacientes o familiares debe manejarse con reserva y utilizarse solo para finalidades relacionadas con la orientación, agenda, atención o seguimiento correspondiente.</p>'
+                . '<h2>Comunicación clara</h2>'
+                . '<p>El sitio evita promesas de curación, garantías de resultados o diagnósticos automáticos. La comunicación digital debe orientar y facilitar el acceso a consulta, no reemplazar la relación médico-paciente.</p>'
+                . '<h2>Credenciales profesionales</h2>'
+                . '<p>El sitio publica datos profesionales de forma objetiva, incluyendo Céd. Prof. <strong>' . esc_html($credentials['professional_license']) . '</strong>, Céd. Esp. <strong>' . esc_html($credentials['specialty_license']) . '</strong>, certificación vigente del Consejo Mexicano de Nefrología y COFEPRIS <strong>' . esc_html($credentials['cofepris']) . '</strong>.</p>'
+                . '<h2>Mejora continua</h2>'
+                . '<p>Los contenidos, procesos de agenda y materiales informativos podrán actualizarse para mejorar claridad, accesibilidad, seguridad y utilidad para los pacientes.</p>'
+                . $contact_note,
+        ],
+    ];
+}
+
 function developer_get_professional_training() {
     return [
         'Coordinador y profesor del Programa Académico de Clínica de Lesión Renal Aguda en hospital de tercer nivel.',
@@ -137,6 +221,8 @@ function developer_get_service_catalog() {
             'title'    => 'Enfermedad renal crónica',
             'slug'     => 'enfermedad-renal-cronica',
             'category' => 'enfermedades',
+            'icon'     => 'kidney',
+            'eyebrow'  => 'Valoración renal',
             'excerpt'  => 'Valoración y seguimiento especializado de la enfermedad renal crónica para detectar progresión, factores de riesgo y necesidades de tratamiento.',
             'reasons'  => ['Disminución de la función renal en estudios de laboratorio', 'Creatinina elevada o filtrado glomerular reducido', 'Antecedente de diabetes, hipertensión u otras enfermedades crónicas'],
             'approach' => 'La consulta integra antecedentes, estudios de sangre y orina, presión arterial, medicamentos actuales y metas de seguimiento para cuidar la función renal.',
@@ -145,6 +231,8 @@ function developer_get_service_catalog() {
             'title'    => 'Diabetes e hipertensión con daño renal',
             'slug'     => 'diabetes-hipertension-dano-renal',
             'category' => 'enfermedades',
+            'icon'     => 'metabolic',
+            'eyebrow'  => 'Control metabólico',
             'excerpt'  => 'Atención nefrológica para personas con diabetes o hipertensión que presentan datos de daño renal o riesgo de progresión.',
             'reasons'  => ['Diabetes con albuminuria o proteinuria', 'Hipertensión de larga evolución', 'Cambios en creatinina, filtrado glomerular o examen general de orina'],
             'approach' => 'Se revisan factores de riesgo, tratamiento actual, metas de presión y glucosa, y medidas para reducir el avance del daño renal cuando sea posible.',
@@ -153,6 +241,8 @@ function developer_get_service_catalog() {
             'title'    => 'Lesión renal aguda',
             'slug'     => 'lesion-renal-aguda',
             'category' => 'enfermedades',
+            'icon'     => 'alert',
+            'eyebrow'  => 'Cambio reciente',
             'excerpt'  => 'Valoración de cambios recientes en la función renal asociados a enfermedades agudas, hospitalización, medicamentos o deshidratación.',
             'reasons'  => ['Aumento reciente de creatinina', 'Disminución importante del volumen de orina', 'Antecedente de infección, cirugía, contraste o medicamentos nefrotóxicos'],
             'approach' => 'La valoración busca identificar causas probables, gravedad, riesgos y necesidad de seguimiento estrecho o atención hospitalaria según el caso.',
@@ -161,6 +251,8 @@ function developer_get_service_catalog() {
             'title'    => 'Proteinuria y hematuria',
             'slug'     => 'proteinuria-hematuria',
             'category' => 'enfermedades',
+            'icon'     => 'urine',
+            'eyebrow'  => 'Estudios de orina',
             'excerpt'  => 'Estudio de proteínas o sangre en orina para identificar posibles alteraciones renales y definir el seguimiento adecuado.',
             'reasons'  => ['Proteínas detectadas en examen de orina', 'Sangre microscópica o visible en orina', 'Edema, presión alta o antecedentes familiares de enfermedad renal'],
             'approach' => 'Se interpretan estudios urinarios, función renal y contexto clínico para decidir si se requieren pruebas adicionales o vigilancia especializada.',
@@ -169,6 +261,8 @@ function developer_get_service_catalog() {
             'title'    => 'Infecciones urinarias recurrentes',
             'slug'     => 'infecciones-urinarias-recurrentes',
             'category' => 'enfermedades',
+            'icon'     => 'shield',
+            'eyebrow'  => 'Prevención y seguimiento',
             'excerpt'  => 'Evaluación de infecciones urinarias repetidas, especialmente cuando hay factores de riesgo, daño renal o dudas diagnósticas.',
             'reasons'  => ['Infecciones urinarias frecuentes', 'Fiebre, dolor lumbar o recurrencias después de tratamiento', 'Antecedente de litiasis, embarazo, diabetes o enfermedad renal'],
             'approach' => 'La atención revisa cultivos, tratamientos previos, factores predisponentes y signos que ameriten estudio renal o urológico complementario.',
@@ -177,6 +271,8 @@ function developer_get_service_catalog() {
             'title'    => 'Alteraciones de electrolitos',
             'slug'     => 'alteraciones-electrolitos',
             'category' => 'enfermedades',
+            'icon'     => 'lab',
+            'eyebrow'  => 'Balance mineral',
             'excerpt'  => 'Valoración de sodio, potasio, calcio, fósforo, magnesio y equilibrio ácido-base cuando se encuentran fuera de rango.',
             'reasons'  => ['Potasio alto o bajo', 'Sodio bajo o elevado', 'Alteraciones minerales asociadas a riñón, medicamentos o enfermedades sistémicas'],
             'approach' => 'Se analiza el patrón de laboratorio, medicamentos, hidratación y función renal para orientar el manejo de forma individualizada.',
@@ -185,6 +281,8 @@ function developer_get_service_catalog() {
             'title'    => 'Litiasis renal',
             'slug'     => 'litiasis-renal',
             'category' => 'enfermedades',
+            'icon'     => 'stone',
+            'eyebrow'  => 'Cálculos renales',
             'excerpt'  => 'Seguimiento nefrológico de piedras en los riñones y evaluación de factores metabólicos que favorecen recurrencias.',
             'reasons'  => ['Cálculos renales repetidos', 'Dolor tipo cólico o antecedentes de expulsión de piedras', 'Alteraciones en calcio, ácido úrico u orina de 24 horas'],
             'approach' => 'La consulta puede incluir revisión de imágenes, estudios metabólicos y recomendaciones preventivas ajustadas al tipo de riesgo.',
@@ -193,6 +291,8 @@ function developer_get_service_catalog() {
             'title'    => 'Enfermedades glomerulares',
             'slug'     => 'enfermedades-glomerulares',
             'category' => 'enfermedades',
+            'icon'     => 'filter',
+            'eyebrow'  => 'Filtros del riñón',
             'excerpt'  => 'Evaluación de enfermedades que afectan los filtros del riñón y pueden manifestarse con proteinuria, hematuria o deterioro renal.',
             'reasons'  => ['Proteinuria persistente', 'Hematuria con sospecha renal', 'Edema, presión alta o alteraciones inmunológicas asociadas'],
             'approach' => 'Se revisan estudios de orina, sangre, autoinmunidad e indicación de vigilancia estrecha o biopsia renal cuando esté justificado.',
@@ -201,6 +301,8 @@ function developer_get_service_catalog() {
             'title'    => 'Síndromes cardiorrenales',
             'slug'     => 'sindromes-cardiorrenales',
             'category' => 'enfermedades',
+            'icon'     => 'heart-kidney',
+            'eyebrow'  => 'Corazón y riñón',
             'excerpt'  => 'Atención de la interacción entre corazón y riñón en pacientes con insuficiencia cardiaca, retención de líquidos o función renal vulnerable.',
             'reasons'  => ['Insuficiencia cardiaca con cambios en función renal', 'Retención de líquidos o ajuste complejo de diuréticos', 'Hospitalizaciones por descompensación cardiaca y renal'],
             'approach' => 'La valoración busca equilibrar control de volumen, presión arterial, función renal y tratamientos cardiovasculares junto con el equipo tratante.',
@@ -209,6 +311,8 @@ function developer_get_service_catalog() {
             'title'    => 'Hipertensión arterial difícil de controlar',
             'slug'     => 'hipertension-arterial-dificil-control',
             'category' => 'enfermedades',
+            'icon'     => 'pressure',
+            'eyebrow'  => 'Presión arterial',
             'excerpt'  => 'Evaluación nefrológica de presión arterial persistente o resistente, especialmente cuando existe sospecha de causa renal.',
             'reasons'  => ['Presión alta pese a varios medicamentos', 'Hipertensión con daño renal o proteinuria', 'Inicio temprano, cifras muy elevadas o alteraciones de potasio'],
             'approach' => 'Se revisan mediciones, adherencia, medicamentos, función renal y posibles causas secundarias para orientar ajustes seguros.',
@@ -217,6 +321,8 @@ function developer_get_service_catalog() {
             'title'    => 'Enfermedad renal en embarazo',
             'slug'     => 'enfermedad-renal-embarazo',
             'category' => 'enfermedades',
+            'icon'     => 'pregnancy',
+            'eyebrow'  => 'Seguimiento materno',
             'excerpt'  => 'Valoración de enfermedad renal, hipertensión, proteinuria o alteraciones urinarias durante el embarazo o planificación reproductiva.',
             'reasons'  => ['Embarazo con enfermedad renal previa', 'Proteinuria o hipertensión durante la gestación', 'Antecedente de preeclampsia o alteración renal'],
             'approach' => 'La atención se enfoca en valoración de riesgos, seguimiento renal y coordinación con ginecología/medicina materno fetal cuando corresponda.',
@@ -225,6 +331,8 @@ function developer_get_service_catalog() {
             'title'    => 'Evaluación y seguimiento para trasplante renal',
             'slug'     => 'evaluacion-seguimiento-trasplante-renal',
             'category' => 'enfermedades',
+            'icon'     => 'transplant',
+            'eyebrow'  => 'Trasplante renal',
             'excerpt'  => 'Acompañamiento nefrológico para pacientes en protocolo, preparación o seguimiento relacionado con trasplante renal.',
             'reasons'  => ['Enfermedad renal avanzada', 'Necesidad de orientación sobre protocolo de trasplante', 'Seguimiento posterior a trasplante renal'],
             'approach' => 'La consulta revisa historia renal, tratamientos, estudios disponibles y coordinación con centros o equipos de trasplante.',
@@ -292,6 +400,27 @@ function developer_get_services_by_category($category, $language = '') {
     ));
 }
 
+function developer_get_service_icon_svg($icon) {
+    $paths = [
+        'kidney' => '<path d="M9.5 4.5c-2.7 0-4.5 2.2-4.5 5.5 0 3.9 2.5 7.5 5.3 7.5 1.7 0 2.7-1.2 2.7-3.2V9.8c0-3.2-1.2-5.3-3.5-5.3Z"/><path d="M14.5 4.5c2.7 0 4.5 2.2 4.5 5.5 0 3.9-2.5 7.5-5.3 7.5-1.7 0-2.7-1.2-2.7-3.2"/><path d="M12 9.5c2.3 0 3.8-1.2 4.5-3.2"/>',
+        'metabolic' => '<path d="M8 4v5.2a4 4 0 0 1-.7 2.2l-2.4 3.7A3 3 0 0 0 7.4 20h9.2a3 3 0 0 0 2.5-4.9l-2.4-3.7a4 4 0 0 1-.7-2.2V4"/><path d="M7 4h10"/><path d="M8.5 14h7"/><path d="M10 17h4"/>',
+        'alert' => '<path d="M12 3 2.8 19h18.4L12 3Z"/><path d="M12 8v5"/><path d="M12 16h.01"/>',
+        'urine' => '<path d="M12 3s5 5.4 5 10a5 5 0 0 1-10 0c0-4.6 5-10 5-10Z"/><path d="M9.5 14.5c.7 1.2 2.2 1.8 3.5 1.2"/>',
+        'shield' => '<path d="M12 3 5 6v5.3c0 4.2 2.8 7.2 7 8.7 4.2-1.5 7-4.5 7-8.7V6l-7-3Z"/><path d="m9 12 2 2 4-5"/>',
+        'lab' => '<path d="M9 3v5l-4.5 8A3 3 0 0 0 7.1 20h9.8a3 3 0 0 0 2.6-4L15 8V3"/><path d="M8 3h8"/><path d="M7 15h10"/>',
+        'stone' => '<path d="m8 4 8-1 5 6-3 9-9 3-6-6 1-7 4-4Z"/><path d="m8 4 3 5 7-1"/><path d="m9 21 2-6-8-7"/>',
+        'filter' => '<path d="M4 5h16"/><path d="M7 10h10"/><path d="M10 15h4"/><path d="M12 15v5"/>',
+        'heart-kidney' => '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/><path d="M9 12h2l1-2 2 4 1-2h2"/>',
+        'pressure' => '<path d="M12 20a8 8 0 1 0-8-8"/><path d="M12 12l4-4"/><path d="M4 20h16"/><path d="M8 20v-3"/><path d="M16 20v-3"/>',
+        'pregnancy' => '<path d="M12 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/><path d="M10 8c-1.8 1.2-3 3.2-3 5.5C7 17.1 9.2 20 12 20s5-2.9 5-6.5c0-2.3-1.2-4.3-3-5.5"/><path d="M12 12a2.5 2.5 0 0 0 0 5"/>',
+        'transplant' => '<path d="M7 12c0-3.3 2.7-6 6-6h4"/><path d="m14 3 3 3-3 3"/><path d="M17 12c0 3.3-2.7 6-6 6H7"/><path d="m10 21-3-3 3-3"/><path d="M12 10v4"/><path d="M10 12h4"/>',
+    ];
+
+    $path = isset($paths[$icon]) ? $paths[$icon] : $paths['kidney'];
+
+    return '<svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' . $path . '</svg>';
+}
+
 function developer_get_service_permalink($service) {
     if (empty($service['slug'])) {
         return '';
@@ -326,18 +455,18 @@ function developer_get_service_by_slug($slug) {
 
 function developer_get_service_english_data($service) {
     $translations = [
-        'enfermedad-renal-cronica' => ['title' => 'Chronic kidney disease', 'slug' => 'chronic-kidney-disease', 'excerpt' => 'Specialized assessment and follow-up for chronic kidney disease, kidney function changes and progression risk.'],
-        'diabetes-hipertension-dano-renal' => ['title' => 'Diabetes and hypertension with kidney damage', 'slug' => 'diabetes-hypertension-kidney-damage', 'excerpt' => 'Nephrology care for kidney damage associated with diabetes, hypertension, albuminuria or reduced kidney function.'],
-        'lesion-renal-aguda' => ['title' => 'Acute kidney injury', 'slug' => 'acute-kidney-injury', 'excerpt' => 'Assessment of recent kidney function changes related to acute illness, hospitalization, dehydration, contrast or medications.'],
-        'proteinuria-hematuria' => ['title' => 'Proteinuria and hematuria', 'slug' => 'proteinuria-hematuria', 'excerpt' => 'Evaluation of protein or blood in urine when kidney involvement needs to be ruled out or followed.'],
-        'infecciones-urinarias-recurrentes' => ['title' => 'Recurrent urinary tract infections', 'slug' => 'recurrent-urinary-tract-infections', 'excerpt' => 'Evaluation of recurrent urinary infections, especially when kidney risk factors or diagnostic uncertainty are present.'],
-        'alteraciones-electrolitos' => ['title' => 'Electrolyte disorders', 'slug' => 'electrolyte-disorders', 'excerpt' => 'Assessment of sodium, potassium, calcium, phosphorus, magnesium and acid-base abnormalities.'],
-        'litiasis-renal' => ['title' => 'Kidney stones', 'slug' => 'kidney-stones', 'excerpt' => 'Nephrology follow-up for kidney stones and metabolic factors that may increase recurrence risk.'],
-        'enfermedades-glomerulares' => ['title' => 'Glomerular diseases', 'slug' => 'glomerular-diseases', 'excerpt' => 'Evaluation of kidney filter diseases that may present with proteinuria, hematuria, edema or kidney function decline.'],
-        'sindromes-cardiorrenales' => ['title' => 'Cardiorenal syndromes', 'slug' => 'cardiorenal-syndromes', 'excerpt' => 'Care for the interaction between heart and kidney disease in patients with fluid retention or vulnerable kidney function.'],
-        'hipertension-arterial-dificil-control' => ['title' => 'Difficult-to-control hypertension', 'slug' => 'difficult-to-control-hypertension', 'excerpt' => 'Nephrology assessment for persistent or resistant high blood pressure, especially when kidney causes are suspected.'],
-        'enfermedad-renal-embarazo' => ['title' => 'Kidney disease in pregnancy', 'slug' => 'kidney-disease-pregnancy', 'excerpt' => 'Assessment of kidney disease, hypertension, proteinuria or urinary abnormalities during pregnancy.'],
-        'evaluacion-seguimiento-trasplante-renal' => ['title' => 'Kidney transplant evaluation and follow-up', 'slug' => 'kidney-transplant-evaluation-follow-up', 'excerpt' => 'Nephrology guidance for patients in kidney transplant evaluation, preparation or follow-up.'],
+        'enfermedad-renal-cronica' => ['title' => 'Chronic kidney disease', 'slug' => 'chronic-kidney-disease', 'excerpt' => 'Specialized assessment and follow-up for chronic kidney disease, kidney function changes and progression risk.', 'eyebrow' => 'Kidney assessment'],
+        'diabetes-hipertension-dano-renal' => ['title' => 'Diabetes and hypertension with kidney damage', 'slug' => 'diabetes-hypertension-kidney-damage', 'excerpt' => 'Nephrology care for kidney damage associated with diabetes, hypertension, albuminuria or reduced kidney function.', 'eyebrow' => 'Metabolic control'],
+        'lesion-renal-aguda' => ['title' => 'Acute kidney injury', 'slug' => 'acute-kidney-injury', 'excerpt' => 'Assessment of recent kidney function changes related to acute illness, hospitalization, dehydration, contrast or medications.', 'eyebrow' => 'Recent change'],
+        'proteinuria-hematuria' => ['title' => 'Proteinuria and hematuria', 'slug' => 'proteinuria-hematuria', 'excerpt' => 'Evaluation of protein or blood in urine when kidney involvement needs to be ruled out or followed.', 'eyebrow' => 'Urine tests'],
+        'infecciones-urinarias-recurrentes' => ['title' => 'Recurrent urinary tract infections', 'slug' => 'recurrent-urinary-tract-infections', 'excerpt' => 'Evaluation of recurrent urinary infections, especially when kidney risk factors or diagnostic uncertainty are present.', 'eyebrow' => 'Prevention'],
+        'alteraciones-electrolitos' => ['title' => 'Electrolyte disorders', 'slug' => 'electrolyte-disorders', 'excerpt' => 'Assessment of sodium, potassium, calcium, phosphorus, magnesium and acid-base abnormalities.', 'eyebrow' => 'Mineral balance'],
+        'litiasis-renal' => ['title' => 'Kidney stones', 'slug' => 'kidney-stones', 'excerpt' => 'Nephrology follow-up for kidney stones and metabolic factors that may increase recurrence risk.', 'eyebrow' => 'Kidney stones'],
+        'enfermedades-glomerulares' => ['title' => 'Glomerular diseases', 'slug' => 'glomerular-diseases', 'excerpt' => 'Evaluation of kidney filter diseases that may present with proteinuria, hematuria, edema or kidney function decline.', 'eyebrow' => 'Kidney filters'],
+        'sindromes-cardiorrenales' => ['title' => 'Cardiorenal syndromes', 'slug' => 'cardiorenal-syndromes', 'excerpt' => 'Care for the interaction between heart and kidney disease in patients with fluid retention or vulnerable kidney function.', 'eyebrow' => 'Heart and kidney'],
+        'hipertension-arterial-dificil-control' => ['title' => 'Difficult-to-control hypertension', 'slug' => 'difficult-to-control-hypertension', 'excerpt' => 'Nephrology assessment for persistent or resistant high blood pressure, especially when kidney causes are suspected.', 'eyebrow' => 'Blood pressure'],
+        'enfermedad-renal-embarazo' => ['title' => 'Kidney disease in pregnancy', 'slug' => 'kidney-disease-pregnancy', 'excerpt' => 'Assessment of kidney disease, hypertension, proteinuria or urinary abnormalities during pregnancy.', 'eyebrow' => 'Maternal follow-up'],
+        'evaluacion-seguimiento-trasplante-renal' => ['title' => 'Kidney transplant evaluation and follow-up', 'slug' => 'kidney-transplant-evaluation-follow-up', 'excerpt' => 'Nephrology guidance for patients in kidney transplant evaluation, preparation or follow-up.', 'eyebrow' => 'Kidney transplant'],
         'dialisis-peritoneal' => ['title' => 'Peritoneal dialysis', 'slug' => 'peritoneal-dialysis', 'excerpt' => 'Guidance and follow-up for peritoneal dialysis as renal replacement therapy.'],
         'hemodialisis' => ['title' => 'Hemodialysis', 'slug' => 'hemodialysis', 'excerpt' => 'Assessment and follow-up for patients on hemodialysis or preparing for renal replacement therapy.'],
         'cateteres-hemodialisis' => ['title' => 'Hemodialysis catheters', 'slug' => 'hemodialysis-catheters', 'excerpt' => 'Assessment and placement of temporary or tunneled hemodialysis catheters when clinically indicated.'],
@@ -353,6 +482,7 @@ function developer_get_service_english_data($service) {
     $translated['title'] = $translations[$service['slug']]['title'];
     $translated['slug'] = $translations[$service['slug']]['slug'];
     $translated['excerpt'] = $translations[$service['slug']]['excerpt'];
+    $translated['eyebrow'] = $translations[$service['slug']]['eyebrow'] ?? ($service['eyebrow'] ?? '');
     $translated['reasons'] = [
         'You have abnormal kidney tests or symptoms related to this condition.',
         'A physician suggested nephrology evaluation or follow-up.',
@@ -466,6 +596,24 @@ function developer_get_page_url($slug) {
             }
 
             return developer_get_home_url();
+        }
+
+        return get_permalink($page);
+    }
+
+    return home_url('/' . trim($slug, '/') . '/');
+}
+
+function developer_get_legal_page_url($slug) {
+    $page = get_page_by_path($slug);
+
+    if ($page) {
+        if (function_exists('pll_get_post')) {
+            $translated_page_id = pll_get_post($page->ID, developer_get_current_language());
+
+            if ($translated_page_id) {
+                return get_permalink($translated_page_id);
+            }
         }
 
         return get_permalink($page);

@@ -1,8 +1,11 @@
-<?php $credentials = developer_get_professional_credentials(); ?>
+<?php
+$credentials = developer_get_professional_credentials();
+$legal_pages = developer_get_legal_pages_catalog();
+?>
 
 <footer class="site-footer bg-primary text-white">
     <div class="container-custom py-12 md:py-16">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
             <!-- Column 1: About -->
             <div>
                 <a href="<?php echo esc_url(developer_get_home_url()); ?>" class="mb-5 inline-flex min-h-12 items-center">
@@ -34,6 +37,19 @@
                     'link_after'     => '</span>',
                 ]);
                 ?>
+            </div>
+
+            <div>
+                <h3 class="text-lg font-semibold text-white mb-4"><?php esc_html_e('Legal', 'med-landing-dev'); ?></h3>
+                <ul class="space-y-1">
+                    <?php foreach ($legal_pages as $legal_page) : ?>
+                        <li>
+                            <a href="<?php echo esc_url(developer_get_legal_page_url($legal_page['slug'])); ?>" class="flex min-h-12 items-center text-sm text-slate-300 transition-colors hover:text-white">
+                                <?php echo esc_html($legal_page['title']); ?>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
             </div>
 
             <?php $xalapa_location = developer_get_location('xalapa'); ?>
@@ -102,10 +118,6 @@
                 &copy; <?php echo esc_html(wp_date('Y')); ?> <?php echo esc_html(developer_get_doctor_name()); ?>. <?php esc_html_e('Todos los derechos reservados.', 'med-landing-dev'); ?>
                 <span class="mx-1">·</span>
                 <?php echo esc_html(sprintf('COFEPRIS: %s', $credentials['cofepris'])); ?>
-                <span class="mx-1">·</span>
-                <a href="<?php echo esc_url(developer_get_page_url('aviso-legal')); ?>" class="text-slate-300 underline-offset-4 hover:text-white hover:underline">
-                    <?php esc_html_e('Aviso legal', 'med-landing-dev'); ?>
-                </a>
             </p>
         </div>
     </div>

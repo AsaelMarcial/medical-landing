@@ -12,7 +12,7 @@
 - CMS destino: una instalación WordPress existente; versión, PHP, Multisite y configuración exacta pendientes de confirmar.
 - Fuente de verdad del código: `med-landing-dev/` en este repositorio.
 - Estado actual: estructura técnica del MVP, identidad visual, ubicaciones, mejoras UX, soporte bilingüe, fotografía profesional, contacto definitivo, credenciales y catálogo SEO base integrados en el tema.
-- Fase actual: Fase 1 avanzada. La maquetación base, el contenido médico inicial, el staging VPS y la primera corrección visual responsive existen; falta cerrar operación, legal, configuración fina de plugins, QA final y revisión clínica/editorial final.
+- Fase actual: Fase 1 avanzada. La maquetación base, el contenido médico inicial, el staging VPS, la primera corrección visual responsive y los borradores legales funcionales existen; falta cerrar operación, revisión legal, configuración fina de plugins, QA final y revisión clínica/editorial final.
 - Bloqueo principal: faltan email público y receptor de formularios, horarios, texto legal definitivo, configuración final de RankMath/Fluent Forms, revisión clínica final de textos y QA completo de producción.
 - Última auditoría integral: 2026-06-07, zona `America/Mexico_City`.
 - Última aclaración de alcance del repositorio: 2026-06-08.
@@ -21,6 +21,7 @@
 - Última integración de idioma, WhatsApp y accesibilidad: 2026-06-08; tema 1.4.0 validado en LocalWP.
 - Última integración médica y SEO: 2026-07-06; tema 1.5.2 con fotografía profesional, credenciales, teléfono definitivo, 17 servicios SEO, home con enfermedades visibles, Servicios con navegación compacta y fallback visual del catálogo ante bases LocalWP incompletas.
 - Último ajuste visual en staging: 2026-07-08; tema 1.5.3 desplegado en VPS con menú fallback, contraste corregido, selector móvil compacto, animaciones más seguras y uso más consistente de fondos de marca.
+- Última integración legal/UI: 2026-07-08; tema 1.5.4 con cuatro páginas legales borrador, footer legal completo y tarjetas de enfermedades con iconos SVG y microetiquetas.
 - Última propuesta comercial: 2026-06-08; honorario base MXN 6,000, total indicado con CFDI MXN 7,000 y plazo de 4 a 6 semanas.
 
 ## 2. Protocolo de Uso
@@ -243,7 +244,7 @@ Estos valores describen exclusivamente aquel entorno auditado. No deben utilizar
 - Volúmenes persistentes: `med_landing_dev_med_landing_wp_data` y `med_landing_dev_med_landing_db_data`.
 - URL interna configurada para staging: `http://74.208.222.71:8081`.
 - UFW permite `8081/tcp` y el puerto ya responde públicamente después de abrirlo también en el firewall/panel del proveedor.
-- WordPress instalado, tema `med-landing-dev` activo en versión 1.5.3, permalinks `/%postname%/` y `blog_public=0`.
+- WordPress instalado, tema `med-landing-dev` activo en versión 1.5.3 en el último despliegue verificado; la versión local preparada para desplegar es 1.5.4 con páginas legales y tarjetas visuales.
 - Plugins instalados y activados en staging: Polylang 3.8.5, Rank Math SEO 1.0.273 y Fluent Forms 6.2.5.
 - Polylang tiene idiomas `es` y `en`; el contenido sembrado quedó marcado en español.
 - Home y `/servicios/` responden dentro del VPS y públicamente en `http://74.208.222.71:8081`; Home muestra las enfermedades atendidas sin huecos por animación y `/servicios/` muestra las 17 tarjetas del catálogo.
@@ -467,7 +468,7 @@ Esa configuración contradice la estrategia SEO de URLs limpias. En el sistema d
 - Página Servicios ahora usa navegación compacta tipo pills, no tarjetas grandes como barra superior.
 - Home y Servicios renderizan enfermedades/servicios desde el catálogo central del tema, por lo que no se quedan vacíos si LocalWP conserva una base antigua sin posts o sin metas de idioma.
 - Migración interna de contenido profesional actualizada a versión `3` para volver a sembrar/actualizar posts administrados por el tema.
-- Página `aviso-legal` creada automáticamente con contenido pendiente de revisión y enlace solo en footer.
+- Páginas legales sembradas automáticamente: `aviso-de-privacidad`, `terminos-y-condiciones`, `descargo-de-responsabilidad` y `compromiso-de-etica`. La página histórica `aviso-legal` se conserva como índice para no romper enlaces previos. Todos los textos son borradores pendientes de revisión legal final.
 - Schema Physician/MedicalBusiness actualizado con foto, teléfono, sedes, credenciales y `knowsAbout`, evitando horarios no confirmados.
 - Texto base de 18 px, interlineado amplio y objetivos táctiles principales de 48 px.
 - Barra móvil simplificada a WhatsApp y Agendar; acciones de escritorio con texto visible.
@@ -533,7 +534,7 @@ No publicar claims, testimonios, instituciones, cifras ni permisos COFEPRIS sin 
 
 1. Confirmar WordPress, PHP, Multisite, plugins, hosting y método de despliegue del sistema destino.
 2. Revisar y aprobar los datos reales del médico ya integrados.
-3. Mantener sincronizado el tema 1.5.3 en LocalWP/staging y revisar la fotografía profesional, home, Servicios y páginas individuales antes de cada entrega.
+3. Mantener sincronizado el tema 1.5.4 en LocalWP/staging y revisar la fotografía profesional, home, Servicios, páginas legales y páginas individuales antes de cada entrega.
 4. Preparar el paso del staging por IP al dominio final con reverse proxy y SSL.
 5. Revisar contenido demo y permalinks existentes sin asumir que coinciden con LocalWP.
 6. Reproducir Polylang e instalar/configurar RankMath y Fluent Forms.
@@ -668,6 +669,14 @@ No se ejecutó render completo en WordPress ni QA responsive real porque el repo
 - `/servicios/` mantiene las 17 tarjetas del catálogo.
 - Captura desktop verificada visualmente: navegación visible, CTA terracota, selector de idioma visible, fondos de marca y tarjetas sin huecos blancos.
 - Captura móvil real con Puppeteer a 390 px: `innerWidth=390`, `scrollWidth=390`, menú y botón de idioma presentes, sin desbordamiento horizontal.
+
+### Validaciones locales legal/UI del 2026-07-08
+
+- `python med-landing-dev\languages\build_catalog.py`: correcto; catálogo inglés regenerado con 140 traducciones.
+- `cmd /c npm run build`: correcto con TailwindCSS 4.3.0 y header WordPress versión 1.5.4.
+- `node --check med-landing-dev\build-css.js`: correcto.
+- Verificación de BOM: archivos PHP, JS, CSS, JSON, Python, PO/POT y Markdown revisados sin BOM inicial.
+- Revisión estática: existen helpers para catálogo legal, URLs legales con fallback Polylang, cuatro páginas legales sembradas, página histórica `aviso-legal` como índice, footer legal completo y tarjetas `service-disease-card` con iconos SVG.
 
 ## 17. Plantilla de Bitácora
 
@@ -849,3 +858,12 @@ Copiar esta estructura al final:
 - Decisiones: el menú principal no debe desaparecer por falta de asignación de menú en WordPress; el contenido crítico de servicios/enfermedades debe permanecer visible aunque falle ScrollTrigger; WhatsApp sigue destacado pero el CTA principal visual del header usa terracota de marca.
 - Validación: build Tailwind correcto, catálogo de idiomas regenerado con 139 traducciones, sintaxis JS correcta, lint PHP correcto dentro del contenedor, staging desplegado en commit `8afc6eb10cbbf918dcc710c8f706c978ba892671`, Home pública status `200` con `style.css?ver=1.5.3`, `/servicios/` con 17 cards y captura móvil Puppeteer a 390 px sin overflow (`scrollWidth=390`).
 - Pendientes: configurar dominio final, SSL, formularios reales, SEO de RankMath, texto legal definitivo, revisión clínica/editorial final, Lighthouse, schema externo y pruebas cross-browser.
+
+### 2026-07-08 - Páginas legales y tarjetas de enfermedades con iconos
+
+- Objetivo: agregar las cuatro páginas legales de referencia con contenido propio adaptado al Dr. Edgar y mejorar visualmente las tarjetas de enfermedades de Home.
+- Archivos modificados: `med-landing-dev/inc/helpers.php`, `med-landing-dev/inc/setup.php`, `med-landing-dev/template-parts/footer/footer-main.php`, `med-landing-dev/template-parts/sections/services-grid.php`, `med-landing-dev/assets/css/src/main.css`, archivos de versión/build/idiomas y documentación Markdown.
+- Cambios: tema actualizado a 1.5.4; catálogo legal central; sembrado de `aviso-de-privacidad`, `terminos-y-condiciones`, `descargo-de-responsabilidad` y `compromiso-de-etica`; `aviso-legal` conservado como índice; footer con bloque Legal; tarjetas de enfermedades con iconos SVG inline, microetiquetas, mejor jerarquía y estilos `.prose` para páginas legales.
+- Decisiones: no copiar contenido literal de la referencia; publicar borradores funcionales pendientes de revisión legal final; usar el teléfono/WhatsApp confirmado `229 446 6698` mientras no exista correo legal público; no agregar dependencias externas de iconos.
+- Validación: build Tailwind correcto, catálogo de idiomas con 140 traducciones, `node --check` correcto para `build-css.js`, verificación sin BOM y revisión estática de helpers, footer, páginas legales y tarjetas.
+- Pendientes: desplegar 1.5.4 en VPS, ejecutar lint PHP dentro del contenedor, validar las cuatro URLs legales por HTTP, revisar responsive/overflow y sustituir borradores por textos legales aprobados.

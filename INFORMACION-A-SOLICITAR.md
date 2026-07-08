@@ -228,7 +228,7 @@ Conforme a la **Ley Federal de Protección de Datos Personales en Posesión de P
 - Fecha de última actualización
 - Consentimiento expreso para datos sensibles (salud)
 
-**Acción**: el cliente debe proporcionarlo redactado por su abogado, o contratar redacción.
+**Estado 2026-07-08**: el tema 1.5.4 incluye un borrador funcional en `/aviso-de-privacidad/`, enlazado en footer. Sigue pendiente sustituirlo o aprobarlo con asesoría legal antes de producción.
 
 ### 7.2 Términos y Condiciones del Sitio
 
@@ -241,11 +241,15 @@ Conforme a la **Ley Federal de Protección de Datos Personales en Posesión de P
 - Jurisdicción aplicable (Veracruz, México)
 - Modificaciones a los términos
 
+**Estado 2026-07-08**: el tema 1.5.4 incluye un borrador funcional en `/terminos-y-condiciones/`, pendiente de revisión legal final.
+
 ### 7.3 Disclaimer Médico
 
 Texto base pendiente de revisión legal:
 
 > "La información contenida en este sitio web tiene fines exclusivamente informativos y educativos. No sustituye la consulta, diagnóstico o tratamiento médico profesional. Ante cualquier síntoma o duda de salud, acuda a consulta médica presencial."
+
+**Estado 2026-07-08**: el tema 1.5.4 incluye un borrador ampliado en `/descargo-de-responsabilidad/`, pendiente de revisión legal final.
 
 ### 7.4 Aviso COFEPRIS para Publicidad Médica
 
@@ -258,6 +262,10 @@ Conforme al **Reglamento de la Ley General de Salud en Materia de Publicidad**:
 - Permiso de publicidad COFEPRIS si se anuncian tratamientos específicos (número)
 
 ### 7.5 Política de Cookies
+
+### 7.6 Compromiso de Ética
+
+**Estado 2026-07-08**: el tema 1.5.4 incluye un borrador funcional en `/compromiso-de-etica/`, con principios de atención profesional, confidencialidad, comunicación responsable y credenciales verificables. Debe revisarse antes de producción.
 
 Si se usa Google Analytics, Meta Pixel, etc.: banner de consentimiento + descripción de cookies.
 
@@ -356,8 +364,8 @@ Convertir este documento a un **cuestionario PDF / Google Form** organizado por 
 ## Checklist Final Antes de Publicar
 
 - [ ] Cédulas profesionales visibles en footer y about
-- [ ] Aviso de Privacidad publicado y enlazado en footer + formularios
-- [ ] Disclaimer médico presente
+- [ ] Aviso de Privacidad final aprobado y enlazado en footer + formularios
+- [ ] Disclaimer médico final aprobado
 - [ ] Schema Physician valida en Google Rich Results Test
 - [ ] Ambos LocalBusiness validan con direcciones reales
 - [ ] Google Maps embebido y funcional en ambas ubicaciones

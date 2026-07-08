@@ -201,7 +201,7 @@ function developer_update_location_labels() {
 add_action('init', 'developer_update_location_labels');
 
 function developer_seed_professional_profile() {
-    if ('3' === get_option('developer_professional_profile_version')) {
+    if ('4' === get_option('developer_professional_profile_version')) {
         return;
     }
 
@@ -222,30 +222,82 @@ function developer_seed_professional_profile() {
         }
     }
 
-    developer_ensure_legal_page();
+    developer_ensure_legal_pages();
     developer_seed_service_posts();
 
-    update_option('developer_professional_profile_version', '3');
+    update_option('developer_professional_profile_version', '4');
     flush_rewrite_rules(false);
 }
 add_action('init', 'developer_seed_professional_profile', 20);
 
-function developer_ensure_legal_page() {
-    $existing = get_page_by_path('aviso-legal');
+function developer_ensure_legal_pages() {
+    $page_ids = [];
 
-    if ($existing) {
-        return (int) $existing->ID;
+    foreach (developer_get_legal_pages_catalog() as $legal_page) {
+        $existing = get_page_by_path($legal_page['slug']);
+        $content = wp_kses_post($legal_page['content']);
+
+        if ($existing) {
+            $page_ids[$legal_page['slug']] = (int) $existing->ID;
+            continue;
+        }
+
+        $page_id = wp_insert_post([
+            'post_title'   => $legal_page['title'],
+            'post_name'    => $legal_page['slug'],
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+            'post_content' => $content,
+            'post_excerpt' => $legal_page['summary'],
+        ]);
+
+        if ($page_id && !is_wp_error($page_id)) {
+            $page_ids[$legal_page['slug']] = (int) $page_id;
+
+            if (function_exists('pll_set_post_language')) {
+                pll_set_post_language($page_id, 'es');
+            }
+        }
     }
 
-    $page_id = wp_insert_post([
-        'post_title'   => 'Aviso legal',
-        'post_name'    => 'aviso-legal',
-        'post_status'  => 'publish',
-        'post_type'    => 'page',
-        'post_content' => '<p>Contenido pendiente de revisión legal. Este espacio se completará con el texto definitivo proporcionado y aprobado por el responsable del sitio.</p>',
-    ]);
+    $legacy_content = '<p>Contenido pendiente de revisión legal. Este espacio se completará con el texto definitivo proporcionado y aprobado por el responsable del sitio.</p>';
+    $legacy_existing = get_page_by_path('aviso-legal');
+    $legacy_index = '<p>Esta página concentra los documentos legales del sitio. Los textos son bases informativas pendientes de revisión legal final.</p><ul>';
 
-    return $page_id && !is_wp_error($page_id) ? (int) $page_id : 0;
+    foreach (developer_get_legal_pages_catalog() as $legal_page) {
+        $legacy_index .= '<li><a href="' . esc_url(developer_get_legal_page_url($legal_page['slug'])) . '">' . esc_html($legal_page['title']) . '</a>: ' . esc_html($legal_page['summary']) . '</li>';
+    }
+
+    $legacy_index .= '</ul>';
+
+    if ($legacy_existing) {
+        $current_content = trim(wp_strip_all_tags((string) $legacy_existing->post_content));
+        $placeholder_content = trim(wp_strip_all_tags($legacy_content));
+
+        if ('' === $current_content || $current_content === $placeholder_content) {
+            wp_update_post([
+                'ID'           => $legacy_existing->ID,
+                'post_title'   => 'Aviso legal',
+                'post_content' => wp_kses_post($legacy_index),
+            ]);
+        }
+
+        $page_ids['aviso-legal'] = (int) $legacy_existing->ID;
+    } else {
+        $legacy_page_id = wp_insert_post([
+            'post_title'   => 'Aviso legal',
+            'post_name'    => 'aviso-legal',
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+            'post_content' => wp_kses_post($legacy_index),
+        ]);
+
+        if ($legacy_page_id && !is_wp_error($legacy_page_id)) {
+            $page_ids['aviso-legal'] = (int) $legacy_page_id;
+        }
+    }
+
+    return $page_ids;
 }
 
 function developer_seed_service_posts() {

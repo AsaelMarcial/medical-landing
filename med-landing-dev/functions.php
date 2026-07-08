@@ -3,7 +3,7 @@
  * Theme functions and definitions.
  */
 
-define('DEVELOPER_THEME_VERSION', '1.5.3');
+define('DEVELOPER_THEME_VERSION', '1.5.4');
 define('DEVELOPER_THEME_DIR', get_template_directory());
 define('DEVELOPER_THEME_URI', get_template_directory_uri());
 
