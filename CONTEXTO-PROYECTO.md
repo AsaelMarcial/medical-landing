@@ -241,13 +241,13 @@ Estos valores describen exclusivamente aquel entorno auditado. No deben utilizar
 - Servicios Docker: `med-landing-wordpress` con imagen `wordpress:php8.2-apache`, `med-landing-db` con imagen `mariadb:11.4` y servicio auxiliar `wpcli`.
 - Volúmenes persistentes: `med_landing_dev_med_landing_wp_data` y `med_landing_dev_med_landing_db_data`.
 - URL interna configurada para staging: `http://74.208.222.71:8081`.
-- UFW permite `8081/tcp`, pero la prueba externa desde la máquina local no conectó; revisar firewall del proveedor/panel IONOS o exponer mediante reverse proxy Nginx con dominio.
+- UFW permite `8081/tcp` y el puerto ya responde públicamente después de abrirlo también en el firewall/panel del proveedor.
 - WordPress instalado, tema `med-landing-dev` activo en versión 1.5.2, permalinks `/%postname%/` y `blog_public=0`.
 - Plugins instalados y activados en staging: Polylang 3.8.5, Rank Math SEO 1.0.273 y Fluent Forms 6.2.5.
 - Polylang tiene idiomas `es` y `en`; el contenido sembrado quedó marcado en español.
-- Home y `/servicios/` responden dentro del VPS al seguir redirecciones; `/servicios/` muestra las 17 tarjetas del catálogo.
+- Home y `/servicios/` responden dentro del VPS y públicamente en `http://74.208.222.71:8081`; `/servicios/` muestra las 17 tarjetas del catálogo.
 - Credenciales y comandos del despliegue están guardados solo en el servidor, en `/opt/med-landing-dev/DEPLOYMENT.md` con permisos `600`. No copiar contraseñas a la documentación del repositorio.
-- Pendientes VPS: abrir o enrutar tráfico público por dominio/SSL, cambiar `home` y `siteurl` al dominio final, cerrar o restringir `8081`, rotar la contraseña root compartida durante la instalación y reemplazar acceso root por usuario/SSH key de despliegue.
+- Pendientes VPS: publicar por dominio/SSL, cambiar `home` y `siteurl` al dominio final, cerrar o restringir `8081` cuando ya no sea staging público, rotar la contraseña root compartida durante la instalación y reemplazar acceso root por usuario/SSH key de despliegue.
 
 ## 8. Build y Dependencias
 
@@ -653,7 +653,7 @@ No se ejecutó render completo en WordPress ni QA responsive real porque el repo
 - Se corrigieron BOM UTF-8 al inicio de 13 archivos PHP; el problema provocaba `headers already sent` y rompía la portada al activar Polylang.
 - Home responde dentro del VPS al seguir redirecciones de idioma; `/servicios/` responde `200` y contiene 17 cards de servicios.
 - `style.css` sirve con header de WordPress y versión 1.5.2.
-- Prueba externa a `http://74.208.222.71:8081/` desde la máquina local: sin conexión; queda pendiente revisar firewall del proveedor o conectar por reverse proxy/dominio.
+- Prueba externa a `http://74.208.222.71:8081/` desde la máquina local el 2026-07-08: correcta, status `200`, Home contiene contenido renal y `/servicios/` contiene 17 cards.
 
 ## 17. Plantilla de Bitácora
 
@@ -817,3 +817,12 @@ Copiar esta estructura al final:
 - Decisiones: no tocar Nginx ni contenedores existentes; usar puerto temporal 8081; guardar credenciales solo en `/opt/med-landing-dev/DEPLOYMENT.md` con permisos `600`; ajustar `wpcli` a usuario `33:33` para compartir permisos con Apache.
 - Validación: Docker y DB saludables, WordPress responde internamente, Home carga al seguir redirección de idioma, `/servicios/` muestra 17 cards, `cmd /c npm run build` correcto y PHP lint completo sin errores.
 - Pendientes: abrir `8081` desde el firewall del proveedor o publicar por dominio con reverse proxy y SSL; cerrar/restringir `8081` al terminar staging; rotar la contraseña root compartida; hacer commit/push de la limpieza de BOMs antes de volver a desplegar desde GitHub.
+
+### 2026-07-08 - Validación pública del staging VPS
+
+- Objetivo: confirmar que el puerto `8081` abierto en el proveedor permite acceder al WordPress staging desde internet.
+- Archivos modificados: `CONTEXTO-PROYECTO.md` y `Plan.md`.
+- Cambios: se actualizó el estado del VPS para indicar que `http://74.208.222.71:8081/` ya responde públicamente.
+- Decisiones: mantener `8081` como acceso temporal de staging hasta conectar dominio, reverse proxy y SSL.
+- Validación: Docker activo; `med-landing-wordpress` y `med-landing-db` activos, DB saludable; otros contenedores existentes `pos-texano-frontend` y `pos-texano-backend` activos; repo del VPS en commit `f68887bdc1a1ec8f0f0542de77b0981ffc1a4bc3`; tema `med-landing-dev` 1.5.2 activo; Polylang, Rank Math y Fluent Forms activos; Home pública status `200`; `/servicios/` pública status `200` con 17 cards; `style.css` versión 1.5.2.
+- Pendientes: configurar dominio final, SSL, cambio de `home`/`siteurl`, hardening de acceso SSH y cierre/restricción del puerto `8081` cuando deje de ser necesario.

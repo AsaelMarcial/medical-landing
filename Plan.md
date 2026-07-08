@@ -399,7 +399,7 @@ med-landing-dev/
 
 ## Deployment (Repositorio → WordPress Destino)
 
-> **Estado VPS 2026-07-06**: existe un staging Docker aislado en `/opt/med-landing-dev/` con WordPress `wordpress:php8.2-apache`, MariaDB 11.4, tema `med-landing-dev` 1.5.2 activo, Polylang/Rank Math/Fluent Forms instalados y contenido sembrado. No se tocaron los sistemas Docker existentes. El puerto temporal `8081` está permitido en UFW, pero no responde desde fuera de la máquina local; falta revisar firewall del proveedor o publicar mediante reverse proxy Nginx con dominio y SSL. Las credenciales quedaron únicamente en `/opt/med-landing-dev/DEPLOYMENT.md` dentro del VPS.
+> **Estado VPS 2026-07-08**: existe un staging Docker aislado en `/opt/med-landing-dev/` con WordPress `wordpress:php8.2-apache`, MariaDB 11.4, tema `med-landing-dev` 1.5.2 activo, Polylang/Rank Math/Fluent Forms instalados y contenido sembrado. No se tocaron los sistemas Docker existentes. El puerto temporal `8081` está permitido en UFW y ya responde públicamente en `http://74.208.222.71:8081/`; falta publicar mediante dominio, reverse proxy Nginx y SSL. Las credenciales quedaron únicamente en `/opt/med-landing-dev/DEPLOYMENT.md` dentro del VPS.
 
 1. Confirmar versión de WordPress y PHP, Multisite, plugins activos y restricciones del hosting.
 2. Ejecutar `npm run build` y validar que `style.css` conserve el header requerido por WordPress.
@@ -428,7 +428,7 @@ med-landing-dev/
 - [x] Navegación principal y menú móvil funcionales con teclado
 - [x] Polylang: ambos idiomas con URLs correctas en LocalWP
 - [x] Staging VPS Docker: WordPress instalado, tema activo, 17 servicios sembrados y PHP lint correcto dentro del contenedor
-- [ ] Staging VPS público por IP: pendiente porque `8081` no conecta desde fuera pese a estar abierto en UFW
+- [x] Staging VPS público por IP: `http://74.208.222.71:8081/` responde y `/servicios/` muestra 17 cards
 - [ ] 404 page funciona
 - [ ] Lighthouse 90+ en todas las métricas
 - [ ] Cross-browser: Safari, Firefox, Chrome, Edge
