@@ -4,7 +4,7 @@
 >
 > **Estado del documento**: conserva la arquitectura y el alcance originales. No usar sus casillas como indicador del estado actual; la fuente viva es `CONTEXTO-PROYECTO.md`. La identidad visual descrita allí ya fue integrada.
 >
-> **Actualización 2026-07-06**: tema `med-landing-dev` versión 1.5.2 con información médica base, fotografía profesional, teléfono/WhatsApp definitivo, credenciales, COFEPRIS, Instagram y páginas SEO de servicios integradas. La home muestra las enfermedades atendidas, Servicios usa grupos completos sin carrusel y el catálogo se pinta desde helpers del tema para no depender de que LocalWP ya haya sembrado todos los posts. Falta QA visual en WordPress/staging, revisión clínica final de textos, horarios, email/formulario y texto legal definitivo.
+> **Actualización 2026-07-08**: tema `med-landing-dev` versión 1.5.3 desplegado en staging VPS. Incluye información médica base, fotografía profesional, teléfono/WhatsApp definitivo, credenciales, COFEPRIS, Instagram y páginas SEO de servicios. La home muestra las enfermedades atendidas, Servicios usa grupos completos sin carrusel y el catálogo se pinta desde helpers del tema para no depender de que WordPress ya haya sembrado todos los posts. También se corrigió la navegación visible en staging, el contraste del menú activo, el selector móvil de idioma y el riesgo de tarjetas ocultas por animaciones. Falta revisión clínica final de textos, horarios, email/formulario, texto legal definitivo, Lighthouse, schema externo y QA cross-browser.
 
 ---
 
@@ -399,7 +399,7 @@ med-landing-dev/
 
 ## Deployment (Repositorio → WordPress Destino)
 
-> **Estado VPS 2026-07-08**: existe un staging Docker aislado en `/opt/med-landing-dev/` con WordPress `wordpress:php8.2-apache`, MariaDB 11.4, tema `med-landing-dev` 1.5.2 activo, Polylang/Rank Math/Fluent Forms instalados y contenido sembrado. No se tocaron los sistemas Docker existentes. El puerto temporal `8081` está permitido en UFW y ya responde públicamente en `http://74.208.222.71:8081/`; falta publicar mediante dominio, reverse proxy Nginx y SSL. Las credenciales quedaron únicamente en `/opt/med-landing-dev/DEPLOYMENT.md` dentro del VPS.
+> **Estado VPS 2026-07-08**: existe un staging Docker aislado en `/opt/med-landing-dev/` con WordPress `wordpress:php8.2-apache`, MariaDB 11.4, tema `med-landing-dev` 1.5.3 activo, Polylang/Rank Math/Fluent Forms instalados y contenido sembrado. No se tocaron los sistemas Docker existentes. El puerto temporal `8081` está permitido en UFW y ya responde públicamente en `http://74.208.222.71:8081/`; falta publicar mediante dominio, reverse proxy Nginx y SSL. Las credenciales quedaron únicamente en `/opt/med-landing-dev/DEPLOYMENT.md` dentro del VPS.
 
 1. Confirmar versión de WordPress y PHP, Multisite, plugins activos y restricciones del hosting.
 2. Ejecutar `npm run build` y validar que `style.css` conserve el header requerido por WordPress.
@@ -429,6 +429,7 @@ med-landing-dev/
 - [x] Polylang: ambos idiomas con URLs correctas en LocalWP
 - [x] Staging VPS Docker: WordPress instalado, tema activo, 17 servicios sembrados y PHP lint correcto dentro del contenedor
 - [x] Staging VPS público por IP: `http://74.208.222.71:8081/` responde y `/servicios/` muestra 17 cards
+- [x] Staging VPS UI 1.5.3: navegación visible con fallback, Home sin tarjetas ocultas por animación y móvil 390 px sin desbordamiento horizontal
 - [ ] 404 page funciona
 - [ ] Lighthouse 90+ en todas las métricas
 - [ ] Cross-browser: Safari, Firefox, Chrome, Edge

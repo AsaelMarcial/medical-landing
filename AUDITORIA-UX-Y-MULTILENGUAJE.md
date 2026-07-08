@@ -1,11 +1,11 @@
 # Auditoría UX y Multilenguaje
 
 Fecha: 2026-06-08
-Última actualización: 2026-07-06
+Última actualización: 2026-07-08
 
 ## Resultado
 
-El tema `med-landing-dev` cuenta con una base responsive y accesible funcional en móvil, tablet y escritorio. La revisión completa en LocalWP se realizó el 2026-06-08 sobre `http://medical-landing.local` con el tema versión 1.4.0. El 2026-07-06 se integró la información médica nueva y el tema quedó en versión 1.5.2; esta segunda actualización requiere QA visual real en WordPress cuando LocalWP o staging estén disponibles.
+El tema `med-landing-dev` cuenta con una base responsive y accesible funcional en móvil, tablet y escritorio. La revisión completa en LocalWP se realizó el 2026-06-08 sobre `http://medical-landing.local` con el tema versión 1.4.0. El 2026-07-06 se integró la información médica nueva y el 2026-07-08 el staging VPS quedó en versión 1.5.3 con correcciones visuales verificadas: navegación visible, Home sin tarjetas ocultas por animación, selector móvil compacto y sin desbordamiento horizontal a 390 px.
 
 ## Mejoras Implementadas
 
@@ -19,6 +19,10 @@ El tema `med-landing-dev` cuenta con una base responsive y accesible funcional e
 - Se conserva jQuery cuando otro plugin lo declara como dependencia.
 - El formulario ficticio fue eliminado. Contacto muestra un estado honesto hasta configurar Fluent Forms.
 - Botón único de idioma visible: muestra `English` en español y `Español` en inglés, junto al menú móvil y en el header de escritorio.
+- Variante móvil compacta del botón de idioma para conservar objetivos táctiles grandes sin saturar el header en 320-390 px.
+- Menú fallback interno para que la navegación principal y footer no desaparezcan si WordPress, Polylang o la asignación de menús todavía no están completos en staging.
+- Animaciones GSAP endurecidas para que los bloques `data-animate` nunca dejen contenido crítico invisible si ScrollTrigger falla o se inicializa tarde.
+- Secciones principales con superficies y gradientes de marca para reducir la sensación de página excesivamente blanca.
 - URLs internas, datos de marca, sedes y mensajes principales usan helpers conscientes del idioma.
 - Catálogo inglés incluido en `languages/`, con 139 cadenas traducidas y archivos `en_US.po`/`en_US.mo` compatibles con la carga estándar de temas.
 - WhatsApp usa enlaces universales `https://wa.me/`, normaliza números mexicanos y permite configurar el mensaje inicial desde el Customizer.
@@ -34,6 +38,8 @@ El tema `med-landing-dev` cuenta con una base responsive y accesible funcional e
 - Contacto no publica un formulario que no pueda enviar información.
 - No se observaron errores JavaScript en la carga final.
 - Build Tailwind correcto, 31 archivos PHP sin errores y sintaxis JS correcta.
+- Staging VPS 1.5.3 verificado el 2026-07-08: Home pública status `200`, `style.css?ver=1.5.3`, navegación visible, enfermedades atendidas visibles y `/servicios/` con 17 cards.
+- Captura móvil real con Puppeteer a 390 px: `innerWidth=390`, `scrollWidth=390`, menú y botón de idioma presentes, sin desbordamiento horizontal.
 
 ## Multilenguaje
 
@@ -61,13 +67,13 @@ Las traducciones inglesas actuales son provisionales y requieren revisión profe
 - La home muestra las enfermedades atendidas en un grid visible, sin carrusel.
 - La página Servicios usa navegación compacta tipo pills y grids completos; el catálogo se renderiza desde helpers del tema y enlaza a posts individuales solo cuando existen.
 - Las consultas del CPT aceptan posts con idioma actual o posts antiguos sin meta de idioma, evitando mezclar contenido inglés en la vista española y reduciendo fallos al copiar solo la carpeta del tema a LocalWP.
-- El header de escritorio se limita a pantallas `2xl`; en laptop/tablet usa menú móvil para evitar saltos de línea y saturación.
-- LocalWP fue sincronizado con la carpeta del tema 1.5.2; Home y Servicios responden por HTTP con el catálogo visible.
+- El header de escritorio se muestra desde `xl`; el diseño oculta el teléfono hasta `2xl` y compacta el selector de idioma en móvil para evitar saturación.
+- LocalWP fue sincronizado con la carpeta del tema 1.5.2; el staging VPS público sirve 1.5.3 con Home y Servicios visibles.
 - El schema agrega credenciales, foto, teléfono, sedes y `knowsAbout` solo con datos configurados.
 
 ## Siguiente Trabajo Sin Datos Clínicos
 
-- Instalar y configurar RankMath y Fluent Forms en staging con acceso administrativo.
+- Configurar RankMath y Fluent Forms en staging con acceso administrativo; ambos plugins ya están instalados en el VPS, pero faltan ajustes reales de SEO y formulario.
 - Reproducir la configuración de Polylang en el WordPress destino; el plugin y los contenidos de LocalWP no forman parte del ZIP del tema.
 - Configurar permalinks, sitemap, canonical, Open Graph y responsabilidades de schema.
 - Crear `screenshot.png` del tema.
