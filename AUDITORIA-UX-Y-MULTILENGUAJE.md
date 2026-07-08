@@ -5,7 +5,7 @@ Fecha: 2026-06-08
 
 ## Resultado
 
-El tema `med-landing-dev` cuenta con una base responsive y accesible funcional en móvil, tablet y escritorio. La revisión completa en LocalWP se realizó el 2026-06-08 sobre `http://medical-landing.local` con el tema versión 1.4.0. El 2026-07-06 se integró la información médica nueva; el 2026-07-08 el staging VPS quedó en versión 1.5.4 con navegación visible, Home sin tarjetas ocultas por animación, selector móvil compacto, páginas legales borrador, tarjetas de enfermedades con iconos SVG y sin desbordamiento horizontal en 320/390/768/1024/1280 px.
+El tema `med-landing-dev` cuenta con una base responsive y accesible funcional en móvil, tablet y escritorio. La revisión completa en LocalWP se realizó el 2026-06-08 sobre `http://medical-landing.local` con el tema versión 1.4.0. El 2026-07-06 se integró la información médica nueva; el 2026-07-08 el staging VPS quedó en versión 1.5.4 con navegación visible, Home sin tarjetas ocultas por animación, selector móvil compacto, páginas legales borrador, tarjetas de enfermedades con iconos SVG y sin desbordamiento horizontal en 320/390/768/1024/1280 px. La versión local 1.5.5 agrega Instagram oficial visible en Home y Contacto.
 
 ## Mejoras Implementadas
 
@@ -25,6 +25,7 @@ El tema `med-landing-dev` cuenta con una base responsive y accesible funcional e
 - Secciones principales con superficies y gradientes de marca para reducir la sensación de página excesivamente blanca.
 - Tarjetas de enfermedades con iconos SVG decorativos, microetiquetas clínicas, hover suave y jerarquía visual más clara.
 - Footer con bloque Legal y cuatro enlaces separados: Aviso de privacidad, Términos y condiciones, Descargo de responsabilidad y Compromiso de ética.
+- Instagram oficial visible con texto e icono en Home y Contacto, además de footer/schema.
 - Estilos mínimos `.prose` para que páginas legales y contenido largo tengan márgenes, listas y enlaces legibles sin depender de plugins.
 - URLs internas, datos de marca, sedes y mensajes principales usan helpers conscientes del idioma.
 - Catálogo inglés incluido en `languages/`, con 139 cadenas traducidas y archivos `en_US.po`/`en_US.mo` compatibles con la carga estándar de temas.
@@ -44,6 +45,7 @@ El tema `med-landing-dev` cuenta con una base responsive y accesible funcional e
 - Staging VPS 1.5.3 verificado el 2026-07-08: Home pública status `200`, `style.css?ver=1.5.3`, navegación visible, enfermedades atendidas visibles y `/servicios/` con 17 cards.
 - Captura móvil real con Puppeteer a 390 px: `innerWidth=390`, `scrollWidth=390`, menú y botón de idioma presentes, sin desbordamiento horizontal.
 - Tema 1.5.4 desplegado en staging VPS: `style.css?ver=1.5.4`, catálogo inglés regenerado con 140 cadenas, `build-css.js` sin errores de sintaxis, lint PHP correcto dentro del contenedor, verificación sin BOM, cinco páginas legales en `200` y responsive 320/390/768/1024/1280 sin overflow.
+- Tema 1.5.5 compilado localmente: catálogo inglés regenerado con 143 cadenas, `style.css` con header 1.5.5, `build-css.js` sin errores de sintaxis y verificación sin BOM.
 
 ## Multilenguaje
 

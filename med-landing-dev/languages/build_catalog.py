@@ -47,6 +47,7 @@ TRANSLATIONS = {
     "Contactar por WhatsApp": "Contact via WhatsApp",
     "Contacto": "Contact",
     "Contacto directo": "Direct contact",
+    "Contenido educativo y novedades de salud renal.": "Educational content and kidney health updates.",
     "Configura español e inglés en Polylang para mostrar el botón de idioma.": "Configure Spanish and English in Polylang to display the language button.",
     "Cédula de especialidad": "Specialty license",
     "Cédula profesional": "Professional license",
@@ -92,6 +93,7 @@ TRANSLATIONS = {
     "Información profesional publicada con enfoque verificable y sin sustituir la valoración médica individual.": "Professional information published with a verifiable approach and without replacing individual medical assessment.",
     "Información de Contacto": "Contact Information",
     "Inicio": "Home",
+    "Instagram oficial": "Official Instagram",
     "Llamar": "Call",
     "Llamar Ahora": "Call Now",
     "Llamar ahora": "Call now",
@@ -138,6 +140,7 @@ TRANSLATIONS = {
     "Ver Servicio": "View Service",
     "Verificar en CONACEM": "Verify on CONACEM",
     "Ver detalles →": "View details →",
+    "Ver Instagram": "View Instagram",
     "Ver todos los servicios": "View all services",
     "Valoración renal": "Kidney assessment",
     "Ver ubicaciones": "View locations",
@@ -172,7 +175,7 @@ def po_escape(value):
 
 def write_po(path, strings, translated):
     header = (
-        "Project-Id-Version: Medical Landing 1.5.4\\n"
+        "Project-Id-Version: Medical Landing 1.5.5\\n"
         "Language: en_US\\n"
         "MIME-Version: 1.0\\n"
         "Content-Type: text/plain; charset=UTF-8\\n"
@@ -200,7 +203,7 @@ def write_po(path, strings, translated):
 def write_pot(path, strings):
     lines = [
         'msgid ""',
-        'msgstr "Project-Id-Version: Medical Landing 1.5.4\\nMIME-Version: 1.0\\nContent-Type: text/plain; charset=UTF-8\\n"',
+        'msgstr "Project-Id-Version: Medical Landing 1.5.5\\nMIME-Version: 1.0\\nContent-Type: text/plain; charset=UTF-8\\n"',
         "",
     ]
 
@@ -213,7 +216,7 @@ def write_pot(path, strings):
 def write_mo(path, messages):
     catalog = {
         "": (
-            "Project-Id-Version: Medical Landing 1.5.4\n"
+            "Project-Id-Version: Medical Landing 1.5.5\n"
             "Language: en_US\n"
             "MIME-Version: 1.0\n"
             "Content-Type: text/plain; charset=UTF-8\n"

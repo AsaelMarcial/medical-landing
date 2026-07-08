@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Medical Landing 1.5.4\\nLanguage: en_US\\nMIME-Version: 1.0\\nContent-Type: text/plain; charset=UTF-8\\nContent-Transfer-Encoding: 8bit\\nPlural-Forms: nplurals=2; plural=(n != 1);\\n"
+msgstr "Project-Id-Version: Medical Landing 1.5.5\\nLanguage: en_US\\nMIME-Version: 1.0\\nContent-Type: text/plain; charset=UTF-8\\nContent-Transfer-Encoding: 8bit\\nPlural-Forms: nplurals=2; plural=(n != 1);\\n"
 
 msgid "Abrir en Google Maps"
 msgstr "Open in Google Maps"
@@ -120,6 +120,9 @@ msgstr "Contact"
 
 msgid "Contacto directo"
 msgstr "Direct contact"
+
+msgid "Contenido educativo y novedades de salud renal."
+msgstr "Educational content and kidney health updates."
 
 msgid "Cédula de especialidad"
 msgstr "Specialty license"
@@ -253,6 +256,9 @@ msgstr "Professional information published with a verifiable approach and withou
 msgid "Inicio"
 msgstr "Home"
 
+msgid "Instagram oficial"
+msgstr "Official Instagram"
+
 msgid "Leer más"
 msgstr "Read more"
 
@@ -384,6 +390,9 @@ msgstr "Kidney assessment"
 
 msgid "Valoración y seguimiento de enfermedad renal, terapias de reemplazo renal y procedimientos nefrológicos seleccionados en Xalapa y Boca del Río."
 msgstr "Assessment and follow-up for kidney disease, renal replacement therapies, and selected nephrology procedures in Xalapa and Boca del Río."
+
+msgid "Ver Instagram"
+msgstr "View Instagram"
 
 msgid "Ver Servicio"
 msgstr "View Service"

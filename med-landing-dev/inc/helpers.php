@@ -910,6 +910,10 @@ function developer_get_phone_number() {
     return trim((string) get_theme_mod('phone_number', '229 446 6698'));
 }
 
+function developer_get_instagram_url() {
+    return trim((string) get_theme_mod('social_instagram', 'https://www.instagram.com/dr.edgarhernandez.nefro/'));
+}
+
 function developer_get_svg_icon($name) {
     $path = DEVELOPER_THEME_DIR . '/assets/images/icons/' . $name . '.svg';
     if (file_exists($path)) {

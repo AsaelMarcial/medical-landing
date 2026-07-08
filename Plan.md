@@ -4,7 +4,7 @@
 >
 > **Estado del documento**: conserva la arquitectura y el alcance originales. No usar sus casillas como indicador del estado actual; la fuente viva es `CONTEXTO-PROYECTO.md`. La identidad visual descrita allí ya fue integrada.
 >
-> **Actualización 2026-07-08**: tema `med-landing-dev` versión 1.5.4 desplegado en staging VPS. Incluye información médica base, fotografía profesional, teléfono/WhatsApp definitivo, credenciales, COFEPRIS, Instagram, páginas SEO de servicios, cuatro páginas legales borrador y tarjetas de enfermedades con iconos SVG. La home muestra las enfermedades atendidas, Servicios usa grupos completos sin carrusel y el catálogo se pinta desde helpers del tema para no depender de que WordPress ya haya sembrado todos los posts. También se corrigió la navegación visible en staging, el contraste del menú activo, el selector móvil de idioma y el riesgo de tarjetas ocultas por animaciones. Falta revisión clínica final de textos, horarios, email/formulario, texto legal definitivo aprobado, Lighthouse, schema externo y QA cross-browser.
+> **Actualización 2026-07-08**: tema `med-landing-dev` versión 1.5.5 preparado para staging. Incluye información médica base, fotografía profesional, teléfono/WhatsApp definitivo, credenciales, COFEPRIS, Instagram visible en Home/Contacto/footer, páginas SEO de servicios, cuatro páginas legales borrador y tarjetas de enfermedades con iconos SVG. La home muestra las enfermedades atendidas, Servicios usa grupos completos sin carrusel y el catálogo se pinta desde helpers del tema para no depender de que WordPress ya haya sembrado todos los posts. También se corrigió la navegación visible en staging, el contraste del menú activo, el selector móvil de idioma y el riesgo de tarjetas ocultas por animaciones. Falta revisión clínica final de textos, horarios, email/formulario, texto legal definitivo aprobado, Lighthouse, schema externo y QA cross-browser.
 
 ---
 
@@ -431,6 +431,7 @@ med-landing-dev/
 - [x] Staging VPS público por IP: `http://74.208.222.71:8081/` responde y `/servicios/` muestra 17 cards
 - [x] Staging VPS UI 1.5.3: navegación visible con fallback, Home sin tarjetas ocultas por animación y móvil 390 px sin desbordamiento horizontal
 - [x] Staging VPS UI 1.5.4: cuatro páginas legales borrador, footer Legal, tarjetas de enfermedades con iconos SVG, lint PHP correcto y responsive 320/390/768/1024/1280 sin overflow
+- [x] Tema 1.5.5: Instagram oficial visible en Home y Contacto, compilado localmente
 - [ ] 404 page funciona
 - [ ] Lighthouse 90+ en todas las métricas
 - [ ] Cross-browser: Safari, Firefox, Chrome, Edge
