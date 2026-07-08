@@ -244,7 +244,7 @@ Estos valores describen exclusivamente aquel entorno auditado. No deben utilizar
 - Volúmenes persistentes: `med_landing_dev_med_landing_wp_data` y `med_landing_dev_med_landing_db_data`.
 - URL interna configurada para staging: `http://74.208.222.71:8081`.
 - UFW permite `8081/tcp` y el puerto ya responde públicamente después de abrirlo también en el firewall/panel del proveedor.
-- WordPress instalado, tema `med-landing-dev` activo en versión 1.5.3 en el último despliegue verificado; la versión local preparada para desplegar es 1.5.4 con páginas legales y tarjetas visuales.
+- WordPress instalado, tema `med-landing-dev` activo en versión 1.5.4, permalinks `/%postname%/` y `blog_public=0`.
 - Plugins instalados y activados en staging: Polylang 3.8.5, Rank Math SEO 1.0.273 y Fluent Forms 6.2.5.
 - Polylang tiene idiomas `es` y `en`; el contenido sembrado quedó marcado en español.
 - Home y `/servicios/` responden dentro del VPS y públicamente en `http://74.208.222.71:8081`; Home muestra las enfermedades atendidas sin huecos por animación y `/servicios/` muestra las 17 tarjetas del catálogo.
@@ -678,6 +678,15 @@ No se ejecutó render completo en WordPress ni QA responsive real porque el repo
 - Verificación de BOM: archivos PHP, JS, CSS, JSON, Python, PO/POT y Markdown revisados sin BOM inicial.
 - Revisión estática: existen helpers para catálogo legal, URLs legales con fallback Polylang, cuatro páginas legales sembradas, página histórica `aviso-legal` como índice, footer legal completo y tarjetas `service-disease-card` con iconos SVG.
 
+### Validaciones staging VPS legal/UI del 2026-07-08
+
+- VPS actualizado desde GitHub al commit `01cf6792ddf4d1cabf7bbbbecf39ecdc6547a264` y contenedor `med-landing-wordpress` reiniciado.
+- PHP lint ejecutado dentro del contenedor `med-landing-wordpress`: todos los archivos PHP del tema sin errores de sintaxis.
+- Home pública status `200`, sirve `style.css?ver=1.5.4`, contiene el bloque legal del footer, la sección de enfermedades y 12 tarjetas con iconos SVG.
+- Páginas públicas status `200`: `/aviso-de-privacidad/`, `/terminos-y-condiciones/`, `/descargo-de-responsabilidad/`, `/compromiso-de-etica/` y `/aviso-legal/`.
+- Responsive verificado con Puppeteer en 320, 390, 768, 1024 y 1280 px: `scrollWidth` igual a `innerWidth`, sin desbordamiento horizontal; 4 enlaces legales, 12 tarjetas y 12 iconos presentes.
+- Capturas revisadas: tarjetas móviles con icono, microetiqueta, texto y CTA; página legal con `.prose`, encabezados, nota de revisión y teléfono confirmado.
+
 ## 17. Plantilla de Bitácora
 
 Copiar esta estructura al final:
@@ -865,5 +874,5 @@ Copiar esta estructura al final:
 - Archivos modificados: `med-landing-dev/inc/helpers.php`, `med-landing-dev/inc/setup.php`, `med-landing-dev/template-parts/footer/footer-main.php`, `med-landing-dev/template-parts/sections/services-grid.php`, `med-landing-dev/assets/css/src/main.css`, archivos de versión/build/idiomas y documentación Markdown.
 - Cambios: tema actualizado a 1.5.4; catálogo legal central; sembrado de `aviso-de-privacidad`, `terminos-y-condiciones`, `descargo-de-responsabilidad` y `compromiso-de-etica`; `aviso-legal` conservado como índice; footer con bloque Legal; tarjetas de enfermedades con iconos SVG inline, microetiquetas, mejor jerarquía y estilos `.prose` para páginas legales.
 - Decisiones: no copiar contenido literal de la referencia; publicar borradores funcionales pendientes de revisión legal final; usar el teléfono/WhatsApp confirmado `229 446 6698` mientras no exista correo legal público; no agregar dependencias externas de iconos.
-- Validación: build Tailwind correcto, catálogo de idiomas con 140 traducciones, `node --check` correcto para `build-css.js`, verificación sin BOM y revisión estática de helpers, footer, páginas legales y tarjetas.
-- Pendientes: desplegar 1.5.4 en VPS, ejecutar lint PHP dentro del contenedor, validar las cuatro URLs legales por HTTP, revisar responsive/overflow y sustituir borradores por textos legales aprobados.
+- Validación: build Tailwind correcto, catálogo de idiomas con 140 traducciones, `node --check` correcto para `build-css.js`, verificación sin BOM, lint PHP correcto dentro del contenedor, Home pública con `style.css?ver=1.5.4`, cuatro páginas legales más `aviso-legal` en `200`, 12 tarjetas con 12 iconos y responsive 320/390/768/1024/1280 sin overflow.
+- Pendientes: sustituir borradores por textos legales aprobados, configurar dominio final/SSL, formularios reales, SEO de RankMath, revisión clínica/editorial final, Lighthouse, schema externo y pruebas cross-browser.

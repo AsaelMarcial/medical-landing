@@ -5,7 +5,7 @@ Fecha: 2026-06-08
 
 ## Resultado
 
-El tema `med-landing-dev` cuenta con una base responsive y accesible funcional en móvil, tablet y escritorio. La revisión completa en LocalWP se realizó el 2026-06-08 sobre `http://medical-landing.local` con el tema versión 1.4.0. El 2026-07-06 se integró la información médica nueva; el 2026-07-08 el staging VPS quedó en versión 1.5.3 con navegación visible, Home sin tarjetas ocultas por animación, selector móvil compacto y sin desbordamiento horizontal a 390 px. La versión 1.5.4 agrega páginas legales borrador y tarjetas de enfermedades con iconos SVG.
+El tema `med-landing-dev` cuenta con una base responsive y accesible funcional en móvil, tablet y escritorio. La revisión completa en LocalWP se realizó el 2026-06-08 sobre `http://medical-landing.local` con el tema versión 1.4.0. El 2026-07-06 se integró la información médica nueva; el 2026-07-08 el staging VPS quedó en versión 1.5.4 con navegación visible, Home sin tarjetas ocultas por animación, selector móvil compacto, páginas legales borrador, tarjetas de enfermedades con iconos SVG y sin desbordamiento horizontal en 320/390/768/1024/1280 px.
 
 ## Mejoras Implementadas
 
@@ -43,7 +43,7 @@ El tema `med-landing-dev` cuenta con una base responsive y accesible funcional e
 - Build Tailwind correcto, 31 archivos PHP sin errores y sintaxis JS correcta.
 - Staging VPS 1.5.3 verificado el 2026-07-08: Home pública status `200`, `style.css?ver=1.5.3`, navegación visible, enfermedades atendidas visibles y `/servicios/` con 17 cards.
 - Captura móvil real con Puppeteer a 390 px: `innerWidth=390`, `scrollWidth=390`, menú y botón de idioma presentes, sin desbordamiento horizontal.
-- Tema 1.5.4 compilado localmente: `style.css` con header 1.5.4, catálogo inglés regenerado con 140 cadenas, `build-css.js` sin errores de sintaxis y verificación sin BOM.
+- Tema 1.5.4 desplegado en staging VPS: `style.css?ver=1.5.4`, catálogo inglés regenerado con 140 cadenas, `build-css.js` sin errores de sintaxis, lint PHP correcto dentro del contenedor, verificación sin BOM, cinco páginas legales en `200` y responsive 320/390/768/1024/1280 sin overflow.
 
 ## Multilenguaje
 
@@ -72,7 +72,7 @@ Las traducciones inglesas actuales son provisionales y requieren revisión profe
 - La página Servicios usa navegación compacta tipo pills y grids completos; el catálogo se renderiza desde helpers del tema y enlaza a posts individuales solo cuando existen.
 - Las consultas del CPT aceptan posts con idioma actual o posts antiguos sin meta de idioma, evitando mezclar contenido inglés en la vista española y reduciendo fallos al copiar solo la carpeta del tema a LocalWP.
 - El header de escritorio se muestra desde `xl`; el diseño oculta el teléfono hasta `2xl` y compacta el selector de idioma en móvil para evitar saturación.
-- LocalWP fue sincronizado con la carpeta del tema 1.5.2; el staging VPS público sirve 1.5.3 con Home y Servicios visibles, y el tema local preparado para despliegue está en 1.5.4.
+- LocalWP fue sincronizado con la carpeta del tema 1.5.2; el staging VPS público sirve 1.5.4 con Home, Servicios, páginas legales y tarjetas con iconos visibles.
 - El schema agrega credenciales, foto, teléfono, sedes y `knowsAbout` solo con datos configurados.
 - Las páginas legales 1.5.4 son borradores funcionales y no sustituyen revisión legal final.
 
