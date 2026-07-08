@@ -2,7 +2,7 @@
 $locations = developer_get_locations();
 ?>
 
-<section class="bg-surface section-padding" data-animate="fade-up">
+<section class="section-padding bg-gradient-to-b from-background to-surface" data-animate="fade-up">
     <div class="container-custom">
         <div class="text-center max-w-2xl mx-auto mb-12">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">
@@ -15,7 +15,7 @@ $locations = developer_get_locations();
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8" data-animate="stagger">
             <?php foreach ($locations as $location) : ?>
-                <article class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <article class="overflow-hidden rounded-2xl border border-primary/10 bg-white shadow-sm transition-shadow duration-300 hover:shadow-lg">
                     <div class="aspect-video">
                         <iframe
                             src="<?php echo esc_url($location['map_embed_url']); ?>"

@@ -1,8 +1,8 @@
-<section class="relative bg-gradient-to-br from-primary/5 via-background to-secondary/5 overflow-hidden" data-animate="fade-up">
+<section class="relative overflow-hidden bg-gradient-to-br from-primary/10 via-surface to-gold/25" data-animate="fade-up">
     <div class="container-custom py-20 md:py-28 lg:py-36">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <!-- Content -->
-            <div class="order-2 lg:order-1">
+            <div class="order-2 rounded-3xl bg-white/80 p-6 shadow-sm ring-1 ring-primary/10 backdrop-blur-sm lg:order-1 lg:p-8">
                 <p class="text-secondary font-semibold text-sm uppercase tracking-wider mb-3">
                     <?php esc_html_e('Atención especializada en enfermedades del riñón', 'med-landing-dev'); ?>
                 </p>
@@ -44,7 +44,7 @@
             </div>
 
             <!-- Image -->
-            <div class="order-1 lg:order-2 flex justify-center" data-animate="scale-in">
+            <div class="order-1 flex justify-center lg:order-2" data-animate="scale-in">
                 <div class="relative">
                     <div class="w-full max-w-md lg:max-w-lg">
                         <?php get_template_part('template-parts/components/doctor-portrait', null, [
@@ -53,8 +53,8 @@
                         ]); ?>
                     </div>
                     <!-- Decorative accent -->
-                    <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-accent/10 rounded-full -z-10"></div>
-                    <div class="absolute -top-4 -left-4 w-16 h-16 bg-secondary/10 rounded-full -z-10"></div>
+                    <div class="absolute -bottom-4 -right-4 -z-10 h-28 w-28 rounded-full bg-accent/15"></div>
+                    <div class="absolute -top-4 -left-4 -z-10 h-20 w-20 rounded-full bg-gold/40"></div>
                 </div>
             </div>
         </div>

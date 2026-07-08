@@ -474,6 +474,75 @@ function developer_get_page_url($slug) {
     return home_url('/' . trim($slug, '/') . '/');
 }
 
+function developer_get_navigation_items() {
+    return [
+        [
+            'label' => __('Inicio', 'med-landing-dev'),
+            'slug'  => 'inicio',
+            'url'   => developer_get_home_url(),
+        ],
+        [
+            'label' => __('Sobre el Doctor', 'med-landing-dev'),
+            'slug'  => 'sobre-el-doctor',
+            'url'   => developer_get_page_url('sobre-el-doctor'),
+        ],
+        [
+            'label' => __('Servicios', 'med-landing-dev'),
+            'slug'  => 'servicios',
+            'url'   => developer_get_page_url('servicios'),
+        ],
+        [
+            'label' => __('Xalapa', 'med-landing-dev'),
+            'slug'  => 'nefrologo-xalapa',
+            'url'   => developer_get_page_url('nefrologo-xalapa'),
+        ],
+        [
+            'label' => __('Boca del Río', 'med-landing-dev'),
+            'slug'  => 'nefrologo-veracruz',
+            'url'   => developer_get_page_url('nefrologo-veracruz'),
+        ],
+        [
+            'label' => __('Contacto', 'med-landing-dev'),
+            'slug'  => 'contacto',
+            'url'   => developer_get_page_url('contacto'),
+        ],
+    ];
+}
+
+function developer_is_navigation_item_current($slug) {
+    if ('inicio' === $slug) {
+        return is_front_page() || developer_is_page_translation('inicio');
+    }
+
+    return developer_is_page_translation($slug);
+}
+
+function developer_render_fallback_menu($args = []) {
+    $args = (object) $args;
+    $menu_class = !empty($args->menu_class) ? $args->menu_class : 'primary-menu';
+    $link_before = isset($args->link_before) ? $args->link_before : '<span>';
+    $link_after = isset($args->link_after) ? $args->link_after : '</span>';
+
+    echo '<ul class="' . esc_attr($menu_class) . '">';
+
+    foreach (developer_get_navigation_items() as $item) {
+        $current = developer_is_navigation_item_current($item['slug']);
+        $classes = ['menu-item', 'menu-item-type-custom'];
+
+        if ($current) {
+            $classes[] = 'current-menu-item';
+        }
+
+        echo '<li class="' . esc_attr(implode(' ', $classes)) . '">';
+        echo '<a href="' . esc_url($item['url']) . '"' . ($current ? ' aria-current="page"' : '') . '>';
+        echo $link_before . esc_html($item['label']) . $link_after;
+        echo '</a>';
+        echo '</li>';
+    }
+
+    echo '</ul>';
+}
+
 function developer_is_page_translation($slug) {
     if (is_page($slug)) {
         return true;

@@ -171,7 +171,7 @@ def po_escape(value):
 
 def write_po(path, strings, translated):
     header = (
-        "Project-Id-Version: Medical Landing 1.5.2\\n"
+        "Project-Id-Version: Medical Landing 1.5.3\\n"
         "Language: en_US\\n"
         "MIME-Version: 1.0\\n"
         "Content-Type: text/plain; charset=UTF-8\\n"
@@ -199,7 +199,7 @@ def write_po(path, strings, translated):
 def write_pot(path, strings):
     lines = [
         'msgid ""',
-        'msgstr "Project-Id-Version: Medical Landing 1.5.2\\nMIME-Version: 1.0\\nContent-Type: text/plain; charset=UTF-8\\n"',
+        'msgstr "Project-Id-Version: Medical Landing 1.5.3\\nMIME-Version: 1.0\\nContent-Type: text/plain; charset=UTF-8\\n"',
         "",
     ]
 
@@ -212,7 +212,7 @@ def write_pot(path, strings):
 def write_mo(path, messages):
     catalog = {
         "": (
-            "Project-Id-Version: Medical Landing 1.5.2\n"
+            "Project-Id-Version: Medical Landing 1.5.3\n"
             "Language: en_US\n"
             "MIME-Version: 1.0\n"
             "Content-Type: text/plain; charset=UTF-8\n"

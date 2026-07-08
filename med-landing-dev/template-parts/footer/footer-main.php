@@ -28,7 +28,7 @@
                     'theme_location' => 'footer',
                     'container'      => false,
                     'menu_class'     => 'footer-menu space-y-1',
-                    'fallback_cb'    => false,
+                    'fallback_cb'    => 'developer_render_fallback_menu',
                     'items_wrap'     => '<ul class="%2$s">%3$s</ul>',
                     'link_before'    => '<span class="flex min-h-12 items-center text-sm text-slate-300 transition-colors hover:text-white">',
                     'link_after'     => '</span>',

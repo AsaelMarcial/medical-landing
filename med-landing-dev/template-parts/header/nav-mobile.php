@@ -49,7 +49,7 @@
                 'theme_location' => 'primary',
                 'container'      => false,
                 'menu_class'     => 'mobile-menu space-y-1 py-4',
-                'fallback_cb'    => false,
+                'fallback_cb'    => 'developer_render_fallback_menu',
                 'items_wrap'     => '<ul class="%2$s">%3$s</ul>',
                 'link_before'    => '<span class="flex min-h-12 items-center rounded-lg px-3 py-2 text-base font-medium text-text transition-colors hover:bg-surface hover:text-secondary">',
                 'link_after'     => '</span>',

@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.from(el, {
             y: 40,
             opacity: 0,
+            immediateRender: false,
             duration: 0.8,
             ease: 'power2.out',
             scrollTrigger: {
@@ -27,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.from(el, {
             x: -40,
             opacity: 0,
+            immediateRender: false,
             duration: 0.8,
             ease: 'power2.out',
             scrollTrigger: {
@@ -42,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.from(el, {
             x: 40,
             opacity: 0,
+            immediateRender: false,
             duration: 0.8,
             ease: 'power2.out',
             scrollTrigger: {
@@ -58,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.from(children, {
             y: 30,
             opacity: 0,
+            immediateRender: false,
             duration: 0.6,
             stagger: 0.12,
             ease: 'power2.out',
@@ -74,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.from(el, {
             scale: 0.9,
             opacity: 0,
+            immediateRender: false,
             duration: 0.7,
             ease: 'back.out(1.4)',
             scrollTrigger: {
@@ -92,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         gsap.from(el, {
             textContent: 0,
+            immediateRender: false,
             duration: 2,
             ease: 'power1.out',
             snap: { textContent: 1 },
@@ -105,4 +111,9 @@ document.addEventListener('DOMContentLoaded', () => {
             },
         });
     });
+
+    window.setTimeout(() => {
+        ScrollTrigger.refresh();
+        gsap.set('[data-animate] *', { clearProps: 'opacity,transform,visibility' });
+    }, 1600);
 });

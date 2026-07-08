@@ -37,7 +37,7 @@
     font-size: 1.125rem;
     line-height: 1.65;
     color: var(--color-text);
-    background-color: var(--color-background);
+    background-color: var(--color-surface);
     padding-bottom: calc(3.5rem + env(safe-area-inset-bottom));
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -103,7 +103,7 @@
 
   .primary-menu .current-menu-item > a > span,
   .primary-menu .current-menu-ancestor > a > span {
-    @apply text-accent;
+    @apply bg-primary text-white;
   }
 
   .mobile-menu .current-menu-item > a > span,

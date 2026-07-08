@@ -2,7 +2,7 @@
 $diseases = developer_get_services_by_category('enfermedades');
 ?>
 
-<section class="bg-background section-padding" data-animate="fade-up">
+<section class="section-padding bg-gradient-to-b from-surface via-background to-surface" data-animate="fade-up">
     <div class="container-custom">
         <div class="mb-10 max-w-3xl">
             <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-secondary">
@@ -20,7 +20,7 @@ $diseases = developer_get_services_by_category('enfermedades');
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" data-animate="stagger">
                 <?php foreach ($diseases as $service) : ?>
                     <?php $service_url = developer_get_service_permalink($service); ?>
-                    <article class="group rounded-2xl border border-gray-100 bg-surface p-5 transition-all hover:-translate-y-1 hover:border-secondary/25 hover:bg-white hover:shadow-md">
+                    <article class="group h-full rounded-2xl border border-primary/10 bg-white p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-secondary/30 hover:shadow-lg">
                         <?php if ($service_url) : ?>
                             <a href="<?php echo esc_url($service_url); ?>" class="block">
                         <?php else : ?>

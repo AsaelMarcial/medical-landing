@@ -1,9 +1,9 @@
-<section class="bg-surface section-padding" data-animate="fade-up">
+<section class="section-padding bg-gradient-to-br from-primary/5 via-surface to-gold/20" data-animate="fade-up">
     <div class="container-custom">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <!-- Image -->
             <div class="relative" data-animate="scale-in">
-                <div class="aspect-[4/5] bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="aspect-[4/5] overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-primary/10">
                     <?php
                     $about_page = get_page_by_path('sobre-el-doctor');
                     if ($about_page && has_post_thumbnail($about_page->ID)) :
