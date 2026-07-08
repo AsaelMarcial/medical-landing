@@ -103,7 +103,8 @@
 
   .primary-menu .current-menu-item > a > span,
   .primary-menu .current-menu-ancestor > a > span {
-    @apply bg-primary text-white;
+    background-color: var(--color-primary);
+    color: var(--color-white) !important;
   }
 
   .mobile-menu .current-menu-item > a > span,
