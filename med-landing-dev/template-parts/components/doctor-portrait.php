@@ -11,13 +11,6 @@ $image_classes = !empty($args['class'])
 
 <?php if (developer_has_doctor_photo()) : ?>
     <picture>
-        <?php if (file_exists(developer_get_doctor_photo_path('large', 'avif'))) : ?>
-            <source
-                type="image/avif"
-                srcset="<?php echo esc_url(developer_get_doctor_photo_url('small', 'avif')); ?> 540w, <?php echo esc_url(developer_get_doctor_photo_url('medium', 'avif')); ?> 650w, <?php echo esc_url(developer_get_doctor_photo_url('large_mobile', 'avif')); ?> 720w, <?php echo esc_url(developer_get_doctor_photo_url('large', 'avif')); ?> 1080w"
-                sizes="(min-width: 1024px) 32rem, (min-width: 768px) 28rem, 90vw"
-            >
-        <?php endif; ?>
         <?php if (file_exists(developer_get_doctor_photo_path('large', 'webp'))) : ?>
             <source
                 type="image/webp"

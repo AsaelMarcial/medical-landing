@@ -45,18 +45,12 @@ function developer_preload_lcp_image() {
         return;
     }
 
-    if (file_exists(developer_get_doctor_photo_path('large', 'avif'))) {
-        $format = 'avif';
-    } elseif (file_exists(developer_get_doctor_photo_path('large', 'webp'))) {
-        $format = 'webp';
-    } else {
-        $format = 'jpg';
-    }
+    $format = file_exists(developer_get_doctor_photo_path('large', 'webp')) ? 'webp' : 'jpg';
     $large = developer_get_doctor_photo_url('large', $format);
     $medium = developer_get_doctor_photo_url('medium', $format);
     $large_mobile = developer_get_doctor_photo_url('large_mobile', $format);
     $small = developer_get_doctor_photo_url('small', $format);
-    $srcset = in_array($format, ['avif', 'webp'], true)
+    $srcset = 'webp' === $format
         ? sprintf('%1$s 540w, %2$s 650w, %3$s 720w, %4$s 1080w', esc_url($small), esc_url($medium), esc_url($large_mobile), esc_url($large))
         : sprintf('%1$s 720w, %2$s 1080w', esc_url($medium), esc_url($large));
 

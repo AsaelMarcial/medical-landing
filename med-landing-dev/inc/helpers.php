@@ -151,12 +151,6 @@ function developer_get_doctor_photo_url($size = 'large', $format = 'jpg') {
             'large_mobile' => 'dredgar-profesional-720.webp',
             'large'  => 'dredgar-profesional-1080.webp',
         ],
-        'avif' => [
-            'small'  => 'dredgar-profesional-540.avif',
-            'medium' => 'dredgar-profesional-650.avif',
-            'large_mobile' => 'dredgar-profesional-720.avif',
-            'large'  => 'dredgar-profesional-1080.avif',
-        ],
     ];
 
     $format = isset($photos[$format]) ? $format : 'jpg';
@@ -176,12 +170,6 @@ function developer_get_doctor_photo_path($size = 'large', $format = 'jpg') {
             'medium' => 'dredgar-profesional-650.webp',
             'large_mobile' => 'dredgar-profesional-720.webp',
             'large'  => 'dredgar-profesional-1080.webp',
-        ],
-        'avif' => [
-            'small'  => 'dredgar-profesional-540.avif',
-            'medium' => 'dredgar-profesional-650.avif',
-            'large_mobile' => 'dredgar-profesional-720.avif',
-            'large'  => 'dredgar-profesional-1080.avif',
         ],
     ];
 
