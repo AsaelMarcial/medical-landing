@@ -12,8 +12,8 @@
 - CMS destino: una instalación WordPress existente; versión, PHP, Multisite y configuración exacta pendientes de confirmar.
 - Fuente de verdad del código: `med-landing-dev/` en este repositorio.
 - Estado actual: estructura técnica del MVP, identidad visual, ubicaciones, mejoras UX, soporte bilingüe, fotografía profesional, contacto definitivo, credenciales y catálogo SEO base integrados en el tema.
-- Fase actual: Fase 1 avanzada. La maquetación base, el contenido médico inicial, el staging VPS, la primera corrección visual responsive y los borradores legales funcionales existen; falta cerrar operación, revisión legal, configuración fina de plugins, QA final y revisión clínica/editorial final.
-- Bloqueo principal: faltan email público y receptor de formularios, horarios, texto legal definitivo, configuración final de RankMath/Fluent Forms, revisión clínica final de textos y QA completo de producción.
+- Fase actual: Fase 1 avanzada. La maquetación base, el contenido médico inicial, el staging VPS, el reverse proxy HTTP para el dominio final, la primera corrección visual responsive y los borradores legales funcionales existen; falta apuntar DNS en NEUBOX, activar SSL, cerrar operación, revisión legal, configuración fina de plugins, QA final y revisión clínica/editorial final.
+- Bloqueo principal: falta que `nefrologoedgar.com.mx` y `www.nefrologoedgar.com.mx` apunten desde NEUBOX a la VPS para activar HTTPS; también faltan email público y receptor de formularios, horarios, texto legal definitivo, configuración final de RankMath/Fluent Forms, revisión clínica final de textos y QA completo de producción.
 - Última auditoría integral: 2026-06-07, zona `America/Mexico_City`.
 - Última aclaración de alcance del repositorio: 2026-06-08.
 - Última integración de identidad visual: 2026-06-08.
@@ -23,6 +23,7 @@
 - Último ajuste visual en staging: 2026-07-08; tema 1.5.3 desplegado en VPS con menú fallback, contraste corregido, selector móvil compacto, animaciones más seguras y uso más consistente de fondos de marca.
 - Última integración legal/UI: 2026-07-08; tema 1.5.4 con cuatro páginas legales borrador, footer legal completo y tarjetas de enfermedades con iconos SVG y microetiquetas.
 - Última integración social: 2026-07-08; tema 1.5.5 con Instagram oficial visible en Home y Contacto.
+- Última preparación de dominio en VPS: 2026-07-08; Nginx sirve `nefrologoedgar.com.mx` por HTTP hacia WordPress Docker en `8081`, `www` redirige al dominio raíz y WordPress usa `http://nefrologoedgar.com.mx` como `home`/`siteurl`.
 - Última propuesta comercial: 2026-06-08; honorario base MXN 6,000, total indicado con CFDI MXN 7,000 y plazo de 4 a 6 semanas.
 
 ## 2. Protocolo de Uso
@@ -237,20 +238,23 @@ Estos valores describen exclusivamente aquel entorno auditado. No deben utilizar
 
 - VPS auditado el 2026-07-06: Debian GNU/Linux 12, Docker 29.1.5, Docker Compose plugin v5.0.1, Nginx y Certbot instalados.
 - Sistemas existentes detectados y no modificados: `pos-texano-frontend` en puerto 3001 y `pos-texano-backend` en puerto 8001. También existe una pila histórica `Comercializadora` detenida.
-- Configuración Nginx existente detectada: `/etc/nginx/sites-enabled/orza.mx` y `/etc/nginx/sites-enabled/default`; no se modificó Nginx ni los proyectos existentes.
+- Configuración Nginx existente detectada originalmente: `/etc/nginx/sites-enabled/orza.mx` y `/etc/nginx/sites-enabled/default`; no se modificaron esos archivos ni los proyectos existentes.
+- Dominio final preparado en Nginx: archivo nuevo `/etc/nginx/sites-available/nefrologoedgar.com.mx` y symlink `/etc/nginx/sites-enabled/nefrologoedgar.com.mx`.
+- `nefrologoedgar.com.mx` es el dominio canónico por HTTP y hace proxy a `http://127.0.0.1:8081`; `www.nefrologoedgar.com.mx` redirige con `301` a `http://nefrologoedgar.com.mx`.
 - Nueva pila WordPress aislada: `/opt/med-landing-dev/`.
 - Repositorio clonado: `/opt/med-landing-dev/repo`.
 - Tema montado en el contenedor: `/opt/med-landing-dev/repo/med-landing-dev` hacia `/var/www/html/wp-content/themes/med-landing-dev`.
 - Servicios Docker: `med-landing-wordpress` con imagen `wordpress:php8.2-apache`, `med-landing-db` con imagen `mariadb:11.4` y servicio auxiliar `wpcli`.
 - Volúmenes persistentes: `med_landing_dev_med_landing_wp_data` y `med_landing_dev_med_landing_db_data`.
-- URL interna configurada para staging: `http://74.208.222.71:8081`.
+- URL interna/temporal de diagnóstico: `http://74.208.222.71:8081`.
+- URL WordPress vigente: `home` y `siteurl` configurados como `http://nefrologoedgar.com.mx` hasta activar HTTPS.
 - UFW permite `8081/tcp` y el puerto ya responde públicamente después de abrirlo también en el firewall/panel del proveedor.
 - WordPress instalado, tema `med-landing-dev` activo en versión 1.5.5, permalinks `/%postname%/` y `blog_public=0`.
 - Plugins instalados y activados en staging: Polylang 3.8.5, Rank Math SEO 1.0.273 y Fluent Forms 6.2.5.
 - Polylang tiene idiomas `es` y `en`; el contenido sembrado quedó marcado en español.
-- Home y `/servicios/` responden dentro del VPS y públicamente en `http://74.208.222.71:8081`; Home muestra las enfermedades atendidas sin huecos por animación y `/servicios/` muestra las 17 tarjetas del catálogo.
+- Home y `/servicios/` responden en el VPS; con Host header `nefrologoedgar.com.mx`, Nginx entrega WordPress correctamente por puerto 80. El acceso directo `:8081` queda como diagnóstico temporal y puede redirigir al dominio configurado.
 - Credenciales y comandos del despliegue están guardados solo en el servidor, en `/opt/med-landing-dev/DEPLOYMENT.md` con permisos `600`. No copiar contraseñas a la documentación del repositorio.
-- Pendientes VPS: publicar por dominio/SSL, cambiar `home` y `siteurl` al dominio final, cerrar o restringir `8081` cuando ya no sea staging público, rotar la contraseña root compartida durante la instalación y reemplazar acceso root por usuario/SSH key de despliegue.
+- Pendientes VPS: configurar DNS en NEUBOX hacia `74.208.222.71`, activar SSL con Certbot cuando el DNS haya propagado, cambiar `home` y `siteurl` a `https://nefrologoedgar.com.mx`, cerrar o restringir `8081` cuando ya no sea diagnóstico público, rotar la contraseña root compartida durante la instalación y reemplazar acceso root por usuario/SSH key de despliegue.
 
 ## 8. Build y Dependencias
 
@@ -688,6 +692,18 @@ No se ejecutó render completo en WordPress ni QA responsive real porque el repo
 - Responsive verificado con Puppeteer en 320, 390, 768, 1024 y 1280 px: `scrollWidth` igual a `innerWidth`, sin desbordamiento horizontal; 4 enlaces legales, 12 tarjetas y 12 iconos presentes.
 - Capturas revisadas: tarjetas móviles con icono, microetiqueta, texto y CTA; página legal con `.prose`, encabezados, nota de revisión y teléfono confirmado.
 
+### Validaciones dominio VPS del 2026-07-08
+
+- Nginx validó correctamente antes y después de crear `/etc/nginx/sites-available/nefrologoedgar.com.mx`.
+- `systemctl reload nginx` se ejecutó solo después de `nginx -t` exitoso.
+- WordPress quedó con `home` y `siteurl` en `http://nefrologoedgar.com.mx`.
+- `curl -I -H "Host: nefrologoedgar.com.mx" http://127.0.0.1`: `200 OK`.
+- `curl -I -H "Host: www.nefrologoedgar.com.mx" http://127.0.0.1`: `301 Moved Permanently` hacia `http://nefrologoedgar.com.mx/`.
+- `curl -I -H "Host: nefrologoedgar.com.mx" http://74.208.222.71`: `200 OK`.
+- `curl -I -H "Host: www.nefrologoedgar.com.mx" http://74.208.222.71`: `301 Moved Permanently` hacia `http://nefrologoedgar.com.mx/`.
+- UFW sigue activo con `80`, `443` y `8081` permitidos; no se cerraron puertos ni se tocaron reglas de proyectos existentes.
+- Contenedores activos tras el cambio: `med-landing-wordpress`, `med-landing-db`, `pos-texano-frontend` y `pos-texano-backend`.
+
 ## 17. Plantilla de Bitácora
 
 Copiar esta estructura al final:
@@ -886,3 +902,12 @@ Copiar esta estructura al final:
 - Decisiones: usar texto visible además del icono para mantener claridad y accesibilidad; conservar el valor del Customizer como fuente editable.
 - Validación: build Tailwind correcto, catálogo de idiomas con 143 traducciones, `node --check` correcto para `build-css.js`, verificación sin BOM, lint PHP correcto dentro del contenedor, Home y Contacto públicos con `style.css?ver=1.5.5`, texto/enlace de Instagram visible y responsive 390/1280 sin overflow.
 - Pendientes: configurar dominio final/SSL, formularios reales, SEO de RankMath, revisión clínica/editorial final, Lighthouse, schema externo y pruebas cross-browser.
+
+### 2026-07-08 - Preparación HTTP del dominio final en VPS
+
+- Objetivo: dejar el VPS listo para recibir `nefrologoedgar.com.mx` y `www.nefrologoedgar.com.mx` sin afectar los proyectos existentes.
+- Archivos modificados: `CONTEXTO-PROYECTO.md` y `Plan.md`. En el VPS se creó `/etc/nginx/sites-available/nefrologoedgar.com.mx` y el symlink `/etc/nginx/sites-enabled/nefrologoedgar.com.mx`.
+- Cambios: Nginx sirve `nefrologoedgar.com.mx` por HTTP hacia `http://127.0.0.1:8081`; `www.nefrologoedgar.com.mx` redirige con `301` al dominio raíz; WordPress cambió `home` y `siteurl` a `http://nefrologoedgar.com.mx`.
+- Decisiones: no activar SSL hasta que NEUBOX apunte a `74.208.222.71`; no modificar `orza.mx`, `default`, Docker Compose ni puertos de otros proyectos; mantener `8081` abierto temporalmente para diagnóstico.
+- Validación: `nginx -t` correcto antes y después; Nginx recargado sin reiniciar el servidor; pruebas Host header contra `127.0.0.1` y `74.208.222.71` dieron `200 OK` para el dominio raíz y `301` para `www`; UFW conserva `80`, `443` y `8081`; contenedores `med-landing-wordpress`, `med-landing-db`, `pos-texano-frontend` y `pos-texano-backend` siguen activos.
+- Pendientes: configurar registros DNS en NEUBOX, esperar propagación, ejecutar Certbot con Nginx, cambiar WordPress a HTTPS, verificar renovación, configurar Analytics/Search Console y cerrar o restringir `8081` cuando deje de ser necesario.
