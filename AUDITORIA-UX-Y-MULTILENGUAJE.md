@@ -5,7 +5,7 @@ Fecha: 2026-06-08
 
 ## Resultado
 
-Nota PageSpeed 2026-07-09: en la rama `codex/pagespeed-100`, el tema avanza a 1.6.4 con mapas Google bajo demanda, logos/retrato WebP más pequeños, preload/srcset refinado para LCP, caché pública anónima de página en Nginx, CSS inline solo en Home y reserva explícita del retrato hero para reducir CLS. La medición final en producción sigue pendiente antes de fusionar.
+Nota PageSpeed 2026-07-09: en la rama `codex/pagespeed-100`, el tema avanza a 1.6.5 con mapas Google bajo demanda, logos/retrato WebP más pequeños, preload/srcset refinado para LCP, caché pública anónima de página en Nginx, CSS inline solo en Home, reserva explícita del retrato hero y orden DOM/visual estable para reducir CLS. La medición final en producción sigue pendiente antes de fusionar.
 
 El tema `med-landing-dev` cuenta con una base responsive y accesible funcional en móvil, tablet y escritorio. La revisión completa en LocalWP se realizó el 2026-06-08 sobre `http://medical-landing.local` con el tema versión 1.4.0. El 2026-07-08 producción quedó en versión 1.5.7 con dominio HTTPS, SEO fallback y Site Kit instalado. El 2026-07-09 se abrió la rama `codex/pagespeed-100` con tema 1.6.1 para mejorar PageSpeed sin tocar estable: navegación nativa, fuentes del sistema, retrato/logos WebP, preload LCP, eliminación de CDN frontend y caché estática.
 
@@ -52,6 +52,7 @@ El tema `med-landing-dev` cuenta con una base responsive y accesible funcional e
 - Rama 1.6.2 local/VPS: `cmd /c npm run build` correcto, `node --check` correcto para `navigation.js` y `animations.js`, mapas Google sin `src` inicial en templates, logo/retrato WebP reducidos, sin referencias frontend activas a Google Fonts/CDN/Alpine/GSAP, lint PHP correcto dentro del contenedor y Nginx con caché `MISS`/`HIT` para home pública y `BYPASS` en admin/API. Lighthouse local móvil válido alcanzó 99/100/100/100 antes de recomprimir WebP del retrato LCP.
 - Rama 1.6.3 local: `cmd /c npm run build` correcto y `node --check` correcto para `navigation.js` y `animations.js`; la portada imprime `<style id="developer-inline-style">` y deja `style.css` externo para páginas internas.
 - Rama 1.6.4 local: `cmd /c npm run build` correcto y `node --check` correcto; el retrato del hero reserva `aspect-[4/5]` en el wrapper para reducir CLS en escritorio.
+- Rama 1.6.5 local: `cmd /c npm run build` correcto y `node --check` correcto; el hero elimina `order-*` y muestra contenido antes que retrato para mantener orden DOM/visual estable.
 
 ## Multilenguaje
 

@@ -1,23 +1,8 @@
 <section class="relative overflow-hidden bg-gradient-to-br from-primary/10 via-surface to-gold/25" data-animate="fade-up">
     <div class="container-custom py-20 md:py-28 lg:py-36">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <!-- Image -->
-            <div class="order-1 flex justify-center lg:order-2" data-animate="scale-in">
-                <div class="relative">
-                    <div class="aspect-[4/5] w-full max-w-md overflow-hidden rounded-2xl bg-surface shadow-2xl ring-1 ring-primary/10 lg:max-w-lg">
-                        <?php get_template_part('template-parts/components/doctor-portrait', null, [
-                            'loading' => 'eager',
-                            'class'   => 'h-full w-full object-cover',
-                        ]); ?>
-                    </div>
-                    <!-- Decorative accent -->
-                    <div class="absolute -bottom-4 -right-4 -z-10 h-28 w-28 rounded-full bg-accent/15"></div>
-                    <div class="absolute -top-4 -left-4 -z-10 h-20 w-20 rounded-full bg-gold/40"></div>
-                </div>
-            </div>
-
             <!-- Content -->
-            <div class="order-2 rounded-3xl bg-white/80 p-6 shadow-sm ring-1 ring-primary/10 backdrop-blur-sm lg:order-1 lg:p-8">
+            <div class="rounded-3xl bg-white/80 p-6 shadow-sm ring-1 ring-primary/10 backdrop-blur-sm lg:p-8">
                 <p class="text-secondary font-semibold text-sm uppercase tracking-wider mb-3">
                     <?php esc_html_e('Atención especializada en enfermedades del riñón', 'med-landing-dev'); ?>
                 </p>
@@ -55,6 +40,21 @@
                         <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
                         <span><?php esc_html_e('Boca del Río', 'med-landing-dev'); ?></span>
                     </div>
+                </div>
+            </div>
+
+            <!-- Image -->
+            <div class="flex justify-center" data-animate="scale-in">
+                <div class="relative">
+                    <div class="aspect-[4/5] w-full max-w-md overflow-hidden rounded-2xl bg-surface shadow-2xl ring-1 ring-primary/10 lg:max-w-lg">
+                        <?php get_template_part('template-parts/components/doctor-portrait', null, [
+                            'loading' => 'eager',
+                            'class'   => 'h-full w-full object-cover',
+                        ]); ?>
+                    </div>
+                    <!-- Decorative accent -->
+                    <div class="absolute -bottom-4 -right-4 -z-10 h-28 w-28 rounded-full bg-accent/15"></div>
+                    <div class="absolute -top-4 -left-4 -z-10 h-20 w-20 rounded-full bg-gold/40"></div>
                 </div>
             </div>
 
