@@ -953,3 +953,12 @@ Copiar esta estructura al final:
 - Decisiones: usar `https://nefrologoedgar.com.mx` como canónico; usar `wp-sitemap.xml` como sitemap público mientras Rank Math no complete su setup visual; dejar Site Kit listo para vinculación manual con cuenta Google, sin insertar un ID falso de Analytics.
 - Validación: build Tailwind correcto, `node --check` correcto, título público con `Hernández` y `Nefrología` sin `?`, `robots.txt` permite rastreo y apunta a `wp-sitemap.xml`, `wp-sitemap.xml` responde `200 OK`, Site Kit 1.182.0 activo, `blog_public=1`.
 - Pendientes: conectar Site Kit desde wp-admin con Google Analytics/Search Console, enviar sitemap en Search Console, configurar conversiones de WhatsApp/formulario/teléfono, revisar Rank Math visualmente, ejecutar Lighthouse/PageSpeed y cerrar o restringir `8081`.
+
+### 2026-07-08 - Reset de acceso administrador WordPress
+
+- Objetivo: recuperar acceso a `https://nefrologoedgar.com.mx/wp-admin` para continuar la configuración de Site Kit, Analytics y Search Console.
+- Archivos modificados: `CONTEXTO-PROYECTO.md`. En el VPS se actualizó el usuario WordPress `asael_admin` y el archivo privado `/opt/med-landing-dev/DEPLOYMENT.md`.
+- Cambios: contraseña del usuario administrador `asael_admin` reseteada y guardada solo en el VPS con permisos `600`; no se copiaron secretos al repositorio.
+- Decisiones: mantener el usuario admin existente y cambiar únicamente la contraseña temporal para evitar crear cuentas adicionales.
+- Validación: `wp user check-password asael_admin` exitoso; usuario con rol `administrator`; `/opt/med-landing-dev/DEPLOYMENT.md` conserva permisos `600`.
+- Pendientes: cambiar el email `admin@medical-landing.local` por un correo real y reemplazar la contraseña temporal por una definitiva desde WordPress.
