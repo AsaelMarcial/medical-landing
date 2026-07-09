@@ -12,15 +12,6 @@ function developer_enqueue_assets() {
         DEVELOPER_THEME_VERSION
     );
 
-    // Google Fonts - Inter + Playfair Display
-    wp_enqueue_style(
-        'developer-fonts',
-        'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap',
-        [],
-        null
-    );
-
-    // Register Alpine components before Alpine starts.
     wp_enqueue_script(
         'developer-navigation',
         DEVELOPER_THEME_URI . '/assets/js/navigation.js',
@@ -28,48 +19,41 @@ function developer_enqueue_assets() {
         DEVELOPER_THEME_VERSION,
         ['strategy' => 'defer', 'in_footer' => true]
     );
-
-    // Alpine.js
-    wp_enqueue_script(
-        'alpinejs',
-        'https://cdn.jsdelivr.net/npm/alpinejs@3.15.12/dist/cdn.min.js',
-        ['developer-navigation'],
-        '3.15.12',
-        ['strategy' => 'defer']
-    );
-
-    // GSAP
-    wp_enqueue_script(
-        'gsap',
-        'https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js',
-        [],
-        '3.15.0',
-        ['strategy' => 'defer', 'in_footer' => true]
-    );
-
-    // GSAP ScrollTrigger
-    wp_enqueue_script(
-        'gsap-scrolltrigger',
-        'https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js',
-        ['gsap'],
-        '3.15.0',
-        ['strategy' => 'defer', 'in_footer' => true]
-    );
-
-    // Theme animations
-    wp_enqueue_script(
-        'developer-animations',
-        DEVELOPER_THEME_URI . '/assets/js/animations.js',
-        ['gsap', 'gsap-scrolltrigger'],
-        DEVELOPER_THEME_VERSION,
-        ['strategy' => 'defer', 'in_footer' => true]
-    );
-
 }
 add_action('wp_enqueue_scripts', 'developer_enqueue_assets');
 
-function developer_preload_fonts() {
-    echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
-    echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+function developer_trim_frontend_assets() {
+    if (is_admin()) {
+        return;
+    }
+
+    wp_dequeue_style('wp-block-library');
+    wp_dequeue_style('global-styles');
+    wp_dequeue_style('classic-theme-styles');
 }
-add_action('wp_head', 'developer_preload_fonts', 1);
+add_action('wp_enqueue_scripts', 'developer_trim_frontend_assets', 20);
+
+function developer_disable_unused_wp_frontend_assets() {
+    remove_action('wp_head', 'print_emoji_detection_script', 7);
+    remove_action('wp_print_styles', 'print_emoji_styles');
+    remove_action('wp_head', 'wp_generator');
+}
+add_action('init', 'developer_disable_unused_wp_frontend_assets');
+
+function developer_preload_lcp_image() {
+    if (!is_front_page() || !function_exists('developer_has_doctor_photo') || !developer_has_doctor_photo()) {
+        return;
+    }
+
+    $format = file_exists(developer_get_doctor_photo_path('large', 'webp')) ? 'webp' : 'jpg';
+    $large = developer_get_doctor_photo_url('large', $format);
+    $medium = developer_get_doctor_photo_url('medium', $format);
+
+    printf(
+        '<link rel="preload" as="image" href="%1$s" imagesrcset="%2$s 720w, %1$s 1080w" imagesizes="(min-width: 1024px) 36rem, (min-width: 768px) 28rem, 90vw" fetchpriority="high">%3$s',
+        esc_url($large),
+        esc_url($medium),
+        "\n"
+    );
+}
+add_action('wp_head', 'developer_preload_lcp_image', 1);

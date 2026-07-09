@@ -25,6 +25,7 @@
 - Última integración social: 2026-07-08; tema 1.5.5 con Instagram oficial visible en Home y Contacto.
 - Última preparación de dominio en VPS: 2026-07-08; Nginx sirve `https://nefrologoedgar.com.mx` con certificado Let’s Encrypt, `www` y HTTP redirigen al dominio canónico HTTPS y WordPress usa `https://nefrologoedgar.com.mx` como `home`/`siteurl`.
 - Último ajuste SEO/Google: 2026-07-08; tema 1.5.7 con título UTF-8 corregido, fallback SEO de metadatos sociales, indexación pública, sitemap nativo `wp-sitemap.xml` y Site Kit instalado para vincular Analytics/Search Console.
+- Optimización PageSpeed en rama aislada: 2026-07-09; rama `codex/pagespeed-100` prepara tema 1.6.0 con fuentes del sistema, eliminación de CDN frontend, menú móvil en JavaScript nativo, preload/fetchpriority de imagen LCP, WebP para retrato y limpieza de assets globales de WordPress. Pendiente desplegar en staging/VPS para medir PageSpeed real antes de fusionar.
 - Última propuesta comercial: 2026-06-08; honorario base MXN 6,000, total indicado con CFDI MXN 7,000 y plazo de 4 a 6 semanas.
 
 ## 2. Protocolo de Uso
@@ -127,8 +128,8 @@ La auditoría del entorno original sirve como referencia técnica. No representa
 - Citas: formulario más WhatsApp.
 - Tema custom, sin Elementor.
 - TailwindCSS v4.
-- Alpine.js para interacción ligera.
-- GSAP para animaciones discretas.
+- JavaScript nativo para interacción ligera del tema.
+- Animaciones críticas evitadas por defecto; cualquier animación debe ser progresiva, accesible y sin bloquear contenido.
 - RankMath para SEO.
 - Fluent Forms para formularios.
 - LiteSpeed Cache y Cloudflare únicamente al preparar producción.
@@ -162,10 +163,10 @@ La auditoría del entorno original sirve como referencia técnica. No representa
 
 ### Tipografía
 
-- Headings: Inter 600-700.
-- Body: Inter 400.
-- Hero: Playfair Display 700.
-- Actualmente se cargan desde Google Fonts; valorar self-hosting antes de producción.
+- Headings: pila del sistema `ui-sans-serif`, `system-ui`, `Segoe UI`, `sans-serif`.
+- Body: misma pila del sistema para evitar dependencia externa de Google Fonts.
+- Hero/display: `Georgia`, `Times New Roman`, `serif` como fallback premium sin descarga remota.
+- En la rama 1.6.0 no se cargan Google Fonts para reducir bloqueo de render, CLS y recursos de terceros.
 
 ### Identidad integrada
 
@@ -251,7 +252,7 @@ Estos valores describen exclusivamente aquel entorno auditado. No deben utilizar
 - URL interna/temporal de diagnóstico: `http://74.208.222.71:8081`.
 - URL WordPress vigente: `home` y `siteurl` configurados como `https://nefrologoedgar.com.mx`.
 - UFW permite `8081/tcp` y el puerto ya responde públicamente después de abrirlo también en el firewall/panel del proveedor.
-- WordPress instalado, tema `med-landing-dev` activo en versión 1.5.5, permalinks `/%postname%/` y `blog_public=0`.
+- WordPress instalado, tema `med-landing-dev` activo en producción en versión 1.5.7, permalinks `/%postname%/` y `blog_public=1`.
 - Plugins instalados y activados en staging/producción: Polylang 3.8.5, Rank Math SEO 1.0.273, Fluent Forms 6.2.5 y Site Kit by Google 1.182.0.
 - Polylang tiene idiomas `es` y `en`; el contenido sembrado quedó marcado en español.
 - Home responde públicamente en `https://nefrologoedgar.com.mx`; Nginx redirige `http://nefrologoedgar.com.mx`, `http://www.nefrologoedgar.com.mx` y `https://www.nefrologoedgar.com.mx` al dominio canónico HTTPS. El acceso directo `:8081` queda como diagnóstico temporal y puede redirigir al dominio configurado.
@@ -269,13 +270,11 @@ Estos valores describen exclusivamente aquel entorno auditado. No deben utilizar
 
 ### Carga frontend actual
 
-- Alpine.js 3.15.12 desde jsDelivr.
-- GSAP 3.15.0 desde jsDelivr.
-- ScrollTrigger 3.15.0 desde jsDelivr.
-- Google Fonts remoto.
+- Rama estable 1.5.7: todavía usa Google Fonts, Alpine.js y GSAP/ScrollTrigger desde CDN.
+- Rama de optimización 1.6.0 (`codex/pagespeed-100`): elimina Google Fonts y CDN frontend; usa fuentes del sistema, `assets/js/navigation.js` nativo y no encola animaciones por defecto.
 - Scripts propios:
-  - `assets/js/animations.js`
-  - `assets/js/navigation.js`
+  - `assets/js/navigation.js`: menú móvil, focus trap, Escape, header scroll y CTA flotante sin dependencias.
+  - `assets/js/animations.js`: animación opcional ligera con IntersectionObserver, no encolada en la rama 1.6.0 para priorizar PageSpeed.
 
 ### Tamaños medidos
 
@@ -301,7 +300,7 @@ PowerShell bloquea `npm.ps1` por la política de ejecución actual; usar `cmd /c
 
 - `functions.php`: constantes y carga modular.
 - `inc/setup.php`: soportes, menús y setup automático.
-- `inc/enqueue.php`: estilos, fuentes, Alpine, GSAP y scripts propios.
+- `inc/enqueue.php`: estilos, limpieza de assets frontend de WordPress, preload de imagen LCP y scripts propios.
 - `inc/customizer.php`: nombre, clínica, teléfono, WhatsApp normalizado, mensaje inicial de WhatsApp, email, descripción, direcciones, redes e ID de Fluent Forms.
 - `inc/custom-post-types.php`: CPT `servicio`.
 - `inc/schema-markup.php`: JSON-LD para médico, organización y dos sedes.
@@ -334,9 +333,9 @@ PowerShell bloquea `npm.ps1` por la política de ejecución actual; usar `cmd /c
 
 ### JavaScript
 
-- Menú móvil con Alpine, gestión de foco, cierre con Escape, bloqueo de scroll y focus trap.
-- Componente Alpine `accordion` registrado, todavía sin uso visible.
-- GSAP implementa fade, slide, stagger, scale y contador.
+- En 1.6.0, menú móvil con JavaScript nativo, gestión de foco, cierre con Escape, bloqueo de scroll y focus trap.
+- En 1.6.0, no hay componentes Alpine registrados ni dependencia GSAP cargada en frontend.
+- `assets/js/animations.js` queda como utilidad opcional sin dependencia externa, pero no se carga por defecto.
 
 ## 10. Estado Histórico del WordPress Auditado
 
@@ -420,7 +419,7 @@ Esa configuración contradice la estrategia SEO de URLs limpias. En el sistema d
 - Tema activable y modular.
 - Build Tailwind funcional.
 - Header responsive.
-- Menú móvil con Alpine.
+- Menú móvil accesible; en 1.6.0 funciona con JavaScript nativo sin Alpine.
 - Footer de cuatro columnas.
 - Home compuesta por secciones.
 - Plantilla About.
@@ -429,7 +428,7 @@ Esa configuración contradice la estrategia SEO de URLs limpias. En el sistema d
 - Landings locales para Xalapa y Boca del Río.
 - CTAs a contacto, teléfono y WhatsApp.
 - Barra CTA móvil.
-- Animaciones GSAP.
+- Animaciones no críticas retiradas del frontend por defecto en 1.6.0.
 - Skip link.
 - HTML semántico básico.
 - Soporte de logo, miniaturas, title tag y HTML5.
@@ -443,7 +442,7 @@ Esa configuración contradice la estrategia SEO de URLs limpias. En el sistema d
 - Catálogo `en_US` con 139 cadenas traducidas y archivo POT regenerable.
 - URLs internas y fallbacks de página conscientes del idioma activo.
 - Menú móvil accesible con foco administrado, Escape, `aria-expanded`, `x-cloak` y bloqueo de fondo.
-- Soporte de movimiento reducido antes de crear animaciones GSAP.
+- Soporte de movimiento reducido antes de cualquier animación progresiva.
 - Dependencias CDN fijadas a versiones exactas.
 - jQuery ya no se desregistra globalmente.
 - Formulario provisional no funcional retirado; Fluent Forms se muestra solo con un ID configurado.
@@ -507,10 +506,10 @@ Esa configuración contradice la estrategia SEO de URLs limpias. En el sistema d
 
 ### P2 - Calidad, accesibilidad y rendimiento
 
-- Google Fonts añade una dependencia externa; valorar self-hosting.
+- La rama 1.6.0 elimina Google Fonts en favor de fuentes del sistema; validar visualmente antes de fusionar.
 - Falta validar con lector de pantalla y realizar una revisión manual completa de contraste en todos los estados.
 - Falta prueba cross-browser; la revisión actual cubrió el navegador integrado en móvil, tablet y escritorio.
-- Falta Lighthouse.
+- Falta Lighthouse/PageSpeed posterior al despliegue de la rama 1.6.0.
 - Falta validar schemas.
 - Falta probar RankMath, Polylang y Fluent Forms juntos.
 - No existe suite de pruebas ni scripts de lint en `package.json`.
@@ -962,3 +961,13 @@ Copiar esta estructura al final:
 - Decisiones: mantener el usuario admin existente y cambiar únicamente la contraseña temporal para evitar crear cuentas adicionales.
 - Validación: `wp user check-password asael_admin` exitoso; usuario con rol `administrator`; `/opt/med-landing-dev/DEPLOYMENT.md` conserva permisos `600`.
 - Pendientes: cambiar el email `admin@medical-landing.local` por un correo real y reemplazar la contraseña temporal por una definitiva desde WordPress.
+
+### 2026-07-09 - Rama PageSpeed 1.6.0 sin CDN frontend
+
+- Objetivo: preparar una versión aislada para mejorar PageSpeed/Lighthouse sin alterar la versión estable publicada.
+- Archivos modificados: `med-landing-dev/functions.php`, `med-landing-dev/inc/enqueue.php`, `med-landing-dev/inc/helpers.php`, `med-landing-dev/header.php`, navegación móvil, componentes de retrato/CTA, JS, CSS fuente/build, `package.json`, `package-lock.json`, `style.css`, derivados WebP del retrato y documentación Markdown.
+- Cambios: rama `codex/pagespeed-100`; tema 1.6.0; eliminación de Google Fonts, Alpine.js, GSAP y ScrollTrigger del frontend; menú móvil y CTA flotante migrados a JavaScript nativo; limpieza de emoji, estilos globales y block library en frontend; preload/fetchpriority de la imagen LCP; retrato profesional con `picture` y WebP (`1080` ~123 KB, `720` ~67 KB); `animations.js` convertido en utilidad opcional sin dependencias y no encolada.
+- Decisiones: usar fuentes del sistema para eliminar recursos de terceros y reducir CLS/render blocking; no desplegar ni fusionar la rama hasta medir PageSpeed real; mantener la versión estable 1.5.7 como respaldo.
+- Validación: `cmd /c npm run build` correcto con TailwindCSS 4.3.0; `node --check` correcto para `navigation.js` y `animations.js`; búsqueda sin referencias activas a Alpine/GSAP/Google Fonts/CDN/1.5.7 en PHP/JS; PageSpeed API no pudo consultarse por cuota 429, se trabajó con las capturas del usuario y auditoría directa de recursos.
+- Limitaciones: `php.exe` no está instalado localmente y Docker Desktop no está iniciado, por lo que el lint PHP local no pudo ejecutarse; debe correrse dentro del contenedor WordPress del VPS al desplegar la rama.
+- Pendientes: desplegar la rama en staging o en una ventana controlada, validar menú móvil por teclado, revisar apariencia sin fuentes remotas, ejecutar PageSpeed móvil/escritorio, añadir cache headers largos en Nginx para assets estáticos si PageSpeed sigue marcando TTL, y solo después fusionar a `main`.

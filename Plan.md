@@ -4,7 +4,7 @@
 >
 > **Estado del documento**: conserva la arquitectura y el alcance originales. No usar sus casillas como indicador del estado actual; la fuente viva es `CONTEXTO-PROYECTO.md`. La identidad visual descrita allí ya fue integrada.
 >
-> **Actualización 2026-07-08**: tema `med-landing-dev` versión 1.5.7 desplegado en VPS con dominio final `https://nefrologoedgar.com.mx`. Incluye información médica base, fotografía profesional, teléfono/WhatsApp definitivo, credenciales, COFEPRIS, Instagram visible en Home/Contacto/footer, páginas SEO de servicios, cuatro páginas legales borrador, tarjetas de enfermedades con iconos SVG, título UTF-8 corregido y fallback SEO de metadatos sociales. DNS NEUBOX, Nginx, HTTPS Let’s Encrypt, redirecciones canónicas, indexación pública, `wp-sitemap.xml` y Site Kit instalado ya están activos; sigue pendiente conectar Google Analytics/Search Console con cuenta Google, revisar textos clínicos, horarios, email/formulario, texto legal definitivo, Lighthouse, schema externo y QA cross-browser.
+> **Actualización 2026-07-09**: producción sigue en tema `med-landing-dev` 1.5.7 con dominio final `https://nefrologoedgar.com.mx`, HTTPS, sitemap nativo, Site Kit instalado y SEO fallback activo. La rama aislada `codex/pagespeed-100` prepara la versión 1.6.0 para PageSpeed: elimina Google Fonts, Alpine.js, GSAP y ScrollTrigger del frontend, usa navegación nativa, preload/fetchpriority de la imagen LCP, retrato WebP y limpieza de assets globales de WordPress. Pendiente desplegar/medir antes de fusionar.
 
 ---
 
@@ -30,8 +30,8 @@ WordPress core, la base de datos, los uploads, los plugins y la configuración d
 |------------|---------|-----|
 | WordPress | Por confirmar en destino | CMS |
 | TailwindCSS | v4 | Estilos (compilado via @tailwindcss/cli) |
-| Alpine.js | 3.15.12 | Interactividad (menú mobile, accordions, modals) |
-| GSAP | 3.15.0 | Animaciones (scroll reveals, fade-ins) |
+| JavaScript nativo | ES6+ | Menú móvil, focus trap, header scroll y CTA flotante |
+| Animaciones | Opcional, sin dependencias | IntersectionObserver no encolado por defecto en 1.6.0 |
 | Polylang | 3.8.4 en LocalWP | Multilenguaje ES/EN |
 | RankMath SEO | 1.0.273 en VPS | SEO, schemas, auditoría y ajustes editoriales |
 | Fluent Forms | latest | Formularios de contacto/citas |
@@ -59,10 +59,10 @@ WordPress core, la base de datos, los uploads, los plugins y la configuración d
 
 ## Tipografía
 
-- **Headings**: `Inter` (weight 600-700) — moderna, profesional, excelente legibilidad
-- **Body**: `Inter` (weight 400) — consistencia, optimizada para pantalla
-- **Display (hero)**: `Playfair Display` (opcional para toque más premium)
-- **Fallback**: system-ui, sans-serif
+- **Headings**: pila del sistema `ui-sans-serif`, `system-ui`, `Segoe UI`, `sans-serif`
+- **Body**: misma pila del sistema para máxima velocidad y estabilidad visual
+- **Display (hero)**: `Georgia`, `Times New Roman`, `serif`
+- **Decisión 1.6.0**: no cargar Google Fonts para reducir render blocking, CLS y terceros
 
 ---
 
@@ -75,9 +75,8 @@ med-landing-dev/
 │   │   └── src/
 │   │       └── main.css          ← Directivas Tailwind + @theme
 │   ├── js/
-│   │   ├── navigation.js         ← Mobile menu (Alpine)
-│   │   ├── animations.js         ← GSAP scroll animations
-│   │   └── components.js         ← Alpine components (accordion, modal)
+│   │   ├── navigation.js         ← Mobile menu nativo, focus trap, header y CTA
+│   │   └── animations.js         ← Animaciones opcionales sin dependencias (no encoladas)
 │   ├── images/
 │   │   ├── brand/                ← Derivados web transparentes
 │   │   ├── icons/                ← SVG icons (WhatsApp, phone, etc.)
@@ -173,7 +172,7 @@ med-landing-dev/
 | 5 | **SVG Support** | Permitir subir SVGs (logos, iconos) |
 | 6 | **WebP Express** | Conversión automática de imágenes |
 
-> **Regla**: Se evitan plugins pesados. Alpine.js y GSAP se cargan como scripts ligeros, no como plugins WP.
+> **Regla**: Se evitan plugins pesados y dependencias frontend de terceros. En la rama 1.6.0 la interacción del tema usa JavaScript nativo.
 
 ---
 
@@ -277,7 +276,7 @@ med-landing-dev/
 - [ ] Schema Article
 
 ### 2.2 FAQ
-- [ ] Accordion con Alpine.js
+- [ ] Accordion nativo si se requiere para FAQ
 - [ ] Schema FAQ
 - [ ] Preguntas frecuentes sobre nefrología
 - [ ] Integrado en servicios individuales también
@@ -329,17 +328,16 @@ med-landing-dev/
 | Lighthouse Accessibility | 90+ |
 | Lighthouse Best Practices | 90+ |
 | CSS total | < 30KB |
-| JS total | < 50KB (Alpine + GSAP) |
+| JS total | < 10KB propio en 1.6.0 |
 | LCP | < 2.5s |
 | FID | < 100ms |
 | CLS | < 0.1 |
 
 ### Optimizaciones
 - TailwindCSS compilado y purgado (~15-30KB)
-- Alpine.js (~15KB gzip)
-- GSAP core solo (~25KB gzip)
-- Imágenes: WebP + lazy loading nativo
-- Fonts: preload + font-display: swap
+- JS nativo propio sin Alpine/GSAP en frontend
+- Imágenes: WebP + lazy loading nativo; la imagen LCP usa preload y `fetchpriority="high"`
+- Fonts: fuentes del sistema en 1.6.0, sin descarga externa
 - El tema no usa jQuery directamente; no desregistrarlo globalmente porque los plugins pueden declararlo
 - LiteSpeed Cache en producción (page cache, CSS/JS combine)
 - Cloudflare CDN para assets estáticos
@@ -391,7 +389,7 @@ med-landing-dev/
 7. **Location pages** (Xalapa + Veracruz)
 8. **SEO & Schemas** (RankMath config + JSON-LD)
 9. **Polylang setup** (traducir páginas a EN)
-10. **Animaciones** (GSAP + transitions)
+10. **Animaciones** progresivas sin dependencia externa, solo si no afectan rendimiento
 11. **Testing & optimización**
 
 ### Fase 2
@@ -471,7 +469,7 @@ med-landing-dev/
 - ❌ NO añadir dependencia directa de jQuery al tema; conservarla si un plugin la necesita
 - ❌ NO usar sliders pesados ni autoplay video
 - ❌ NO usar plugins innecesarios
-- ✅ Alpine.js y GSAP como scripts ligeros
+- ✅ Interacción nativa sin CDN frontend en 1.6.0
 - ✅ El style.css del tema ES el output de Tailwind (con header WP al inicio)
 - ✅ Mobile first siempre
 - ✅ SEO local como prioridad

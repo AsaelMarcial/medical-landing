@@ -1,4 +1,4 @@
-<header x-data="{ scrolled: false }" x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 50 })" :class="scrolled ? 'shadow-lg bg-white/95 backdrop-blur-sm' : 'bg-white'" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
+<header data-site-header class="fixed top-0 left-0 right-0 z-40 bg-white transition-shadow duration-300">
     <nav class="container-custom" aria-label="<?php esc_attr_e('Navegación principal', 'med-landing-dev'); ?>">
         <div class="flex items-center justify-between h-20 gap-4">
             <!-- Logo -->
@@ -51,13 +51,13 @@
                 <button
                     class="inline-flex min-h-12 min-w-12 items-center justify-center rounded-lg border-2 border-primary/20 p-2 text-primary hover:bg-surface focus:outline-none focus:ring-2 focus:ring-secondary"
                     type="button"
-                    x-on:click="toggleMenu()"
-                    x-bind:aria-expanded="open.toString()"
+                    data-menu-toggle
+                    aria-expanded="false"
                     aria-controls="mobile-navigation-panel"
                     aria-label="<?php esc_attr_e('Abrir menú', 'med-landing-dev'); ?>"
                 >
-                    <svg x-show="!open" aria-hidden="true" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-                    <svg x-cloak x-show="open" aria-hidden="true" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    <svg data-menu-open-icon aria-hidden="true" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    <svg data-menu-close-icon hidden aria-hidden="true" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
                 <?php get_template_part('template-parts/components/language-switcher', null, ['variant' => 'header-mobile']); ?>
             </div>

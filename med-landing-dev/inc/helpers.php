@@ -139,24 +139,38 @@ function developer_get_memberships() {
     ];
 }
 
-function developer_get_doctor_photo_url($size = 'large') {
+function developer_get_doctor_photo_url($size = 'large', $format = 'jpg') {
     $photos = [
-        'medium' => 'dredgar-profesional-720.jpg',
-        'large'  => 'dredgar-profesional-1080.jpg',
+        'jpg' => [
+            'medium' => 'dredgar-profesional-720.jpg',
+            'large'  => 'dredgar-profesional-1080.jpg',
+        ],
+        'webp' => [
+            'medium' => 'dredgar-profesional-720.webp',
+            'large'  => 'dredgar-profesional-1080.webp',
+        ],
     ];
 
-    $filename = isset($photos[$size]) ? $photos[$size] : $photos['large'];
+    $format = isset($photos[$format]) ? $format : 'jpg';
+    $filename = isset($photos[$format][$size]) ? $photos[$format][$size] : $photos[$format]['large'];
 
     return DEVELOPER_THEME_URI . '/assets/images/doctor/' . $filename;
 }
 
-function developer_get_doctor_photo_path($size = 'large') {
+function developer_get_doctor_photo_path($size = 'large', $format = 'jpg') {
     $photos = [
-        'medium' => 'dredgar-profesional-720.jpg',
-        'large'  => 'dredgar-profesional-1080.jpg',
+        'jpg' => [
+            'medium' => 'dredgar-profesional-720.jpg',
+            'large'  => 'dredgar-profesional-1080.jpg',
+        ],
+        'webp' => [
+            'medium' => 'dredgar-profesional-720.webp',
+            'large'  => 'dredgar-profesional-1080.webp',
+        ],
     ];
 
-    $filename = isset($photos[$size]) ? $photos[$size] : $photos['large'];
+    $format = isset($photos[$format]) ? $format : 'jpg';
+    $filename = isset($photos[$format][$size]) ? $photos[$format][$size] : $photos[$format]['large'];
 
     return DEVELOPER_THEME_DIR . '/assets/images/doctor/' . $filename;
 }

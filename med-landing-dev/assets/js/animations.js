@@ -1,119 +1,30 @@
 /**
- * GSAP Scroll Animations
+ * Optional lightweight reveal animations.
+ *
+ * This file is intentionally not enqueued in production because the current
+ * performance target prioritizes zero third-party animation cost.
  */
 document.addEventListener('DOMContentLoaded', () => {
-    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    gsap.registerPlugin(ScrollTrigger);
+    const animated = document.querySelectorAll('[data-animate]');
+    if (!animated.length || !('IntersectionObserver' in window)) return;
 
-    // Fade up on scroll
-    gsap.utils.toArray('[data-animate="fade-up"]').forEach((el) => {
-        gsap.from(el, {
-            y: 40,
-            opacity: 0,
-            immediateRender: false,
-            duration: 0.8,
-            ease: 'power2.out',
-            scrollTrigger: {
-                trigger: el,
-                start: 'top 85%',
-                once: true,
-            },
-        });
+    animated.forEach((element) => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(1rem)';
+        element.style.transition = 'opacity 400ms ease, transform 400ms ease';
     });
 
-    // Fade in from left
-    gsap.utils.toArray('[data-animate="fade-left"]').forEach((el) => {
-        gsap.from(el, {
-            x: -40,
-            opacity: 0,
-            immediateRender: false,
-            duration: 0.8,
-            ease: 'power2.out',
-            scrollTrigger: {
-                trigger: el,
-                start: 'top 85%',
-                once: true,
-            },
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'none';
+            observer.unobserve(entry.target);
         });
-    });
+    }, { rootMargin: '0px 0px -10% 0px' });
 
-    // Fade in from right
-    gsap.utils.toArray('[data-animate="fade-right"]').forEach((el) => {
-        gsap.from(el, {
-            x: 40,
-            opacity: 0,
-            immediateRender: false,
-            duration: 0.8,
-            ease: 'power2.out',
-            scrollTrigger: {
-                trigger: el,
-                start: 'top 85%',
-                once: true,
-            },
-        });
-    });
-
-    // Stagger children
-    gsap.utils.toArray('[data-animate="stagger"]').forEach((container) => {
-        const children = container.children;
-        gsap.from(children, {
-            y: 30,
-            opacity: 0,
-            immediateRender: false,
-            duration: 0.6,
-            stagger: 0.12,
-            ease: 'power2.out',
-            scrollTrigger: {
-                trigger: container,
-                start: 'top 85%',
-                once: true,
-            },
-        });
-    });
-
-    // Scale in
-    gsap.utils.toArray('[data-animate="scale-in"]').forEach((el) => {
-        gsap.from(el, {
-            scale: 0.9,
-            opacity: 0,
-            immediateRender: false,
-            duration: 0.7,
-            ease: 'back.out(1.4)',
-            scrollTrigger: {
-                trigger: el,
-                start: 'top 85%',
-                once: true,
-            },
-        });
-    });
-
-    // Counter animation for numbers
-    gsap.utils.toArray('[data-animate="counter"]').forEach((el) => {
-        const target = parseInt(el.textContent.replace(/\D/g, ''), 10);
-        const prefix = el.textContent.match(/^[^\d]*/)[0];
-        const suffix = el.textContent.match(/[^\d]*$/)[0];
-
-        gsap.from(el, {
-            textContent: 0,
-            immediateRender: false,
-            duration: 2,
-            ease: 'power1.out',
-            snap: { textContent: 1 },
-            scrollTrigger: {
-                trigger: el,
-                start: 'top 85%',
-                once: true,
-            },
-            onUpdate: function () {
-                el.textContent = prefix + Math.round(parseFloat(el.textContent)) + suffix;
-            },
-        });
-    });
-
-    window.setTimeout(() => {
-        ScrollTrigger.refresh();
-        gsap.set('[data-animate] *', { clearProps: 'opacity,transform,visibility' });
-    }, 1600);
+    animated.forEach((element) => observer.observe(element));
 });

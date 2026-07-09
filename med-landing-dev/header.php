@@ -12,11 +12,7 @@
     <?php esc_html_e('Saltar al contenido', 'med-landing-dev'); ?>
 </a>
 
-<div
-    x-data="mobileNavigation()"
-    x-on:keydown.escape.window="closeMenu()"
-    x-on:keydown.tab.window="trapFocus($event)"
->
+<div data-mobile-navigation>
     <?php get_template_part('template-parts/header/nav-desktop'); ?>
     <?php get_template_part('template-parts/header/nav-mobile'); ?>
 </div>

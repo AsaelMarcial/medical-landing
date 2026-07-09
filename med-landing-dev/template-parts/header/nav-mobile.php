@@ -1,20 +1,13 @@
 <!-- Mobile Menu Overlay -->
 <div class="xl:hidden">
     <!-- Backdrop -->
-    <div x-cloak x-show="open" x-transition.opacity class="fixed inset-0 z-40 bg-black/60" x-on:click="closeMenu()" aria-hidden="true"></div>
+    <div data-mobile-backdrop hidden class="fixed inset-0 z-40 bg-black/60" aria-hidden="true"></div>
 
     <!-- Panel -->
     <div
         id="mobile-navigation-panel"
-        x-cloak
-        x-show="open"
-        x-ref="panel"
-        x-transition:enter="transition-transform duration-300"
-        x-transition:enter-start="translate-x-full"
-        x-transition:enter-end="translate-x-0"
-        x-transition:leave="transition-transform duration-200"
-        x-transition:leave-start="translate-x-0"
-        x-transition:leave-end="translate-x-full"
+        data-mobile-panel
+        hidden
         class="fixed right-0 top-0 z-50 h-dvh w-80 max-w-[88vw] overflow-y-auto bg-white shadow-2xl"
         role="dialog"
         aria-modal="true"
@@ -24,7 +17,7 @@
 
         <!-- Close button -->
         <div class="flex items-center justify-between p-4 border-b border-surface">
-            <a href="<?php echo esc_url(developer_get_home_url()); ?>" class="flex min-h-12 items-center gap-3" x-on:click="closeMenu()">
+            <a href="<?php echo esc_url(developer_get_home_url()); ?>" class="flex min-h-12 items-center gap-3" data-menu-close>
                 <img
                     src="<?php echo esc_url(developer_get_brand_logo_url('mobile')); ?>"
                     alt=""
@@ -37,13 +30,13 @@
                     <span class="block text-sm text-accent"><?php echo esc_html(developer_get_doctor_specialty()); ?></span>
                 </span>
             </a>
-            <button x-ref="closeButton" type="button" x-on:click="closeMenu()" class="inline-flex min-h-12 min-w-12 items-center justify-center rounded-md p-2 text-text-muted hover:text-primary focus:outline-none focus:ring-2 focus:ring-secondary" aria-label="<?php esc_attr_e('Cerrar menú', 'med-landing-dev'); ?>">
+            <button data-menu-close data-menu-close-button type="button" class="inline-flex min-h-12 min-w-12 items-center justify-center rounded-md p-2 text-text-muted hover:text-primary focus:outline-none focus:ring-2 focus:ring-secondary" aria-label="<?php esc_attr_e('Cerrar menú', 'med-landing-dev'); ?>">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
         </div>
 
         <!-- Navigation -->
-        <nav class="px-6 pb-8" aria-label="<?php esc_attr_e('Menú mobile', 'med-landing-dev'); ?>" x-on:click="if ($event.target.closest('a')) closeMenu()">
+        <nav class="px-6 pb-8" aria-label="<?php esc_attr_e('Menú mobile', 'med-landing-dev'); ?>" data-mobile-menu-links>
             <?php
             wp_nav_menu([
                 'theme_location' => 'primary',

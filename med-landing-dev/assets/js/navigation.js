@@ -1,73 +1,127 @@
 /**
- * Navigation & Alpine.js Components
+ * Lightweight navigation interactions without external dependencies.
  */
-window.mobileNavigation = () => ({
-        open: false,
-        previousFocus: null,
+document.addEventListener('DOMContentLoaded', () => {
+    const root = document.querySelector('[data-mobile-navigation]');
+    const header = document.querySelector('[data-site-header]');
+    const toggle = document.querySelector('[data-menu-toggle]');
+    const panel = document.querySelector('[data-mobile-panel]');
+    const backdrop = document.querySelector('[data-mobile-backdrop]');
+    const closeButtons = document.querySelectorAll('[data-menu-close]');
+    const menuLinks = document.querySelector('[data-mobile-menu-links]');
+    const openIcon = document.querySelector('[data-menu-open-icon]');
+    const closeIcon = document.querySelector('[data-menu-close-icon]');
+    const floatingCta = document.querySelector('[data-floating-cta]');
+    let previousFocus = null;
 
-        init() {
-            this.$watch('open', (isOpen) => {
-                document.documentElement.classList.toggle('menu-open', isOpen);
-                document.body.classList.toggle('menu-open', isOpen);
+    const focusableSelector = [
+        'a[href]',
+        'button:not([disabled])',
+        'input:not([disabled])',
+        'select:not([disabled])',
+        'textarea:not([disabled])',
+        '[tabindex]:not([tabindex="-1"])',
+    ].join(',');
 
-                if (isOpen) {
-                    this.$nextTick(() => {
-                        const focusTarget = this.$refs.closeButton || this.$refs.panel;
-                        focusTarget?.focus();
-                    });
-                } else if (this.previousFocus && document.contains(this.previousFocus)) {
-                    this.previousFocus.focus();
-                }
+    const setHeaderState = () => {
+        if (!header) return;
+
+        const scrolled = window.scrollY > 50;
+        header.classList.toggle('shadow-lg', scrolled);
+        header.classList.toggle('bg-white/95', scrolled);
+        header.classList.toggle('backdrop-blur-sm', scrolled);
+        header.classList.toggle('bg-white', !scrolled);
+    };
+
+    const setFloatingCtaState = () => {
+        if (!floatingCta) return;
+        floatingCta.hidden = window.scrollY <= 300;
+    };
+
+    const setMenuState = (isOpen) => {
+        if (!root || !panel || !backdrop || !toggle) return;
+
+        document.documentElement.classList.toggle('menu-open', isOpen);
+        document.body.classList.toggle('menu-open', isOpen);
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        panel.hidden = !isOpen;
+        backdrop.hidden = !isOpen;
+
+        if (openIcon && closeIcon) {
+            openIcon.hidden = isOpen;
+            closeIcon.hidden = !isOpen;
+        }
+
+        if (isOpen) {
+            previousFocus = document.activeElement;
+            window.requestAnimationFrame(() => {
+                const closeButton = panel.querySelector('[data-menu-close-button]');
+                (closeButton || panel).focus();
             });
-        },
+        } else if (previousFocus && document.contains(previousFocus)) {
+            const focusTarget = previousFocus;
+            previousFocus = null;
+            focusTarget.focus();
+        }
+    };
 
-        toggleMenu() {
-            this.open ? this.closeMenu() : this.openMenu();
-        },
+    const closeMenu = () => setMenuState(false);
+    const openMenu = () => setMenuState(true);
 
-        openMenu() {
-            this.previousFocus = document.activeElement;
-            this.open = true;
-        },
+    const trapFocus = (event) => {
+        if (!panel || panel.hidden || event.key !== 'Tab') return;
 
-        closeMenu() {
-            this.open = false;
-        },
+        const focusable = Array.from(panel.querySelectorAll(focusableSelector))
+            .filter((element) => element.offsetParent !== null);
 
-        trapFocus(event) {
-            if (!this.open || !this.$refs.panel) return;
+        if (!focusable.length) {
+            event.preventDefault();
+            panel.focus();
+            return;
+        }
 
-            const focusable = Array.from(
-                this.$refs.panel.querySelectorAll(
-                    'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
-                )
-            ).filter((element) => element.offsetParent !== null);
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
 
-            if (!focusable.length) {
-                event.preventDefault();
-                this.$refs.panel.focus();
-                return;
-            }
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
+    };
 
-            const first = focusable[0];
-            const last = focusable[focusable.length - 1];
+    setHeaderState();
+    setFloatingCtaState();
+    window.addEventListener('scroll', () => {
+        setHeaderState();
+        setFloatingCtaState();
+    }, { passive: true });
 
-            if (event.shiftKey && document.activeElement === first) {
-                event.preventDefault();
-                last.focus();
-            } else if (!event.shiftKey && document.activeElement === last) {
-                event.preventDefault();
-                first.focus();
-            }
-        },
+    if (toggle) {
+        toggle.addEventListener('click', () => {
+            const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+            isExpanded ? closeMenu() : openMenu();
+        });
+    }
+
+    if (backdrop) {
+        backdrop.addEventListener('click', closeMenu);
+    }
+
+    closeButtons.forEach((button) => {
+        button.addEventListener('click', closeMenu);
     });
 
-window.accordion = () => ({
-        active: null,
-        toggle(id) {
-            this.active = this.active === id ? null : id;
-        },
-        isOpen(id) {
-            return this.active === id;
-        },
+    if (menuLinks) {
+        menuLinks.addEventListener('click', (event) => {
+            if (event.target.closest('a')) closeMenu();
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenu();
+        trapFocus(event);
     });
+});
