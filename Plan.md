@@ -4,7 +4,7 @@
 >
 > **Estado del documento**: conserva la arquitectura y el alcance originales. No usar sus casillas como indicador del estado actual; la fuente viva es `CONTEXTO-PROYECTO.md`. La identidad visual descrita allí ya fue integrada.
 >
-> **Actualización PageSpeed 2026-07-09**: la rama aislada `codex/pagespeed-100` sube a tema 1.6.3. Agrega mapas Google bajo demanda, logos/retrato WebP más pequeños, variante de retrato `650w`, caché pública anónima de página en Nginx y CSS inline solo en Home para retirar el CSS bloqueante de la portada. Conserva la versión estable como respaldo y sigue pendiente verificar marcadores 100 antes de fusionar.
+> **Actualización PageSpeed 2026-07-09**: la rama aislada `codex/pagespeed-100` sube a tema 1.6.4. Agrega mapas Google bajo demanda, logos/retrato WebP más pequeños, variante de retrato `650w`, caché pública anónima de página en Nginx, CSS inline solo en Home para retirar el CSS bloqueante y reserva explícita del retrato hero para reducir CLS. Conserva la versión estable como respaldo y sigue pendiente verificar marcadores 100 antes de fusionar.
 >
 > **Actualización 2026-07-09**: producción estable partió de tema `med-landing-dev` 1.5.7 con dominio final `https://nefrologoedgar.com.mx`, HTTPS, sitemap nativo, Site Kit instalado y SEO fallback activo. La rama aislada `codex/pagespeed-100` prepara la versión 1.6.1 para PageSpeed: elimina Google Fonts, Alpine.js, GSAP y ScrollTrigger del frontend, usa navegación nativa, preload/fetchpriority de la imagen LCP, retrato/logos WebP, limpieza de assets globales de WordPress y caché estática en Nginx. Pendiente lograr/verificar 100 antes de fusionar.
 

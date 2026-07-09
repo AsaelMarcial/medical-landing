@@ -4,10 +4,10 @@
             <!-- Image -->
             <div class="order-1 flex justify-center lg:order-2" data-animate="scale-in">
                 <div class="relative">
-                    <div class="w-full max-w-md lg:max-w-lg">
+                    <div class="aspect-[4/5] w-full max-w-md overflow-hidden rounded-2xl bg-surface shadow-2xl ring-1 ring-primary/10 lg:max-w-lg">
                         <?php get_template_part('template-parts/components/doctor-portrait', null, [
                             'loading' => 'eager',
-                            'class'   => 'aspect-[4/5] w-full rounded-2xl object-cover shadow-2xl',
+                            'class'   => 'h-full w-full object-cover',
                         ]); ?>
                     </div>
                     <!-- Decorative accent -->

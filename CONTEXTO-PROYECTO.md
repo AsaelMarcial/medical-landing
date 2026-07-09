@@ -5,7 +5,7 @@
 
 ## 1. Estado Ejecutivo
 
-- Nota PageSpeed actual 2026-07-09: la rama aislada `codex/pagespeed-100` avanza a tema 1.6.3. Esta versión conserva la estable como respaldo, reduce logos/retrato WebP, cambia Google Maps a carga bajo demanda, mantiene cero CDN frontend del tema e imprime el CSS de Home inline para eliminar el bloqueo de render de la portada. Pendiente desplegar/medir producción y no fusionar hasta comprobar los marcadores objetivo.
+- Nota PageSpeed actual 2026-07-09: la rama aislada `codex/pagespeed-100` avanza a tema 1.6.4. Esta versión conserva la estable como respaldo, reduce logos/retrato WebP, cambia Google Maps a carga bajo demanda, mantiene cero CDN frontend del tema, imprime el CSS de Home inline y reserva el espacio del retrato del hero para atacar CLS en escritorio. Pendiente medir producción y no fusionar hasta comprobar los marcadores objetivo.
 
 - Proyecto: sitio premium para un médico nefrólogo.
 - Mercado: Xalapa y Boca del Río, Veracruz, México.
@@ -27,7 +27,7 @@
 - Última integración social: 2026-07-08; tema 1.5.5 con Instagram oficial visible en Home y Contacto.
 - Última preparación de dominio en VPS: 2026-07-08; Nginx sirve `https://nefrologoedgar.com.mx` con certificado Let’s Encrypt, `www` y HTTP redirigen al dominio canónico HTTPS y WordPress usa `https://nefrologoedgar.com.mx` como `home`/`siteurl`.
 - Último ajuste SEO/Google: 2026-07-08; tema 1.5.7 con título UTF-8 corregido, fallback SEO de metadatos sociales, indexación pública, sitemap nativo `wp-sitemap.xml` y Site Kit instalado para vincular Analytics/Search Console.
-- Optimización PageSpeed en rama aislada: 2026-07-09; rama `codex/pagespeed-100` prepara tema 1.6.3 con fuentes del sistema, eliminación de CDN frontend, menú móvil en JavaScript nativo, preload/fetchpriority de imagen LCP, WebP para retrato/logos, mapas bajo demanda, CSS inline solo en Home y caché Nginx en VPS. Pendiente lograr/verificar 100 en PageSpeed antes de fusionar.
+- Optimización PageSpeed en rama aislada: 2026-07-09; rama `codex/pagespeed-100` prepara tema 1.6.4 con fuentes del sistema, eliminación de CDN frontend, menú móvil en JavaScript nativo, preload/fetchpriority de imagen LCP, WebP para retrato/logos, mapas bajo demanda, CSS inline solo en Home, reserva explícita del retrato hero y caché Nginx en VPS. Pendiente lograr/verificar 100 en PageSpeed antes de fusionar.
 - Última propuesta comercial: 2026-06-08; honorario base MXN 6,000, total indicado con CFDI MXN 7,000 y plazo de 4 a 6 semanas.
 
 ## 2. Protocolo de Uso
@@ -991,3 +991,12 @@ Copiar esta estructura al final:
 - Decisiones: este ajuste es deliberadamente limitado a Home porque es la página medida y el recurso bloqueante era pequeño; se mantiene reversible dentro de la rama `codex/pagespeed-100`.
 - Validación local: `cmd /c npm run build` correcto con TailwindCSS 4.3.0; `node --check` correcto para `navigation.js` y `animations.js`.
 - Pendientes: commit/push, pull en VPS, lint PHP dentro del contenedor, verificar que Home no emita `style.css?ver=1.6.3`, limpiar caché Nginx y ejecutar Lighthouse/PageSpeed móvil/escritorio.
+
+### 2026-07-09 - Rama PageSpeed 1.6.4 con retrato hero estabilizado
+
+- Objetivo: reducir el CLS de escritorio detectado por Lighthouse en el retrato profesional del hero.
+- Archivos modificados: `med-landing-dev/template-parts/sections/hero.php`, `med-landing-dev/template-parts/components/doctor-portrait.php`, archivos de versión/build y documentación Markdown.
+- Cambios: tema actualizado a 1.6.4; el contenedor del retrato en Home reserva `aspect-[4/5]`, ancho máximo, fondo, borde y sombra antes de cargar la imagen; el `<picture>` ocupa el alto/ancho completo y la imagen se ajusta con `object-cover`.
+- Decisiones: reservar espacio en el wrapper evita depender del momento en que el navegador resuelva la imagen; el ajuste se limita al hero para no cambiar la composición de páginas internas.
+- Validación local: `cmd /c npm run build` correcto con TailwindCSS 4.3.0; `node --check` correcto para `navigation.js` y `animations.js`.
+- Pendientes: commit/push, pull en VPS, lint PHP dentro del contenedor, limpiar caché Nginx y repetir Lighthouse móvil/escritorio.

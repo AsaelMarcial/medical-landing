@@ -10,7 +10,7 @@ $image_classes = !empty($args['class'])
 ?>
 
 <?php if (developer_has_doctor_photo()) : ?>
-    <picture>
+    <picture class="block h-full w-full">
         <?php if (file_exists(developer_get_doctor_photo_path('large', 'webp'))) : ?>
             <source
                 type="image/webp"
