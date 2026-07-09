@@ -119,6 +119,9 @@ Lista con: nombre del curso, institución, año, horas/duración, certificado en
 | WhatsApp Business definitivo | `229 446 6698` | Confirmado |
 | Email de contacto público | email@dominio | ✅ |
 | Email administrativo (formularios) | email@dominio | ✅ |
+| Cuenta Google para Site Kit | Gmail/Workspace con acceso del cliente | ✅ |
+| Acceso Google Analytics/Search Console | Permiso de propietario o administrador | ✅ |
+| Cuenta Google Ads si habrá publicidad | ID de cuenta o invitación | Opcional |
 | Mensaje predefinido WhatsApp | Texto | Opcional |
 | Extensión / Recepcionista | Texto | Opcional |
 
@@ -306,6 +309,11 @@ Para schema `sameAs` y enlaces de footer:
 | Doctoralia / Top Doctors México | URL del perfil | |
 | YouTube (si tiene canal) | URL | |
 | Sitio web previo (si existe) | URL | Para redirects |
+| Google Analytics 4 | Propiedad o autorización para crearla | Site Kit está instalado, falta conexión |
+| Google Search Console | Propiedad de dominio o URL prefix | Enviar `https://nefrologoedgar.com.mx/wp-sitemap.xml` |
+| Google Ads | Cuenta o ID de cliente | Solo si se pagará publicidad |
+
+**Estado 2026-07-08**: Site Kit by Google quedó instalado y activo en WordPress, pero requiere iniciar sesión desde `wp-admin > Site Kit` con una cuenta Google autorizada. Las estadísticas no empezarán a medirse correctamente hasta completar esa vinculación.
 
 ---
 

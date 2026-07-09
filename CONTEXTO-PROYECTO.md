@@ -24,6 +24,7 @@
 - Última integración legal/UI: 2026-07-08; tema 1.5.4 con cuatro páginas legales borrador, footer legal completo y tarjetas de enfermedades con iconos SVG y microetiquetas.
 - Última integración social: 2026-07-08; tema 1.5.5 con Instagram oficial visible en Home y Contacto.
 - Última preparación de dominio en VPS: 2026-07-08; Nginx sirve `https://nefrologoedgar.com.mx` con certificado Let’s Encrypt, `www` y HTTP redirigen al dominio canónico HTTPS y WordPress usa `https://nefrologoedgar.com.mx` como `home`/`siteurl`.
+- Último ajuste SEO/Google: 2026-07-08; tema 1.5.6 con título UTF-8 corregido, fallback SEO de metadatos sociales, indexación pública, sitemap nativo `wp-sitemap.xml` y Site Kit instalado para vincular Analytics/Search Console.
 - Última propuesta comercial: 2026-06-08; honorario base MXN 6,000, total indicado con CFDI MXN 7,000 y plazo de 4 a 6 semanas.
 
 ## 2. Protocolo de Uso
@@ -251,11 +252,11 @@ Estos valores describen exclusivamente aquel entorno auditado. No deben utilizar
 - URL WordPress vigente: `home` y `siteurl` configurados como `https://nefrologoedgar.com.mx`.
 - UFW permite `8081/tcp` y el puerto ya responde públicamente después de abrirlo también en el firewall/panel del proveedor.
 - WordPress instalado, tema `med-landing-dev` activo en versión 1.5.5, permalinks `/%postname%/` y `blog_public=0`.
-- Plugins instalados y activados en staging: Polylang 3.8.5, Rank Math SEO 1.0.273 y Fluent Forms 6.2.5.
+- Plugins instalados y activados en staging/producción: Polylang 3.8.5, Rank Math SEO 1.0.273, Fluent Forms 6.2.5 y Site Kit by Google 1.182.0.
 - Polylang tiene idiomas `es` y `en`; el contenido sembrado quedó marcado en español.
 - Home responde públicamente en `https://nefrologoedgar.com.mx`; Nginx redirige `http://nefrologoedgar.com.mx`, `http://www.nefrologoedgar.com.mx` y `https://www.nefrologoedgar.com.mx` al dominio canónico HTTPS. El acceso directo `:8081` queda como diagnóstico temporal y puede redirigir al dominio configurado.
 - Credenciales y comandos del despliegue están guardados solo en el servidor, en `/opt/med-landing-dev/DEPLOYMENT.md` con permisos `600`. No copiar contraseñas a la documentación del repositorio.
-- Pendientes VPS: cerrar o restringir `8081` cuando ya no sea diagnóstico público, rotar la contraseña root compartida durante la instalación, reemplazar acceso root por usuario/SSH key de despliegue y conectar Google Analytics/Search Console.
+- Pendientes VPS: cerrar o restringir `8081` cuando ya no sea diagnóstico público, rotar la contraseña root compartida durante la instalación, reemplazar acceso root por usuario/SSH key de despliegue, conectar Site Kit con una cuenta Google y configurar Google Analytics/Search Console.
 
 ## 8. Build y Dependencias
 
@@ -716,6 +717,17 @@ No se ejecutó render completo en WordPress ni QA responsive real porque el repo
 - `certbot renew --dry-run --cert-name nefrologoedgar.com.mx --no-random-sleep-on-renew`: exitoso.
 - Nota operativa: los resolvers internos del VPS de IONOS tardaron más en resolver el dominio y llegaron a devolver `SERVFAIL`; las validaciones públicas y autoritativas fueron correctas.
 
+### Validaciones SEO/Google del 2026-07-08
+
+- Se corrigió `blogname` y `blogdescription` en UTF-8 real: `Dr. Edgar E. Hernández - Nefrología` y descripción con acentos correctos.
+- `blog_public` quedó en `1`; WordPress ya no solicita desindexación.
+- Tema 1.5.6 agrega `inc/seo.php` con fallback de título, meta description, Open Graph, Twitter Card, filtro de robots y sitemap en `robots.txt` mientras Rank Math no complete su asistente.
+- Site Kit by Google 1.182.0 quedó instalado y activado; falta vincularlo en wp-admin con cuenta Google para Analytics, Search Console y estadísticas.
+- Rank Math quedó activo con módulos esenciales: `link-counter`, `seo-analysis`, `sitemap`, `rich-snippet`, `404-monitor`, `redirections` y `local-seo`.
+- `https://nefrologoedgar.com.mx` muestra título con `Hernández` y `Nefrología` sin signos `?`.
+- `robots.txt` permite rastreo y anuncia `https://nefrologoedgar.com.mx/wp-sitemap.xml`.
+- `https://nefrologoedgar.com.mx/wp-sitemap.xml` responde `200 OK`; `/sitemap_index.xml` sigue sin usarse porque Rank Math no engancha su sitemap hasta completar configuración en admin.
+
 ## 17. Plantilla de Bitácora
 
 Copiar esta estructura al final:
@@ -932,3 +944,12 @@ Copiar esta estructura al final:
 - Decisiones: mantener `nefrologoedgar.com.mx` sin `www` como canónico; no tocar los virtual hosts existentes `orza.mx` ni `default`; validar solo el certificado nuevo con `--cert-name` para evitar interferir con otros certificados.
 - Validación: DNS autoritativo NEUBOX y resolvers públicos apuntan a `74.208.222.71`; `https://nefrologoedgar.com.mx` responde `200 OK`; `https://www`, `http://www` y `http://` redirigen `301` a `https://nefrologoedgar.com.mx`; `nginx -t` correcto; `certbot renew --dry-run --cert-name nefrologoedgar.com.mx --no-random-sleep-on-renew` exitoso; contenedores WordPress, DB y proyectos existentes siguen activos.
 - Pendientes: cerrar o restringir `8081` cuando ya no sea necesario, configurar Google Analytics/Search Console, finalizar formularios/SEO, revisar textos legales y clínicos, rotar acceso root y reemplazarlo por usuario/SSH key.
+
+### 2026-07-08 - SEO técnico, título UTF-8 y Google Site Kit
+
+- Objetivo: corregir el título de pestaña con caracteres rotos, abrir indexación y dejar base técnica para SEO, Analytics y Search Console.
+- Archivos modificados: `med-landing-dev/inc/seo.php`, `med-landing-dev/functions.php`, archivos de versión/build/idiomas, `style.css`, `Plan.md`, `INFORMACION-A-SOLICITAR.md` y `CONTEXTO-PROYECTO.md`. En WordPress se actualizaron opciones SEO y se instaló Site Kit.
+- Cambios: tema actualizado a 1.5.6; `blogname` y `blogdescription` corregidos en UTF-8; `blog_public=1`; fallback de título/meta description/Open Graph/Twitter/robots; Site Kit instalado y activo; Sample Page y Privacy Policy históricas quedaron en borrador; Rank Math conserva módulos SEO esenciales.
+- Decisiones: usar `https://nefrologoedgar.com.mx` como canónico; usar `wp-sitemap.xml` como sitemap público mientras Rank Math no complete su setup visual; dejar Site Kit listo para vinculación manual con cuenta Google, sin insertar un ID falso de Analytics.
+- Validación: build Tailwind correcto, `node --check` correcto, título público con `Hernández` y `Nefrología` sin `?`, `robots.txt` permite rastreo y apunta a `wp-sitemap.xml`, `wp-sitemap.xml` responde `200 OK`, Site Kit 1.182.0 activo, `blog_public=1`.
+- Pendientes: conectar Site Kit desde wp-admin con Google Analytics/Search Console, enviar sitemap en Search Console, configurar conversiones de WhatsApp/formulario/teléfono, revisar Rank Math visualmente, ejecutar Lighthouse/PageSpeed y cerrar o restringir `8081`.

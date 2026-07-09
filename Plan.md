@@ -4,7 +4,7 @@
 >
 > **Estado del documento**: conserva la arquitectura y el alcance originales. No usar sus casillas como indicador del estado actual; la fuente viva es `CONTEXTO-PROYECTO.md`. La identidad visual descrita allí ya fue integrada.
 >
-> **Actualización 2026-07-08**: tema `med-landing-dev` versión 1.5.5 desplegado en VPS con dominio final `https://nefrologoedgar.com.mx`. Incluye información médica base, fotografía profesional, teléfono/WhatsApp definitivo, credenciales, COFEPRIS, Instagram visible en Home/Contacto/footer, páginas SEO de servicios, cuatro páginas legales borrador y tarjetas de enfermedades con iconos SVG. La home muestra las enfermedades atendidas, Servicios usa grupos completos sin carrusel y el catálogo se pinta desde helpers del tema para no depender de que WordPress ya haya sembrado todos los posts. También se corrigió la navegación visible en staging, el contraste del menú activo, el selector móvil de idioma y el riesgo de tarjetas ocultas por animaciones. DNS NEUBOX, Nginx, HTTPS Let’s Encrypt y redirecciones canónicas ya están activos; sigue pendiente revisión clínica final de textos, horarios, email/formulario, texto legal definitivo aprobado, Lighthouse, schema externo y QA cross-browser.
+> **Actualización 2026-07-08**: tema `med-landing-dev` versión 1.5.6 desplegado en VPS con dominio final `https://nefrologoedgar.com.mx`. Incluye información médica base, fotografía profesional, teléfono/WhatsApp definitivo, credenciales, COFEPRIS, Instagram visible en Home/Contacto/footer, páginas SEO de servicios, cuatro páginas legales borrador, tarjetas de enfermedades con iconos SVG, título UTF-8 corregido y fallback SEO de metadatos sociales. DNS NEUBOX, Nginx, HTTPS Let’s Encrypt, redirecciones canónicas, indexación pública, `wp-sitemap.xml` y Site Kit instalado ya están activos; sigue pendiente conectar Google Analytics/Search Console con cuenta Google, revisar textos clínicos, horarios, email/formulario, texto legal definitivo, Lighthouse, schema externo y QA cross-browser.
 
 ---
 
@@ -33,8 +33,9 @@ WordPress core, la base de datos, los uploads, los plugins y la configuración d
 | Alpine.js | 3.15.12 | Interactividad (menú mobile, accordions, modals) |
 | GSAP | 3.15.0 | Animaciones (scroll reveals, fade-ins) |
 | Polylang | 3.8.4 en LocalWP | Multilenguaje ES/EN |
-| RankMath SEO | latest | SEO, schemas, sitemap |
+| RankMath SEO | 1.0.273 en VPS | SEO, schemas, auditoría y ajustes editoriales |
 | Fluent Forms | latest | Formularios de contacto/citas |
+| Site Kit by Google | 1.182.0 en VPS | Analytics, Search Console, PageSpeed y estadísticas |
 | LiteSpeed Cache | latest | Cache (solo producción) |
 | Cloudflare | — | CDN (producción) |
 
@@ -234,7 +235,11 @@ med-landing-dev/
 - [x] Mapa embebido con pin
 
 ### 1.8 SEO & Schema (Fase 1)
-- [ ] Configurar RankMath (sitemap, robots.txt, canonical)
+- [x] Indexación pública activa (`blog_public=1`)
+- [x] Sitemap público activo en `/wp-sitemap.xml`
+- [x] Robots.txt permite rastreo y anuncia sitemap
+- [x] Títulos, meta descriptions, Open Graph y Twitter Card con fallback del tema mientras Rank Math no complete setup
+- [ ] Completar setup visual de RankMath o migrar metadatos finales a RankMath
 - [x] Schema Physician base sin credenciales no verificadas
 - [x] Schema LocalBusiness × 2 (una por ciudad)
 - [ ] Schema MedicalOrganization
@@ -420,6 +425,14 @@ med-landing-dev/
 - Renovación: `certbot renew --dry-run --cert-name nefrologoedgar.com.mx --no-random-sleep-on-renew` exitoso.
 - Pendiente operativo: cerrar o restringir `8081` cuando ya no se necesite diagnóstico público.
 
+### Google y Medición
+
+- Site Kit está instalado y activo; se debe conectar desde `wp-admin > Site Kit` con una cuenta Google autorizada.
+- En Site Kit se vinculan Search Console, Google Analytics 4 y PageSpeed Insights; si se usará publicidad, también puede conectarse Google Ads/AdSense según disponibilidad.
+- En Search Console se debe enviar `https://nefrologoedgar.com.mx/wp-sitemap.xml`.
+- Para publicidad pagada, la compra y administración se realiza desde Google Ads; las campañas recomendadas son búsqueda local por intención alta, llamadas/WhatsApp y landing por ciudad.
+- Pendiente de medición fina: eventos/conversiones para clic en WhatsApp, clic telefónico, formulario enviado, clic a Google Maps e Instagram.
+
 ---
 
 ## Testing & Verificación
@@ -444,6 +457,8 @@ med-landing-dev/
 - [x] DNS NEUBOX apunta `@` y `www` a la VPS
 - [x] SSL Let’s Encrypt activo para dominio raíz y `www`
 - [x] Redirecciones canónicas: HTTP y `www` redirigen a `https://nefrologoedgar.com.mx`
+- [x] SEO técnico 1.5.6: título con acentos correcto, `blog_public=1`, meta fallback, robots y `wp-sitemap.xml`
+- [ ] Site Kit conectado con cuenta Google
 - [ ] 404 page funciona
 - [ ] Lighthouse 90+ en todas las métricas
 - [ ] Cross-browser: Safari, Firefox, Chrome, Edge
