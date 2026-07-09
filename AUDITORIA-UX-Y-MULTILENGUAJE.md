@@ -5,7 +5,7 @@ Fecha: 2026-06-08
 
 ## Resultado
 
-Nota PageSpeed 2026-07-09: en la rama `codex/pagespeed-100`, el tema avanza a 1.6.6 con mapas Google bajo demanda, logos/retrato WebP más pequeños, preload/srcset refinado para LCP, caché pública anónima de página en Nginx, CSS inline solo en Home, reserva explícita de ancho/alto del retrato hero y orden DOM/visual estable para reducir CLS. La medición final en producción sigue pendiente antes de fusionar.
+Nota PageSpeed 2026-07-09: en la rama `codex/pagespeed-100`, el tema avanza a 1.6.6 y queda verificado con Lighthouse CLI local sobre producción: móvil `100/100/100/100` y escritorio `100/100/100/100`. Incluye mapas Google bajo demanda, logos/retrato WebP más pequeños, preload/srcset refinado para LCP, caché pública anónima de página en Nginx, CSS inline solo en Home, reserva explícita de ancho/alto del retrato hero y orden DOM/visual estable para reducir CLS.
 
 El tema `med-landing-dev` cuenta con una base responsive y accesible funcional en móvil, tablet y escritorio. La revisión completa en LocalWP se realizó el 2026-06-08 sobre `http://medical-landing.local` con el tema versión 1.4.0. El 2026-07-08 producción quedó en versión 1.5.7 con dominio HTTPS, SEO fallback y Site Kit instalado. El 2026-07-09 se abrió la rama `codex/pagespeed-100` con tema 1.6.1 para mejorar PageSpeed sin tocar estable: navegación nativa, fuentes del sistema, retrato/logos WebP, preload LCP, eliminación de CDN frontend y caché estática.
 
@@ -54,6 +54,7 @@ El tema `med-landing-dev` cuenta con una base responsive y accesible funcional e
 - Rama 1.6.4 local: `cmd /c npm run build` correcto y `node --check` correcto; el retrato del hero reserva `aspect-[4/5]` en el wrapper para reducir CLS en escritorio.
 - Rama 1.6.5 local: `cmd /c npm run build` correcto y `node --check` correcto; el hero elimina `order-*` y muestra contenido antes que retrato para mantener orden DOM/visual estable.
 - Rama 1.6.6 local: `cmd /c npm run build` correcto y `node --check` correcto; el wrapper exterior del retrato reserva `w-full max-w-md lg:max-w-lg` para estabilizar el flex item.
+- Rama 1.6.6 VPS: lint PHP dentro del contenedor correcto, `nginx -t` correcto, Home pública con CSS inline y `navigation.js?ver=1.6.6`; Lighthouse CLI local válido en producción dio escritorio `100/100/100/100` y móvil `100/100/100/100`.
 
 ## Multilenguaje
 

@@ -5,7 +5,7 @@
 
 ## 1. Estado Ejecutivo
 
-- Nota PageSpeed actual 2026-07-09: la rama aislada `codex/pagespeed-100` avanza a tema 1.6.6. Esta versión conserva la estable como respaldo, reduce logos/retrato WebP, cambia Google Maps a carga bajo demanda, mantiene cero CDN frontend del tema, imprime el CSS de Home inline, reserva ancho/alto del retrato del hero y elimina reordenamiento visual del hero para atacar CLS en escritorio. Pendiente medir producción y no fusionar hasta comprobar los marcadores objetivo.
+- Nota PageSpeed actual 2026-07-09: la rama aislada `codex/pagespeed-100` quedó en tema 1.6.6 con Lighthouse CLI local válido en `https://nefrologoedgar.com.mx/`: móvil `100/100/100/100` y escritorio `100/100/100/100`. Esta versión conserva la estable como respaldo, reduce logos/retrato WebP, cambia Google Maps a carga bajo demanda, mantiene cero CDN frontend del tema, imprime el CSS de Home inline, reserva ancho/alto del retrato del hero y elimina reordenamiento visual del hero para atacar CLS.
 
 - Proyecto: sitio premium para un médico nefrólogo.
 - Mercado: Xalapa y Boca del Río, Veracruz, México.
@@ -27,7 +27,7 @@
 - Última integración social: 2026-07-08; tema 1.5.5 con Instagram oficial visible en Home y Contacto.
 - Última preparación de dominio en VPS: 2026-07-08; Nginx sirve `https://nefrologoedgar.com.mx` con certificado Let’s Encrypt, `www` y HTTP redirigen al dominio canónico HTTPS y WordPress usa `https://nefrologoedgar.com.mx` como `home`/`siteurl`.
 - Último ajuste SEO/Google: 2026-07-08; tema 1.5.7 con título UTF-8 corregido, fallback SEO de metadatos sociales, indexación pública, sitemap nativo `wp-sitemap.xml` y Site Kit instalado para vincular Analytics/Search Console.
-- Optimización PageSpeed en rama aislada: 2026-07-09; rama `codex/pagespeed-100` prepara tema 1.6.6 con fuentes del sistema, eliminación de CDN frontend, menú móvil en JavaScript nativo, preload/fetchpriority de imagen LCP, WebP para retrato/logos, mapas bajo demanda, CSS inline solo en Home, reserva explícita de ancho/alto del retrato hero, orden DOM/visual estable y caché Nginx en VPS. Pendiente lograr/verificar 100 en PageSpeed antes de fusionar.
+- Optimización PageSpeed en rama aislada: 2026-07-09; rama `codex/pagespeed-100` prepara tema 1.6.6 con fuentes del sistema, eliminación de CDN frontend, menú móvil en JavaScript nativo, preload/fetchpriority de imagen LCP, WebP para retrato/logos, mapas bajo demanda, CSS inline solo en Home, reserva explícita de ancho/alto del retrato hero, orden DOM/visual estable y caché Nginx en VPS. Lighthouse CLI local verificó 100 en Performance, Accessibility, Best Practices y SEO para móvil y escritorio.
 - Última propuesta comercial: 2026-06-08; honorario base MXN 6,000, total indicado con CFDI MXN 7,000 y plazo de 4 a 6 semanas.
 
 ## 2. Protocolo de Uso
@@ -1013,8 +1013,9 @@ Copiar esta estructura al final:
 ### 2026-07-09 - Rama PageSpeed 1.6.6 con ancho reservado del retrato
 
 - Objetivo: eliminar el CLS residual del hero bajo throttling reservando ancho en el wrapper exterior del retrato, no solo proporción en el hijo.
-- Archivos modificados: `med-landing-dev/template-parts/sections/hero.php`, archivos de versión/build y documentación Markdown.
+- Archivos modificados: `med-landing-dev/template-parts/sections/hero.php`, `med-landing-dev/assets/css/tailwind-output.css`, archivos de versión/build y documentación Markdown.
 - Cambios: tema actualizado a 1.6.6; el contenedor `relative` del retrato ahora incluye `w-full max-w-md lg:max-w-lg`; el hijo conserva `aspect-[4/5] w-full` sin depender de la imagen para definir el ancho.
 - Decisiones: reservar ancho en el flex item evita que Lighthouse pinte el wrapper como elemento sin tamaño y luego mida una expansión al cargar la imagen.
-- Validación local: `cmd /c npm run build` correcto con TailwindCSS 4.3.0; `node --check` correcto para `navigation.js` y `animations.js`.
-- Pendientes: commit/push, pull en VPS, lint PHP dentro del contenedor, limpiar caché Nginx y repetir Lighthouse móvil/escritorio.
+- Validación local/VPS: `cmd /c npm run build` correcto con TailwindCSS 4.3.0; `node --check` correcto para `navigation.js` y `animations.js`; commit `02aa79f` desplegado en VPS; lint PHP correcto dentro del contenedor; `nginx -t` correcto; Home pública sirve `navigation.js?ver=1.6.6`, CSS inline y sin `style.css?ver=1.6.6`; Lighthouse CLI local válido en producción: escritorio `100/100/100/100` con FCP `0.3 s`, LCP `0.4 s`, TBT `0 ms`, CLS `0`; móvil `100/100/100/100` con FCP `1.0 s`, LCP `1.1 s`, TBT `20 ms`, CLS `0`.
+- Limitaciones: PageSpeed Insights API pública no pudo consultarse por cuota diaria `429`; Lighthouse local presentó fallos intermitentes `CHROME_INTERSTITIAL_ERROR`, por lo que se usaron corridas válidas repetidas y verificaciones directas con Chrome/curl.
+- Pendientes: revisar visualmente el hero con el nuevo orden contenido-foto en dispositivos reales antes de fusionar a `main`; decidir si se mantiene el puerto `8081` público o se restringe.
