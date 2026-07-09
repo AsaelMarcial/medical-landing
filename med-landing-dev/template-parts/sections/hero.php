@@ -45,8 +45,8 @@
 
             <!-- Image -->
             <div class="flex justify-center" data-animate="scale-in">
-                <div class="relative">
-                    <div class="aspect-[4/5] w-full max-w-md overflow-hidden rounded-2xl bg-surface shadow-2xl ring-1 ring-primary/10 lg:max-w-lg">
+                <div class="relative w-full max-w-md lg:max-w-lg">
+                    <div class="aspect-[4/5] w-full overflow-hidden rounded-2xl bg-surface shadow-2xl ring-1 ring-primary/10">
                         <?php get_template_part('template-parts/components/doctor-portrait', null, [
                             'loading' => 'eager',
                             'class'   => 'h-full w-full object-cover',
