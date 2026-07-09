@@ -4,7 +4,7 @@
 >
 > **Estado del documento**: conserva la arquitectura y el alcance originales. No usar sus casillas como indicador del estado actual; la fuente viva es `CONTEXTO-PROYECTO.md`. La identidad visual descrita allí ya fue integrada.
 >
-> **Actualización 2026-07-08**: tema `med-landing-dev` versión 1.5.6 desplegado en VPS con dominio final `https://nefrologoedgar.com.mx`. Incluye información médica base, fotografía profesional, teléfono/WhatsApp definitivo, credenciales, COFEPRIS, Instagram visible en Home/Contacto/footer, páginas SEO de servicios, cuatro páginas legales borrador, tarjetas de enfermedades con iconos SVG, título UTF-8 corregido y fallback SEO de metadatos sociales. DNS NEUBOX, Nginx, HTTPS Let’s Encrypt, redirecciones canónicas, indexación pública, `wp-sitemap.xml` y Site Kit instalado ya están activos; sigue pendiente conectar Google Analytics/Search Console con cuenta Google, revisar textos clínicos, horarios, email/formulario, texto legal definitivo, Lighthouse, schema externo y QA cross-browser.
+> **Actualización 2026-07-08**: tema `med-landing-dev` versión 1.5.7 desplegado en VPS con dominio final `https://nefrologoedgar.com.mx`. Incluye información médica base, fotografía profesional, teléfono/WhatsApp definitivo, credenciales, COFEPRIS, Instagram visible en Home/Contacto/footer, páginas SEO de servicios, cuatro páginas legales borrador, tarjetas de enfermedades con iconos SVG, título UTF-8 corregido y fallback SEO de metadatos sociales. DNS NEUBOX, Nginx, HTTPS Let’s Encrypt, redirecciones canónicas, indexación pública, `wp-sitemap.xml` y Site Kit instalado ya están activos; sigue pendiente conectar Google Analytics/Search Console con cuenta Google, revisar textos clínicos, horarios, email/formulario, texto legal definitivo, Lighthouse, schema externo y QA cross-browser.
 
 ---
 
@@ -457,7 +457,7 @@ med-landing-dev/
 - [x] DNS NEUBOX apunta `@` y `www` a la VPS
 - [x] SSL Let’s Encrypt activo para dominio raíz y `www`
 - [x] Redirecciones canónicas: HTTP y `www` redirigen a `https://nefrologoedgar.com.mx`
-- [x] SEO técnico 1.5.6: título con acentos correcto, `blog_public=1`, meta fallback, robots y `wp-sitemap.xml`
+- [x] SEO técnico 1.5.7: título con acentos correcto, `blog_public=1`, meta fallback, robots y `wp-sitemap.xml`
 - [ ] Site Kit conectado con cuenta Google
 - [ ] 404 page funciona
 - [ ] Lighthouse 90+ en todas las métricas

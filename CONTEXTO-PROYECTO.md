@@ -24,7 +24,7 @@
 - Última integración legal/UI: 2026-07-08; tema 1.5.4 con cuatro páginas legales borrador, footer legal completo y tarjetas de enfermedades con iconos SVG y microetiquetas.
 - Última integración social: 2026-07-08; tema 1.5.5 con Instagram oficial visible en Home y Contacto.
 - Última preparación de dominio en VPS: 2026-07-08; Nginx sirve `https://nefrologoedgar.com.mx` con certificado Let’s Encrypt, `www` y HTTP redirigen al dominio canónico HTTPS y WordPress usa `https://nefrologoedgar.com.mx` como `home`/`siteurl`.
-- Último ajuste SEO/Google: 2026-07-08; tema 1.5.6 con título UTF-8 corregido, fallback SEO de metadatos sociales, indexación pública, sitemap nativo `wp-sitemap.xml` y Site Kit instalado para vincular Analytics/Search Console.
+- Último ajuste SEO/Google: 2026-07-08; tema 1.5.7 con título UTF-8 corregido, fallback SEO de metadatos sociales, indexación pública, sitemap nativo `wp-sitemap.xml` y Site Kit instalado para vincular Analytics/Search Console.
 - Última propuesta comercial: 2026-06-08; honorario base MXN 6,000, total indicado con CFDI MXN 7,000 y plazo de 4 a 6 semanas.
 
 ## 2. Protocolo de Uso
@@ -721,7 +721,7 @@ No se ejecutó render completo en WordPress ni QA responsive real porque el repo
 
 - Se corrigió `blogname` y `blogdescription` en UTF-8 real: `Dr. Edgar E. Hernández - Nefrología` y descripción con acentos correctos.
 - `blog_public` quedó en `1`; WordPress ya no solicita desindexación.
-- Tema 1.5.6 agrega `inc/seo.php` con fallback de título, meta description, Open Graph, Twitter Card, filtro de robots y sitemap en `robots.txt` mientras Rank Math no complete su asistente.
+- Tema 1.5.7 agrega `inc/seo.php` con fallback de título, meta description, Open Graph, Twitter Card, filtro de robots y sitemap en `robots.txt` mientras Rank Math no complete su asistente.
 - Site Kit by Google 1.182.0 quedó instalado y activado; falta vincularlo en wp-admin con cuenta Google para Analytics, Search Console y estadísticas.
 - Rank Math quedó activo con módulos esenciales: `link-counter`, `seo-analysis`, `sitemap`, `rich-snippet`, `404-monitor`, `redirections` y `local-seo`.
 - `https://nefrologoedgar.com.mx` muestra título con `Hernández` y `Nefrología` sin signos `?`.
@@ -949,7 +949,7 @@ Copiar esta estructura al final:
 
 - Objetivo: corregir el título de pestaña con caracteres rotos, abrir indexación y dejar base técnica para SEO, Analytics y Search Console.
 - Archivos modificados: `med-landing-dev/inc/seo.php`, `med-landing-dev/functions.php`, archivos de versión/build/idiomas, `style.css`, `Plan.md`, `INFORMACION-A-SOLICITAR.md` y `CONTEXTO-PROYECTO.md`. En WordPress se actualizaron opciones SEO y se instaló Site Kit.
-- Cambios: tema actualizado a 1.5.6; `blogname` y `blogdescription` corregidos en UTF-8; `blog_public=1`; fallback de título/meta description/Open Graph/Twitter/robots; Site Kit instalado y activo; Sample Page y Privacy Policy históricas quedaron en borrador; Rank Math conserva módulos SEO esenciales.
+- Cambios: tema actualizado a 1.5.7; `blogname` y `blogdescription` corregidos en UTF-8; `blog_public=1`; fallback de título/meta description/Open Graph/Twitter/robots; Site Kit instalado y activo; Sample Page y Privacy Policy históricas quedaron en borrador; Rank Math conserva módulos SEO esenciales; el sitemap nativo excluye autores/usuarios.
 - Decisiones: usar `https://nefrologoedgar.com.mx` como canónico; usar `wp-sitemap.xml` como sitemap público mientras Rank Math no complete su setup visual; dejar Site Kit listo para vinculación manual con cuenta Google, sin insertar un ID falso de Analytics.
 - Validación: build Tailwind correcto, `node --check` correcto, título público con `Hernández` y `Nefrología` sin `?`, `robots.txt` permite rastreo y apunta a `wp-sitemap.xml`, `wp-sitemap.xml` responde `200 OK`, Site Kit 1.182.0 activo, `blog_public=1`.
 - Pendientes: conectar Site Kit desde wp-admin con Google Analytics/Search Console, enviar sitemap en Search Console, configurar conversiones de WhatsApp/formulario/teléfono, revisar Rank Math visualmente, ejecutar Lighthouse/PageSpeed y cerrar o restringir `8081`.

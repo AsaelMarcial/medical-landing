@@ -157,3 +157,12 @@ function developer_filter_robots_txt($output, $public) {
     return implode("\n", $lines) . "\n";
 }
 add_filter('robots_txt', 'developer_filter_robots_txt', 20, 2);
+
+function developer_filter_sitemap_provider($provider, $name) {
+    if ('users' === $name) {
+        return false;
+    }
+
+    return $provider;
+}
+add_filter('wp_sitemaps_add_provider', 'developer_filter_sitemap_provider', 20, 2);
