@@ -48,11 +48,15 @@ function developer_preload_lcp_image() {
     $format = file_exists(developer_get_doctor_photo_path('large', 'webp')) ? 'webp' : 'jpg';
     $large = developer_get_doctor_photo_url('large', $format);
     $medium = developer_get_doctor_photo_url('medium', $format);
+    $small = developer_get_doctor_photo_url('small', $format);
+    $srcset = 'webp' === $format
+        ? sprintf('%1$s 540w, %2$s 720w, %3$s 1080w', esc_url($small), esc_url($medium), esc_url($large))
+        : sprintf('%1$s 720w, %2$s 1080w', esc_url($medium), esc_url($large));
 
     printf(
-        '<link rel="preload" as="image" href="%1$s" imagesrcset="%2$s 720w, %1$s 1080w" imagesizes="(min-width: 1024px) 36rem, (min-width: 768px) 28rem, 90vw" fetchpriority="high">%3$s',
+        '<link rel="preload" as="image" href="%1$s" imagesrcset="%2$s" imagesizes="(min-width: 1024px) 32rem, (min-width: 768px) 28rem, 90vw" fetchpriority="high">%3$s',
         esc_url($large),
-        esc_url($medium),
+        $srcset,
         "\n"
     );
 }

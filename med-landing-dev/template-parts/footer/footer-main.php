@@ -13,8 +13,8 @@ $legal_pages = developer_get_legal_pages_catalog();
                         src="<?php echo esc_url(developer_get_brand_logo_url('footer')); ?>"
                         alt="<?php echo esc_attr(developer_get_doctor_name() . ' — ' . developer_get_doctor_specialty()); ?>"
                         class="h-auto w-full max-w-[14rem] object-contain"
-                        width="720"
-                        height="249"
+                        width="420"
+                        height="145"
                         loading="lazy"
                     >
                 </a>
@@ -114,7 +114,7 @@ $legal_pages = developer_get_legal_pages_catalog();
 
         <!-- Copyright -->
         <div class="mt-8 pt-4 border-t border-slate-700 text-center">
-            <p class="text-slate-400 text-xs leading-relaxed">
+            <p class="text-slate-300 text-sm leading-relaxed">
                 &copy; <?php echo esc_html(wp_date('Y')); ?> <?php echo esc_html(developer_get_doctor_name()); ?>. <?php esc_html_e('Todos los derechos reservados.', 'med-landing-dev'); ?>
                 <span class="mx-1">·</span>
                 <?php echo esc_html(sprintf('COFEPRIS: %s', $credentials['cofepris'])); ?>

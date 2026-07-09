@@ -22,8 +22,8 @@
                     src="<?php echo esc_url(developer_get_brand_logo_url('mobile')); ?>"
                     alt=""
                     class="h-14 w-14 object-contain"
-                    width="512"
-                    height="512"
+                    width="128"
+                    height="128"
                 >
                 <span>
                     <span id="mobile-menu-title" class="block text-sm font-semibold text-primary"><?php echo esc_html(developer_get_doctor_name()); ?></span>

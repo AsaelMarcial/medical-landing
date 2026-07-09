@@ -42,7 +42,7 @@ $locations = developer_get_locations();
 
                         <div class="flex flex-col sm:flex-row gap-3">
                             <a href="<?php echo esc_url($location['page_url']); ?>" class="inline-flex min-h-12 items-center justify-center rounded-lg border border-secondary px-4 py-2 text-sm font-semibold text-secondary transition-colors hover:bg-secondary hover:text-white">
-                                <?php esc_html_e('Más información', 'med-landing-dev'); ?>
+                                <?php echo esc_html(sprintf(__('Ver detalles de %s', 'med-landing-dev'), $location['city'])); ?>
                             </a>
 
                             <a href="<?php echo esc_url($location['maps_url']); ?>" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-gold/35 px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-gold/60" target="_blank" rel="noopener">

@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeIcon = document.querySelector('[data-menu-close-icon]');
     const floatingCta = document.querySelector('[data-floating-cta]');
     let previousFocus = null;
+    let ticking = false;
 
     const focusableSelector = [
         'a[href]',
@@ -92,11 +93,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    setHeaderState();
-    setFloatingCtaState();
-    window.addEventListener('scroll', () => {
+    const updateScrollState = () => {
         setHeaderState();
         setFloatingCtaState();
+        ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(updateScrollState);
     }, { passive: true });
 
     if (toggle) {

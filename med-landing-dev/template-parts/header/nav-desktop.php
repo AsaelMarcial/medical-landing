@@ -7,8 +7,8 @@
                     src="<?php echo esc_url(developer_get_brand_logo_url('header')); ?>"
                     alt="<?php echo esc_attr(developer_get_doctor_name() . ' — ' . developer_get_doctor_specialty()); ?>"
                     class="h-12 w-auto max-w-[6.5rem] object-contain sm:max-w-[11rem] 2xl:max-w-[12rem]"
-                    width="720"
-                    height="249"
+                    width="360"
+                    height="125"
                 >
             </a>
 

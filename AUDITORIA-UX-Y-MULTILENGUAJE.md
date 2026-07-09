@@ -5,7 +5,7 @@ Fecha: 2026-06-08
 
 ## Resultado
 
-El tema `med-landing-dev` cuenta con una base responsive y accesible funcional en móvil, tablet y escritorio. La revisión completa en LocalWP se realizó el 2026-06-08 sobre `http://medical-landing.local` con el tema versión 1.4.0. El 2026-07-08 producción quedó en versión 1.5.7 con dominio HTTPS, SEO fallback y Site Kit instalado. El 2026-07-09 se abrió la rama `codex/pagespeed-100` con tema 1.6.0 para mejorar PageSpeed sin tocar estable: navegación nativa, fuentes del sistema, retrato WebP, preload LCP y eliminación de CDN frontend.
+El tema `med-landing-dev` cuenta con una base responsive y accesible funcional en móvil, tablet y escritorio. La revisión completa en LocalWP se realizó el 2026-06-08 sobre `http://medical-landing.local` con el tema versión 1.4.0. El 2026-07-08 producción quedó en versión 1.5.7 con dominio HTTPS, SEO fallback y Site Kit instalado. El 2026-07-09 se abrió la rama `codex/pagespeed-100` con tema 1.6.1 para mejorar PageSpeed sin tocar estable: navegación nativa, fuentes del sistema, retrato/logos WebP, preload LCP, eliminación de CDN frontend y caché estática.
 
 ## Mejoras Implementadas
 
@@ -46,7 +46,7 @@ El tema `med-landing-dev` cuenta con una base responsive y accesible funcional e
 - Captura móvil real con Puppeteer a 390 px: `innerWidth=390`, `scrollWidth=390`, menú y botón de idioma presentes, sin desbordamiento horizontal.
 - Tema 1.5.4 desplegado en staging VPS: `style.css?ver=1.5.4`, catálogo inglés regenerado con 140 cadenas, `build-css.js` sin errores de sintaxis, lint PHP correcto dentro del contenedor, verificación sin BOM, cinco páginas legales en `200` y responsive 320/390/768/1024/1280 sin overflow.
 - Tema 1.5.5 desplegado en staging VPS: catálogo inglés regenerado con 143 cadenas, `style.css?ver=1.5.5`, `build-css.js` sin errores de sintaxis, lint PHP correcto dentro del contenedor, verificación sin BOM y Home/Contacto responsive 390/1280 sin overflow.
-- Rama 1.6.0 local: `cmd /c npm run build` correcto, `node --check` correcto para `navigation.js` y `animations.js`, sin referencias activas a Alpine/GSAP/Google Fonts/CDN en PHP/JS, retrato WebP generado y assets frontend de WordPress limpiados. No se ejecutó lint PHP local porque no hay `php.exe` y Docker Desktop no está iniciado.
+- Rama 1.6.1 local: `cmd /c npm run build` correcto, `node --check` correcto para `navigation.js` y `animations.js`, sin referencias activas a Alpine/GSAP/Google Fonts/CDN en PHP/JS, retrato/logos WebP generados y assets frontend de WordPress limpiados. El lint PHP se ejecuta dentro del contenedor del VPS al desplegar.
 
 ## Multilenguaje
 

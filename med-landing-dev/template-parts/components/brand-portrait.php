@@ -15,8 +15,8 @@ $container_classes = !empty($args['fill']) ? 'h-full w-full' : 'aspect-[3/4]';
             src="<?php echo esc_url(developer_get_brand_logo_url('composition')); ?>"
             alt="<?php echo esc_attr(developer_get_doctor_name() . ' — ' . developer_get_doctor_specialty()); ?>"
             class="w-full max-w-sm object-contain"
-            width="1000"
-            height="570"
+            width="640"
+            height="365"
             loading="<?php echo esc_attr($image_loading); ?>"
         >
         <span class="mt-6 inline-flex rounded-full bg-primary px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white">

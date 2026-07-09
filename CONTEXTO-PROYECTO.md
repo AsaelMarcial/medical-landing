@@ -25,7 +25,7 @@
 - Última integración social: 2026-07-08; tema 1.5.5 con Instagram oficial visible en Home y Contacto.
 - Última preparación de dominio en VPS: 2026-07-08; Nginx sirve `https://nefrologoedgar.com.mx` con certificado Let’s Encrypt, `www` y HTTP redirigen al dominio canónico HTTPS y WordPress usa `https://nefrologoedgar.com.mx` como `home`/`siteurl`.
 - Último ajuste SEO/Google: 2026-07-08; tema 1.5.7 con título UTF-8 corregido, fallback SEO de metadatos sociales, indexación pública, sitemap nativo `wp-sitemap.xml` y Site Kit instalado para vincular Analytics/Search Console.
-- Optimización PageSpeed en rama aislada: 2026-07-09; rama `codex/pagespeed-100` prepara tema 1.6.0 con fuentes del sistema, eliminación de CDN frontend, menú móvil en JavaScript nativo, preload/fetchpriority de imagen LCP, WebP para retrato y limpieza de assets globales de WordPress. Pendiente desplegar en staging/VPS para medir PageSpeed real antes de fusionar.
+- Optimización PageSpeed en rama aislada: 2026-07-09; rama `codex/pagespeed-100` prepara tema 1.6.1 con fuentes del sistema, eliminación de CDN frontend, menú móvil en JavaScript nativo, preload/fetchpriority de imagen LCP, WebP para retrato/logos, limpieza de assets globales de WordPress y caché estática Nginx en VPS. Pendiente lograr/verificar 100 en PageSpeed antes de fusionar.
 - Última propuesta comercial: 2026-06-08; honorario base MXN 6,000, total indicado con CFDI MXN 7,000 y plazo de 4 a 6 semanas.
 
 ## 2. Protocolo de Uso
@@ -271,7 +271,7 @@ Estos valores describen exclusivamente aquel entorno auditado. No deben utilizar
 ### Carga frontend actual
 
 - Rama estable 1.5.7: todavía usa Google Fonts, Alpine.js y GSAP/ScrollTrigger desde CDN.
-- Rama de optimización 1.6.0 (`codex/pagespeed-100`): elimina Google Fonts y CDN frontend; usa fuentes del sistema, `assets/js/navigation.js` nativo y no encola animaciones por defecto.
+- Rama de optimización 1.6.1 (`codex/pagespeed-100`): elimina Google Fonts y CDN frontend; usa fuentes del sistema, `assets/js/navigation.js` nativo, no encola animaciones por defecto y sirve logos/retrato en WebP optimizado.
 - Scripts propios:
   - `assets/js/navigation.js`: menú móvil, focus trap, Escape, header scroll y CTA flotante sin dependencias.
   - `assets/js/animations.js`: animación opcional ligera con IntersectionObserver, no encolada en la rama 1.6.0 para priorizar PageSpeed.
@@ -962,12 +962,12 @@ Copiar esta estructura al final:
 - Validación: `wp user check-password asael_admin` exitoso; usuario con rol `administrator`; `/opt/med-landing-dev/DEPLOYMENT.md` conserva permisos `600`.
 - Pendientes: cambiar el email `admin@medical-landing.local` por un correo real y reemplazar la contraseña temporal por una definitiva desde WordPress.
 
-### 2026-07-09 - Rama PageSpeed 1.6.0 sin CDN frontend
+### 2026-07-09 - Rama PageSpeed 1.6.1 sin CDN frontend
 
 - Objetivo: preparar una versión aislada para mejorar PageSpeed/Lighthouse sin alterar la versión estable publicada.
 - Archivos modificados: `med-landing-dev/functions.php`, `med-landing-dev/inc/enqueue.php`, `med-landing-dev/inc/helpers.php`, `med-landing-dev/header.php`, navegación móvil, componentes de retrato/CTA, JS, CSS fuente/build, `package.json`, `package-lock.json`, `style.css`, derivados WebP del retrato y documentación Markdown.
-- Cambios: rama `codex/pagespeed-100`; tema 1.6.0; eliminación de Google Fonts, Alpine.js, GSAP y ScrollTrigger del frontend; menú móvil y CTA flotante migrados a JavaScript nativo; limpieza de emoji, estilos globales y block library en frontend; preload/fetchpriority de la imagen LCP; retrato profesional con `picture` y WebP (`1080` ~123 KB, `720` ~67 KB); `animations.js` convertido en utilidad opcional sin dependencias y no encolada.
+- Cambios: rama `codex/pagespeed-100`; tema 1.6.1; eliminación de Google Fonts, Alpine.js, GSAP y ScrollTrigger del frontend; menú móvil y CTA flotante migrados a JavaScript nativo; limpieza de emoji, estilos globales y block library en frontend; preload/fetchpriority de la imagen LCP; retrato profesional con `picture` y WebP (`1080` ~123 KB, `720` ~67 KB, `540` ~43 KB); logos de marca WebP responsivos; enlaces de ubicación más descriptivos; contraste de copyright corregido; `animations.js` convertido en utilidad opcional sin dependencias y no encolada.
 - Decisiones: usar fuentes del sistema para eliminar recursos de terceros y reducir CLS/render blocking; no desplegar ni fusionar la rama hasta medir PageSpeed real; mantener la versión estable 1.5.7 como respaldo.
-- Validación: `cmd /c npm run build` correcto con TailwindCSS 4.3.0; `node --check` correcto para `navigation.js` y `animations.js`; búsqueda sin referencias activas a Alpine/GSAP/Google Fonts/CDN/1.5.7 en PHP/JS; PageSpeed API no pudo consultarse por cuota 429, se trabajó con las capturas del usuario y auditoría directa de recursos.
+- Validación: `cmd /c npm run build` correcto con TailwindCSS 4.3.0; `node --check` correcto para `navigation.js` y `animations.js`; búsqueda sin referencias activas a Alpine/GSAP/Google Fonts/CDN/1.6.0 en PHP/JS; PageSpeed API no pudo consultarse por cuota 429, se trabajó con las capturas del usuario, Lighthouse local y auditoría directa de recursos.
 - Limitaciones: `php.exe` no está instalado localmente y Docker Desktop no está iniciado, por lo que el lint PHP local no pudo ejecutarse; debe correrse dentro del contenedor WordPress del VPS al desplegar la rama.
 - Pendientes: desplegar la rama en staging o en una ventana controlada, validar menú móvil por teclado, revisar apariencia sin fuentes remotas, ejecutar PageSpeed móvil/escritorio, añadir cache headers largos en Nginx para assets estáticos si PageSpeed sigue marcando TTL, y solo después fusionar a `main`.
