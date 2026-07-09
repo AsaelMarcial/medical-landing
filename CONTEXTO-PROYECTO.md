@@ -5,6 +5,8 @@
 
 ## 1. Estado Ejecutivo
 
+- Nota PageSpeed actual 2026-07-09: la rama aislada `codex/pagespeed-100` avanza a tema 1.6.2. Esta versión conserva la estable como respaldo, reduce logos/retrato WebP, cambia Google Maps a carga bajo demanda y mantiene cero CDN frontend del tema. Pendiente desplegar/medir producción y no fusionar hasta comprobar los marcadores objetivo.
+
 - Proyecto: sitio premium para un médico nefrólogo.
 - Mercado: Xalapa y Boca del Río, Veracruz, México.
 - Objetivo principal: generar confianza, posicionar búsquedas locales y convertir visitas en citas por formulario, WhatsApp y teléfono.
@@ -971,3 +973,12 @@ Copiar esta estructura al final:
 - Validación: `cmd /c npm run build` correcto con TailwindCSS 4.3.0; `node --check` correcto para `navigation.js` y `animations.js`; búsqueda sin referencias activas a Alpine/GSAP/Google Fonts/CDN/1.6.0 en PHP/JS; PageSpeed API no pudo consultarse por cuota 429, se trabajó con las capturas del usuario, Lighthouse local y auditoría directa de recursos.
 - Limitaciones: `php.exe` no está instalado localmente y Docker Desktop no está iniciado, por lo que el lint PHP local no pudo ejecutarse; debe correrse dentro del contenedor WordPress del VPS al desplegar la rama.
 - Pendientes: desplegar la rama en staging o en una ventana controlada, validar menú móvil por teclado, revisar apariencia sin fuentes remotas, ejecutar PageSpeed móvil/escritorio, añadir cache headers largos en Nginx para assets estáticos si PageSpeed sigue marcando TTL, y solo después fusionar a `main`.
+
+### 2026-07-09 - Rama PageSpeed 1.6.2 con Maps bajo demanda
+
+- Objetivo: continuar la optimización PageSpeed hacia marcadores 100 sin alterar la versión estable.
+- Archivos modificados: `med-landing-dev/functions.php`, `med-landing-dev/inc/enqueue.php`, `med-landing-dev/inc/helpers.php`, `med-landing-dev/assets/js/navigation.js`, templates de retrato/logo/mapas, archivos de versión/build, nuevos WebP y documentación Markdown.
+- Cambios: tema actualizado a 1.6.2; logo horizontal del header reducido a `logo-horizontal-premium-220.webp`; composición de marca reducida a `logo-principal-premium-420.webp`; retrato profesional agrega variante `650w`; preload/srcset del LCP incluye `540/650/720/1080`; Google Maps ya no usa `src` inicial en Home ni en componentes de sede y se carga al hacer clic en el botón del mapa.
+- Decisiones: mantener enlaces directos a Google Maps visibles como fallback; no cargar iframes externos durante el render inicial; conservar `8081` y la configuración Nginx de caché estática hasta terminar las mediciones.
+- Validación local: `cmd /c npm run build` correcto con TailwindCSS 4.3.0; `node --check` correcto para `navigation.js` y `animations.js`; búsqueda sin referencias frontend activas a Google Fonts, CDN, Alpine o GSAP; búsqueda sin `src` inicial de `map_embed_url` en templates; `php.exe` no existe localmente, el lint PHP se ejecutará dentro del contenedor WordPress del VPS al desplegar.
+- Pendientes: commit/push, pull en VPS, lint PHP en contenedor, verificar HTTP público con `style.css?ver=1.6.2`, ejecutar Lighthouse/PageSpeed móvil/escritorio y continuar optimizando si algún marcador queda debajo de 100.

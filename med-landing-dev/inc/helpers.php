@@ -147,7 +147,8 @@ function developer_get_doctor_photo_url($size = 'large', $format = 'jpg') {
         ],
         'webp' => [
             'small'  => 'dredgar-profesional-540.webp',
-            'medium' => 'dredgar-profesional-720.webp',
+            'medium' => 'dredgar-profesional-650.webp',
+            'large_mobile' => 'dredgar-profesional-720.webp',
             'large'  => 'dredgar-profesional-1080.webp',
         ],
     ];
@@ -166,7 +167,8 @@ function developer_get_doctor_photo_path($size = 'large', $format = 'jpg') {
         ],
         'webp' => [
             'small'  => 'dredgar-profesional-540.webp',
-            'medium' => 'dredgar-profesional-720.webp',
+            'medium' => 'dredgar-profesional-650.webp',
+            'large_mobile' => 'dredgar-profesional-720.webp',
             'large'  => 'dredgar-profesional-1080.webp',
         ],
     ];
@@ -848,10 +850,10 @@ function developer_get_brand_logo_url($context = 'header') {
     }
 
     $logos = [
-        'header'      => 'logo-horizontal-premium-360.webp',
+        'header'      => 'logo-horizontal-premium-220.webp',
         'mobile'      => 'logo-isotipo-premium-128.webp',
         'footer'      => 'logo-horizontal-negativo-420.webp',
-        'composition' => 'logo-principal-premium-640.webp',
+        'composition' => 'logo-principal-premium-420.webp',
         'favicon'     => 'logo-isotipo-premium.png',
     ];
 
