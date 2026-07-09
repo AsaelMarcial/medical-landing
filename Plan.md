@@ -4,7 +4,7 @@
 >
 > **Estado del documento**: conserva la arquitectura y el alcance originales. No usar sus casillas como indicador del estado actual; la fuente viva es `CONTEXTO-PROYECTO.md`. La identidad visual descrita allí ya fue integrada.
 >
-> **Actualización PageSpeed 2026-07-09**: la rama aislada `codex/pagespeed-100` sube a tema 1.6.2. Agrega mapas Google bajo demanda, logos/retrato WebP más pequeños, variante de retrato `650w`, caché pública anónima de página en Nginx y conserva la versión estable como respaldo. Sigue pendiente verificar marcadores 100 antes de fusionar.
+> **Actualización PageSpeed 2026-07-09**: la rama aislada `codex/pagespeed-100` sube a tema 1.6.3. Agrega mapas Google bajo demanda, logos/retrato WebP más pequeños, variante de retrato `650w`, caché pública anónima de página en Nginx y CSS inline solo en Home para retirar el CSS bloqueante de la portada. Conserva la versión estable como respaldo y sigue pendiente verificar marcadores 100 antes de fusionar.
 >
 > **Actualización 2026-07-09**: producción estable partió de tema `med-landing-dev` 1.5.7 con dominio final `https://nefrologoedgar.com.mx`, HTTPS, sitemap nativo, Site Kit instalado y SEO fallback activo. La rama aislada `codex/pagespeed-100` prepara la versión 1.6.1 para PageSpeed: elimina Google Fonts, Alpine.js, GSAP y ScrollTrigger del frontend, usa navegación nativa, preload/fetchpriority de la imagen LCP, retrato/logos WebP, limpieza de assets globales de WordPress y caché estática en Nginx. Pendiente lograr/verificar 100 antes de fusionar.
 
@@ -460,7 +460,7 @@ med-landing-dev/
 - [x] SEO técnico 1.5.7: título con acentos correcto, `blog_public=1`, meta fallback, robots y `wp-sitemap.xml`
 - [ ] Site Kit conectado con cuenta Google
 - [ ] 404 page funciona
-- [ ] Lighthouse 90+ en todas las métricas
+- [ ] Lighthouse 100 objetivo en la rama `codex/pagespeed-100`; mínimo estable 90+ en todas las métricas
 - [ ] Cross-browser: Safari, Firefox, Chrome, Edge
 
 ---
@@ -488,4 +488,4 @@ med-landing-dev/
 - El número temporal histórico `522281565985` quedó obsoleto; el tema 1.5.0 lo migra si lo encuentra en una base LocalWP antigua.
 - El WhatsApp definitivo vigente del médico es `522294466698`, derivado de `229 446 6698`.
 
-*Última actualización: 2026-07-08*
+*Última actualización: 2026-07-09*

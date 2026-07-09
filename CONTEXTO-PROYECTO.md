@@ -5,7 +5,7 @@
 
 ## 1. Estado Ejecutivo
 
-- Nota PageSpeed actual 2026-07-09: la rama aislada `codex/pagespeed-100` avanza a tema 1.6.2. Esta versión conserva la estable como respaldo, reduce logos/retrato WebP, cambia Google Maps a carga bajo demanda y mantiene cero CDN frontend del tema. Pendiente desplegar/medir producción y no fusionar hasta comprobar los marcadores objetivo.
+- Nota PageSpeed actual 2026-07-09: la rama aislada `codex/pagespeed-100` avanza a tema 1.6.3. Esta versión conserva la estable como respaldo, reduce logos/retrato WebP, cambia Google Maps a carga bajo demanda, mantiene cero CDN frontend del tema e imprime el CSS de Home inline para eliminar el bloqueo de render de la portada. Pendiente desplegar/medir producción y no fusionar hasta comprobar los marcadores objetivo.
 
 - Proyecto: sitio premium para un médico nefrólogo.
 - Mercado: Xalapa y Boca del Río, Veracruz, México.
@@ -27,7 +27,7 @@
 - Última integración social: 2026-07-08; tema 1.5.5 con Instagram oficial visible en Home y Contacto.
 - Última preparación de dominio en VPS: 2026-07-08; Nginx sirve `https://nefrologoedgar.com.mx` con certificado Let’s Encrypt, `www` y HTTP redirigen al dominio canónico HTTPS y WordPress usa `https://nefrologoedgar.com.mx` como `home`/`siteurl`.
 - Último ajuste SEO/Google: 2026-07-08; tema 1.5.7 con título UTF-8 corregido, fallback SEO de metadatos sociales, indexación pública, sitemap nativo `wp-sitemap.xml` y Site Kit instalado para vincular Analytics/Search Console.
-- Optimización PageSpeed en rama aislada: 2026-07-09; rama `codex/pagespeed-100` prepara tema 1.6.1 con fuentes del sistema, eliminación de CDN frontend, menú móvil en JavaScript nativo, preload/fetchpriority de imagen LCP, WebP para retrato/logos, limpieza de assets globales de WordPress y caché estática Nginx en VPS. Pendiente lograr/verificar 100 en PageSpeed antes de fusionar.
+- Optimización PageSpeed en rama aislada: 2026-07-09; rama `codex/pagespeed-100` prepara tema 1.6.3 con fuentes del sistema, eliminación de CDN frontend, menú móvil en JavaScript nativo, preload/fetchpriority de imagen LCP, WebP para retrato/logos, mapas bajo demanda, CSS inline solo en Home y caché Nginx en VPS. Pendiente lograr/verificar 100 en PageSpeed antes de fusionar.
 - Última propuesta comercial: 2026-06-08; honorario base MXN 6,000, total indicado con CFDI MXN 7,000 y plazo de 4 a 6 semanas.
 
 ## 2. Protocolo de Uso
@@ -982,3 +982,12 @@ Copiar esta estructura al final:
 - Decisiones: mantener enlaces directos a Google Maps visibles como fallback; no cargar iframes externos durante el render inicial; agregar caché pública anónima de página en Nginx solo para `nefrologoedgar.com.mx`, con bypass para `wp-admin`, `wp-login.php`, `wp-json`, búsquedas y usuarios logueados.
 - Validación local/VPS: `cmd /c npm run build` correcto con TailwindCSS 4.3.0; `node --check` correcto para `navigation.js` y `animations.js`; búsqueda sin referencias frontend activas a Google Fonts, CDN, Alpine o GSAP; búsqueda sin `src` inicial de `map_embed_url` en templates; lint PHP correcto dentro del contenedor WordPress; Nginx `nginx -t` correcto; home pública muestra `X-Med-Landing-Cache: MISS` y luego `HIT`; `/wp-admin/` y `/wp-json/` muestran `BYPASS`; Lighthouse local móvil válido alcanzó 99/100/100/100 antes de recomprimir WebP del retrato LCP.
 - Pendientes: commit/push de assets recomprimidos, pull en VPS, ejecutar Lighthouse/PageSpeed móvil/escritorio y continuar optimizando si algún marcador queda debajo de 100.
+
+### 2026-07-09 - Rama PageSpeed 1.6.3 con CSS inline en Home
+
+- Objetivo: eliminar el último recurso CSS bloqueante detectado por Lighthouse en la portada pública sin afectar el resto de páginas ni la versión estable.
+- Archivos modificados: `med-landing-dev/inc/enqueue.php`, `med-landing-dev/functions.php`, `med-landing-dev/package.json`, `med-landing-dev/package-lock.json`, `med-landing-dev/build-css.js`, `med-landing-dev/style.css` y documentación Markdown.
+- Cambios: tema actualizado a 1.6.3; `style.css` deja de encolarse como archivo externo únicamente en `is_front_page()`; la portada imprime el CSS generado del tema en `wp_head` mediante `<style id="developer-inline-style">`; el resto del sitio conserva `style.css` externo versionado.
+- Decisiones: este ajuste es deliberadamente limitado a Home porque es la página medida y el recurso bloqueante era pequeño; se mantiene reversible dentro de la rama `codex/pagespeed-100`.
+- Validación local: `cmd /c npm run build` correcto con TailwindCSS 4.3.0; `node --check` correcto para `navigation.js` y `animations.js`.
+- Pendientes: commit/push, pull en VPS, lint PHP dentro del contenedor, verificar que Home no emita `style.css?ver=1.6.3`, limpiar caché Nginx y ejecutar Lighthouse/PageSpeed móvil/escritorio.

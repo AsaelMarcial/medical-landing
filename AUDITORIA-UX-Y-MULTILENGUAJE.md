@@ -5,7 +5,7 @@ Fecha: 2026-06-08
 
 ## Resultado
 
-Nota PageSpeed 2026-07-09: en la rama `codex/pagespeed-100`, el tema avanza a 1.6.2 con mapas Google bajo demanda, logos/retrato WebP más pequeños, preload/srcset refinado para LCP y caché pública anónima de página en Nginx. La medición final en producción sigue pendiente antes de fusionar.
+Nota PageSpeed 2026-07-09: en la rama `codex/pagespeed-100`, el tema avanza a 1.6.3 con mapas Google bajo demanda, logos/retrato WebP más pequeños, preload/srcset refinado para LCP, caché pública anónima de página en Nginx y CSS inline solo en Home para retirar el CSS bloqueante de la portada. La medición final en producción sigue pendiente antes de fusionar.
 
 El tema `med-landing-dev` cuenta con una base responsive y accesible funcional en móvil, tablet y escritorio. La revisión completa en LocalWP se realizó el 2026-06-08 sobre `http://medical-landing.local` con el tema versión 1.4.0. El 2026-07-08 producción quedó en versión 1.5.7 con dominio HTTPS, SEO fallback y Site Kit instalado. El 2026-07-09 se abrió la rama `codex/pagespeed-100` con tema 1.6.1 para mejorar PageSpeed sin tocar estable: navegación nativa, fuentes del sistema, retrato/logos WebP, preload LCP, eliminación de CDN frontend y caché estática.
 
@@ -50,6 +50,7 @@ El tema `med-landing-dev` cuenta con una base responsive y accesible funcional e
 - Tema 1.5.5 desplegado en staging VPS: catálogo inglés regenerado con 143 cadenas, `style.css?ver=1.5.5`, `build-css.js` sin errores de sintaxis, lint PHP correcto dentro del contenedor, verificación sin BOM y Home/Contacto responsive 390/1280 sin overflow.
 - Rama 1.6.1 local: `cmd /c npm run build` correcto, `node --check` correcto para `navigation.js` y `animations.js`, sin referencias activas a Alpine/GSAP/Google Fonts/CDN en PHP/JS, retrato/logos WebP generados y assets frontend de WordPress limpiados. El lint PHP se ejecuta dentro del contenedor del VPS al desplegar.
 - Rama 1.6.2 local/VPS: `cmd /c npm run build` correcto, `node --check` correcto para `navigation.js` y `animations.js`, mapas Google sin `src` inicial en templates, logo/retrato WebP reducidos, sin referencias frontend activas a Google Fonts/CDN/Alpine/GSAP, lint PHP correcto dentro del contenedor y Nginx con caché `MISS`/`HIT` para home pública y `BYPASS` en admin/API. Lighthouse local móvil válido alcanzó 99/100/100/100 antes de recomprimir WebP del retrato LCP.
+- Rama 1.6.3 local: `cmd /c npm run build` correcto y `node --check` correcto para `navigation.js` y `animations.js`; la portada imprime `<style id="developer-inline-style">` y deja `style.css` externo para páginas internas.
 
 ## Multilenguaje
 
@@ -78,7 +79,7 @@ Las traducciones inglesas actuales son provisionales y requieren revisión profe
 - La página Servicios usa navegación compacta tipo pills y grids completos; el catálogo se renderiza desde helpers del tema y enlaza a posts individuales solo cuando existen.
 - Las consultas del CPT aceptan posts con idioma actual o posts antiguos sin meta de idioma, evitando mezclar contenido inglés en la vista española y reduciendo fallos al copiar solo la carpeta del tema a LocalWP.
 - El header de escritorio se muestra desde `xl`; el diseño oculta el teléfono hasta `2xl` y compacta el selector de idioma en móvil para evitar saturación.
-- LocalWP fue sincronizado históricamente con la carpeta del tema 1.5.2; producción pública sirve 1.5.7 y la rama 1.6.0 aún no está desplegada.
+- LocalWP fue sincronizado históricamente con la carpeta del tema 1.5.2; producción pública estable partió de 1.5.7 y la rama `codex/pagespeed-100` se prueba de forma controlada antes de fusionar.
 - El schema agrega credenciales, foto, teléfono, sedes y `knowsAbout` solo con datos configurados.
 - Las páginas legales 1.5.4 son borradores funcionales y no sustituyen revisión legal final.
 
@@ -88,7 +89,7 @@ Las traducciones inglesas actuales son provisionales y requieren revisión profe
 - Reproducir la configuración de Polylang en el WordPress destino; el plugin y los contenidos de LocalWP no forman parte del ZIP del tema.
 - Configurar permalinks, sitemap, canonical, Open Graph y responsabilidades de schema.
 - Crear `screenshot.png` del tema.
-- Desplegar la rama 1.6.0 en staging o ventana controlada, ejecutar PageSpeed/Lighthouse móvil y escritorio, validar schema y probar Chrome, Edge, Firefox y Safari.
+- Medir la rama `codex/pagespeed-100` en producción controlada, ejecutar PageSpeed/Lighthouse móvil y escritorio, validar schema y probar Chrome, Edge, Firefox y Safari.
 - Preparar blog, FAQ y testimonios como estructura de Fase 2, sin publicar contenido médico no validado.
 
 ## Trabajo Que Requiere Información
