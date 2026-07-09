@@ -5,7 +5,7 @@ Fecha: 2026-06-08
 
 ## Resultado
 
-Nota PageSpeed 2026-07-09: en la rama `codex/pagespeed-100`, el tema avanza a 1.6.2 con mapas Google bajo demanda, logos/retrato WebP más pequeños y preload/srcset refinado para LCP. La medición final en producción sigue pendiente antes de fusionar.
+Nota PageSpeed 2026-07-09: en la rama `codex/pagespeed-100`, el tema avanza a 1.6.2 con mapas Google bajo demanda, logos/retrato WebP más pequeños, preload/srcset refinado para LCP y caché pública anónima de página en Nginx. La medición final en producción sigue pendiente antes de fusionar.
 
 El tema `med-landing-dev` cuenta con una base responsive y accesible funcional en móvil, tablet y escritorio. La revisión completa en LocalWP se realizó el 2026-06-08 sobre `http://medical-landing.local` con el tema versión 1.4.0. El 2026-07-08 producción quedó en versión 1.5.7 con dominio HTTPS, SEO fallback y Site Kit instalado. El 2026-07-09 se abrió la rama `codex/pagespeed-100` con tema 1.6.1 para mejorar PageSpeed sin tocar estable: navegación nativa, fuentes del sistema, retrato/logos WebP, preload LCP, eliminación de CDN frontend y caché estática.
 
@@ -49,7 +49,7 @@ El tema `med-landing-dev` cuenta con una base responsive y accesible funcional e
 - Tema 1.5.4 desplegado en staging VPS: `style.css?ver=1.5.4`, catálogo inglés regenerado con 140 cadenas, `build-css.js` sin errores de sintaxis, lint PHP correcto dentro del contenedor, verificación sin BOM, cinco páginas legales en `200` y responsive 320/390/768/1024/1280 sin overflow.
 - Tema 1.5.5 desplegado en staging VPS: catálogo inglés regenerado con 143 cadenas, `style.css?ver=1.5.5`, `build-css.js` sin errores de sintaxis, lint PHP correcto dentro del contenedor, verificación sin BOM y Home/Contacto responsive 390/1280 sin overflow.
 - Rama 1.6.1 local: `cmd /c npm run build` correcto, `node --check` correcto para `navigation.js` y `animations.js`, sin referencias activas a Alpine/GSAP/Google Fonts/CDN en PHP/JS, retrato/logos WebP generados y assets frontend de WordPress limpiados. El lint PHP se ejecuta dentro del contenedor del VPS al desplegar.
-- Rama 1.6.2 local: `cmd /c npm run build` correcto, `node --check` correcto para `navigation.js` y `animations.js`, mapas Google sin `src` inicial en templates, logo/retrato WebP reducidos y sin referencias frontend activas a Google Fonts/CDN/Alpine/GSAP. Pendiente lint PHP dentro del contenedor del VPS y medición Lighthouse/PageSpeed pública.
+- Rama 1.6.2 local/VPS: `cmd /c npm run build` correcto, `node --check` correcto para `navigation.js` y `animations.js`, mapas Google sin `src` inicial en templates, logo/retrato WebP reducidos, sin referencias frontend activas a Google Fonts/CDN/Alpine/GSAP, lint PHP correcto dentro del contenedor y Nginx con caché `MISS`/`HIT` para home pública y `BYPASS` en admin/API. Lighthouse local móvil válido alcanzó 99/100/100/100 antes del ajuste final de compresión/caché.
 
 ## Multilenguaje
 
