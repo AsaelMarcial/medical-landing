@@ -45,7 +45,6 @@ function developer_get_legal_pages_catalog() {
     $credentials = developer_get_professional_credentials();
     $doctor = developer_get_doctor_name();
 
-    $review_notice = '<p><strong>Nota de revisión:</strong> Este texto es una base informativa pendiente de revisión legal final. No sustituye el aviso definitivo que deberá validar el responsable del sitio.</p>';
     $contact_note = '<p>Para dudas relacionadas con estas políticas, uso del sitio o tratamiento de datos personales, el canal temporal de contacto es el teléfono y WhatsApp <strong>' . esc_html($phone) . '</strong>. El correo oficial de privacidad se agregará cuando sea confirmado.</p>';
 
     return [
@@ -53,8 +52,7 @@ function developer_get_legal_pages_catalog() {
             'title'   => 'Aviso de privacidad',
             'slug'    => 'aviso-de-privacidad',
             'summary' => 'Tratamiento de datos personales para solicitudes de información, citas y atención administrativa.',
-            'content' => $review_notice
-                . '<h2>Responsable</h2>'
+            'content' => '<h2>Responsable</h2>'
                 . '<p>El responsable del tratamiento de los datos personales recabados a través de este sitio es <strong>' . esc_html($doctor) . '</strong>, especialista en Nefrología, con atención en Xalapa y Boca del Río, Veracruz.</p>'
                 . '<h2>Datos que pueden recabarse</h2>'
                 . '<p>Este sitio puede recibir datos de identificación y contacto, como nombre, teléfono, ciudad, mensaje enviado por formulario o WhatsApp, así como información que el usuario decida compartir para solicitar orientación administrativa sobre una cita.</p>'
@@ -72,8 +70,7 @@ function developer_get_legal_pages_catalog() {
             'title'   => 'Términos y condiciones',
             'slug'    => 'terminos-y-condiciones',
             'summary' => 'Condiciones generales de uso del sitio, contacto, citas y contenido informativo.',
-            'content' => $review_notice
-                . '<h2>Uso del sitio</h2>'
+            'content' => '<h2>Uso del sitio</h2>'
                 . '<p>El contenido de este sitio tiene fines informativos sobre servicios de Nefrología ofrecidos por <strong>' . esc_html($doctor) . '</strong>. El acceso y uso del sitio implica aceptar estas condiciones generales.</p>'
                 . '<h2>Información publicada</h2>'
                 . '<p>La información sobre enfermedades, procedimientos, sedes y datos profesionales se publica con fines de orientación. Puede actualizarse sin aviso previo para corregir, ampliar o precisar el contenido.</p>'
@@ -91,8 +88,7 @@ function developer_get_legal_pages_catalog() {
             'title'   => 'Descargo de responsabilidad',
             'slug'    => 'descargo-de-responsabilidad',
             'summary' => 'Alcance informativo del contenido médico y límites de la comunicación digital.',
-            'content' => $review_notice
-                . '<h2>Contenido informativo</h2>'
+            'content' => '<h2>Contenido informativo</h2>'
                 . '<p>La información publicada en este sitio sobre enfermedades renales, terapias y procedimientos es general y educativa. No sustituye una consulta médica, diagnóstico, tratamiento ni seguimiento individual.</p>'
                 . '<h2>Valoración médica</h2>'
                 . '<p>Cada caso requiere historia clínica, exploración, estudios y criterio profesional. Las decisiones clínicas deben tomarse durante una valoración formal con un profesional de salud.</p>'
@@ -108,8 +104,7 @@ function developer_get_legal_pages_catalog() {
             'title'   => 'Compromiso de ética',
             'slug'    => 'compromiso-de-etica',
             'summary' => 'Principios de atención profesional, confidencialidad y comunicación responsable.',
-            'content' => $review_notice
-                . '<h2>Atención profesional</h2>'
+            'content' => '<h2>Atención profesional</h2>'
                 . '<p>La atención ofrecida por <strong>' . esc_html($doctor) . '</strong> busca ser profesional, humana y basada en evidencia, respetando la dignidad, contexto y decisiones informadas de cada paciente.</p>'
                 . '<h2>Confidencialidad</h2>'
                 . '<p>La información compartida por pacientes o familiares debe manejarse con reserva y utilizarse solo para finalidades relacionadas con la orientación, agenda, atención o seguimiento correspondiente.</p>'

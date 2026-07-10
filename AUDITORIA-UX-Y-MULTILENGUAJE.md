@@ -85,7 +85,7 @@ Las traducciones inglesas actuales son provisionales y requieren revisión profe
 - El header de escritorio se muestra desde `xl`; el diseño oculta el teléfono hasta `2xl` y compacta el selector de idioma en móvil para evitar saturación.
 - LocalWP fue sincronizado históricamente con la carpeta del tema 1.5.2; producción pública estable partió de 1.5.7 y la rama `codex/pagespeed-100` se prueba de forma controlada antes de fusionar.
 - El schema agrega credenciales, foto, teléfono, sedes y `knowsAbout` solo con datos configurados.
-- Las páginas legales 1.5.4 son borradores funcionales y no sustituyen revisión legal final.
+- Las páginas legales fueron revisadas y aprobadas por el médico; el tema 1.6.7 ya no muestra notas de revisión pendiente en esos documentos.
 
 ## Siguiente Trabajo Sin Datos Clínicos
 

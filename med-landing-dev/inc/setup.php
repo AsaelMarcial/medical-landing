@@ -260,9 +260,8 @@ function developer_ensure_legal_pages() {
         }
     }
 
-    $legacy_content = '<p>Contenido pendiente de revisión legal. Este espacio se completará con el texto definitivo proporcionado y aprobado por el responsable del sitio.</p>';
     $legacy_existing = get_page_by_path('aviso-legal');
-    $legacy_index = '<p>Esta página concentra los documentos legales del sitio. Los textos son bases informativas pendientes de revisión legal final.</p><ul>';
+    $legacy_index = '<p>Esta página concentra los documentos legales del sitio.</p><ul>';
 
     foreach (developer_get_legal_pages_catalog() as $legal_page) {
         $legacy_index .= '<li><a href="' . esc_url(developer_get_legal_page_url($legal_page['slug'])) . '">' . esc_html($legal_page['title']) . '</a>: ' . esc_html($legal_page['summary']) . '</li>';
@@ -272,9 +271,7 @@ function developer_ensure_legal_pages() {
 
     if ($legacy_existing) {
         $current_content = trim(wp_strip_all_tags((string) $legacy_existing->post_content));
-        $placeholder_content = trim(wp_strip_all_tags($legacy_content));
-
-        if ('' === $current_content || $current_content === $placeholder_content) {
+        if ('' === $current_content) {
             wp_update_post([
                 'ID'           => $legacy_existing->ID,
                 'post_title'   => 'Aviso legal',

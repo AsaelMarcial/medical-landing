@@ -14,8 +14,8 @@
 - CMS destino: una instalación WordPress existente; versión, PHP, Multisite y configuración exacta pendientes de confirmar.
 - Fuente de verdad del código: `med-landing-dev/` en este repositorio.
 - Estado actual: estructura técnica del MVP, identidad visual, ubicaciones, mejoras UX, soporte bilingüe, fotografía profesional, contacto definitivo, credenciales y catálogo SEO base integrados en el tema.
-- Fase actual: Fase 1 avanzada. La maquetación base, el contenido médico inicial, el staging VPS, el dominio final con HTTPS, la primera corrección visual responsive y los borradores legales funcionales existen; falta cerrar operación, revisión legal, configuración fina de plugins, QA final y revisión clínica/editorial final.
-- Bloqueo principal: faltan email público y receptor de formularios, horarios, texto legal definitivo, configuración final de RankMath/Fluent Forms, revisión clínica final de textos, conexión de Google Analytics/Search Console y QA completo de producción.
+- Fase actual: Fase 1 avanzada. La maquetación base, el contenido médico inicial, el staging VPS, el dominio final con HTTPS, la primera corrección visual responsive y las páginas legales revisadas por el médico existen; falta cerrar operación, configuración fina de plugins, QA final y revisión clínica/editorial final.
+- Bloqueo principal: faltan email público y receptor de formularios, horarios, configuración final de RankMath/Fluent Forms, revisión clínica final de textos, conexión de Google Analytics/Search Console y QA completo de producción.
 - Última auditoría integral: 2026-06-07, zona `America/Mexico_City`.
 - Última aclaración de alcance del repositorio: 2026-06-08.
 - Última integración de identidad visual: 2026-06-08.
@@ -23,11 +23,11 @@
 - Última integración de idioma, WhatsApp y accesibilidad: 2026-06-08; tema 1.4.0 validado en LocalWP.
 - Última integración médica y SEO: 2026-07-06; tema 1.5.2 con fotografía profesional, credenciales, teléfono definitivo, 17 servicios SEO, home con enfermedades visibles, Servicios con navegación compacta y fallback visual del catálogo ante bases LocalWP incompletas.
 - Último ajuste visual en staging: 2026-07-08; tema 1.5.3 desplegado en VPS con menú fallback, contraste corregido, selector móvil compacto, animaciones más seguras y uso más consistente de fondos de marca.
-- Última integración legal/UI: 2026-07-08; tema 1.5.4 con cuatro páginas legales borrador, footer legal completo y tarjetas de enfermedades con iconos SVG y microetiquetas.
+- Última integración legal/UI: 2026-07-10; tema 1.6.7 con cuatro páginas legales revisadas por el médico, footer legal completo y tarjetas de enfermedades con iconos SVG y microetiquetas.
 - Última integración social: 2026-07-08; tema 1.5.5 con Instagram oficial visible en Home y Contacto.
 - Última preparación de dominio en VPS: 2026-07-08; Nginx sirve `https://nefrologoedgar.com.mx` con certificado Let’s Encrypt, `www` y HTTP redirigen al dominio canónico HTTPS y WordPress usa `https://nefrologoedgar.com.mx` como `home`/`siteurl`.
 - Último ajuste SEO/Google: 2026-07-08; tema 1.5.7 con título UTF-8 corregido, fallback SEO de metadatos sociales, indexación pública, sitemap nativo `wp-sitemap.xml` y Site Kit instalado para vincular Analytics/Search Console.
-- Optimización PageSpeed en rama aislada: 2026-07-09; rama `codex/pagespeed-100` prepara tema 1.6.6 con fuentes del sistema, eliminación de CDN frontend, menú móvil en JavaScript nativo, preload/fetchpriority de imagen LCP, WebP para retrato/logos, mapas bajo demanda, CSS inline solo en Home, reserva explícita de ancho/alto del retrato hero, orden DOM/visual estable y caché Nginx en VPS. Lighthouse CLI local verificó 100 en Performance, Accessibility, Best Practices y SEO para móvil y escritorio.
+- Optimización PageSpeed en rama aislada: 2026-07-09; rama `codex/pagespeed-100` prepara tema 1.6.7 con fuentes del sistema, eliminación de CDN frontend, menú móvil en JavaScript nativo, preload/fetchpriority de imagen LCP, WebP para retrato/logos, mapas bajo demanda, CSS inline solo en Home, reserva explícita de ancho/alto del retrato hero, orden DOM/visual estable, páginas legales sin nota de revisión pendiente y caché Nginx en VPS. Lighthouse CLI local verificó 100 en Performance, Accessibility, Best Practices y SEO para móvil y escritorio.
 - Última propuesta comercial: 2026-06-08; honorario base MXN 6,000, total indicado con CFDI MXN 7,000 y plazo de 4 a 6 semanas.
 
 ## 2. Protocolo de Uso
@@ -476,7 +476,7 @@ Esa configuración contradice la estrategia SEO de URLs limpias. En el sistema d
 - Página Servicios ahora usa navegación compacta tipo pills, no tarjetas grandes como barra superior.
 - Home y Servicios renderizan enfermedades/servicios desde el catálogo central del tema, por lo que no se quedan vacíos si LocalWP conserva una base antigua sin posts o sin metas de idioma.
 - Migración interna de contenido profesional actualizada a versión `3` para volver a sembrar/actualizar posts administrados por el tema.
-- Páginas legales sembradas automáticamente: `aviso-de-privacidad`, `terminos-y-condiciones`, `descargo-de-responsabilidad` y `compromiso-de-etica`. La página histórica `aviso-legal` se conserva como índice para no romper enlaces previos. Todos los textos son borradores pendientes de revisión legal final.
+- Páginas legales sembradas automáticamente: `aviso-de-privacidad`, `terminos-y-condiciones`, `descargo-de-responsabilidad` y `compromiso-de-etica`. La página histórica `aviso-legal` se conserva como índice para no romper enlaces previos. El médico revisó y aprobó los textos legales publicados.
 - Schema Physician/MedicalBusiness actualizado con foto, teléfono, sedes, credenciales y `knowsAbout`, evitando horarios no confirmados.
 - Texto base de 18 px, interlineado amplio y objetivos táctiles principales de 48 px.
 - Barra móvil simplificada a WhatsApp y Agendar; acciones de escritorio con texto visible.
@@ -863,7 +863,7 @@ Copiar esta estructura al final:
 - Cambios: tema actualizado a 1.5.0; teléfono/WhatsApp `229 446 6698` y `522294466698`; Instagram integrado; foto profesional optimizada; página About reescrita; trust/footer/contacto/schema actualizados; página `aviso-legal` sembrada; hub de servicios y 17 páginas SEO tipo `servicio` creadas desde catálogo centralizado.
 - Decisiones: mantener el logo visual como `Dr. Edgar E. Hernández` cuando venga de marca, pero usar el nombre público completo en contenido y schema; publicar cédulas, certificación, COFEPRIS y membresías con tono objetivo; evitar horarios, urgencias, promesas de curación y datos no configurados; dejar las traducciones clínicas inglesas como provisionales.
 - Validación: build Tailwind correcto, catálogo de idiomas regenerado con 133 traducciones, sintaxis JS correcta, derivados de imagen creados sin modificar originales y búsqueda del número temporal limitada a migración/documentación histórica. PHP lint no se ejecutó porque `php.exe` no está disponible.
-- Pendientes: sincronizar el tema 1.5.0 en LocalWP/staging, ejecutar QA responsive visual, Lighthouse, lector de pantalla y validación de schema; configurar RankMath y Fluent Forms; recibir email, horarios y texto legal definitivo; revisar clínicamente contenido SEO e inglés antes de publicación final.
+- Pendientes: sincronizar el tema 1.5.0 en LocalWP/staging, ejecutar QA responsive visual, Lighthouse, lector de pantalla y validación de schema; configurar RankMath y Fluent Forms; recibir email y horarios; revisar clínicamente contenido SEO e inglés antes de publicación final.
 
 ### 2026-07-06 - Ajuste UX de servicios y enfermedades
 
@@ -908,16 +908,16 @@ Copiar esta estructura al final:
 - Cambios: tema actualizado a 1.5.3; navegación fallback cuando WordPress/Polylang no devuelven menú; contraste activo del menú corregido; selector de idioma móvil compacto; animaciones GSAP con `immediateRender:false` y limpieza preventiva de opacidad/transform; fondos de secciones con gradientes y superficies de marca.
 - Decisiones: el menú principal no debe desaparecer por falta de asignación de menú en WordPress; el contenido crítico de servicios/enfermedades debe permanecer visible aunque falle ScrollTrigger; WhatsApp sigue destacado pero el CTA principal visual del header usa terracota de marca.
 - Validación: build Tailwind correcto, catálogo de idiomas regenerado con 139 traducciones, sintaxis JS correcta, lint PHP correcto dentro del contenedor, staging desplegado en commit `8afc6eb10cbbf918dcc710c8f706c978ba892671`, Home pública status `200` con `style.css?ver=1.5.3`, `/servicios/` con 17 cards y captura móvil Puppeteer a 390 px sin overflow (`scrollWidth=390`).
-- Pendientes: configurar dominio final, SSL, formularios reales, SEO de RankMath, texto legal definitivo, revisión clínica/editorial final, Lighthouse, schema externo y pruebas cross-browser.
+- Pendientes: configurar dominio final, SSL, formularios reales, SEO de RankMath, revisión clínica/editorial final, Lighthouse, schema externo y pruebas cross-browser.
 
 ### 2026-07-08 - Páginas legales y tarjetas de enfermedades con iconos
 
 - Objetivo: agregar las cuatro páginas legales de referencia con contenido propio adaptado al Dr. Edgar y mejorar visualmente las tarjetas de enfermedades de Home.
 - Archivos modificados: `med-landing-dev/inc/helpers.php`, `med-landing-dev/inc/setup.php`, `med-landing-dev/template-parts/footer/footer-main.php`, `med-landing-dev/template-parts/sections/services-grid.php`, `med-landing-dev/assets/css/src/main.css`, archivos de versión/build/idiomas y documentación Markdown.
 - Cambios: tema actualizado a 1.5.4; catálogo legal central; sembrado de `aviso-de-privacidad`, `terminos-y-condiciones`, `descargo-de-responsabilidad` y `compromiso-de-etica`; `aviso-legal` conservado como índice; footer con bloque Legal; tarjetas de enfermedades con iconos SVG inline, microetiquetas, mejor jerarquía y estilos `.prose` para páginas legales.
-- Decisiones: no copiar contenido literal de la referencia; publicar borradores funcionales pendientes de revisión legal final; usar el teléfono/WhatsApp confirmado `229 446 6698` mientras no exista correo legal público; no agregar dependencias externas de iconos.
+- Decisiones: no copiar contenido literal de la referencia; publicar textos legales propios adaptados al sitio y revisados por el médico; usar el teléfono/WhatsApp confirmado `229 446 6698` mientras no exista correo legal público; no agregar dependencias externas de iconos.
 - Validación: build Tailwind correcto, catálogo de idiomas con 140 traducciones, `node --check` correcto para `build-css.js`, verificación sin BOM, lint PHP correcto dentro del contenedor, Home pública con `style.css?ver=1.5.4`, cuatro páginas legales más `aviso-legal` en `200`, 12 tarjetas con 12 iconos y responsive 320/390/768/1024/1280 sin overflow.
-- Pendientes: sustituir borradores por textos legales aprobados, configurar dominio final/SSL, formularios reales, SEO de RankMath, revisión clínica/editorial final, Lighthouse, schema externo y pruebas cross-browser.
+- Pendientes: configurar dominio final/SSL, formularios reales, SEO de RankMath, revisión clínica/editorial final, Lighthouse, schema externo y pruebas cross-browser.
 
 ### 2026-07-08 - Instagram visible en Home y Contacto
 
@@ -944,7 +944,7 @@ Copiar esta estructura al final:
 - Cambios: certificado Let’s Encrypt emitido para dominio raíz y `www`; WordPress cambió `home` y `siteurl` a `https://nefrologoedgar.com.mx`; todas las variantes HTTP/WWW redirigen al dominio canónico HTTPS.
 - Decisiones: mantener `nefrologoedgar.com.mx` sin `www` como canónico; no tocar los virtual hosts existentes `orza.mx` ni `default`; validar solo el certificado nuevo con `--cert-name` para evitar interferir con otros certificados.
 - Validación: DNS autoritativo NEUBOX y resolvers públicos apuntan a `74.208.222.71`; `https://nefrologoedgar.com.mx` responde `200 OK`; `https://www`, `http://www` y `http://` redirigen `301` a `https://nefrologoedgar.com.mx`; `nginx -t` correcto; `certbot renew --dry-run --cert-name nefrologoedgar.com.mx --no-random-sleep-on-renew` exitoso; contenedores WordPress, DB y proyectos existentes siguen activos.
-- Pendientes: cerrar o restringir `8081` cuando ya no sea necesario, configurar Google Analytics/Search Console, finalizar formularios/SEO, revisar textos legales y clínicos, rotar acceso root y reemplazarlo por usuario/SSH key.
+- Pendientes: cerrar o restringir `8081` cuando ya no sea necesario, configurar Google Analytics/Search Console, finalizar formularios/SEO, revisar textos clínicos, rotar acceso root y reemplazarlo por usuario/SSH key.
 
 ### 2026-07-08 - SEO técnico, título UTF-8 y Google Site Kit
 
@@ -1019,3 +1019,11 @@ Copiar esta estructura al final:
 - Validación local/VPS: `cmd /c npm run build` correcto con TailwindCSS 4.3.0; `node --check` correcto para `navigation.js` y `animations.js`; commit `02aa79f` desplegado en VPS; lint PHP correcto dentro del contenedor; `nginx -t` correcto; Home pública sirve `navigation.js?ver=1.6.6`, CSS inline y sin `style.css?ver=1.6.6`; Lighthouse CLI local válido en producción: escritorio `100/100/100/100` con FCP `0.3 s`, LCP `0.4 s`, TBT `0 ms`, CLS `0`; móvil `100/100/100/100` con FCP `1.0 s`, LCP `1.1 s`, TBT `20 ms`, CLS `0`.
 - Limitaciones: PageSpeed Insights API pública no pudo consultarse por cuota diaria `429`; Lighthouse local presentó fallos intermitentes `CHROME_INTERSTITIAL_ERROR`, por lo que se usaron corridas válidas repetidas y verificaciones directas con Chrome/curl.
 - Pendientes: revisar visualmente el hero con el nuevo orden contenido-foto en dispositivos reales antes de fusionar a `main`; decidir si se mantiene el puerto `8081` público o se restringe.
+
+### 2026-07-10 - Textos legales aprobados sin nota de revisión
+
+- Objetivo: retirar de todos los documentos legales el aviso de que faltaba revisión, después de que el médico confirmó que los textos son correctos.
+- Archivos modificados: `med-landing-dev/inc/helpers.php`, `med-landing-dev/inc/setup.php`, archivos de versión/build, `Plan.md`, `AUDITORIA-UX-Y-MULTILENGUAJE.md`, `INFORMACION-A-SOLICITAR.md` y `CONTEXTO-PROYECTO.md`.
+- Cambios: tema actualizado a 1.6.7; el catálogo legal ya no antepone el aviso interno de validación en `aviso-de-privacidad`, `terminos-y-condiciones`, `descargo-de-responsabilidad` ni `compromiso-de-etica`; el índice histórico `aviso-legal` conserva solo la descripción neutral de documentos legales.
+- Decisiones: no cambiar el contenido sustantivo ya aprobado; documentar el estado como revisado y aprobado por el médico, sin afirmar revisión externa de abogado o contador.
+- Validación pendiente al registrar esta entrada: compilar Tailwind, ejecutar sintaxis JS/PHP, actualizar producción y verificar por HTTP que las páginas legales publicadas no contengan avisos internos de validación.
