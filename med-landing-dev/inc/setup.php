@@ -271,7 +271,9 @@ function developer_ensure_legal_pages() {
 
     if ($legacy_existing) {
         $current_content = trim(wp_strip_all_tags((string) $legacy_existing->post_content));
-        if ('' === $current_content) {
+        $uses_old_review_copy = false !== strpos($current_content, 'bases informativas') && false !== strpos($current_content, 'pendientes');
+
+        if ('' === $current_content || $uses_old_review_copy) {
             wp_update_post([
                 'ID'           => $legacy_existing->ID,
                 'post_title'   => 'Aviso legal',
