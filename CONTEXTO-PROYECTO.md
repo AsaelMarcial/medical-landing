@@ -5,17 +5,21 @@
 
 ## 1. Estado Ejecutivo
 
-### Implementación 1.7.0 en curso — 2026-09-22
+### Versión 1.7.0 publicada — 2026-09-22
 
-- Rama de trabajo: `codex/whatsapp-xalapa-170`, desde `codex/pagespeed-100` / `2052229` (documentación de la auditoría). Producción todavía conserva `6b13c3d`, tema 1.6.7; no confundir archivos locales preparados con despliegue terminado.
+- Rama local/GitHub/productiva: `codex/whatsapp-xalapa-170`. Código 1.7.0 desplegado en `059550d`, desde `codex/pagespeed-100` / `2052229`. Publicación solicitada expresamente por el usuario para empezar su revisión visual.
 - Decisión vigente: citas exclusivamente por WhatsApp `522294466698`, dos sedes en Xalapa: Torre Hakim Local 909 y Policlinica Óptima, Edificio D, detrás del estacionamiento, Consultorio 205 D. Boca del Río se retira y su URL tendrá 301 a Xalapa.
-- Interfaz preparada: CTA compartido con icono WhatsApp completo, verde `#344729`, hover `#4A5942`; procedimientos destacados, Facebook oficial, PNG local oficial del Consejo Mexicano de Nefrología, Contacto sin formulario ni llamadas, navegación y sedes actualizadas.
+- Interfaz publicada: CTA compartido con icono WhatsApp completo, verde `#344729`, hover `#4A5942`; procedimientos destacados, Facebook oficial, PNG local oficial del Consejo Mexicano de Nefrología, Contacto sin formulario ni llamadas, navegación y sedes actualizadas.
 - Respaldo médico completo: `/opt/med-landing-dev/backups/20260922-before-170`, permisos privados. Incluye SQL, WordPress, repositorio y configuración necesaria. No se tocaron otros proyectos.
 - Pruebas aisladas: `/opt/med-landing-170-stage`, proyecto Compose `med_landing_170_stage`, contenedores propios, HTTP exclusivamente `127.0.0.1:8082`, acceso por túnel local `http://127.0.0.1:18082`. Cabecera `X-Robots-Tag: noindex, nofollow`, robots cerrado, correo y Site Kit deshabilitados únicamente en esa copia.
 - Destino confirmado: WordPress 7.1.1, PHP 8.2.32, instalación simple (no Multisite).
 - Migración explícita `wp med-landing migrate-170`: dry-run, huella de estado, snapshot privado, protección de contenido auditado, claves servicio/idioma y relaciones con IDs distintos. En pruebas creó 17 pares de servicios y 10 pares de páginas, sin huérfanos; segunda ejecución no modifica datos.
 - SEO: Rank Math debe completar uso sin cuenta (`rank_math_registration_skip`) además del setup. Polylang debe traducir CPT `servicio`, activar `redirect_lang` y limpiar caché de idiomas. Sitemap Rank Math respondió 200 en pruebas. El tema ya no fuerza indexación de errores.
-- Pendiente: cerrar validación de metadatos y rendimiento, repetir migración desde copia original con código final, documentar y publicar, verificar producción y Search Console. La ampliación clínica ES/EN está preparada en `docs/REVISION-CLINICA-170.md` y permanece desactivada hasta revisión médica.
+- Publicación: respaldo SQL adicional `/opt/med-landing-dev/backups/20260922-release170`, snapshot privado, mantenimiento breve, migración/finalización/verificación correctas. Mantenimiento desactivado; se limpiaron ocho archivos exclusivamente de la caché médica. Otros contenedores permanecen sin reinicios.
+- Validación pública: nueve rutas, canonical/hreflang, WhatsApp, idiomas, 301/404 y cinco anchos correctos. Rastreo de las 54 URLs únicas del sitemap sin fallos, llamadas ni sede retirada. Lighthouse móvil 97/100/100/100; escritorio 100/100/100/100 (JSON válido; CLI falló después al limpiar su temporal en Windows). Sin errores PHP recientes. Chrome, Edge y WebKit pasan; Firefox no arrancó en este equipo y Safari real permanece pendiente.
+- Seguimiento programado mediante heartbeat `seguimiento-seo-nefrologoedgar-1-7-0`: dos revisiones quincenales, avisos solo ante cambios relevantes o acciones necesarias.
+- Sitemap enviado correctamente en Search Console el 22/09/2026; estado inicial «No se ha podido obtener» aunque índice y robots responden correctamente desde fuera. Seguimiento en curso; no afirmar que Google ya lo procesó.
+- Pendiente: revisión visual del usuario, revisión médica de ampliaciones ES/EN (`docs/REVISION-CLINICA-170.md`), seguimiento de Search Console y navegadores pendientes. La opción clínica continúa desactivada y las páginas de catéteres/biopsia conservan el texto clínico previo con las sedes actualizadas.
 - Las secciones anteriores a esta actualización describen el estado 1.6.7 o antecedentes históricos. Las decisiones de este bloque prevalecen sobre referencias a formularios, llamadas o Boca del Río.
 
 - Auditoría productiva 2026-09-22: producción, copia local y GitHub coinciden en el commit `6b13c3d` de `codex/pagespeed-100`; el árbol desplegado está limpio, sin archivos modificados ni ignorados dentro del tema. El tema 1.6.7 está activo sobre WordPress 7.1.1 y PHP 8.2.32. Home, páginas principales, legales y versión `/en/` responden correctamente; la base de datos pasa `wp db check` y no se observaron errores PHP recientes.
@@ -1064,3 +1068,12 @@ Copiar esta estructura al final:
 - Validación hasta este punto: respaldo médico completo, Docker de pruebas aislado, PHP/build/JS correctos, 17 pares de servicios y 10 de páginas sin huérfanos, migración repetida sin cambios, Chrome/Edge sin fallos en nueve rutas y cinco anchos. Lighthouse móvil aislado 98 rendimiento / 100 accesibilidad / 100 buenas prácticas; SEO limitado por noindex deliberado.
 - Hallazgos corregidos: CPT servicio no habilitado en Polylang, cuenta Rank Math no omitida/completada, caché de idioma reteniendo `/en/home/`, canonical inglesa incorrecta y sitemap previo en caché. La finalización se ejecuta en un proceso nuevo.
 - Pendientes: terminar QA de release y mapas, publicar código/migración, verificar producción y Search Console. Firefox no arrancó en este Windows; Safari real no está disponible. Ampliación clínica pendiente de revisión médica. Producción todavía no modificada al registrar esta entrada.
+
+### 2026-09-22 — Publicación productiva 1.7.0 solicitada para revisión
+
+- El usuario priorizó subir cambios a GitHub y servidor para revisar visualmente el resultado. Código publicado en `059550d`, rama `codex/whatsapp-xalapa-170`, con respaldo SQL fresco y snapshot en `backups/20260922-release170`.
+- Migración y finalización productivas correctas: 17 pares de servicios, 10 pares de páginas, claves únicas; segunda ejecución sin cambios. Mantenimiento desactivado y ocho archivos de caché médica limpiados. Otros proyectos mantienen sus contenedores y tiempos de ejecución.
+- Home pública 200; QA de nueve rutas y cinco anchos sin fallos; 54 URLs del sitemap verificadas. Lighthouse móvil 97/100/100/100 y desktop 100/100/100/100. Chrome/Edge/WebKit correctos; limitaciones Firefox/Safari documentadas. Sin errores PHP recientes.
+- Search Console confirmó envío del sitemap y solicitudes de indexación de Inicio y Proteinuria. El estado inicial del sitemap fue «No se ha podido obtener», con XML público 200 comprobado; pendiente confirmar procesamiento. Seguimiento quincenal configurado para dos revisiones.
+- Actualizados contexto, plan, instrucciones y guía de despliegue/reversión. `sameAs` usa únicamente perfiles sociales oficiales, sin tratar el buscador general CONACEM como perfil del médico.
+- Pendientes: revisión visual del usuario, ampliación clínica desactivada hasta revisión del médico, resto de inspecciones prioritarias de Google y confirmación de sitemap. No prometer indexación ni dar por cerradas esas revisiones.

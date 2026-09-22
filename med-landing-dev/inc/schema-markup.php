@@ -30,7 +30,7 @@ function developer_output_schema() {
         'name' => developer_get_doctor_name(), 'url' => $root,
         'description' => developer_get_doctor_description(), 'medicalSpecialty' => 'Nephrology',
         'image' => developer_get_doctor_photo_url('large'), 'location' => $offices,
-        'sameAs' => array_values(array_filter([developer_get_facebook_url(), developer_get_instagram_url(), $credentials['conacem_url']])),
+        'sameAs' => array_values(array_filter([developer_get_facebook_url(), developer_get_instagram_url()])),
         'contactPoint' => ['@type' => 'ContactPoint', 'contactType' => 'Appointments via WhatsApp', 'url' => developer_get_whatsapp_url(), 'availableLanguage' => ['Spanish', 'English']],
         'identifier' => [
             ['@type' => 'PropertyValue', 'name' => 'Cédula profesional', 'value' => $credentials['professional_license']],

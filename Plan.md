@@ -5,11 +5,11 @@
 Implementar citas exclusivas por WhatsApp, dos sedes en Xalapa, procedimientos destacados, Facebook y logo oficial del Consejo. Usar `codex/whatsapp-xalapa-170`, sin modificar otras aplicaciones del VPS.
 
 1. Respaldo médico y entorno aislado: realizados.
-2. Interfaz ES/EN, ubicaciones, CTA compartido y assets: preparados, QA en curso.
+2. Interfaz ES/EN, ubicaciones, CTA compartido y assets: publicados en versión 1.7.0, commit `059550d`.
 3. Migración explícita con snapshot, protección de ediciones, 17 pares de servicios y 10 de páginas: primera prueba y repetición correctas; repetir desde respaldo con versión final.
 4. Rank Math para metadatos/sitemap, Polylang para idiomas, tema para entidades médicas: integración en pruebas. Mantener 404 reales y redirecciones individuales.
 5. Revisión responsive, funcional, PHP/JS, Lighthouse y mapas: en curso.
-6. Publicación controlada de código y datos, verificación y Search Console: pendientes.
+6. Publicación controlada de código y datos: realizada el 22/09/2026; validación pública correcta. Sitemap enviado, procesamiento de Google pendiente de confirmar.
 7. Ampliación clínica: `docs/REVISION-CLINICA-170.md`, pendiente de revisión médica antes de activarla.
 
 El texto siguiente conserva antecedentes del proyecto. Las referencias a Boca del Río, formularios y llamadas quedan sustituidas por este plan y `CONTEXTO-PROYECTO.md`.

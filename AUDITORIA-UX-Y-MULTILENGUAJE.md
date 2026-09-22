@@ -103,8 +103,8 @@ Las traducciones inglesas actuales son provisionales y requieren revisión profe
 - Revisión clínica final de los textos SEO y de las traducciones inglesas provisionales.
 - Aviso de privacidad, disclaimer y autorización de testimonios.
 - Traducción y revisión clínica final del contenido inglés.
-# Actualización 1.7.0 — auditoría en curso
+# Actualización 1.7.0 — publicada el 22/09/2026
 
-La rama `codex/whatsapp-xalapa-170` sustituye los flujos antiguos por WhatsApp exclusivo y dos consultorios en Xalapa. En la copia aislada se verificaron 17 pares de servicios y 10 pares de páginas ES/EN; no hay traducciones huérfanas y una segunda migración no cambia datos. PHP y build correctos. La revisión de metadatos, responsive, rendimiento y publicación continúa; no dar por cerradas las comprobaciones del plan. Estado detallado: `CONTEXTO-PROYECTO.md`.
+La rama `codex/whatsapp-xalapa-170` sustituye los flujos antiguos por WhatsApp exclusivo y dos consultorios en Xalapa. Publicada a petición del usuario, con 17 pares de servicios y 10 pares de páginas ES/EN, sin huérfanos; segunda migración sin cambios. PHP/build/JS correctos. Las 54 URLs únicas del sitemap responden sin referencias a la sede retirada ni enlaces de llamada, con canonical propio. Chrome, Edge y WebKit pasan las comprobaciones; Firefox no arrancó y Safari real queda pendiente. Lighthouse público: móvil 97/100/100/100 y escritorio 100/100/100/100. La ejecución desktop produjo el JSON válido y después falló al limpiar un directorio temporal de Chrome en Windows. Ampliación clínica pendiente de revisión y oculta. Estado detallado y seguimiento de Google: `CONTEXTO-PROYECTO.md`.
 
 La auditoría previa se conserva a continuación como antecedente.

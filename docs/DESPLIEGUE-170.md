@@ -1,5 +1,7 @@
 # Publicación y reversión 1.7.0
 
+Publicado el 22/09/2026 a petición del usuario, commit de código `059550d`, rama `codex/whatsapp-xalapa-170`. Respaldo inmediato de la ventana en `/opt/med-landing-dev/backups/20260922-release170`; contiene SQL y snapshot de migración. Las verificaciones de producción y la repetición idempotente pasaron. No hubo reinicios de otros contenedores.
+
 ## Alcance
 
 Solo `/opt/med-landing-dev`, sus contenedores WordPress/MariaDB y la caché del dominio médico. No ejecutar `docker compose down`, borrar volúmenes ni modificar firewall o los otros proyectos.
