@@ -4,7 +4,7 @@ const header = `/*
 Theme Name: Dr. Edgar E. Hernández - Nefrología
 Author: Developer
 Description: Tema WordPress para el Dr. Edgar Eduardo Hernández Enríquez, nefrólogo en Xalapa, Veracruz. Citas por WhatsApp.
-Version: 1.7.0
+Version: 1.7.1
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 8.0

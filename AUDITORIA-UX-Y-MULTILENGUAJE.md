@@ -1,5 +1,9 @@
 # Auditoría UX y Multilenguaje
 
+## Ajuste 1.7.1 — 2026-09-22
+
+Mapas automáticos al acercarse a la sección mediante iframe nativo lazy, sin botón ni dependencia de JavaScript; logo CMN reducido a 144 px, tarjetas equilibradas con enlaces al pie y consulta de cédulas en el portal oficial SEP desde Inicio y Doctor, en ES/EN. Validación en staging: build, PHP/JS y responsive ES/EN correctos. Sustituye la decisión anterior de carga de mapas mediante clic.
+
 Fecha: 2026-06-08
 Última actualización: 2026-07-09
 

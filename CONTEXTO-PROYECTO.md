@@ -5,6 +5,11 @@
 
 ## 1. Estado Ejecutivo
 
+### Actualización 1.7.1 — 2026-09-22
+
+Mapas automáticos al acercarse a la sección mediante iframe nativo lazy, sin botón ni dependencia de JavaScript; logo CMN reducido a 144 px, tarjetas equilibradas con enlaces al pie y consulta de cédulas en el portal oficial SEP desde Inicio y Doctor, en ES/EN. Build, sintaxis JS/PHP y QA responsive ES/EN (320, 390, 768 y 1440 px) correctos en staging. Preparada para publicación en la misma rama; sin migración de datos.
+
+
 ### Versión 1.7.0 publicada — 2026-09-22
 
 - Rama local/GitHub/productiva: `codex/whatsapp-xalapa-170`. Código 1.7.0 desplegado en `059550d`, desde `codex/pagespeed-100` / `2052229`. Publicación solicitada expresamente por el usuario para empezar su revisión visual.
@@ -1077,3 +1082,12 @@ Copiar esta estructura al final:
 - Search Console confirmó envío del sitemap y solicitudes de indexación de Inicio y Proteinuria. El estado inicial del sitemap fue «No se ha podido obtener», con XML público 200 comprobado; pendiente confirmar procesamiento. Seguimiento quincenal configurado para dos revisiones.
 - Actualizados contexto, plan, instrucciones y guía de despliegue/reversión. `sameAs` usa únicamente perfiles sociales oficiales, sin tratar el buscador general CONACEM como perfil del médico.
 - Pendientes: revisión visual del usuario, ampliación clínica desactivada hasta revisión del médico, resto de inspecciones prioritarias de Google y confirmación de sitemap. No prometer indexación ni dar por cerradas esas revisiones.
+
+
+### 2026-09-22 — Ajustes visuales 1.7.1
+
+- Solicitud: mapas sin clic, CMN más pequeño, mejor composición de credenciales y enlace de verificación.
+- Mapas automáticos al acercarse a la sección mediante iframe nativo lazy, sin botón ni dependencia de JavaScript; logo CMN reducido a 144 px, tarjetas equilibradas con enlaces al pie y consulta de cédulas en el portal oficial SEP desde Inicio y Doctor, en ES/EN.
+- Archivos: componente location-map, trust-section, page-about, helpers, navigation.js, CSS fuente/compilado y versiones del tema/paquete.
+- Validación: build, node --check, lint PHP en contenedor aislado y navegador Chrome ES/EN; cuatro anchos sin desbordamientos en tarjetas; dos mapas visibles con src directo. Logo local decodificado correctamente.
+- El enlace SEP permite consultar; no se afirma haber verificado los registros individuales. Ampliaciones clínicas siguen pendientes de autorización médica.

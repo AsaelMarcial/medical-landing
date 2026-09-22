@@ -6,23 +6,24 @@
             <p class="text-text-muted"><?php echo esc_html(developer_text('Información profesional verificable para tu tranquilidad.', 'Verifiable professional information for your peace of mind.')); ?></p>
         </div>
         <div class="grid gap-6 md:grid-cols-3">
-            <article class="rounded-2xl bg-white border border-primary/10 p-6">
-                <?php developer_council_logo(); ?>
-                <h3 class="text-lg font-bold mt-4 mb-2"><?php echo esc_html(developer_text('Certificación vigente', 'Current certification')); ?></h3>
+            <article class="credential-card">
+                <div class="credential-card-heading"><?php developer_council_logo(); ?></div>
+                <h3 class="text-lg font-bold mb-4"><?php echo esc_html(developer_text('Certificación vigente', 'Current certification')); ?></h3>
                 <p class="text-base text-text-muted"><?php echo esc_html(developer_text('Consejo Mexicano de Nefrología · 2025–2030', 'Consejo Mexicano de Nefrología · 2025–2030')); ?></p>
-                <a class="social-link mt-3" href="<?php echo esc_url($credentials['conacem_url']); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html(developer_text('Verificar en CONACEM', 'Verify at CONACEM')); ?> ↗</a>
+                <div class="credential-card-footer"><a class="social-link" href="<?php echo esc_url($credentials['conacem_url']); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html(developer_text('Verificar en CONACEM', 'Verify at CONACEM')); ?> ↗</a></div>
             </article>
-            <article class="rounded-2xl bg-white border border-primary/10 p-6">
-                <p class="eyebrow"><?php echo esc_html(developer_text('Credenciales', 'Credentials')); ?></p>
+            <article class="credential-card">
+                <div class="credential-card-heading"><p class="eyebrow"><?php echo esc_html(developer_text('Credenciales', 'Credentials')); ?></p></div>
                 <h3 class="text-lg font-bold mb-4"><?php echo esc_html(developer_text('Cédulas profesionales', 'Professional licenses')); ?></h3>
                 <p class="text-base text-text-muted"><?php echo esc_html(developer_text('Cédula profesional', 'Professional license')); ?><br><strong><?php echo esc_html($credentials['professional_license']); ?></strong></p>
                 <p class="text-base text-text-muted mt-3"><?php echo esc_html(developer_text('Cédula de especialidad', 'Specialist license')); ?><br><strong><?php echo esc_html($credentials['specialty_license']); ?></strong></p>
+                <div class="credential-card-footer"><a class="social-link" href="<?php echo esc_url($credentials['registry_url']); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html(developer_text('Consultar cédulas en la SEP', 'Check licenses with SEP')); ?> ↗</a></div>
             </article>
-            <article class="rounded-2xl bg-white border border-primary/10 p-6">
-                <p class="eyebrow">Xalapa, Veracruz</p>
+            <article class="credential-card">
+                <div class="credential-card-heading"><p class="eyebrow">Xalapa, Veracruz</p></div>
                 <h3 class="text-lg font-bold mb-4"><?php echo esc_html(developer_text('Dos consultorios en Xalapa', 'Two consultation locations in Xalapa')); ?></h3>
                 <p class="text-base text-text-muted">Torre Hakim<br>Policlinica Óptima</p>
-                <a href="<?php echo esc_url(developer_get_page_url('nefrologo-xalapa')); ?>" class="social-link mt-4"><?php echo esc_html(developer_text('Ver ubicaciones', 'View locations')); ?> →</a>
+                <div class="credential-card-footer"><a href="<?php echo esc_url(developer_get_page_url('nefrologo-xalapa')); ?>" class="social-link"><?php echo esc_html(developer_text('Ver ubicaciones', 'View locations')); ?> →</a></div>
             </article>
         </div>
     </div>

@@ -36,6 +36,7 @@ function developer_get_professional_credentials() {
         'certification'        => 'Certificación vigente por el Consejo Mexicano de Nefrología (2025-2030)',
         'cofepris'             => '2530092002A00059',
         'conacem_url'          => 'https://conacem.org.mx/buscador',
+        'registry_url'         => 'https://cedulaprofesional.sep.gob.mx/',
         'cofepris_url'         => 'https://www.gob.mx/cofepris/acciones-y-programas/autorizacion-publicitaria',
     ];
 }

@@ -47,6 +47,7 @@ $memberships = developer_get_memberships();
                             <span><?php echo esc_html($credentials['specialty_license']); ?></span>
                         </div>
                     </div>
+                    <a class="social-link mt-4" href="<?php echo esc_url($credentials['registry_url']); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html(developer_text('Consultar cédulas en la SEP', 'Check licenses with SEP')); ?> ↗</a>
                 </div>
             </div>
         </div>
@@ -77,7 +78,7 @@ $memberships = developer_get_memberships();
                 </article>
 
                 <article class="rounded-xl bg-primary p-6 text-white">
-                    <div class="bg-white rounded-xl p-3 mb-5"><?php developer_council_logo(); ?></div>
+                    <div class="bg-white rounded-xl p-3 mb-5 w-fit"><?php developer_council_logo(); ?></div>
                     <h3 class="mb-3 text-xl font-bold text-white"><?php esc_html_e('Certificación vigente', 'med-landing-dev'); ?></h3>
                     <p class="text-slate-300"><?php echo esc_html(developer_text($credentials['certification'], 'Current certification by the Consejo Mexicano de Nefrología (2025–2030)')); ?></p>
                     <a href="<?php echo esc_url($credentials['conacem_url']); ?>" class="mt-5 inline-flex min-h-12 items-center rounded-lg bg-white px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-gold/60" target="_blank" rel="noopener">

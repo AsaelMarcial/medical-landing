@@ -1,6 +1,6 @@
 {
   "name": "med-landing-dev",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "WordPress custom theme for nephrologist - two locations in Xalapa",
   "scripts": {
     "dev": "npx @tailwindcss/cli -i ./assets/css/src/main.css -o ./style.css --watch",

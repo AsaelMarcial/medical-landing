@@ -14,11 +14,6 @@
         <?php endif; ?>
     </div>
     <div class="relative bg-primary/5 aspect-[16/10]" data-map-container>
-        <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center" data-map-placeholder>
-            <p class="text-base font-semibold text-primary"><?php echo esc_html($location['venue']); ?></p>
-            <button class="social-link" type="button" data-map-load><?php echo esc_html(developer_text('Cargar mapa interactivo', 'Load interactive map')); ?></button>
-            <span class="text-sm text-text-muted"><?php echo esc_html(developer_text('Se abrirá un mapa de Google Maps.', 'Loads a map from Google Maps.')); ?></span>
-        </div>
-        <iframe hidden data-map-frame data-src="<?php echo esc_url($location['map_embed_url']); ?>" class="absolute inset-0 w-full h-full border-0" loading="lazy" title="<?php echo esc_attr(developer_text('Mapa de ', 'Map of ') . $location['venue']); ?>" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="<?php echo esc_url($location['map_embed_url']); ?>" class="absolute inset-0 w-full h-full border-0" loading="lazy" title="<?php echo esc_attr(developer_text('Mapa de ', 'Map of ') . $location['venue']); ?>" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 </article>

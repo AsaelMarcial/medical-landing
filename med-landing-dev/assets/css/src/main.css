@@ -156,7 +156,10 @@
   }
   .hero-name { font-family: var(--font-display); font-size: clamp(2rem, 3.8vw, 3.5rem); line-height: 1.13; text-wrap: balance; }
   .eyebrow { @apply text-sm font-semibold tracking-wide text-secondary; }
-  .council-logo { display: block; width: 100%; max-width: 18rem; height: auto; }
+  .council-logo { display: block; width: 9rem; max-width: 100%; height: auto; }
+  .credential-card { @apply flex flex-col rounded-2xl bg-white border border-primary/10 p-6; }
+  .credential-card-heading { @apply flex min-h-20 items-center mb-5; }
+  .credential-card-footer { @apply mt-auto pt-6; }
   .procedure-card { @apply flex flex-col gap-4 rounded-2xl border border-primary/15 bg-white p-6; }
   .procedure-number { @apply flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 font-semibold text-primary; }
   .location-card { @apply overflow-hidden rounded-2xl border border-primary/15 bg-white; scroll-margin-top: 7rem; }

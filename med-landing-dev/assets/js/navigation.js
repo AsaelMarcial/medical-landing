@@ -99,29 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ticking = false;
     };
 
-    const initDeferredMaps = () => {
-        document.querySelectorAll('[data-map-load]').forEach((button) => {
-            button.addEventListener('click', () => {
-                const container = button.closest('[data-map-container]');
-                if (!container) return;
 
-                const frame = container.querySelector('[data-map-frame]');
-                const placeholder = container.querySelector('[data-map-placeholder]');
-
-                if (!frame) return;
-
-                if (!frame.getAttribute('src')) {
-                    frame.setAttribute('src', frame.dataset.src || '');
-                }
-
-                frame.hidden = false;
-
-                if (placeholder) {
-                    placeholder.hidden = true;
-                }
-            });
-        });
-    };
 
     window.addEventListener('scroll', () => {
         if (ticking) return;
@@ -156,7 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     updateScrollState();
-    initDeferredMaps();
     document.addEventListener('click', (event) => {
         const link = event.target.closest('[data-whatsapp-cta]');
         if (!link || typeof window.gtag !== 'function') return;
