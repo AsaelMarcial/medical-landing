@@ -2,7 +2,7 @@
 
 ## Ajuste 1.7.1 — 2026-09-22
 
-Mapas automáticos al acercarse a la sección mediante iframe nativo lazy, sin botón ni dependencia de JavaScript; logo CMN reducido a 144 px, tarjetas equilibradas con enlaces al pie y consulta de cédulas en el portal oficial SEP desde Inicio y Doctor, en ES/EN. Validación en staging: build, PHP/JS y responsive ES/EN correctos. Sustituye la decisión anterior de carga de mapas mediante clic.
+Mapas automáticos al acercarse a la sección mediante iframe nativo lazy, sin botón ni dependencia de JavaScript; logo CMN reducido a 144 px, tarjetas equilibradas con enlaces al pie y consulta de cédulas en el portal oficial SEP desde Inicio y Doctor, en ES/EN. Publicado en producción (`209678b`). Build y PHP/JS correctos; QA responsive ES/EN correcto en staging y dominio público. Sustituye la decisión anterior de carga de mapas mediante clic.
 
 ## Plan vigente 1.7.0 — 2026-09-22
 

@@ -7,7 +7,7 @@
 
 ### Actualización 1.7.1 — 2026-09-22
 
-Mapas automáticos al acercarse a la sección mediante iframe nativo lazy, sin botón ni dependencia de JavaScript; logo CMN reducido a 144 px, tarjetas equilibradas con enlaces al pie y consulta de cédulas en el portal oficial SEP desde Inicio y Doctor, en ES/EN. Build, sintaxis JS/PHP y QA responsive ES/EN (320, 390, 768 y 1440 px) correctos en staging. Preparada para publicación en la misma rama; sin migración de datos.
+Mapas automáticos al acercarse a la sección mediante iframe nativo lazy, sin botón ni dependencia de JavaScript; logo CMN reducido a 144 px, tarjetas equilibradas con enlaces al pie y consulta de cédulas en el portal oficial SEP desde Inicio y Doctor, en ES/EN. Build, sintaxis JS/PHP y QA responsive ES/EN (320, 390, 768 y 1440 px) correctos en staging. Publicada en GitHub y producción, código `209678b`, en la misma rama; sin migración de datos. QA público ES/EN correcto tras limpiar únicamente la caché médica.
 
 
 ### Versión 1.7.0 publicada — 2026-09-22
@@ -1091,3 +1091,5 @@ Copiar esta estructura al final:
 - Archivos: componente location-map, trust-section, page-about, helpers, navigation.js, CSS fuente/compilado y versiones del tema/paquete.
 - Validación: build, node --check, lint PHP en contenedor aislado y navegador Chrome ES/EN; cuatro anchos sin desbordamientos en tarjetas; dos mapas visibles con src directo. Logo local decodificado correctamente.
 - El enlace SEP permite consultar; no se afirma haber verificado los registros individuales. Ampliaciones clínicas siguen pendientes de autorización médica.
+
+- Publicación 1.7.1 completada: `209678b` en GitHub y servidor. QA repetido sobre dominio público correcto en ambos idiomas y cuatro anchos. Sin modificaciones de base de datos ni reinicios de otros proyectos.
