@@ -4,6 +4,9 @@
 >
 > **Estado del documento**: conserva la arquitectura y el alcance originales. No usar sus casillas como indicador del estado actual; la fuente viva es `CONTEXTO-PROYECTO.md`. La identidad visual descrita allí ya fue integrada.
 >
+> **Auditoría productiva 2026-09-22**: producción, copia local y GitHub coinciden en `codex/pagespeed-100` commit `6b13c3d`, tema 1.6.7. WordPress 7.1.1 y PHP 8.2.32 están operativos; Site Kit tiene Analytics 4 activo, Rank Math no ha completado setup y Fluent Forms conserva solo formularios demo sin selección en el tema. Consultar `CONTEXTO-PROYECTO.md` para riesgos y prioridades vigentes.
+> Polylang tiene `es` y `en`, pero las páginas públicas no tienen pares ingleses; `/en/` es fallback. El catálogo de servicios tiene 16 entradas ES y 17 EN, con una entrada inglesa sin traducción relacionada.
+>
 > **Actualización PageSpeed 2026-07-10**: la rama aislada `codex/pagespeed-100` sube a tema 1.6.7 y queda verificada con Lighthouse CLI local sobre producción: móvil `100/100/100/100` y escritorio `100/100/100/100`. Agrega mapas Google bajo demanda, logos/retrato WebP más pequeños, variante de retrato `650w`, caché pública anónima de página en Nginx, CSS inline solo en Home, reserva explícita de ancho/alto del retrato hero, orden DOM/visual estable para reducir CLS y documentos legales sin nota de revisión pendiente. Conserva la versión estable como respaldo antes de fusionar.
 >
 > **Actualización 2026-07-09**: producción estable partió de tema `med-landing-dev` 1.5.7 con dominio final `https://nefrologoedgar.com.mx`, HTTPS, sitemap nativo, Site Kit instalado y SEO fallback activo. La rama aislada `codex/pagespeed-100` prepara la versión 1.6.1 para PageSpeed: elimina Google Fonts, Alpine.js, GSAP y ScrollTrigger del frontend, usa navegación nativa, preload/fetchpriority de la imagen LCP, retrato/logos WebP, limpieza de assets globales de WordPress y caché estática en Nginx. Pendiente lograr/verificar 100 antes de fusionar.
@@ -30,14 +33,14 @@ WordPress core, la base de datos, los uploads, los plugins y la configuración d
 
 | Tecnología | Versión | Uso |
 |------------|---------|-----|
-| WordPress | Por confirmar en destino | CMS |
+| WordPress | 7.1.1 en producción | CMS |
 | TailwindCSS | v4 | Estilos (compilado via @tailwindcss/cli) |
 | JavaScript nativo | ES6+ | Menú móvil, focus trap, header scroll y CTA flotante |
 | Animaciones | Opcional, sin dependencias | IntersectionObserver no encolado por defecto en 1.6.0 |
-| Polylang | 3.8.4 en LocalWP | Multilenguaje ES/EN |
+| Polylang | 3.8.5 en VPS; 3.8.9 disponible | Multilenguaje ES/EN |
 | RankMath SEO | 1.0.273 en VPS | SEO, schemas, auditoría y ajustes editoriales |
-| Fluent Forms | latest | Formularios de contacto/citas |
-| Site Kit by Google | 1.182.0 en VPS | Analytics, Search Console, PageSpeed y estadísticas |
+| Fluent Forms | 6.2.5 en VPS; 6.2.14 disponible | Formularios de contacto/citas |
+| Site Kit by Google | 1.182.0 en VPS; 1.188.0 disponible | Analytics, Search Console, PageSpeed y estadísticas |
 | LiteSpeed Cache | latest | Cache (solo producción) |
 | Cloudflare | — | CDN (producción) |
 
@@ -406,6 +409,8 @@ med-landing-dev/
 
 > **Estado VPS 2026-07-08**: existe una instancia WordPress Docker aislada en `/opt/med-landing-dev/` con `wordpress:php8.2-apache`, MariaDB 11.4, tema `med-landing-dev` 1.5.5 activo, Polylang/Rank Math/Fluent Forms instalados y contenido sembrado. No se tocaron los sistemas Docker existentes. El puerto temporal `8081` está permitido en UFW y queda como diagnóstico. Nginx tiene un virtual host en `/etc/nginx/sites-available/nefrologoedgar.com.mx`: `https://nefrologoedgar.com.mx` hace proxy a `127.0.0.1:8081` y `www`/HTTP redirigen al dominio canónico HTTPS. WordPress usa `https://nefrologoedgar.com.mx` como `home` y `siteurl`. Certificado Let’s Encrypt activo para dominio raíz y `www`, con renovación simulada exitosa. Las credenciales quedaron únicamente en `/opt/med-landing-dev/DEPLOYMENT.md` dentro del VPS.
 
+> **Estado VPS 2026-09-22**: tema 1.6.7 y commit `6b13c3d` desplegados sin diferencias frente a GitHub. WordPress 7.1.1 está actualizado; certificado vigente hasta 2026-12-08. `8081/tcp` y `3306/tcp` siguen permitidos por UFW; restringirlos solo después de revisar dependencias de las otras pilas del servidor.
+
 1. Confirmar versión de WordPress y PHP, Multisite, plugins activos y restricciones del hosting.
 2. Ejecutar `npm run build` y validar que `style.css` conserve el header requerido por WordPress.
 3. Instalar o actualizar `med-landing-dev/` en `wp-content/themes/`.
@@ -427,8 +432,8 @@ med-landing-dev/
 
 ### Google y Medición
 
-- Site Kit está instalado y activo; se debe conectar desde `wp-admin > Site Kit` con una cuenta Google autorizada.
-- En Site Kit se vinculan Search Console, Google Analytics 4 y PageSpeed Insights; si se usará publicidad, también puede conectarse Google Ads/AdSense según disponibilidad.
+- Site Kit tiene un administrador conectado y los módulos Analytics 4 y PageSpeed Insights activos.
+- Search Console no aparece entre los módulos activos; verificar la propiedad desde `wp-admin > Site Kit`.
 - En Search Console se debe enviar `https://nefrologoedgar.com.mx/wp-sitemap.xml`.
 - Para publicidad pagada, la compra y administración se realiza desde Google Ads; las campañas recomendadas son búsqueda local por intención alta, llamadas/WhatsApp y landing por ciudad.
 - Pendiente de medición fina: eventos/conversiones para clic en WhatsApp, clic telefónico, formulario enviado, clic a Google Maps e Instagram.
@@ -458,7 +463,8 @@ med-landing-dev/
 - [x] SSL Let’s Encrypt activo para dominio raíz y `www`
 - [x] Redirecciones canónicas: HTTP y `www` redirigen a `https://nefrologoedgar.com.mx`
 - [x] SEO técnico 1.5.7: título con acentos correcto, `blog_public=1`, meta fallback, robots y `wp-sitemap.xml`
-- [ ] Site Kit conectado con cuenta Google
+- [x] Site Kit conectado con cuenta Google y Analytics 4 activo
+- [ ] Search Console confirmado como módulo activo y sitemap enviado
 - [ ] 404 page funciona
 - [x] Lighthouse 100 objetivo en la rama `codex/pagespeed-100`; mínimo estable 90+ en todas las métricas
 - [ ] Cross-browser: Safari, Firefox, Chrome, Edge

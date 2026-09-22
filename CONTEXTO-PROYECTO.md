@@ -5,6 +5,7 @@
 
 ## 1. Estado Ejecutivo
 
+- Auditoría productiva 2026-09-22: producción, copia local y GitHub coinciden en el commit `6b13c3d` de `codex/pagespeed-100`; el árbol desplegado está limpio, sin archivos modificados ni ignorados dentro del tema. El tema 1.6.7 está activo sobre WordPress 7.1.1 y PHP 8.2.32. Home, páginas principales, legales y versión `/en/` responden correctamente; la base de datos pasa `wp db check` y no se observaron errores PHP recientes.
 - Nota PageSpeed actual 2026-07-09: la rama aislada `codex/pagespeed-100` quedó en tema 1.6.6 con Lighthouse CLI local válido en `https://nefrologoedgar.com.mx/`: móvil `100/100/100/100` y escritorio `100/100/100/100`. Esta versión conserva la estable como respaldo, reduce logos/retrato WebP, cambia Google Maps a carga bajo demanda, mantiene cero CDN frontend del tema, imprime el CSS de Home inline, reserva ancho/alto del retrato del hero y elimina reordenamiento visual del hero para atacar CLS.
 
 - Proyecto: sitio premium para un médico nefrólogo.
@@ -15,7 +16,8 @@
 - Fuente de verdad del código: `med-landing-dev/` en este repositorio.
 - Estado actual: estructura técnica del MVP, identidad visual, ubicaciones, mejoras UX, soporte bilingüe, fotografía profesional, contacto definitivo, credenciales y catálogo SEO base integrados en el tema.
 - Fase actual: Fase 1 avanzada. La maquetación base, el contenido médico inicial, el staging VPS, el dominio final con HTTPS, la primera corrección visual responsive y las páginas legales revisadas por el médico existen; falta cerrar operación, configuración fina de plugins, QA final y revisión clínica/editorial final.
-- Bloqueo principal: faltan email público y receptor de formularios, horarios, configuración final de RankMath/Fluent Forms, revisión clínica final de textos, conexión de Google Analytics/Search Console y QA completo de producción.
+- Bloqueo principal: faltan email público y receptor de formularios, horarios, formulario real con consentimiento/notificaciones, finalización de Rank Math y Search Console, revisión clínica final de textos y QA editorial/cross-browser. Site Kit ya tiene un administrador conectado y Analytics 4 activo.
+- Última auditoría productiva: 2026-09-22, zona `America/Mexico_City`.
 - Última auditoría integral: 2026-06-07, zona `America/Mexico_City`.
 - Última aclaración de alcance del repositorio: 2026-06-08.
 - Última integración de identidad visual: 2026-06-08.
@@ -240,12 +242,14 @@ Estos valores describen exclusivamente aquel entorno auditado. No deben utilizar
 
 ### Staging VPS vigente
 
+- Estado verificado el 2026-09-22: Debian 12, WordPress 7.1.1, PHP 8.2.32, tema `med-landing-dev` 1.6.7 activo y commit desplegado `6b13c3d` de `codex/pagespeed-100`.
+- Producción, repositorio local y GitHub coinciden en `6b13c3d`; `git status` está limpio y no hay cambios ni archivos ignorados dentro de `med-landing-dev/` que deban recuperarse.
 - VPS auditado el 2026-07-06: Debian GNU/Linux 12, Docker 29.1.5, Docker Compose plugin v5.0.1, Nginx y Certbot instalados.
 - Sistemas existentes detectados y no modificados: `pos-texano-frontend` en puerto 3001 y `pos-texano-backend` en puerto 8001. También existe una pila histórica `Comercializadora` detenida.
 - Configuración Nginx existente detectada originalmente: `/etc/nginx/sites-enabled/orza.mx` y `/etc/nginx/sites-enabled/default`; no se modificaron esos archivos ni los proyectos existentes.
 - Dominio final preparado en Nginx: archivo `/etc/nginx/sites-available/nefrologoedgar.com.mx` y symlink `/etc/nginx/sites-enabled/nefrologoedgar.com.mx`.
 - `https://nefrologoedgar.com.mx` es el dominio canónico y hace proxy a `http://127.0.0.1:8081`; `www.nefrologoedgar.com.mx` y HTTP redirigen con `301` a `https://nefrologoedgar.com.mx`.
-- Certificado Let’s Encrypt activo para `nefrologoedgar.com.mx` y `www.nefrologoedgar.com.mx`, con vencimiento observado el 2026-10-07 03:26:51 UTC.
+- Certificado Let’s Encrypt activo para `nefrologoedgar.com.mx` y `www.nefrologoedgar.com.mx`, renovado y con vencimiento observado el 2026-12-08 13:20:24 UTC; `certbot.timer` está activo.
 - Nueva pila WordPress aislada: `/opt/med-landing-dev/`.
 - Repositorio clonado: `/opt/med-landing-dev/repo`.
 - Tema montado en el contenedor: `/opt/med-landing-dev/repo/med-landing-dev` hacia `/var/www/html/wp-content/themes/med-landing-dev`.
@@ -254,12 +258,17 @@ Estos valores describen exclusivamente aquel entorno auditado. No deben utilizar
 - URL interna/temporal de diagnóstico: `http://74.208.222.71:8081`.
 - URL WordPress vigente: `home` y `siteurl` configurados como `https://nefrologoedgar.com.mx`.
 - UFW permite `8081/tcp` y el puerto ya responde públicamente después de abrirlo también en el firewall/panel del proveedor.
-- WordPress instalado, tema `med-landing-dev` activo en producción en versión 1.5.7, permalinks `/%postname%/` y `blog_public=1`.
-- Plugins instalados y activados en staging/producción: Polylang 3.8.5, Rank Math SEO 1.0.273, Fluent Forms 6.2.5 y Site Kit by Google 1.182.0.
-- Polylang tiene idiomas `es` y `en`; el contenido sembrado quedó marcado en español.
+- WordPress instalado, tema `med-landing-dev` activo en producción en versión 1.6.7, permalinks `/%postname%/` y `blog_public=1`.
+- Plugins activos verificados: Polylang 3.8.5, Rank Math SEO 1.0.273, Fluent Forms 6.2.5 y Site Kit by Google 1.182.0. Hay actualizaciones disponibles a Polylang 3.8.9, Rank Math 1.0.278, Fluent Forms 6.2.14 y Site Kit 1.188.0; actualizar con respaldo y pruebas.
+- Polylang tiene idiomas `es` y `en`, pero las 11 páginas publicadas están asignadas solo a español y no tienen traducción relacionada; `/en/` responde mediante fallback, no como Home inglesa completa. En servicios hay 17 entradas en inglés y 16 en español: `Proteinuria and hematuria` (ID 8) está asignada a inglés, conserva slug español y no tiene par de traducción.
+- Site Kit tiene un administrador conectado y módulos activos `analytics-4` y `pagespeed-insights`; Search Console no aparece entre los módulos activos y debe revisarse desde wp-admin.
+- Rank Math está activo pero `rank_math_setup_completed` no existe; `/sitemap_index.xml` responde `404` y continúa vigente el sitemap nativo `/wp-sitemap.xml`, que responde `200`.
+- Fluent Forms contiene únicamente `Contact Form Demo` y `Subscription Form`, sin envíos; el theme mod `fluent_form_id` está vacío, por lo que el sitio todavía no ofrece un formulario real de citas/contacto.
+- La cuenta administradora conserva el correo provisional `admin@medical-landing.local`.
+- La base de datos pasa `wp db check`; WordPress core pasa checksums, salvo el archivo esperado de la imagen Docker `wp-config-docker.php`. Los contenedores WordPress y MariaDB están activos, saludables/sin reinicios desde el 2026-09-08 y no mostraron errores PHP recientes.
 - Home responde públicamente en `https://nefrologoedgar.com.mx`; Nginx redirige `http://nefrologoedgar.com.mx`, `http://www.nefrologoedgar.com.mx` y `https://www.nefrologoedgar.com.mx` al dominio canónico HTTPS. El acceso directo `:8081` queda como diagnóstico temporal y puede redirigir al dominio configurado.
 - Credenciales y comandos del despliegue están guardados solo en el servidor, en `/opt/med-landing-dev/DEPLOYMENT.md` con permisos `600`. No copiar contraseñas a la documentación del repositorio.
-- Pendientes VPS: cerrar o restringir `8081` cuando ya no sea diagnóstico público, rotar la contraseña root compartida durante la instalación, reemplazar acceso root por usuario/SSH key de despliegue, conectar Site Kit con una cuenta Google y configurar Google Analytics/Search Console.
+- Riesgos operativos VPS: `8081/tcp` sigue público y UFW también permite `3306/tcp`; MariaDB del host escucha en todas las interfaces. Revisar primero dependencias de los otros proyectos antes de restringir reglas. Rotar la contraseña root compartida y reemplazar acceso root por usuario/SSH key de despliegue. No modificar los otros contenedores sin una auditoría específica.
 
 ## 8. Build y Dependencias
 
@@ -493,25 +502,24 @@ Esa configuración contradice la estrategia SEO de URLs limpias. En el sistema d
 - Confirmar años de experiencia y número de pacientes antes de publicar cifras.
 - Obtener email público, email receptor de formularios y mensaje predefinido final si se desea ajustar el actual.
 - Obtener horarios y teléfono específico de cada sede si difieren del contacto general.
-- Instalar y configurar Fluent Forms.
+- Sustituir los formularios demo por un formulario real de contacto/citas y asignar su ID en el Customizer.
 - Añadir consentimiento de privacidad al formulario.
-- Publicar aviso legal, aviso de privacidad y disclaimer médico aprobados.
-- Instalar y configurar RankMath.
-- Reproducir la configuración de Polylang en el WordPress destino y revisar profesionalmente las traducciones clínicas.
+- Completar Rank Math o documentar la decisión de mantener el fallback SEO y sitemap nativo.
+- Crear y relacionar las páginas inglesas; revisar profesionalmente las traducciones clínicas y corregir el catálogo bilingüe incompleto (16 servicios ES, 17 EN).
 
 ### P1 - Fallos funcionales o de integración
 
 - RankMath podría duplicar schemas si no se divide claramente la responsabilidad.
 - Falta configurar el ID real de Fluent Forms y probar recepción, notificaciones, antispam y consentimiento.
-- La estructura de permalink del entorno original no correspondía al plan SEO; verificar la del sistema destino.
-- El uso de Multisite en el sistema destino todavía no está confirmado y puede afectar URLs, plugins y configuración.
+- Search Console no aparece activa en Site Kit; confirmar propiedad y enviar el sitemap nativo.
+- Los cuatro plugins activos tienen actualizaciones pendientes; aplicar con respaldo y prueba de compatibilidad conjunta.
+- Los puertos públicos `8081` y `3306` amplían la superficie de exposición del VPS.
 
 ### P2 - Calidad, accesibilidad y rendimiento
 
-- La rama 1.6.0 elimina Google Fonts en favor de fuentes del sistema; validar visualmente antes de fusionar.
+- La rama de producción elimina Google Fonts en favor de fuentes del sistema; falta decidir su fusión a `main`.
 - Falta validar con lector de pantalla y realizar una revisión manual completa de contraste en todos los estados.
 - Falta prueba cross-browser; la revisión actual cubrió el navegador integrado en móvil, tablet y escritorio.
-- Falta Lighthouse/PageSpeed posterior al despliegue de la rama 1.6.0.
 - Falta validar schemas.
 - Falta probar RankMath, Polylang y Fluent Forms juntos.
 - No existe suite de pruebas ni scripts de lint en `package.json`.
@@ -532,30 +540,25 @@ Usar `INFORMACION-A-SOLICITAR.md` como cuestionario maestro. Estado mínimo actu
 7. Horarios y teléfono específico de cada consultorio siguen pendientes si difieren del contacto general; direcciones, coordenadas y mapas ya están confirmados.
 8. Lista de servicios integrada como base SEO; falta revisión clínica/editorial final.
 9. Logos institucionales con autorización de uso siguen pendientes si se quieren mostrar.
-10. Aviso de privacidad revisado legalmente sigue pendiente.
-11. Términos, disclaimer médico y política de cancelación siguen pendientes.
+10. Aviso de privacidad, términos y disclaimer fueron revisados y aprobados por el médico; una revisión jurídica externa sigue fuera del alcance documentado.
+11. Política operativa de cancelación sigue pendiente si se desea publicar.
 12. Perfiles de Google Business y redes externas deben confirmarse antes de enlazarse salvo Instagram.
 
 No publicar claims, testimonios, instituciones, cifras ni permisos COFEPRIS sin evidencia del cliente y revisión correspondiente.
 
 ## 14. Orden de Trabajo Recomendado
 
-1. Confirmar WordPress, PHP, Multisite, plugins, hosting y método de despliegue del sistema destino.
-2. Revisar y aprobar los datos reales del médico ya integrados.
-3. Mantener sincronizado el tema 1.5.4 en LocalWP/staging y revisar la fotografía profesional, home, Servicios, páginas legales y páginas individuales antes de cada entrega.
-4. Preparar el paso del staging por IP al dominio final con reverse proxy y SSL.
-5. Revisar contenido demo y permalinks existentes sin asumir que coinciden con LocalWP.
-6. Reproducir Polylang e instalar/configurar RankMath y Fluent Forms.
-7. Revisar y ajustar los 17 servicios SEO sembrados por el tema.
-8. Completar Customizer o sustituirlo por una capa de datos más robusta.
-9. Validar visualmente los mapas reales y su carga diferida en staging.
-10. Corregir schemas y coordinación con RankMath.
-11. Crear páginas legales y consentimiento de formulario.
-12. Completar traducción inglesa.
-13. Completar auditoría de accesibilidad con lector de pantalla y formulario real.
-14. Auditoría de rendimiento.
-15. QA funcional y responsive.
-16. Preparar despliegue, LiteSpeed y Cloudflare.
+1. Obtener email público/receptor, horarios y aprobación clínica/editorial final.
+2. Crear y probar el formulario real con consentimiento, notificaciones y antispam; asignar `fluent_form_id`.
+3. Completar Rank Math/Search Console o formalizar el uso del fallback SEO y sitemap nativo.
+4. Crear/relacionar las páginas inglesas y corregir el servicio español faltante en Polylang.
+5. Respaldar y actualizar los cuatro plugins activos, con pruebas de regresión.
+6. Cambiar el email administrativo provisional y rotar credenciales de acceso.
+7. Auditar dependencias de red de todos los proyectos y después restringir `8081` y `3306` sin afectar las otras pilas.
+8. Validar schemas, lector de pantalla, formulario real y navegadores principales.
+9. Fusionar `codex/pagespeed-100` a `main` cuando se apruebe visual/editorialmente la versión desplegada.
+10. Completar QA funcional y responsive.
+11. Preparar la configuración final de caché/CDN si corresponde.
 
 ## 15. Criterio de Fase 1 Terminada
 
@@ -1027,3 +1030,15 @@ Copiar esta estructura al final:
 - Cambios: tema actualizado a 1.6.7; el catálogo legal ya no antepone el aviso interno de validación en `aviso-de-privacidad`, `terminos-y-condiciones`, `descargo-de-responsabilidad` ni `compromiso-de-etica`; el índice histórico `aviso-legal` conserva solo la descripción neutral de documentos legales.
 - Decisiones: no cambiar el contenido sustantivo ya aprobado; documentar el estado como revisado y aprobado por el médico, sin afirmar revisión externa de abogado o contador.
 - Validación: `cmd /c npm run build` correcto; `node --check` correcto para JS; lint PHP correcto dentro del contenedor WordPress; producción actualizada en commit `bf73531`; las páginas `aviso-de-privacidad`, `terminos-y-condiciones`, `descargo-de-responsabilidad`, `compromiso-de-etica` y `aviso-legal` responden `200` sin avisos internos de validación ni enlaces antiguos a `74.208.222.71:8081`.
+
+### 2026-09-22 - Auditoría de sincronización y estado productivo
+
+- Objetivo: comparar el tema desplegado con GitHub y documentar el estado real de WordPress, Docker, plugins, contenido, HTTPS y pendientes operativos sin alterar las otras aplicaciones del VPS.
+- Archivos modificados: `CONTEXTO-PROYECTO.md`, `Plan.md` e `INFORMACION-A-SOLICITAR.md`. No se modificó código del tema ni configuración del servidor.
+- Sincronización: producción, copia local y la rama remota `codex/pagespeed-100` coinciden en el commit `6b13c3d`; el árbol del servidor está limpio y no contiene cambios o archivos ignorados dentro del tema. La referencia remota local del clon VPS estaba atrasada porque su `fetch` solo sigue `main`, pero `git ls-remote` confirmó el commit correcto en GitHub.
+- Estado técnico: WordPress 7.1.1 y PHP 8.2.32; tema 1.6.7 activo; contenedores WordPress y MariaDB activos sin reinicios desde el 2026-09-08; DB correcta; core verificado; Home, páginas principales, legales y `/en/` responden; caché Nginx entrega `HIT`; certificado válido hasta el 2026-12-08.
+- Integraciones: Site Kit conectado con Analytics 4 y PageSpeed Insights; Search Console no aparece activa. Rank Math no completó setup, su sitemap devuelve `404` y el sitemap nativo responde `200`. Fluent Forms conserva dos formularios demo, cero envíos y ningún `fluent_form_id` asignado.
+- Contenido: las 11 páginas publicadas están solo en español y no tienen pares relacionados; `/en/` funciona como fallback. Hay 16 servicios en español y 17 en inglés; `Proteinuria and hematuria` (ID 8) está en inglés, conserva slug español y no tiene par. El email de la cuenta administradora sigue siendo `admin@medical-landing.local`.
+- Riesgos: actualizaciones disponibles para Polylang, Rank Math, Fluent Forms y Site Kit; `8081/tcp` y `3306/tcp` continúan permitidos por UFW y MariaDB del host escucha públicamente. Cualquier restricción debe coordinarse con los demás proyectos del VPS.
+- Validaciones: `npm run build` correcto con TailwindCSS 4.3.0 y sin cambios generados; WordPress y DB verificados con WP-CLI; estado de Git y referencia remota comprobados; respuestas HTTP y certificado revisados; sin errores PHP recientes del contenedor.
+- Pendientes prioritarios: formulario real, correo/horarios, Rank Math/Search Console, traducción faltante, respaldo y actualización de plugins, rotación de credenciales y endurecimiento de red tras auditar dependencias compartidas.

@@ -309,11 +309,11 @@ Para schema `sameAs` y enlaces de footer:
 | Doctoralia / Top Doctors México | URL del perfil | |
 | YouTube (si tiene canal) | URL | |
 | Sitio web previo (si existe) | URL | Para redirects |
-| Google Analytics 4 | Propiedad o autorización para crearla | Site Kit está instalado, falta conexión |
+| Google Analytics 4 | Propiedad o autorización para crearla | Site Kit conectado; Analytics 4 activo al 2026-09-22 |
 | Google Search Console | Propiedad de dominio o URL prefix | Enviar `https://nefrologoedgar.com.mx/wp-sitemap.xml` |
 | Google Ads | Cuenta o ID de cliente | Solo si se pagará publicidad |
 
-**Estado 2026-07-08**: Site Kit by Google quedó instalado y activo en WordPress, pero requiere iniciar sesión desde `wp-admin > Site Kit` con una cuenta Google autorizada. Las estadísticas no empezarán a medirse correctamente hasta completar esa vinculación.
+**Estado 2026-09-22**: Site Kit tiene un administrador conectado y módulos `analytics-4` y `pagespeed-insights` activos. Search Console no aparece entre los módulos activos y debe confirmarse desde `wp-admin > Site Kit`; después se debe enviar `https://nefrologoedgar.com.mx/wp-sitemap.xml`.
 
 ---
 
