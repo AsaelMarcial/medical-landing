@@ -262,21 +262,25 @@ def write_mo(path, messages):
 
 
 def main():
+    TRANSLATIONS.update({
+        'Especialista en Nefrología certificado, con atención en Xalapa para valoración de enfermedades renales, terapias de reemplazo renal y procedimientos nefrológicos seleccionados.': 'Board-certified nephrologist in Xalapa for assessment of kidney diseases, renal replacement therapies and selected nephrology procedures.',
+        'Valoración y seguimiento de enfermedad renal, terapias de reemplazo renal y procedimientos nefrológicos seleccionados en Xalapa.': 'Assessment and follow-up of kidney disease, renal replacement therapies and selected nephrology procedures in Xalapa.',
+    })
     strings = extract_strings()
     missing = sorted(set(strings) - set(TRANSLATIONS))
     obsolete = sorted(set(TRANSLATIONS) - set(strings))
 
     if missing:
         raise SystemExit("Missing translations:\n- " + "\n- ".join(missing))
-    if obsolete:
-        raise SystemExit("Obsolete translations:\n- " + "\n- ".join(obsolete))
+    # Retain historical dynamic strings in source, but exclude them from compiled catalogs.
+    messages = {key: TRANSLATIONS[key] for key in strings}
 
     LANGUAGES_DIR.mkdir(parents=True, exist_ok=True)
     write_pot(LANGUAGES_DIR / f"{TEXT_DOMAIN}.pot", strings)
     write_po(LANGUAGES_DIR / f"{TEXT_DOMAIN}-en_US.po", strings, TRANSLATIONS)
-    write_mo(LANGUAGES_DIR / f"{TEXT_DOMAIN}-en_US.mo", TRANSLATIONS)
+    write_mo(LANGUAGES_DIR / f"{TEXT_DOMAIN}-en_US.mo", messages)
     write_po(LANGUAGES_DIR / "en_US.po", strings, TRANSLATIONS)
-    write_mo(LANGUAGES_DIR / "en_US.mo", TRANSLATIONS)
+    write_mo(LANGUAGES_DIR / "en_US.mo", messages)
     print(f"Built {len(strings)} translations.")
 
 

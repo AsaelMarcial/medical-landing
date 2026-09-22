@@ -1,7 +1,7 @@
 # Medical Landing Page — Proyecto Nefrólogo
 
 ## Resumen del Proyecto
-Landing page premium para un médico nefrólogo con consultorios en Xalapa y Boca del Río, Veracruz, México. WordPress custom theme sin page builders, optimizado para SEO local y conversiones.
+Landing page premium para un médico nefrólogo con consultorios en dos sedes en Xalapa, Veracruz, México. WordPress custom theme sin page builders, optimizado para SEO local y conversiones.
 
 ## Stack Tecnológico
 - **CMS destino**: instalación WordPress existente (versión exacta por confirmar antes del despliegue)
@@ -9,7 +9,7 @@ Landing page premium para un médico nefrólogo con consultorios en Xalapa y Boc
 - **JS Interactivo**: Alpine.js (menú mobile, accordions, modals)
 - **Animaciones**: GSAP (scroll reveals, fade-ins)
 - **SEO**: RankMath SEO
-- **Formularios**: Fluent Forms
+- **Citas**: exclusivamente WhatsApp; Fluent Forms se desactiva conservando datos
 - **Multilenguaje**: Polylang (ES principal + EN)
 - **Cache**: LiteSpeed Cache (producción)
 - **CDN**: Cloudflare (producción)
@@ -44,7 +44,7 @@ npm run build
 | surface | #F7F7F7 | Cards, secciones alternas |
 | text | #243126 | Body text |
 | text-muted | #5F6B5A | Subtítulos |
-| whatsapp | #25D366 | Botón WhatsApp |
+| whatsapp | #344729 | Botón WhatsApp, icono/texto blancos; hover #4A5942 |
 
 ## Tipografía
 - **Headings**: Inter 600-700
@@ -58,7 +58,7 @@ npm run build
 - Servicios (page-services.php + single-servicio.php)
 - Contacto (page-contact.php)
 - Nefrólogo en Xalapa (page-location.php)
-- Nefrólogo en Boca del Río (page-location.php, slug histórico `nefrologo-veracruz`)
+- Policlinica Óptima y Torre Hakim se presentan en `/nefrologo-xalapa/`; `/nefrologo-veracruz/` redirige con 301 y su página queda en borrador.
 
 ### Fase 2
 - Blog (archive.php, single.php)
@@ -72,12 +72,15 @@ npm run build
 ## SEO Local
 - Keywords: "nefrólogo en Xalapa", "nefrólogo en Veracruz", "especialista en riñones"
 - Schemas: Physician, LocalBusiness (×2), MedicalOrganization, FAQ (Fase 2)
-- Páginas por ubicación con keywords locales
+- Una página local para los dos consultorios en Xalapa.
+- Rank Math controla metadatos, canonical, robots y sitemap; Polylang controla idiomas/hreflang; el tema controla entidades médicas.
+- Migración explícita WP-CLI `med-landing migrate-170`; no sembrar ni actualizar contenido en peticiones web.
+- Ampliaciones clínicas 1.7.0 requieren revisión del médico; consultar `docs/REVISION-CLINICA-170.md`.
 
 ## Plugins Requeridos
 1. Polylang
 2. RankMath SEO
-3. Fluent Forms
+3. Fluent Forms retirado del flujo; no borrar sus datos
 4. LiteSpeed Cache (solo producción)
 5. SVG Support
 6. WebP Express

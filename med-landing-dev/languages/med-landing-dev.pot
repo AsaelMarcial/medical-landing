@@ -1,9 +1,6 @@
 msgid ""
 msgstr "Project-Id-Version: Medical Landing 1.5.7\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\n"
 
-msgid "Abrir en Google Maps"
-msgstr ""
-
 msgid "Abrir menú"
 msgstr ""
 
@@ -13,22 +10,7 @@ msgstr ""
 msgid "Acompañamiento para terapias de reemplazo renal cuando la función del riñón requiere soporte especializado."
 msgstr ""
 
-msgid "Agenda tu cita hoy y recibe atención especializada para el cuidado de tu salud renal. Consultorios en Xalapa y Boca del Río, Veracruz."
-msgstr ""
-
 msgid "Agenda una consulta para recibir atención especializada."
-msgstr ""
-
-msgid "Agendar"
-msgstr ""
-
-msgid "Agendar Cita"
-msgstr ""
-
-msgid "Agendar aquí"
-msgstr ""
-
-msgid "Agendar por WhatsApp"
 msgstr ""
 
 msgid "Agregar Nuevo Servicio"
@@ -38,15 +20,6 @@ msgid "Agregar Servicio"
 msgstr ""
 
 msgid "Atención especializada en enfermedades del riñón"
-msgstr ""
-
-msgid "Atención especializada en salud renal para pacientes de %s y sus alrededores."
-msgstr ""
-
-msgid "Atención renal certificada"
-msgstr ""
-
-msgid "Boca del Río"
 msgstr ""
 
 msgid "Breadcrumb"
@@ -64,9 +37,6 @@ msgstr ""
 msgid "Cerrar menú"
 msgstr ""
 
-msgid "Certificación CMN 2025-2030"
-msgstr ""
-
 msgid "Certificación vigente"
 msgstr ""
 
@@ -76,67 +46,16 @@ msgstr ""
 msgid "Configura español e inglés en Polylang para mostrar el botón de idioma."
 msgstr ""
 
-msgid "Confirma horarios al solicitar tu cita."
-msgstr ""
-
-msgid "Confirma horarios y disponibilidad al solicitar tu cita."
-msgstr ""
-
 msgid "Conocer más"
 msgstr ""
 
-msgid "Consulta de Nefrología en %1$s, %2$s"
-msgstr ""
-
-msgid "Consulta de nefrología en %s, Veracruz."
-msgstr ""
-
-msgid "Consulta de nefrología en Xalapa y Boca del Río, Veracruz."
-msgstr ""
-
-msgid "Consulta el mapa y abre la ruta de la sede que prefieras."
-msgstr ""
-
-msgid "Consulta en Boca del Río"
-msgstr ""
-
-msgid "Consulta en Xalapa"
-msgstr ""
-
-msgid "Consulta especializada en nefrología con información profesional verificable y sedes en Xalapa y Boca del Río, Veracruz."
-msgstr ""
-
 msgid "Consulta nefrológica para enfermedad renal, alteraciones en estudios de orina o sangre, hipertensión difícil de controlar y terapias de reemplazo renal."
-msgstr ""
-
-msgid "Consultorios"
-msgstr ""
-
-msgid "Contactar por WhatsApp"
-msgstr ""
-
-msgid "Contacto"
-msgstr ""
-
-msgid "Contacto directo"
-msgstr ""
-
-msgid "Contenido educativo y novedades de salud renal."
 msgstr ""
 
 msgid "Cédula de especialidad"
 msgstr ""
 
 msgid "Cédula profesional"
-msgstr ""
-
-msgid "Cédulas profesionales"
-msgstr ""
-
-msgid "Cómo llegar"
-msgstr ""
-
-msgid "Cómo llegar en Google Maps →"
 msgstr ""
 
 msgid "Cómo llegar →"
@@ -148,34 +67,16 @@ msgstr ""
 msgid "Direcciones"
 msgstr ""
 
-msgid "Dirección"
-msgstr ""
-
-msgid "Dirección Boca del Río"
-msgstr ""
-
 msgid "Dirección Xalapa"
 msgstr ""
 
-msgid "Disponibilidad"
-msgstr ""
-
 msgid "Disponible en consulta"
-msgstr ""
-
-msgid "Dos consultorios con el mismo teléfono de contacto para agendar cita."
-msgstr ""
-
-msgid "Déjalo en 0 hasta crear y probar el formulario de contacto."
 msgstr ""
 
 msgid "Editar Servicio"
 msgstr ""
 
 msgid "El botón de idioma necesita Polylang activo y configurado."
-msgstr ""
-
-msgid "El formulario de citas se habilitará después de configurar su recepción y aviso de privacidad. Mientras tanto, utiliza los canales de contacto disponibles o consulta las ubicaciones."
 msgstr ""
 
 msgid "Email de Contacto"
@@ -190,19 +91,10 @@ msgstr ""
 msgid "English"
 msgstr ""
 
-msgid "Enlace de Google Maps - Boca del Río"
-msgstr ""
-
 msgid "Enlace de Google Maps - Xalapa"
 msgstr ""
 
 msgid "Enlaces"
-msgstr ""
-
-msgid "Envíanos un mensaje"
-msgstr ""
-
-msgid "Escribir por WhatsApp"
 msgstr ""
 
 msgid "Español"
@@ -211,37 +103,13 @@ msgstr ""
 msgid "Especialidad"
 msgstr ""
 
-msgid "Especialista en Nefrología certificado, con atención en Xalapa y Boca del Río para valoración de enfermedades renales, terapias de reemplazo renal y procedimientos nefrológicos seleccionados."
-msgstr ""
-
-msgid "Estamos para ayudarte. Agenda tu cita o envíanos un mensaje."
+msgid "Especialista en Nefrología certificado, con atención en Xalapa para valoración de enfermedades renales, terapias de reemplazo renal y procedimientos nefrológicos seleccionados."
 msgstr ""
 
 msgid "Formación profesional y certificación"
 msgstr ""
 
-msgid "Formulario en configuración"
-msgstr ""
-
-msgid "Hola, me gustaría agendar una cita en %s."
-msgstr ""
-
-msgid "Hola, me gustaría agendar una valoración de nefrología."
-msgstr ""
-
 msgid "Hola, me gustaría solicitar información para agendar una cita."
-msgstr ""
-
-msgid "Hola, me gustaría solicitar información para una cita."
-msgstr ""
-
-msgid "Hola, me interesa el servicio de %s."
-msgstr ""
-
-msgid "Hola, quisiera una cita en %s."
-msgstr ""
-
-msgid "ID del formulario Fluent Forms"
 msgstr ""
 
 msgid "Información de Contacto"
@@ -256,28 +124,13 @@ msgstr ""
 msgid "Inicio"
 msgstr ""
 
-msgid "Instagram oficial"
-msgstr ""
-
 msgid "Leer más"
 msgstr ""
 
 msgid "Legal"
 msgstr ""
 
-msgid "Llamar"
-msgstr ""
-
-msgid "Llamar Ahora"
-msgstr ""
-
-msgid "Llamar ahora"
-msgstr ""
-
 msgid "Lo sentimos, la página que buscas no existe o fue movida."
-msgstr ""
-
-msgid "Mapa del consultorio en %s"
 msgstr ""
 
 msgid "Medical Landing:"
@@ -302,9 +155,6 @@ msgid "Más información"
 msgstr ""
 
 msgid "Navegación principal"
-msgstr ""
-
-msgid "Nefrólogo en %s"
 msgstr ""
 
 msgid "No se encontraron servicios"
@@ -352,12 +202,6 @@ msgstr ""
 msgid "Sobre el Doctor"
 msgstr ""
 
-msgid "Solicitar información"
-msgstr ""
-
-msgid "Teléfono"
-msgstr ""
-
 msgid "Terapias de reemplazo renal"
 msgstr ""
 
@@ -370,13 +214,7 @@ msgstr ""
 msgid "Trayectoria académica"
 msgstr ""
 
-msgid "URL de mapa insertado - Boca del Río"
-msgstr ""
-
 msgid "URL de mapa insertado - Xalapa"
-msgstr ""
-
-msgid "Ubicaciones de consulta"
 msgstr ""
 
 msgid "Usa únicamente el valor src del iframe de Google Maps."
@@ -388,22 +226,13 @@ msgstr ""
 msgid "Valoración renal"
 msgstr ""
 
-msgid "Valoración y seguimiento de enfermedad renal, terapias de reemplazo renal y procedimientos nefrológicos seleccionados en Xalapa y Boca del Río."
-msgstr ""
-
-msgid "Ver Instagram"
+msgid "Valoración y seguimiento de enfermedad renal, terapias de reemplazo renal y procedimientos nefrológicos seleccionados en Xalapa."
 msgstr ""
 
 msgid "Ver Servicio"
 msgstr ""
 
-msgid "Ver detalles →"
-msgstr ""
-
 msgid "Ver todos los servicios"
-msgstr ""
-
-msgid "Ver ubicaciones"
 msgstr ""
 
 msgid "Verificar en CONACEM"
@@ -412,20 +241,8 @@ msgstr ""
 msgid "Volver al inicio"
 msgstr ""
 
-msgid "WhatsApp"
-msgstr ""
-
 msgid "WhatsApp (con código de país)"
 msgstr ""
 
-msgid "Xalapa"
-msgstr ""
-
-msgid "Xalapa y Boca del Río"
-msgstr ""
-
 msgid "¿Necesitas este servicio?"
-msgstr ""
-
-msgid "¿Necesitas una consulta nefrológica?"
 msgstr ""

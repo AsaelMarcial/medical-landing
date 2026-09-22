@@ -20,7 +20,7 @@ $category_descriptions = developer_get_service_category_descriptions();
                 <?php esc_html_e('Servicios de nefrología', 'med-landing-dev'); ?>
             </h1>
             <p class="text-lg text-text-muted max-w-3xl mx-auto">
-                <?php esc_html_e('Valoración y seguimiento de enfermedad renal, terapias de reemplazo renal y procedimientos nefrológicos seleccionados en Xalapa y Boca del Río.', 'med-landing-dev'); ?>
+                <?php esc_html_e('Valoración y seguimiento de enfermedad renal, terapias de reemplazo renal y procedimientos nefrológicos seleccionados en Xalapa.', 'med-landing-dev'); ?>
             </p>
         </div>
     </section>
@@ -37,13 +37,14 @@ $category_descriptions = developer_get_service_category_descriptions();
         </div>
     </nav>
 
+    <?php get_template_part('template-parts/sections/procedures'); ?>
     <section class="bg-background py-12 md:py-16" data-animate="fade-up">
         <div class="container-custom space-y-14">
             <?php foreach ($categories as $category_key => $category_label) : ?>
                 <?php $catalog_services = developer_get_services_by_category($category_key); ?>
 
                 <?php if ($catalog_services) : ?>
-                    <section id="<?php echo esc_attr($category_key); ?>" class="scroll-mt-36">
+                    <section id="<?php echo esc_attr('procedimientos' === $category_key ? 'otros-procedimientos' : $category_key); ?>" class="scroll-mt-36">
                         <div class="mb-7 max-w-3xl">
                             <h2 class="text-2xl md:text-3xl font-bold text-primary">
                                 <?php echo esc_html($category_label); ?>

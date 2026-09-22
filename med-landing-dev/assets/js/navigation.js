@@ -155,5 +155,15 @@ document.addEventListener('DOMContentLoaded', () => {
         trapFocus(event);
     });
 
+    updateScrollState();
     initDeferredMaps();
+    document.addEventListener('click', (event) => {
+        const link = event.target.closest('[data-whatsapp-cta]');
+        if (!link || typeof window.gtag !== 'function') return;
+        window.gtag('event', 'whatsapp_click', {
+            contact_method: 'whatsapp',
+            placement: link.dataset.ctaPlacement || 'content',
+            language: document.documentElement.lang,
+        });
+    });
 });

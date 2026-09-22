@@ -1,4 +1,18 @@
-# Plan Completo: Landing Page Médica — Nefrólogo (Xalapa y Boca del Río)
+# Plan Completo: Landing Page Médica — Nefrólogo en Xalapa
+
+## Plan vigente 1.7.0 — 2026-09-22
+
+Implementar citas exclusivas por WhatsApp, dos sedes en Xalapa, procedimientos destacados, Facebook y logo oficial del Consejo. Usar `codex/whatsapp-xalapa-170`, sin modificar otras aplicaciones del VPS.
+
+1. Respaldo médico y entorno aislado: realizados.
+2. Interfaz ES/EN, ubicaciones, CTA compartido y assets: preparados, QA en curso.
+3. Migración explícita con snapshot, protección de ediciones, 17 pares de servicios y 10 de páginas: primera prueba y repetición correctas; repetir desde respaldo con versión final.
+4. Rank Math para metadatos/sitemap, Polylang para idiomas, tema para entidades médicas: integración en pruebas. Mantener 404 reales y redirecciones individuales.
+5. Revisión responsive, funcional, PHP/JS, Lighthouse y mapas: en curso.
+6. Publicación controlada de código y datos, verificación y Search Console: pendientes.
+7. Ampliación clínica: `docs/REVISION-CLINICA-170.md`, pendiente de revisión médica antes de activarla.
+
+El texto siguiente conserva antecedentes del proyecto. Las referencias a Boca del Río, formularios y llamadas quedan sustituidas por este plan y `CONTEXTO-PROYECTO.md`.
 
 > **Archivo de respaldo**: Este documento contiene el plan completo del proyecto para referencia en caso de pérdida de contexto en el chat.
 >

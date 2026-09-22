@@ -1,168 +1,93 @@
 <?php
-/**
- * SEO fallbacks for production.
- *
- * Rank Math remains the preferred SEO UI, but on fresh installs it may not
- * output metadata until its setup is completed. These fallbacks keep critical
- * title, meta description and social tags healthy meanwhile.
- */
-
+/** Rank Math owns metadata; fallbacks operate only when it is unavailable. */
 function developer_rank_math_controls_frontend() {
-    return defined('RANK_MATH_VERSION') && (bool) get_option('rank_math_setup_completed', false);
+    return defined('RANK_MATH_VERSION') && (bool) get_option('rank_math_setup_completed', false) && !\RankMath\Helper::is_invalid_registration();
 }
-
+add_filter('rank_math/frontend/title', static function ($title) {
+    return is_front_page() ? developer_get_seo_title() : $title;
+});
+add_filter('rank_math/frontend/description', static function ($description) {
+    return is_front_page() ? developer_get_seo_description() : $description;
+});
+add_filter('rank_math/frontend/canonical', static function ($canonical) {
+    return is_front_page() ? developer_get_home_url() : $canonical;
+});
 function developer_get_seo_title() {
+    if (is_404()) {
+        return developer_text('Página no encontrada', 'Page not found') . ' | Dr. Edgar E. Hernández';
+    }
     if (is_front_page()) {
-        return 'Dr. Edgar E. Hernández | Nefrólogo en Xalapa y Boca del Río';
+        return developer_text('Dr. Edgar E. Hernández | Nefrólogo en Xalapa', 'Dr. Edgar E. Hernández | Nephrologist in Xalapa');
     }
-
-    if (is_singular('servicio')) {
-        return get_the_title() . ' | Nefrólogo en Xalapa y Boca del Río';
-    }
-
-    if (developer_is_page_translation('sobre-el-doctor')) {
-        return 'Sobre el Dr. Edgar Eduardo Hernández Enríquez | Nefrología';
-    }
-
-    if (developer_is_page_translation('servicios')) {
-        return 'Servicios de nefrología | Enfermedades del riñón, diálisis y hemodiálisis';
-    }
-
-    if (developer_is_page_translation('contacto')) {
-        return 'Contacto y citas | Nefrólogo en Xalapa y Boca del Río';
-    }
-
-    if (developer_is_page_translation('nefrologo-xalapa')) {
-        return 'Nefrólogo en Xalapa | Dr. Edgar E. Hernández';
-    }
-
-    if (developer_is_page_translation('nefrologo-veracruz')) {
-        return 'Nefrólogo en Boca del Río, Veracruz | Dr. Edgar E. Hernández';
-    }
-
-    if (is_singular()) {
-        return get_the_title() . ' | Dr. Edgar E. Hernández';
-    }
-
-    return get_bloginfo('name');
+    return get_the_title() . developer_text(' | Nefrólogo en Xalapa', ' | Nephrologist in Xalapa');
 }
-
 function developer_get_seo_description() {
-    if (is_front_page()) {
-        return 'Atención especializada en enfermedades del riñón con el Dr. Edgar Eduardo Hernández Enríquez. Consultas de nefrología en Xalapa y Boca del Río, Veracruz.';
+    if (is_singular() && has_excerpt()) {
+        return wp_strip_all_tags(get_the_excerpt());
     }
-
-    if (is_singular('servicio')) {
-        $excerpt = trim((string) get_the_excerpt());
-
-        return wp_trim_words(
-            $excerpt ?: 'Consulta con especialista en nefrología en Xalapa y Boca del Río, Veracruz.',
-            28,
-            ''
-        );
-    }
-
-    $descriptions = [
-        'sobre-el-doctor'   => 'Conoce la formación, certificación y cédulas profesionales del Dr. Edgar Eduardo Hernández Enríquez, especialista en nefrología en Veracruz.',
-        'servicios'         => 'Valoración y tratamiento de enfermedad renal crónica, diabetes, hipertensión, litiasis renal, diálisis, hemodiálisis y procedimientos nefrológicos.',
-        'contacto'          => 'Agenda una consulta de nefrología en Xalapa o Boca del Río. Teléfono y WhatsApp para citas con el Dr. Edgar E. Hernández.',
-        'nefrologo-xalapa'  => 'Consulta de nefrología en Xalapa, Veracruz, en Torre Hakim Local 909. Atención especializada en salud renal.',
-        'nefrologo-veracruz' => 'Consulta de nefrología en Boca del Río, Veracruz, Hospital MediMAC Consultorio 37. Atención especializada en enfermedades del riñón.',
-    ];
-
-    foreach ($descriptions as $slug => $description) {
-        if (developer_is_page_translation($slug)) {
-            return $description;
-        }
-    }
-
-    return get_bloginfo('description') ?: developer_get_doctor_description();
+    return developer_text('Consulta de nefrología con el Dr. Edgar Eduardo Hernández Enríquez en Torre Hakim y Policlinica Óptima, Xalapa. Agenda por WhatsApp.', 'Nephrology consultation with Dr. Edgar Eduardo Hernández Enríquez at Torre Hakim and Policlinica Óptima, Xalapa. Book via WhatsApp.');
 }
-
-function developer_filter_document_title_parts($parts) {
-    if (developer_rank_math_controls_frontend()) {
-        return $parts;
+add_filter('document_title_parts', static function ($parts) {
+    return developer_rank_math_controls_frontend() ? $parts : ['title' => developer_get_seo_title()];
+}, 20);
+add_filter('wp_robots', static function ($robots) {
+    if (is_404() || is_search()) {
+        unset($robots['index']);
+        $robots['noindex'] = true;
     }
-
-    return [
-        'title' => developer_get_seo_title(),
-    ];
-}
-add_filter('document_title_parts', 'developer_filter_document_title_parts', 20);
-
-function developer_filter_document_title_separator() {
-    return '|';
-}
-add_filter('document_title_separator', 'developer_filter_document_title_separator');
-
-function developer_filter_robots($robots) {
-    if ('1' === (string) get_option('blog_public')) {
-        unset($robots['noindex'], $robots['nofollow']);
-        $robots['index'] = true;
-        $robots['follow'] = true;
-    }
-
     $robots['max-image-preview'] = 'large';
-
     return $robots;
-}
-add_filter('wp_robots', 'developer_filter_robots', 20);
-
-function developer_output_seo_fallback_meta() {
-    if (developer_rank_math_controls_frontend() || is_admin() || is_feed()) {
+}, 20);
+add_filter('rank_math/frontend/robots', static function ($robots) {
+    if (is_404() || is_search() || '1' !== (string) get_option('blog_public')) {
+        $robots['index'] = 'noindex';
+    }
+    return $robots;
+});
+add_action('wp_head', static function () {
+    if (developer_rank_math_controls_frontend() || is_admin() || is_feed() || is_404() || is_search()) {
         return;
     }
-
     $title = developer_get_seo_title();
     $description = developer_get_seo_description();
-    $url = is_singular() ? get_permalink() : home_url(add_query_arg([], $GLOBALS['wp']->request ?? ''));
-    $url = is_front_page() ? home_url('/') : $url;
-    $image = developer_has_doctor_photo() ? developer_get_doctor_photo_url('large') : developer_get_brand_logo_url('composition');
-    $locale = 'en' === developer_get_current_language() ? 'en_US' : 'es_MX';
-
-    echo '<meta name="description" content="' . esc_attr($description) . '">' . "\n";
-    echo '<meta property="og:locale" content="' . esc_attr($locale) . '">' . "\n";
-    echo '<meta property="og:type" content="' . (is_singular('post') ? 'article' : 'website') . '">' . "\n";
-    echo '<meta property="og:title" content="' . esc_attr($title) . '">' . "\n";
-    echo '<meta property="og:description" content="' . esc_attr($description) . '">' . "\n";
-    echo '<meta property="og:url" content="' . esc_url($url) . '">' . "\n";
-    echo '<meta property="og:site_name" content="' . esc_attr(get_bloginfo('name')) . '">' . "\n";
-
-    if ($image) {
-        echo '<meta property="og:image" content="' . esc_url($image) . '">' . "\n";
-        echo '<meta name="twitter:image" content="' . esc_url($image) . '">' . "\n";
+    $url = is_front_page() ? developer_get_home_url() : get_permalink();
+    $image = developer_get_doctor_photo_url('large');
+    foreach (['description' => $description, 'twitter:card' => 'summary_large_image', 'twitter:title' => $title, 'twitter:description' => $description, 'twitter:image' => $image] as $name => $value) {
+        printf('<meta name="%s" content="%s">' . "\n", esc_attr($name), esc_attr($value));
     }
-
-    echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
-    echo '<meta name="twitter:title" content="' . esc_attr($title) . '">' . "\n";
-    echo '<meta name="twitter:description" content="' . esc_attr($description) . '">' . "\n";
-}
-add_action('wp_head', 'developer_output_seo_fallback_meta', 4);
-
-function developer_filter_robots_txt($output, $public) {
-    $lines = [
-        'User-agent: *',
-    ];
-
-    if ('1' === (string) $public) {
-        $lines[] = 'Disallow: /wp-admin/';
-        $lines[] = 'Allow: /wp-admin/admin-ajax.php';
-    } else {
-        $lines[] = 'Disallow: /';
+    foreach (['og:title' => $title, 'og:description' => $description, 'og:url' => $url, 'og:type' => 'website', 'og:image' => $image, 'og:locale' => developer_text('es_MX', 'en_US')] as $name => $value) {
+        printf('<meta property="%s" content="%s">' . "\n", esc_attr($name), esc_attr($value));
     }
-
-    $lines[] = '';
-    $lines[] = 'Sitemap: ' . home_url('/wp-sitemap.xml');
-
-    return implode("\n", $lines) . "\n";
-}
-add_filter('robots_txt', 'developer_filter_robots_txt', 20, 2);
-
-function developer_filter_sitemap_provider($provider, $name) {
-    if ('users' === $name) {
-        return false;
+}, 4);
+add_filter('robots_txt', static function ($output, $public) {
+    if ('1' !== (string) $public) {
+        return "User-agent: *\nDisallow: /\n";
     }
-
-    return $provider;
-}
-add_filter('wp_sitemaps_add_provider', 'developer_filter_sitemap_provider', 20, 2);
+    return "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n\nSitemap: " . home_url(developer_rank_math_controls_frontend() ? '/sitemap_index.xml' : '/wp-sitemap.xml') . "\n";
+}, 20, 2);
+add_filter('wp_sitemaps_add_provider', static function ($provider, $name) {
+    return 'users' === $name ? false : $provider;
+}, 20, 2);
+add_action('template_redirect', static function () {
+    if (!in_array($_SERVER['REQUEST_METHOD'] ?? 'GET', ['GET', 'HEAD'], true)) {
+        return;
+    }
+    $path = wp_parse_url(wp_unslash($_SERVER['REQUEST_URI'] ?? '/'), PHP_URL_PATH);
+    $redirects = get_option('developer_redirects_170', []);
+    if (developer_rank_math_controls_frontend()) {
+        $redirects['/wp-sitemap.xml'] = '/sitemap_index.xml';
+    }
+    if (isset($redirects[$path])) {
+        wp_safe_redirect(home_url($redirects[$path]), 301, 'Medical Landing 1.7.0');
+        exit;
+    }
+}, 1);
+// Keep the theme's medical entities authoritative without duplicate local entities.
+add_filter('rank_math/json_ld', static function ($data) {
+    foreach ($data as $key => $entity) {
+        if (array_intersect((array) ($entity['@type'] ?? []), ['Physician', 'MedicalBusiness', 'LocalBusiness', 'MedicalOrganization'])) {
+            unset($data[$key]);
+        }
+    }
+    return $data;
+}, 99);

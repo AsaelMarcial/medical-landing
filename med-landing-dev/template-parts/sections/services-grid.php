@@ -57,14 +57,10 @@ $diseases = developer_get_services_by_category('enfermedades');
         <?php endif; ?>
 
         <div class="mt-10 flex flex-col gap-3 sm:flex-row">
-            <a href="<?php echo esc_url(developer_get_page_url('servicios')); ?>" class="btn-primary">
+            <a href="<?php echo esc_url(developer_get_page_url('servicios')); ?>" class="social-link">
                 <?php esc_html_e('Ver todos los servicios', 'med-landing-dev'); ?>
             </a>
-            <?php if (developer_get_whatsapp_number()) : ?>
-                <a href="<?php echo esc_url(developer_get_whatsapp_url(__('Hola, me gustaría agendar una valoración de nefrología.', 'med-landing-dev'))); ?>" class="btn-whatsapp">
-                    <?php esc_html_e('Agendar por WhatsApp', 'med-landing-dev'); ?>
-                </a>
-            <?php endif; ?>
+            <?php developer_whatsapp_button(['placement' => 'services']); ?>
         </div>
     </div>
 </section>

@@ -34,14 +34,6 @@ function developer_customize_register($wp_customize) {
         'type'    => 'text',
     ]);
 
-    // Phone
-    $wp_customize->add_setting('phone_number', ['default' => '229 446 6698', 'sanitize_callback' => 'sanitize_text_field']);
-    $wp_customize->add_control('phone_number', [
-        'label'   => __('Teléfono', 'med-landing-dev'),
-        'section' => 'developer_contact',
-        'type'    => 'tel',
-    ]);
-
     // WhatsApp
     $wp_customize->add_setting('whatsapp_number', ['default' => '2294466698', 'sanitize_callback' => 'developer_sanitize_whatsapp_number']);
     $wp_customize->add_control('whatsapp_number', [
@@ -70,21 +62,9 @@ function developer_customize_register($wp_customize) {
         'type'    => 'email',
     ]);
 
-    $wp_customize->add_setting('fluent_form_id', ['default' => 0, 'sanitize_callback' => 'absint']);
-    $wp_customize->add_control('fluent_form_id', [
-        'label'       => __('ID del formulario Fluent Forms', 'med-landing-dev'),
-        'description' => __('Déjalo en 0 hasta crear y probar el formulario de contacto.', 'med-landing-dev'),
-        'section'     => 'developer_contact',
-        'type'        => 'number',
-        'input_attrs' => [
-            'min'  => 0,
-            'step' => 1,
-        ],
-    ]);
-
     // Doctor Description
     $wp_customize->add_setting('doctor_description', [
-        'default'           => 'Atención especializada en enfermedades del riñón, diálisis, hemodiálisis, accesos vasculares y salud renal en Xalapa y Boca del Río, Veracruz.',
+        'default'           => 'Atención especializada en enfermedades del riñón, diálisis, hemodiálisis, accesos vasculares y salud renal en Xalapa, Veracruz.',
         'sanitize_callback' => 'sanitize_textarea_field',
     ]);
     $wp_customize->add_control('doctor_description', [
@@ -131,37 +111,11 @@ function developer_customize_register($wp_customize) {
         'type'        => 'url',
     ]);
 
-    // Boca del Rio Address
-    $wp_customize->add_setting('address_veracruz', [
-        'default'           => 'Hospital MediMAC | Consultorio 37 | Avenida Calzada Juan Pablo II, Plaza Urban Center',
-        'sanitize_callback' => 'sanitize_textarea_field',
-    ]);
-    $wp_customize->add_control('address_veracruz', [
-        'label'   => __('Dirección Boca del Río', 'med-landing-dev'),
-        'section' => 'developer_addresses',
-        'type'    => 'textarea',
-    ]);
-
-    $wp_customize->add_setting('maps_url_veracruz', [
-        'default'           => 'https://maps.app.goo.gl/T3aZ7gXx3MWDn3e98',
-        'sanitize_callback' => 'esc_url_raw',
-    ]);
-    $wp_customize->add_control('maps_url_veracruz', [
-        'label'   => __('Enlace de Google Maps - Boca del Río', 'med-landing-dev'),
-        'section' => 'developer_addresses',
-        'type'    => 'url',
-    ]);
-
-    $wp_customize->add_setting('map_embed_url_veracruz', [
-        'default'           => developer_get_location('veracruz')['map_embed_url'],
-        'sanitize_callback' => 'esc_url_raw',
-    ]);
-    $wp_customize->add_control('map_embed_url_veracruz', [
-        'label'       => __('URL de mapa insertado - Boca del Río', 'med-landing-dev'),
-        'description' => __('Usa únicamente el valor src del iframe de Google Maps.', 'med-landing-dev'),
-        'section'     => 'developer_addresses',
-        'type'        => 'url',
-    ]);
+    foreach (['address' => 'Dirección', 'maps_url' => 'Enlace de Google Maps', 'map_embed_url' => 'Mapa insertado'] as $field => $label) {
+        $location = developer_get_location('optima');
+        $wp_customize->add_setting($field . '_optima', ['default' => $location[$field], 'sanitize_callback' => 'address' === $field ? 'sanitize_textarea_field' : 'esc_url_raw']);
+        $wp_customize->add_control($field . '_optima', ['label' => $label . ' — Policlinica Óptima', 'section' => 'developer_addresses', 'type' => 'address' === $field ? 'textarea' : 'url']);
+    }
 
     // Section: Social
     $wp_customize->add_section('developer_social', [
@@ -171,7 +125,7 @@ function developer_customize_register($wp_customize) {
 
     $social_networks = ['facebook', 'instagram', 'linkedin'];
     foreach ($social_networks as $network) {
-        $default_url = 'instagram' === $network ? 'https://www.instagram.com/dr.edgarhernandez.nefro/' : '';
+        $default_url = 'instagram' === $network ? 'https://www.instagram.com/dr.edgarhernandez.nefro/' : ('facebook' === $network ? developer_get_facebook_url() : '');
         $wp_customize->add_setting("social_{$network}", ['default' => $default_url, 'sanitize_callback' => 'esc_url_raw']);
         $wp_customize->add_control("social_{$network}", [
             'label'   => ucfirst($network),

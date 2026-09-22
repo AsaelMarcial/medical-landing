@@ -12,6 +12,11 @@
         <a href="<?php echo esc_url(developer_get_home_url()); ?>" class="btn-primary">
             <?php esc_html_e('Volver al inicio', 'med-landing-dev'); ?>
         </a>
+        <div class="flex flex-wrap justify-center gap-3 mt-4">
+            <a href="<?php echo esc_url(developer_get_page_url('servicios')); ?>" class="social-link"><?php echo esc_html(developer_text('Servicios', 'Services')); ?></a>
+            <a href="<?php echo esc_url(developer_get_page_url('nefrologo-xalapa')); ?>" class="social-link"><?php echo esc_html(developer_text('Consultorios', 'Locations')); ?></a>
+            <?php developer_whatsapp_button(['placement' => '404']); ?>
+        </div>
     </div>
 </main>
 

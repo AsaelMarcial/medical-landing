@@ -103,3 +103,8 @@ Las traducciones inglesas actuales son provisionales y requieren revisión profe
 - Revisión clínica final de los textos SEO y de las traducciones inglesas provisionales.
 - Aviso de privacidad, disclaimer y autorización de testimonios.
 - Traducción y revisión clínica final del contenido inglés.
+# Actualización 1.7.0 — auditoría en curso
+
+La rama `codex/whatsapp-xalapa-170` sustituye los flujos antiguos por WhatsApp exclusivo y dos consultorios en Xalapa. En la copia aislada se verificaron 17 pares de servicios y 10 pares de páginas ES/EN; no hay traducciones huérfanas y una segunda migración no cambia datos. PHP y build correctos. La revisión de metadatos, responsive, rendimiento y publicación continúa; no dar por cerradas las comprobaciones del plan. Estado detallado: `CONTEXTO-PROYECTO.md`.
+
+La auditoría previa se conserva a continuación como antecedente.

@@ -35,7 +35,7 @@ $memberships = developer_get_memberships();
                         <?php echo esc_html(developer_get_doctor_description()); ?>
                     </p>
                     <p class="text-text leading-relaxed mb-6">
-                        <?php esc_html_e('Especialista en Nefrología certificado, con atención en Xalapa y Boca del Río para valoración de enfermedades renales, terapias de reemplazo renal y procedimientos nefrológicos seleccionados.', 'med-landing-dev'); ?>
+                        <?php esc_html_e('Especialista en Nefrología certificado, con atención en Xalapa para valoración de enfermedades renales, terapias de reemplazo renal y procedimientos nefrológicos seleccionados.', 'med-landing-dev'); ?>
                     </p>
                     <div class="grid gap-3 text-sm text-text sm:grid-cols-2">
                         <div class="rounded-xl bg-white p-4 shadow-sm">
@@ -77,8 +77,9 @@ $memberships = developer_get_memberships();
                 </article>
 
                 <article class="rounded-xl bg-primary p-6 text-white">
+                    <div class="bg-white rounded-xl p-3 mb-5"><?php developer_council_logo(); ?></div>
                     <h3 class="mb-3 text-xl font-bold text-white"><?php esc_html_e('Certificación vigente', 'med-landing-dev'); ?></h3>
-                    <p class="text-slate-300"><?php echo esc_html($credentials['certification']); ?></p>
+                    <p class="text-slate-300"><?php echo esc_html(developer_text($credentials['certification'], 'Current certification by the Consejo Mexicano de Nefrología (2025–2030)')); ?></p>
                     <a href="<?php echo esc_url($credentials['conacem_url']); ?>" class="mt-5 inline-flex min-h-12 items-center rounded-lg bg-white px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-gold/60" target="_blank" rel="noopener">
                         <?php esc_html_e('Verificar en CONACEM', 'med-landing-dev'); ?>
                     </a>

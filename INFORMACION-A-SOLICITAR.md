@@ -1,5 +1,14 @@
 # Información a Solicitar al Médico — Landing Nefrólogo
 
+## Actualización vigente — 2026-09-22
+
+- Confirmado: WhatsApp exclusivo `229 446 6698`; ya no se solicita receptor ni configuración de formularios.
+- Confirmado: Torre Hakim Local 909 y Policlinica Óptima, Edificio D, detrás del estacionamiento, Consultorio 205 D, ambas en Xalapa. Boca del Río queda retirada.
+- Confirmado: Facebook oficial proporcionado y PNG oficial del Consejo Mexicano de Nefrología, integrado sin alterar su identidad.
+- Pendiente del médico: revisión de la ampliación clínica ES/EN en `docs/REVISION-CLINICA-170.md`. No publicar horarios, disponibilidad, sedes específicas de procedimientos ni resultados sin confirmación.
+- El correo de privacidad continúa pendiente; el contacto transitorio descrito es WhatsApp.
+- Los bloques históricos siguientes sirven de referencia; las solicitudes sobre formularios, llamadas y consultorio de Boca del Río ya no aplican.
+
 > Inventario operativo de la información que debe confirmar o proporcionar el médico antes de publicar. Los requisitos legales deben validarse con asesoría profesional aplicable al caso.
 
 ---

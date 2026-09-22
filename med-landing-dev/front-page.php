@@ -10,6 +10,8 @@ get_header(); ?>
 
     <?php get_template_part('template-parts/sections/hero'); ?>
 
+    <?php get_template_part('template-parts/sections/procedures'); ?>
+
     <?php get_template_part('template-parts/sections/services-grid'); ?>
 
     <?php get_template_part('template-parts/sections/about-preview'); ?>
@@ -17,6 +19,8 @@ get_header(); ?>
     <?php get_template_part('template-parts/sections/trust-section'); ?>
 
     <?php get_template_part('template-parts/sections/locations'); ?>
+
+    <?php get_template_part('template-parts/sections/social'); ?>
 
     <?php get_template_part('template-parts/components/cta-section'); ?>
 

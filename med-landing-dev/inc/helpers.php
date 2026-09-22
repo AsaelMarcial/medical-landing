@@ -12,7 +12,7 @@ function developer_get_doctor_name() {
 function developer_get_doctor_specialty() {
     $specialty = trim((string) get_theme_mod('doctor_specialty', ''));
 
-    if (!$specialty && 'en' === developer_get_current_language()) {
+    if ((!$specialty || 'Nefrología' === $specialty) && 'en' === developer_get_current_language()) {
         return 'Nephrology';
     }
 
@@ -23,10 +23,10 @@ function developer_get_doctor_description() {
     $description = trim((string) get_theme_mod('doctor_description', ''));
 
     if (!$description && 'en' === developer_get_current_language()) {
-        return 'Specialized care for kidney diseases, dialysis, hemodialysis access and renal health in Xalapa and Boca del Río, Veracruz.';
+        return 'Specialized care for kidney diseases, dialysis, hemodialysis access and renal health in Xalapa, Veracruz.';
     }
 
-    return developer_translate_string($description ?: 'Atención especializada en enfermedades del riñón, diálisis, hemodiálisis, accesos vasculares y salud renal en Xalapa y Boca del Río, Veracruz.');
+    return developer_translate_string($description ?: 'Atención especializada en enfermedades del riñón, diálisis, hemodiálisis, accesos vasculares y salud renal en Xalapa, Veracruz.');
 }
 
 function developer_get_professional_credentials() {
@@ -45,7 +45,7 @@ function developer_get_legal_pages_catalog() {
     $credentials = developer_get_professional_credentials();
     $doctor = developer_get_doctor_name();
 
-    $contact_note = '<p>Para dudas relacionadas con estas políticas, uso del sitio o tratamiento de datos personales, el canal temporal de contacto es el teléfono y WhatsApp <strong>' . esc_html($phone) . '</strong>. El correo oficial de privacidad se agregará cuando sea confirmado.</p>';
+    $contact_note = '<p>Para dudas relacionadas con estas políticas, uso del sitio o tratamiento de datos personales, el canal temporal de contacto es WhatsApp <strong>' . esc_html($phone) . '</strong>. El correo oficial de privacidad se agregará cuando sea confirmado.</p>';
 
     return [
         'aviso-de-privacidad' => [
@@ -53,9 +53,9 @@ function developer_get_legal_pages_catalog() {
             'slug'    => 'aviso-de-privacidad',
             'summary' => 'Tratamiento de datos personales para solicitudes de información, citas y atención administrativa.',
             'content' => '<h2>Responsable</h2>'
-                . '<p>El responsable del tratamiento de los datos personales recabados a través de este sitio es <strong>' . esc_html($doctor) . '</strong>, especialista en Nefrología, con atención en Xalapa y Boca del Río, Veracruz.</p>'
+                . '<p>El responsable del tratamiento de los datos personales recabados a través de este sitio es <strong>' . esc_html($doctor) . '</strong>, especialista en Nefrología, con atención en Xalapa, Veracruz.</p>'
                 . '<h2>Datos que pueden recabarse</h2>'
-                . '<p>Este sitio puede recibir datos de identificación y contacto, como nombre, teléfono, ciudad, mensaje enviado por formulario o WhatsApp, así como información que el usuario decida compartir para solicitar orientación administrativa sobre una cita.</p>'
+                . '<p>Este sitio puede recibir datos de identificación y contacto, como nombre, teléfono, ciudad, mensaje enviado por WhatsApp, así como información que el usuario decida compartir para solicitar orientación administrativa sobre una cita.</p>'
                 . '<h2>Finalidades</h2>'
                 . '<p>Los datos se utilizan para responder solicitudes, coordinar citas, dar seguimiento administrativo, mantener comunicación con el paciente o familiar y cumplir obligaciones aplicables al servicio profesional de salud.</p>'
                 . '<h2>Datos sensibles</h2>'
@@ -75,7 +75,7 @@ function developer_get_legal_pages_catalog() {
                 . '<h2>Información publicada</h2>'
                 . '<p>La información sobre enfermedades, procedimientos, sedes y datos profesionales se publica con fines de orientación. Puede actualizarse sin aviso previo para corregir, ampliar o precisar el contenido.</p>'
                 . '<h2>Citas y contacto</h2>'
-                . '<p>Los botones de WhatsApp, teléfono y formularios sirven para solicitar información o iniciar el proceso de agenda. El envío de un mensaje no garantiza disponibilidad inmediata ni sustituye confirmación de cita.</p>'
+                . '<p>Los botones de WhatsApp sirven para solicitar información o iniciar el proceso de agenda. El envío de un mensaje no garantiza disponibilidad inmediata ni sustituye confirmación de cita.</p>'
                 . '<h2>Limitaciones</h2>'
                 . '<p>El usuario se compromete a no utilizar el sitio para enviar información falsa, abusiva, automatizada o que afecte la operación del servicio.</p>'
                 . '<h2>Propiedad intelectual</h2>'
@@ -93,7 +93,7 @@ function developer_get_legal_pages_catalog() {
                 . '<h2>Valoración médica</h2>'
                 . '<p>Cada caso requiere historia clínica, exploración, estudios y criterio profesional. Las decisiones clínicas deben tomarse durante una valoración formal con un profesional de salud.</p>'
                 . '<h2>Urgencias</h2>'
-                . '<p>Este sitio, WhatsApp y formularios no son medios de atención de urgencias. Ante síntomas intensos, deterioro súbito, dificultad para respirar, disminución marcada de orina, dolor severo o cualquier emergencia, acude a un servicio de urgencias.</p>'
+                . '<p>Este sitio y WhatsApp no son medios de atención de urgencias. Ante síntomas intensos, deterioro súbito, dificultad para respirar, disminución marcada de orina, dolor severo o cualquier emergencia, acude a un servicio de urgencias.</p>'
                 . '<h2>Enlaces externos</h2>'
                 . '<p>El sitio puede enlazar a mapas, redes sociales, organismos de certificación u otros recursos externos. No se controla el contenido, disponibilidad o políticas de esos sitios.</p>'
                 . '<h2>Actualización de datos</h2>'
@@ -121,8 +121,8 @@ function developer_get_legal_pages_catalog() {
 
 function developer_get_professional_training() {
     return [
-        'Coordinador y profesor del Programa Académico de Clínica de Lesión Renal Aguda en hospital de tercer nivel.',
-        'Médico egresado de la Universidad Veracruzana y del Instituto Mexicano del Seguro Social (IMSS) en la UMAE Hospital de Especialidades No. 14, Centro Médico Nacional "Dr. Adolfo Ruiz Cortines", Veracruz.',
+        developer_text('Coordinador y profesor del Programa Académico de Clínica de Lesión Renal Aguda en hospital de tercer nivel.', 'Coordinator and instructor of the Acute Kidney Injury Clinic academic program at a tertiary hospital.'),
+        developer_text('Médico egresado de la Universidad Veracruzana y del Instituto Mexicano del Seguro Social (IMSS) en la UMAE Hospital de Especialidades No. 14, Centro Médico Nacional "Dr. Adolfo Ruiz Cortines", Veracruz.', 'Medical graduate of Universidad Veracruzana and the Instituto Mexicano del Seguro Social (IMSS), UMAE Hospital de Especialidades No. 14, Centro Médico Nacional "Dr. Adolfo Ruiz Cortines", Veracruz.'),
     ];
 }
 
@@ -471,7 +471,7 @@ function developer_get_service_english_data($service) {
         'enfermedad-renal-cronica' => ['title' => 'Chronic kidney disease', 'slug' => 'chronic-kidney-disease', 'excerpt' => 'Specialized assessment and follow-up for chronic kidney disease, kidney function changes and progression risk.', 'eyebrow' => 'Kidney assessment'],
         'diabetes-hipertension-dano-renal' => ['title' => 'Diabetes and hypertension with kidney damage', 'slug' => 'diabetes-hypertension-kidney-damage', 'excerpt' => 'Nephrology care for kidney damage associated with diabetes, hypertension, albuminuria or reduced kidney function.', 'eyebrow' => 'Metabolic control'],
         'lesion-renal-aguda' => ['title' => 'Acute kidney injury', 'slug' => 'acute-kidney-injury', 'excerpt' => 'Assessment of recent kidney function changes related to acute illness, hospitalization, dehydration, contrast or medications.', 'eyebrow' => 'Recent change'],
-        'proteinuria-hematuria' => ['title' => 'Proteinuria and hematuria', 'slug' => 'proteinuria-hematuria', 'excerpt' => 'Evaluation of protein or blood in urine when kidney involvement needs to be ruled out or followed.', 'eyebrow' => 'Urine tests'],
+        'proteinuria-hematuria' => ['title' => 'Proteinuria and hematuria', 'slug' => 'proteinuria-and-hematuria', 'excerpt' => 'Evaluation of protein or blood in urine when kidney involvement needs to be ruled out or followed.', 'eyebrow' => 'Urine tests'],
         'infecciones-urinarias-recurrentes' => ['title' => 'Recurrent urinary tract infections', 'slug' => 'recurrent-urinary-tract-infections', 'excerpt' => 'Evaluation of recurrent urinary infections, especially when kidney risk factors or diagnostic uncertainty are present.', 'eyebrow' => 'Prevention'],
         'alteraciones-electrolitos' => ['title' => 'Electrolyte disorders', 'slug' => 'electrolyte-disorders', 'excerpt' => 'Assessment of sodium, potassium, calcium, phosphorus, magnesium and acid-base abnormalities.', 'eyebrow' => 'Mineral balance'],
         'litiasis-renal' => ['title' => 'Kidney stones', 'slug' => 'kidney-stones', 'excerpt' => 'Nephrology follow-up for kidney stones and metabolic factors that may increase recurrence risk.', 'eyebrow' => 'Kidney stones'],
@@ -496,12 +496,11 @@ function developer_get_service_english_data($service) {
     $translated['slug'] = $translations[$service['slug']]['slug'];
     $translated['excerpt'] = $translations[$service['slug']]['excerpt'];
     $translated['eyebrow'] = $translations[$service['slug']]['eyebrow'] ?? ($service['eyebrow'] ?? '');
-    $translated['reasons'] = [
-        'You have abnormal kidney tests or symptoms related to this condition.',
-        'A physician suggested nephrology evaluation or follow-up.',
-        'You need specialized guidance in Xalapa or Boca del Río.',
-    ];
-    $translated['approach'] = 'The visit reviews symptoms, medical history, medications, laboratory results and available imaging to guide the next clinical steps. These English texts are provisional and should be professionally reviewed before final publication.';
+    $details = developer_get_english_service_details($service['slug']);
+    $translated['source_slug'] = $service['slug'];
+    $translated['reasons'] = $details['reasons'];
+    $translated['approach'] = $details['approach'];
+    $translated['basic_info'] = $details['basic'];
 
     return $translated;
 }
@@ -517,9 +516,9 @@ function developer_get_service_basic_info($slug) {
         'litiasis-renal' => 'La litiasis renal ocurre cuando se forman cálculos en el riñón o vías urinarias. Puede causar dolor intenso, sangre en la orina, infección u obstrucción; después de un evento es útil revisar causas y prevención de recurrencias.',
         'enfermedades-glomerulares' => 'Las enfermedades glomerulares afectan los filtros microscópicos del riñón. Pueden manifestarse con proteínas o sangre en orina, hinchazón, presión alta o deterioro de la función renal.',
         'sindromes-cardiorrenales' => 'Los síndromes cardiorrenales describen la interacción entre corazón y riñón, donde la disfunción de un órgano puede afectar al otro. Son relevantes en insuficiencia cardiaca, retención de líquidos, presión alta y cambios de función renal.',
-        'hipertension-dificil-control' => 'La hipertensión difícil de controlar puede dañar el riñón y también ser consecuencia de enfermedad renal. La valoración busca causas secundarias, efecto de medicamentos, adherencia, dieta, mediciones y daño a órganos.',
+        'hipertension-arterial-dificil-control' => 'La hipertensión difícil de controlar puede dañar el riñón y también ser consecuencia de enfermedad renal. La valoración busca causas secundarias, efecto de medicamentos, adherencia, dieta, mediciones y daño a órganos.',
         'enfermedad-renal-embarazo' => 'La enfermedad renal durante el embarazo requiere vigilancia coordinada porque la presión arterial, la proteína en orina y la función renal pueden influir en la salud de la madre y del bebé.',
-        'evaluacion-trasplante-renal' => 'La evaluación para trasplante renal incluye preparación, estudios, revisión de riesgos y seguimiento con el equipo de trasplante. El nefrólogo ayuda a orientar el proceso antes y después del procedimiento.',
+        'evaluacion-seguimiento-trasplante-renal' => 'La evaluación para trasplante renal incluye preparación, estudios, revisión de riesgos y seguimiento con el equipo de trasplante. El nefrólogo ayuda a orientar el proceso antes y después del procedimiento.',
         'dialisis-peritoneal' => 'La diálisis peritoneal es una terapia de reemplazo renal que utiliza el peritoneo como membrana para ayudar a eliminar desechos y exceso de líquidos cuando los riñones ya no cumplen esa función suficiente.',
         'hemodialisis' => 'La hemodiálisis es una terapia de reemplazo renal que filtra la sangre mediante una máquina y un acceso vascular. Requiere seguimiento para controlar líquidos, laboratorios, presión y complicaciones.',
         'cateteres-hemodialisis' => 'Los catéteres de hemodiálisis pueden ser temporales o tunelizados y se usan como acceso vascular cuando se necesita iniciar o continuar hemodiálisis según la situación clínica.',
@@ -546,8 +545,8 @@ function developer_build_service_content($service) {
         . '<ul>' . $reasons . '</ul>'
         . '<h2>Enfoque del especialista</h2>'
         . '<p>' . esc_html($service['approach']) . '</p>'
-        . '<h2>Atención en Xalapa y Boca del Río</h2>'
-        . '<p>El Dr. Edgar Eduardo Hernández Enríquez ofrece consulta de nefrología en Torre Hakim, Xalapa, y Hospital MediMAC, Boca del Río. Para agendar o resolver dudas iniciales, utiliza el botón de WhatsApp o la página de contacto.</p>'
+        . '<h2>Atención en Xalapa</h2>'
+        . '<p>El Dr. Edgar Eduardo Hernández Enríquez ofrece consulta de nefrología en Torre Hakim y Policlinica Óptima, Xalapa. Para agendar o resolver dudas iniciales, utiliza el botón de WhatsApp o la página de contacto.</p>'
         . '<p><strong>Nota médica:</strong> Esta información es educativa y no sustituye una valoración médica individual. Si tienes síntomas intensos, deterioro súbito o una urgencia, acude a un servicio de atención inmediata.</p>';
 }
 
@@ -558,18 +557,20 @@ function developer_build_service_content_en($service) {
         $reasons .= '<li>' . esc_html($reason) . '</li>';
     }
 
-    return '<h2>When to seek nephrology care</h2>'
+    return '<h2>About this condition or treatment</h2><p>' . esc_html($service['basic_info']) . '</p><h2>When to seek nephrology care</h2>'
         . '<p>' . esc_html($service['excerpt']) . '</p>'
         . '<h2>Common reasons for assessment</h2>'
         . '<ul>' . $reasons . '</ul>'
         . '<h2>Specialist approach</h2>'
         . '<p>' . esc_html($service['approach']) . '</p>'
-        . '<h2>Care in Xalapa and Boca del Río</h2>'
-        . '<p>Dr. Edgar Eduardo Hernández Enríquez provides nephrology consultation at Torre Hakim in Xalapa and Hospital MediMAC in Boca del Río. Use WhatsApp or the contact page to request information about an appointment.</p>'
+        . '<h2>Care in Xalapa</h2>'
+        . '<p>Dr. Edgar Eduardo Hernández Enríquez provides nephrology consultation at Torre Hakim and Policlinica Óptima in Xalapa. Use WhatsApp or the contact page to request information about an appointment.</p>'
         . '<p><strong>Medical note:</strong> This content is educational and does not replace an individual medical assessment. If you have severe symptoms, sudden deterioration or an emergency, seek immediate medical care.</p>';
 }
 
 function developer_translate_string($string) {
+    $translated = __($string, 'med-landing-dev');
+    if ($translated !== $string) { return $translated; }
     if ($string && function_exists('pll__')) {
         return pll__($string);
     }
@@ -637,36 +638,11 @@ function developer_get_legal_page_url($slug) {
 
 function developer_get_navigation_items() {
     return [
-        [
-            'label' => __('Inicio', 'med-landing-dev'),
-            'slug'  => 'inicio',
-            'url'   => developer_get_home_url(),
-        ],
-        [
-            'label' => __('Sobre el Doctor', 'med-landing-dev'),
-            'slug'  => 'sobre-el-doctor',
-            'url'   => developer_get_page_url('sobre-el-doctor'),
-        ],
-        [
-            'label' => __('Servicios', 'med-landing-dev'),
-            'slug'  => 'servicios',
-            'url'   => developer_get_page_url('servicios'),
-        ],
-        [
-            'label' => __('Xalapa', 'med-landing-dev'),
-            'slug'  => 'nefrologo-xalapa',
-            'url'   => developer_get_page_url('nefrologo-xalapa'),
-        ],
-        [
-            'label' => __('Boca del Río', 'med-landing-dev'),
-            'slug'  => 'nefrologo-veracruz',
-            'url'   => developer_get_page_url('nefrologo-veracruz'),
-        ],
-        [
-            'label' => __('Contacto', 'med-landing-dev'),
-            'slug'  => 'contacto',
-            'url'   => developer_get_page_url('contacto'),
-        ],
+        ['label' => __('Inicio', 'med-landing-dev'), 'slug' => 'inicio', 'url' => developer_get_home_url()],
+        ['label' => developer_text('Doctor', 'Doctor'), 'slug' => 'sobre-el-doctor', 'url' => developer_get_page_url('sobre-el-doctor')],
+        ['label' => __('Servicios', 'med-landing-dev'), 'slug' => 'servicios', 'url' => developer_get_page_url('servicios')],
+        ['label' => developer_text('Procedimientos', 'Procedures'), 'slug' => 'procedimientos', 'url' => developer_get_page_url('servicios') . '#procedimientos'],
+        ['label' => developer_text('Consultorios', 'Locations'), 'slug' => 'nefrologo-xalapa', 'url' => developer_get_page_url('nefrologo-xalapa')],
     ];
 }
 
@@ -787,18 +763,15 @@ function developer_get_locations() {
             'longitude'    => -96.9308932,
             'page_url'     => '',
         ],
-        'veracruz' => [
-            'key'          => 'veracruz',
-            'city'         => 'Boca del Río',
-            'region'       => 'Veracruz',
-            'venue'        => 'Hospital MediMAC',
-            'office'       => 'Consultorio 37',
-            'address'      => 'Hospital MediMAC | Consultorio 37 | Avenida Calzada Juan Pablo II, Plaza Urban Center',
-            'maps_url'     => 'https://maps.app.goo.gl/T3aZ7gXx3MWDn3e98',
-            'map_embed_url' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.7894838609877!2d-96.1189766!3d19.1606901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c341dc708383c9%3A0xd8562fdb80821ddf!2sHospital%20MediMAC%20Boca%20del%20R%C3%ADo!5e0!3m2!1ses!2smx!4v1780886114624!5m2!1ses!2smx',
-            'latitude'     => 19.1606901,
-            'longitude'    => -96.1189766,
-            'page_url'     => '',
+        'optima' => [
+            'key' => 'optima', 'city' => 'Xalapa', 'region' => 'Veracruz',
+            'venue' => 'Policlinica Óptima',
+            'office' => developer_text('Edificio D · Consultorio 205 D', 'Building D · Office 205 D'),
+            'address' => developer_text('Lázaro Cárdenas 440, Francisco Villa, Xalapa, Veracruz, 91150. Edificio D, detrás del estacionamiento. Consultorio 205 D.', 'Lázaro Cárdenas 440, Francisco Villa, Xalapa, Veracruz, 91150. Building D, behind the parking lot. Office 205 D.'),
+            'maps_url' => 'https://maps.app.goo.gl/Uc4sAUvqBDg8kD3e7',
+            'hospital_maps_url' => 'https://maps.app.goo.gl/MSdK7TFPytGy37LJ8',
+            'map_embed_url' => 'https://maps.google.com/maps?cid=15232576136687961751&output=embed',
+            'latitude' => null, 'longitude' => null, 'page_url' => '',
         ],
     ];
 
@@ -807,7 +780,7 @@ function developer_get_locations() {
         $locations[$key]['maps_url'] = trim((string) get_theme_mod("maps_url_{$key}", $location['maps_url']));
         $locations[$key]['map_embed_url'] = trim((string) get_theme_mod("map_embed_url_{$key}", $location['map_embed_url']));
         $locations[$key]['address'] = developer_translate_string($locations[$key]['address']);
-        $locations[$key]['page_url'] = developer_get_page_url('xalapa' === $key ? 'nefrologo-xalapa' : 'nefrologo-veracruz');
+        $locations[$key]['page_url'] = developer_get_page_url('nefrologo-xalapa') . '#' . $key;
     }
 
     return $locations;
@@ -943,7 +916,7 @@ function developer_register_polylang_strings() {
     $strings = [
         'doctor_name'        => developer_get_doctor_name(),
         'doctor_specialty'   => trim((string) get_theme_mod('doctor_specialty', 'Nefrología')),
-        'doctor_description' => trim((string) get_theme_mod('doctor_description', 'Atención especializada en enfermedades del riñón, diálisis, hemodiálisis, accesos vasculares y salud renal en Xalapa y Boca del Río, Veracruz.')),
+        'doctor_description' => trim((string) get_theme_mod('doctor_description', 'Atención especializada en enfermedades del riñón, diálisis, hemodiálisis, accesos vasculares y salud renal en Xalapa, Veracruz.')),
         'whatsapp_message'    => trim((string) get_theme_mod('whatsapp_message', 'Hola, me gustaría solicitar información para agendar una cita.')),
         'address_xalapa'     => trim((string) get_theme_mod('address_xalapa', 'Torre Hakim | Local 909')),
         'address_veracruz'   => trim((string) get_theme_mod('address_veracruz', 'Hospital MediMAC | Consultorio 37 | Avenida Calzada Juan Pablo II, Plaza Urban Center')),

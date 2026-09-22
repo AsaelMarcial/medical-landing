@@ -5,6 +5,19 @@
 
 ## 1. Estado Ejecutivo
 
+### Implementación 1.7.0 en curso — 2026-09-22
+
+- Rama de trabajo: `codex/whatsapp-xalapa-170`, desde `codex/pagespeed-100` / `2052229` (documentación de la auditoría). Producción todavía conserva `6b13c3d`, tema 1.6.7; no confundir archivos locales preparados con despliegue terminado.
+- Decisión vigente: citas exclusivamente por WhatsApp `522294466698`, dos sedes en Xalapa: Torre Hakim Local 909 y Policlinica Óptima, Edificio D, detrás del estacionamiento, Consultorio 205 D. Boca del Río se retira y su URL tendrá 301 a Xalapa.
+- Interfaz preparada: CTA compartido con icono WhatsApp completo, verde `#344729`, hover `#4A5942`; procedimientos destacados, Facebook oficial, PNG local oficial del Consejo Mexicano de Nefrología, Contacto sin formulario ni llamadas, navegación y sedes actualizadas.
+- Respaldo médico completo: `/opt/med-landing-dev/backups/20260922-before-170`, permisos privados. Incluye SQL, WordPress, repositorio y configuración necesaria. No se tocaron otros proyectos.
+- Pruebas aisladas: `/opt/med-landing-170-stage`, proyecto Compose `med_landing_170_stage`, contenedores propios, HTTP exclusivamente `127.0.0.1:8082`, acceso por túnel local `http://127.0.0.1:18082`. Cabecera `X-Robots-Tag: noindex, nofollow`, robots cerrado, correo y Site Kit deshabilitados únicamente en esa copia.
+- Destino confirmado: WordPress 7.1.1, PHP 8.2.32, instalación simple (no Multisite).
+- Migración explícita `wp med-landing migrate-170`: dry-run, huella de estado, snapshot privado, protección de contenido auditado, claves servicio/idioma y relaciones con IDs distintos. En pruebas creó 17 pares de servicios y 10 pares de páginas, sin huérfanos; segunda ejecución no modifica datos.
+- SEO: Rank Math debe completar uso sin cuenta (`rank_math_registration_skip`) además del setup. Polylang debe traducir CPT `servicio`, activar `redirect_lang` y limpiar caché de idiomas. Sitemap Rank Math respondió 200 en pruebas. El tema ya no fuerza indexación de errores.
+- Pendiente: cerrar validación de metadatos y rendimiento, repetir migración desde copia original con código final, documentar y publicar, verificar producción y Search Console. La ampliación clínica ES/EN está preparada en `docs/REVISION-CLINICA-170.md` y permanece desactivada hasta revisión médica.
+- Las secciones anteriores a esta actualización describen el estado 1.6.7 o antecedentes históricos. Las decisiones de este bloque prevalecen sobre referencias a formularios, llamadas o Boca del Río.
+
 - Auditoría productiva 2026-09-22: producción, copia local y GitHub coinciden en el commit `6b13c3d` de `codex/pagespeed-100`; el árbol desplegado está limpio, sin archivos modificados ni ignorados dentro del tema. El tema 1.6.7 está activo sobre WordPress 7.1.1 y PHP 8.2.32. Home, páginas principales, legales y versión `/en/` responden correctamente; la base de datos pasa `wp db check` y no se observaron errores PHP recientes.
 - Nota PageSpeed actual 2026-07-09: la rama aislada `codex/pagespeed-100` quedó en tema 1.6.6 con Lighthouse CLI local válido en `https://nefrologoedgar.com.mx/`: móvil `100/100/100/100` y escritorio `100/100/100/100`. Esta versión conserva la estable como respaldo, reduce logos/retrato WebP, cambia Google Maps a carga bajo demanda, mantiene cero CDN frontend del tema, imprime el CSS de Home inline, reserva ancho/alto del retrato del hero y elimina reordenamiento visual del hero para atacar CLS.
 
@@ -1042,3 +1055,12 @@ Copiar esta estructura al final:
 - Riesgos: actualizaciones disponibles para Polylang, Rank Math, Fluent Forms y Site Kit; `8081/tcp` y `3306/tcp` continúan permitidos por UFW y MariaDB del host escucha públicamente. Cualquier restricción debe coordinarse con los demás proyectos del VPS.
 - Validaciones: `npm run build` correcto con TailwindCSS 4.3.0 y sin cambios generados; WordPress y DB verificados con WP-CLI; estado de Git y referencia remota comprobados; respuestas HTTP y certificado revisados; sin errores PHP recientes del contenedor.
 - Pendientes prioritarios: formulario real, correo/horarios, Rank Math/Search Console, traducción faltante, respaldo y actualización de plugins, rotación de credenciales y endurecimiento de red tras auditar dependencias compartidas.
+
+### 2026-09-22 — Implementación y pruebas aisladas de 1.7.0
+
+- Objetivo: WhatsApp exclusivo, dos consultorios en Xalapa, procedimientos visibles, Facebook, logo CMN y reparación bilingüe/SEO.
+- Archivos: componentes/templates, helpers, Customizer, estilos/JS y catálogos del tema; nuevos módulos de experiencia, traducciones y migración explícita; scripts de QA, instrucciones, plan y documentos de revisión/despliegue.
+- Decisiones: conservar URLs españolas y restaurar Proteinuria; usar claves servicio/idioma y IDs diferentes, 301 individuales, páginas anteriores recuperables. Mantener el contenido clínico previo de catéteres/biopsia hasta revisión; guardar ampliaciones pendientes separadamente.
+- Validación hasta este punto: respaldo médico completo, Docker de pruebas aislado, PHP/build/JS correctos, 17 pares de servicios y 10 de páginas sin huérfanos, migración repetida sin cambios, Chrome/Edge sin fallos en nueve rutas y cinco anchos. Lighthouse móvil aislado 98 rendimiento / 100 accesibilidad / 100 buenas prácticas; SEO limitado por noindex deliberado.
+- Hallazgos corregidos: CPT servicio no habilitado en Polylang, cuenta Rank Math no omitida/completada, caché de idioma reteniendo `/en/home/`, canonical inglesa incorrecta y sitemap previo en caché. La finalización se ejecuta en un proceso nuevo.
+- Pendientes: terminar QA de release y mapas, publicar código/migración, verificar producción y Search Console. Firefox no arrancó en este Windows; Safari real no está disponible. Ampliación clínica pendiente de revisión médica. Producción todavía no modificada al registrar esta entrada.
